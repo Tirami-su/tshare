@@ -2,7 +2,7 @@
 #目录
 [项目背景](###user-content-项目背景)
 
-[解决方案](###user-content-Tshare致力于为学习资源共享提供一个更好的解决方案)
+[解决方案](###user-content-tshare致力于为学习资源共享提供一个更好的解决方案)
 
 [概要设计](###user-content-概要设计)
 
