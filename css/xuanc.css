@@ -1,0 +1,60 @@
+ nav  {
+	float: left;
+	display: inline;
+	position: fixed;
+	top:0;
+	margin:50px auto; 
+	
+	filter:alpha(opacity:45); 
+	opacity:0.7;
+	z-index: -7;
+}
+.header nav {
+	height: 86px;
+	background: #ccc;
+	top:-50px;
+	width: 1600px;
+	left: -10px;	
+	filter:alpha(opacity:45); 
+	opacity:0.9;
+	z-index: -7;
+}
+.logo img{
+	position: absolute;
+    left: 50px;
+    top: -20px; 
+    width: 199px;
+    height: 107px;
+}
+.cd-login img{
+	position: absolute;
+    left: 1200px;
+    top: 15px;
+    width: 70px;
+    height: 45px;
+}
+.cd-signup img{
+	position: absolute;
+	top: 15px;
+	left: 1300px;
+    width: 70px;
+    height: 45px;
+}
+
+.icon1 img{
+	position: absolute;
+	top: -34px;
+	left: -18px;
+	width: 1838px;
+    height: 921px;
+	z-index: -9;
+}
+.icon2 img{
+	position: absolute;
+	top: 1050px;
+	left: 300px;
+	width:900px;
+	height: 300px;
+	z-index: -9;
+}
+
