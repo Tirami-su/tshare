@@ -17,7 +17,8 @@ function Rhideslider(){
 }
 
 $('.logo').click(function(){
-	Lshowslider();
+	$('.mask').fadeIn()
+	$('.Lsilder').css('left',0)
 })
 $('.signin').click(function(){
 	

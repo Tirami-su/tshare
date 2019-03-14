@@ -7,7 +7,7 @@ jQuery(document).ready(function($){
 		$tab_signup = $form_modal_tab.children('li').eq(1).children('a'),
 		$main_nav = $('.main_nav');
 
-	//µ¯³ö´°¿Ú
+	
 	$main_nav.on('click', function(event){
 
 		if( $(event.target).is($main_nav) ) {
