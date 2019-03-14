@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset='UTF-8'>
+	<title>首页</title>
+	<script type="text/javascript">
+		 function verifi() {
+            $.ajax({
+            //几个参数需要注意一下
+                type: "POST",//方法类型
+                dataType: "json",//预期服务器返回的数据类型
+                url: "getVeri.php" ,//url
+                data: $('#form').serialize(),
+                success: function (result) {
+                    console.log(result);//打印服务端返回的数据(调试用)
+                    if (result.resultCode == 200) {
+                        alert("SUCCESS");
+                    }
+                    ;
+                },
+                error : function() {
+                    alert("异常！");
+                }
+            });
+        }
+
+        function zc() {
+            $.ajax({
+            //几个参数需要注意一下
+                type: "POST",//方法类型
+                dataType: "json",//预期服务器返回的数据类型
+                url: "zc.php" ,//url
+                data: $('#form').serialize(),
+                success: function (result) {
+                    console.log(result);//打印服务端返回的数据(调试用)
+                    if (result.resultCode == 200) {
+                        alert("SUCCESS");
+                    }
+                    ;
+                },
+                error : function() {
+                    alert("异常！");
+                }
+            });
+        }
+	</script>>
+</head>
+
+<body>
+<form id='form' onsubmit='return false' action='##' method='post'>
+	<div>
+		<div>
+			学号：<input name='id' type='text' />
+		</div>
+		<div>
+			密码：<input name='pwd' type='password' />
+		<div>
+			<input name='veri' type='text' /><input type='button' onclick="verifi" value='点击获取邮箱验证码'>
+		</div>
+		<div>
+			<input name='zc' type='button' value='注册' onclick="zc">
+			<input name='dl' type='submit' value='登陆'>
+		</div>
+	</div>
+</form>
+</body>
+</html>
