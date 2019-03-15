@@ -26,14 +26,14 @@
     width: 199px;
     height: 107px;
 }
-.cd-login img{
+#login img{
 	position: absolute;
     left: 1200px;
     top: 15px;
     width: 70px;
     height: 45px;
 }
-.cd-signup img{
+#signup img{
 	position: absolute;
 	top: 15px;
 	left: 1300px;
@@ -45,7 +45,7 @@
 	position: absolute;
 	top: -34px;
 	left: -18px;
-	width: 1838px;
+	width: 1537.5px;
     height: 921px;
 	z-index: -9;
 }
@@ -58,3 +58,178 @@
 	z-index: -9;
 }
 
+#cd-signup{
+	width: 300px;
+	height: 400px;
+	background-color: white;
+	position: fixed;
+	left: 650px;
+	top:200px;
+}
+
+#cd-login{
+	width: 300px;
+	height: 400px;
+	background-color: white;
+	position: fixed;
+	left: 650px;
+	top:200px;
+}
+#close0{
+	width: 15px;
+	height: 15px;
+	position: relative;
+	left: 300px;
+}
+#close1{
+	width: 15px;
+	height: 15px;
+	position: relative;
+	left: 300px;
+}
+#cd-signup .u72{
+              width:120px;
+              height: 50px;
+              position: relative;
+              left: 50px;
+              top:0px;
+            }
+         #cd-signup   .u74{
+              width: 200px;
+              height: 50px;
+              position: relative;
+              top:0px;
+              left: 60px;
+              
+            }
+            #signup-username
+            {
+            	position: relative;
+            	left: 30px;
+            	top:20px;
+            }
+          #cd-signup .identify{
+            	position: relative;
+            	height: 20px;
+            	width: 80px;
+            	top:20px;
+            	left: 30px;
+            }
+            #cd-signup .code{
+            	position: relative;
+            	height: 20px;
+            	width: 80px;
+            	left: 12px;
+            	top:10px;
+
+            }
+            #cd-signup .full-width2{
+            	position: relative;
+            	left: 110px;
+            	width: 100px;
+            	height: 30px;
+            }
+            #signup-password{
+            	position: relative;
+            	left: 30px;
+            	width: 100px;
+            }
+            #btnemail{
+            	width: 100px;
+            	position: relative;
+            	left: 50px;
+            }
+            #agreement{
+            	position: relative;
+            	left: 30px;
+            	text-decoration: blink;
+            	color: black;
+            }
+            #confirm1{
+            	color: black;
+            	position: relative;
+            	left: 100px;
+            }
+            #btnlogin{
+            	color:#288bc4;
+            position: relative;
+            	left: 100px;
+            }
+#cd-login .u72{
+              width:120px;
+              height: 50px;
+              position: relative;
+              left: 50px;
+              top:0px;
+            }
+         #cd-login   .u74{
+              width: 200px;
+              height: 50px;
+              position: relative;
+              top:0px;
+              left: 60px;
+              
+            }
+            #signin-username
+            {
+            	position: relative;
+            	left: 70px;
+            }
+            #signin-password{
+            	position: relative;
+            	left: 70px;
+            }
+            #forget{
+            	position: relative;
+            	left: 150px;
+            }
+            #cd-login .full-width1{
+            	position: relative;
+            	left: 110px;
+            	width: 100px;
+            	height: 30px;
+            }
+            #confirm0{
+            	color: black;
+            	position: relative;
+            	top: 40px;
+            	left: 100px;
+            }
+            #btnsignup{
+            	color:#288bc4;
+            position: relative;
+            	left: 100px;
+            	top: 40px;
+            }
+ /*验证码*/
+.code
+    {
+          background-color: silver;
+            font-family:Arial; /*设置字体*/
+            font-style:initial;
+             color:brown;
+             font-size:20px;
+             border:0;
+              padding:2px 3px;
+             letter-spacing:3px;
+             font-weight:bolder;            
+              
+             width:81px;
+             height:23px;      
+             margin-left: 120px;
+             margin-top: -35px;
+ 
+    }
+    a
+    {
+        /*text-decoration:blink;*/
+        font-size:12px;
+        
+        }
+    
+       .yz{
+         position: absolute;
+          margin-left: 220px;
+          margin-top:-10px;
+          color:#288bc4;
+        }
