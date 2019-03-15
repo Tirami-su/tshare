@@ -1,9 +1,6 @@
 <?php
 
-// 注意声明命名空间
-
-// 需要引进phpmailer.php
-include_once("../../lib/phpmailer.php");
+require_once "phpmailer.php";
 
 /**
  * 封装邮件发送类，采用单例设计模式
