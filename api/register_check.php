@@ -1,27 +1,12 @@
 <?php
-require_once "lib/Db.php";
-require_once "lib/Mailer.php";
-
 /**
- * 注册，发送邮箱验证码
- * @param String $id 学号
+ * 注册验证
+ * 1. 确认验证码及其有效性
+ * 2. 确认验证码与学号的对应关系
+ * 3. 确认学号没有被注册过
  */
-function sendVerification($id) {
-	$email = $id."@stu.hit.edu.cn";		// 验证邮箱
-	$rand = mt_rand(100000, 999999);	// 验证码
-	$body = "验证码：" . $rand;
-	$subject = "来自tshare的邮箱验证";
 
-	// 先发送邮件再存数据库
-	$mail = Mailer::instance();
-	$mail->send($email, $subject, $body);
-
-	$time = time() + 60;	// 验证码有效时间
-	// 写入数据库
-	$db = new Db();
-	$sql = "insert into veri(id, verification, time) values({$id}, '{$rand}', {$time})";
-	$db->query($sql);
-}
+include_once("../lib/Db.php");
 
 /**
  * 注册验证，确认验证码，并完成对用户的注册
@@ -30,7 +15,7 @@ function sendVerification($id) {
  * @param String $verification 验证码
  * @return int 验证码错误返回0，验证码失效返回1，用户已存在返回2，注册成功返回3
  */
-function register($id, $password, $verification) {
+function registerCheck($id, $password, $verification) {
 	$flag = 0;		// 错误码
 
 	// 查询验证码是否存在
@@ -76,38 +61,14 @@ function register($id, $password, $verification) {
 		}
 	}
 
-	return flag;
-}
-
-/**
- * 登录验证
- * @param String $id 用户学号
- * @param String $password 密码
- * @return int 用户不存在返回0，密码错误返回1，登录成功返回2
- */
-function login($id, $password) {
-	$flag = 0;		// 错误码
-
-	// 从数据库中进行查询
-	$sql = "select password from user where id={$id}";
-	$db = new Db();
-	$res = $db->query($sql);
-
-	if($res->num_rows === 0) {
-		// 不存在此用户
-		$flag = 0;
-	} else {
-		$row = $res->fetch_array(MYSQLI_ASSOC);
-		if($row['password'] === $password) {
-			// 登录成功
-			$flag =  2;
-		} else {
-			// 密码错误
-			$flag = 1;
-		}
-	}
-	
 	return $flag;
 }
+
+$id = $_GET['id'];		// 获取学号
+$pwd = $_GET['pwd'];	// 获取密码
+$veri = $_GET['veri'];	// 获取邮箱验证码
+
+$flag = registerCheck($id, $pwd, $veri);
+echo $flag;
 
 ?>

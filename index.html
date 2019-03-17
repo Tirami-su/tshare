@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>宣传页面</title>
+  <style>li{list-style-type:none;}</style>
+  <link rel="stylesheet" type="text/css" href="./css/conductpage.css" />
+  
+  <script src="https://cdn.bootcss.com/jquery/1.12.1/jquery.min.js"></script>
+  <!--<script src="./js/main.js"></script-->
+  <script type="text/javascript">
+   
+    var code;
+    function createCode() {  //函数体
+      code = "";
+      var codeLength = 5; //验证码的长度
+      var checkCode = document.getElementById("checkCode");
+      var codeChars = new Array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9,
+        'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z',
+      'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'); //所有候选组成验证码的字符，当然也可以用中文的
+      for (var i = 0; i < codeLength; i++)
+      {
+        var charNum = Math.floor(Math.random() * 52);//设置随机产生
+        code += codeChars[charNum];
+      }
+      if (checkCode)
+      {
+        checkCode.className = "code";
+        checkCode.innerHTML = code;
+      }
+    }        
+  </script>
+  <!--验证-->
+  <script>
+    function GetDom(){
+      if(document.getElementById("YZ").value==""){
+        alert("验证码不能为空！");
+        createCode();//输错一次或提交一次都将会刷新一次验证码
+        return false; //结束本次会话
+      }else if(document.getElementById("YZ").value.toUpperCase()!=code.toUpperCase()){ //toUpperCase不区分大小写
+        alert("您输入的验证码有误，请重新输入！！");
+        createCode();//读取文件
+      }                  
+      else{
+        alert("ok");
+      }
+      
+    } 
+  </script>
+
+  <!--向php页面提交数据-->
+  <script type="text/javascript">
+    function sendData(url, callback) {
+        xmlHttp = new XMLHttpRequest();
+        // 请求行
+        xmlHttp.open("GET", url);
+        // 请求头
+        xmlHttp.setRequestHeader("Content-Type", "application/x-www-form-unlencoded");
+        // 设置数据
+        xmlHttp.send(null);
+        // 监听服务器响应
+        xmlHttp.onreadystatechange = function() {
+            if(xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+                callback(xmlHttp.responseText);
+            }
+        }
+        return responseText;
+    }
+
+    /*发送邮箱验证码*/
+    function sendVeri() {
+        var id = document.getElementById('signup-username').value;    // 获取学号
+        var url = "./api/send_verification.php" + "?id=" + id;
+        sendData(url, function(responseText){
+            if(responseText == 1) {
+                alert("邮箱验证码发送成功");
+            } else if(responseText == 0) {
+                alert("邮箱验证码发送失败");
+            } else {
+                alert("未知错误");
+            }
+        });
+    }
+
+    /*注册验证*/
+    function register() {
+        var id = document.getElementById('signup-username').value;    // 获取学号
+        var pwd = document.getElementById('signup-password').value;   // 获取密码
+        var veri = document.getElementById('email-password').value;   // 获取邮箱验证码
+        
+        var url = "./api/register_check.php" + "?id=" + id + "&pwd=" + pwd + "&veri=" + veri;
+        var responseText = sendData(url, function(responseText) {
+            if(responseText == "0") {
+                alert("邮箱验证码错误");
+            } else if(responseText == "1") {
+                alert("邮箱验证码失效");
+            } else if(responseText == "2") {
+                alert("用户已注册");
+            } else if(responseText == "3") {
+                alert("注册成功");
+                window.location.href = "./";
+            } else {
+                alert("未知错误");
+            }
+        });
+    }
+
+    /*登录验证*/
+    function login() {
+        var id = document.getElementById("login-username").value;     // 获取学号
+        var pwd = document.getElementById("login-password").value;    // 获取密码
+
+        var url = "./api/login.php" + "?id=" + id + "&pwd=" + pwd;
+        sendData(url, function(responseText) {
+            if(responseText == 0) {
+                alert("用户不存在");
+            } else if(responseText == 1) {
+                alert("密码错误");
+            } else if(responseText == 2) {
+                alert("登录成功");
+                window.location.href = "./home";
+            } else {
+                alert("未知错误");
+            }
+        });
+    }
+  </script>
+
+    </head>
+    <body>
+      <div id="wrap">
+        <header class="header">
+          <nav>       
+            <ul id="bkgd" >
+              <li class="logo">
+                <img src="./img/conductpage/u157.png">
+              </li>
+
+              <div>
+                <nav class="main_nav">
+                  <ul>
+                   <li><a id="login" href="#0"><img id="u159" src="./img/conductpage/u159.png" ></a></li>
+                   <li><a id="signup" href="#0"><img id="u161" src="./img/conductpage/u161.png"></a></li>
+
+                 </ul>
+                 
+               </nav>
+             </div>        
+           </ul>      
+         </nav>    
+         <div class="icon1"><img src="./img/conductpage/u152.png"></div>
+         <div class="icon2"><img src="./img/conductpage/111.png"></div>
+       </header>
+     </div>
+     <!-----------------------------------------------------------------> 
+     <div class="cd-user-modal"> 
+      <div class="cd-user-modal-container">
+      <!--<ul class="cd-switcher">
+        <li><a href="#0">用户登录</a></li>
+        <li><a href="#0">注册新用户</a></li>
+      </ul>-->
+
+<script type="text/javascript">
+    $(function(){
+        $("#u159").click(function(){
+        $("#cd-login").show();
+      });
+      $("#close0").click(function(){
+        $("#cd-login").hide();
+      });
+      $("#u161").click(function(){
+        $("#cd-signup").show();
+        createCode();
+      });
+      $("#close1").click(function(){
+        $("#cd-signup").hide();
+      });
+      $("#btnsignup").click(function(){
+        $("#cd-signup").show();
+        $("#cd-login").hide();
+      })
+      $("#btnlogin").click(function(){
+        $("#cd-signup").hide();
+        $("#cd-login").show();
+      })
+    });
+</script>
+
+      <div id="cd-login" style="display: none;"> <!-- 登录表单 -->
+        <div >
+          <img id="close0" src="./img/conductpage/u140.png">
+          <form class="cd-form">
+          <div >
+            
+            <img class="u72" src="./img/conductpage/u72.png">
+            <img class="u74" src="./img/conductpage/u74.png">
+           
+            
+            
+         
+        </div>
+        <p class="fieldset">
+          
+          <input class="full-width has-padding has-border" id="login-username" type="text" placeholder="用户名/学号">
+        </p>
+
+        <p class="fieldset">
+          
+          <input class="full-width has-padding has-border" id="login-password" type="text"  placeholder="密码">
+        </p>
+
+        <p class="fieldset">
+          <a id="forget" href="#">忘记密码?</a>
+        </p>
+
+        <p class="fieldset">
+          <input class="full-width1" type="button" onclick="login()" value="登陆">
+        </p>
+
+        <p class="signup">
+          <a id="confirm0">没有账号?</a>
+          <a id="btnsignup">注册</a>
+        </p>
+      </form>
+    </div>
+        
+    </div>
+
+    <div id="cd-signup" style="display: none;"> <!-- 注册表单 -->
+      <form class="cd-form">
+        <img id="close1" src="./img/conductpage/u140.png">
+        <div >
+          <img class="u72" src="./img/conductpage/u72.png">
+          <img class="u74" src="./img/conductpage/u74.png">
+      </div>
+      
+      <p class="fieldset">
+        <input  id="signup-username" type="text" placeholder="学号">
+      </p>
+
+      <p class="fieldset">
+        <input id="signup-password" type="text" placeholder="密码">
+      </p>
+
+      <p class="fieldset">
+        <input  class ="identify"  placeholder="请输入验证码">
+        <div class="code" id="checkCode" onclick="createCode()" ></div><a class="yz" onclick="createCode()">看不清换一张</a>
+      </p>
+
+      <p class="fieldset">
+        <input id="email-password" type="text"  placeholder="邮箱验证码">
+        <button id="btnemail" onclick="sendVeri()">邮箱验证码</button>
+      </p>
+
+      <p class="fieldset">
+        <input class="full-width2" type="button" onclick="register()" value="注册">
+      </p>
+
+      <p class="fieldset">
+        <a id="agreement">注册代表同意《Tshare协议》 《隐私保护指引》</a>
+      </p>
+
+      <p >
+        <a id="confirm1">已有账号？</a>
+        <a href="#" id="btnlogin">登陆</a>
+      </p>
+      
+    </form>
+  </div>
+  
+</div>
+</div> 
+
+
+</body>
+</html>

@@ -12,19 +12,9 @@ class Mailer {
 	// 发送邮件的对象
 	private $mail;
 
-	protected function __construct() {
+	public function __construct() {
 		// 构造方法被保护，无法在外部实例化对象
 		$this->init();
-	}
-
-	/**
-	 * 获取该类的实例化对象
-	 */
-	public static function instance() {
-		if(is_null(self::$instance)) {
-			self::$instance = new static();
-		}
-		return self::$instance;
 	}
 
 	/**
@@ -62,15 +52,15 @@ class Mailer {
     	// 使用身份验证
     	$this->mail->SMTPAuth = true;
     	// 官方邮箱
-    	$this->mail->Username = '';
+    	$this->mail->Username = '@163.com';
     	// 官方邮箱密码
     	$this->mail->Password = '';
     	// 设置编码
     	$this->mail->CharSet = 'UTF-8';
     	// 设置邮件的发送者
-    	$this->mail->setFrom('', '163');
+    	$this->mail->setFrom('@163.com', '163');
     	// 设置邮件的回复者
-		$this->mail->addReplyTo('', '163');
+		$this->mail->addReplyTo('@163.com', '163');
 		// 表示用HTML形式发送邮件
 		$this->mail->isHTML(true);
 	}

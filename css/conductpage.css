@@ -94,50 +94,62 @@
               left: 50px;
               top:0px;
             }
-         #cd-signup   .u74{
-              width: 200px;
-              height: 50px;
-              position: relative;
-              top:0px;
-              left: 60px;
-              
-            }
-            #signup-username
-            {
-            	position: relative;
-            	left: 30px;
-            	top:20px;
-            }
-          #cd-signup .identify{
-            	position: relative;
-            	height: 20px;
-            	width: 80px;
-            	top:20px;
-            	left: 30px;
-            }
-            #cd-signup .code{
-            	position: relative;
-            	height: 20px;
-            	width: 80px;
-            	left: 12px;
-            	top:10px;
+#cd-signup   .u74{
+  width: 200px;
+  height: 50px;
+  position: relative;
+  top:0px;
+  left: 60px;
+  
+}
 
-            }
-            #cd-signup .full-width2{
-            	position: relative;
-            	left: 110px;
-            	width: 100px;
-            	height: 30px;
-            }
-            #signup-password{
-            	position: relative;
-            	left: 30px;
-            	width: 100px;
-            }
+#signup-username {
+	position: relative;
+	left: 30px;
+	top:20px;
+}
+
+#signup-password {
+  position: relative;
+  left: 30px;
+  top:20px;
+}
+
+#cd-signup .identify{
+	position: relative;
+	height: 20px;
+	width: 80px;
+	top:20px;
+	left: 30px;
+}
+
+#cd-signup .code{
+	position: relative;
+	/*height: 20px;*/
+	width: 80px;
+	left: 12px;
+	top:10px;
+}
+
+#cd-signup .full-width2{
+	position: relative;
+	left: 100px;
+	width: 100px;
+	height: 30px;
+}
+
+#email-password{
+	position: relative;
+	left: 30px;
+  top:10px;
+	width: 100px;
+}
+
             #btnemail{
             	width: 100px;
             	position: relative;
             	left: 50px;
+              top:10px;
             }
             #agreement{
             	position: relative;
@@ -170,12 +182,12 @@
               left: 60px;
               
             }
-            #signin-username
+            #login-username
             {
             	position: relative;
             	left: 70px;
             }
-            #signin-password{
+            #login-password{
             	position: relative;
             	left: 70px;
             }

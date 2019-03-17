@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * 数据库类
+ */
 class Db extends mysqli{
 	// 数据库主机名
 	private $host = '127.0.0.1';
