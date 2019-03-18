@@ -1,140 +1,19 @@
-
 <!DOCTYPE html>
-<html>
+<html lang="zh-cmn-Hans">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <title>宣传页面</title>
-  <style>li{list-style-type:none;}</style>
-  <link rel="stylesheet" type="text/css" href="./css/conductpage.css" />
-  <script src="./js/jquery-3.2.1.min.js"></script>
-  <script src="./js/conductpage.js"></script>
- 
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Style Guide</title>
+    <meta name="description" content="不超过150个字符">
+    <meta name="keywords" content="">
+
+    <!-- 为移动设备添加 viewport -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="/rss.xml" />
+    <link rel="shortcut icon" href="/favicon.ico">
 </head>
-<body >
-    <!--导航栏及宣传背景部分-->
-      <div id="wrap" >
-        <header class="header">
-          <nav>       
-            <ul id="background" >
-              <li class="logo">
-                <img src="./img/conductpage/u157.png">
-              </li>
-
-              <div>
-                <nav class="main_nav">
-                  <ul>
-                   <li><a id="login" href="#0"><img id="u159" src="./img/conductpage/u159.png" ></a></li>
-                   <li><a id="signup" href="#0"><img id="u161" src="./img/conductpage/u161.png"></a></li>
-
-                 </ul>
-                 
-               </nav>
-             </div>        
-           </ul>      
-         </nav>    
-         <div class="icon1"><img src="./img/conductpage/u152.png"></div>
-         <div class="icon2"><img src="./img/conductpage/111.png"></div>
-       </header>
-     </div>
-     <!------注册登录-----------------------------------------------------------> 
-     <div class="cd-user-modal" > 
-      <div class="cd-user-modal-container">
-      <div id="cd-login" style="display: none;"> <!-- 登录表单 -->
-        <div >
-          <img id="close_login" src="./img/conductpage/u140.png">
-          <form class="cd-form">
-            <div >
-              
-              <img class="u72" src="./img/conductpage/u72.png">
-              <img class="u74" src="./img/conductpage/u74.png">
-             
-            </div>
-            <p >
-              
-              <input  id="login-username" type="text" placeholder="用户名/学号">
-              <div><img class="login-username_underline" src="./img/conductpage/u77.png"></div>
-            </p>
-
-            <p >
-              
-              <input id="login-password" type="text"  placeholder="密码">
-              <div><img class="login-password_underline" src="./img/conductpage/u77.png"></div>
-            </p>
-
-            <p >
-              <a id="forget_password" href="#">忘记密码?</a>
-            </p>
-
-            <p >
-              <input class="final_login" type="submit" value="登陆">
-            </p>
-
-            <p class="signup">
-              <a id="no_account">没有账号?</a>
-              <a id="btnsignup">注册</a>
-            </p>
-          </form>
-        </div>
-        
-      </div>
-
-      <div id="cd-signup" style="display: none;"> <!-- 注册表单 -->
-        <form class="cd-form">
-          <img id="close_signup" src="./img/conductpage/u140.png">
-          <div >
-            
-            <img class="u72" src="./img/conductpage/u72.png">
-            <img class="u74" src="./img/conductpage/u74.png">
-            
-          </div>
-          
-          <p >
-            <input  id="signup-username" type="text" placeholder="学号">
-          </p>
-          <p><img class="signup-username_underline" src="./img/conductpage/u77.png"></p>
-          <p >
-            <input  id="signup-password" type="text" placeholder="输入密码">
-          </p>
-          <p>
-            <img class="signup-password_underline" src="./img/conductpage/u77.png">
-          </p>
-          <p >
-            
-            <input  class ="identify"  placeholder="请输入验证码">
-             <div><img class="identfy_underline" src="./img/conductpage/u77.png"></div>
-            <div class="code" id="checkCode" onclick="createCode()" ></div>
-            <a class="change_identify_code"   onclick="createCode()">看不清换一张</a>
-          </p>
-
-          <p >
-            
-            <input id="email-password" type="text"  placeholder="邮箱验证码">
-             <div><img class="mail_underline" src="./img/conductpage/u77.png"></div>
-            <button id="btnemail">邮箱验证码</button>
-          </p>
-
-          <p >
-            <input class="final_signup" type="submit" value="注册">
-          </p>
-
-          <p >
-            <a id="agreement">注册代表同意《Tshare协议》 《隐私保护指引》</a>
-          </p>
-
-          <p class="button_text">
-            <a id="haven_account">已有账号？</a>
-            <a href="#" id="btnlogin">登录</a>
-          </p>
-          
-        </form>
-      </div>
-      
-    </div>
-  </div> 
-  <div id="mask"></div>
+<body>
 
 </body>
 </html>
-
-
