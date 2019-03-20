@@ -1,5 +1,7 @@
-<<<<<<< HEAD
 <?php
+
+require_once dirname(__FILE__) .'/../entity/entity.php';		// 导入实体类
+require_once dirname(__FILE__) .'/../entity/EntityFactory.php';	// 导入实体工厂类
 
 /**
  * 数据库类
@@ -10,33 +12,151 @@ class Db extends mysqli{
 	// 数据库用户名
 	private $user = 'root';
 	// 数据库密码
-	private $pwd = '';
+	private $pwd = 'fuhao520999';
 	// 数据库名
-	private $dbname = '';
+	private $dbname = 'tshare';
 
 	public function __construct() {
 		parent::__construct($this->host, $this->user, $this->pwd, $this->dbname);
 	}
-}
-=======
-<?php
 
-/**
- * 数据库类
- */
-class Db extends mysqli{
-	// 数据库主机名
-	private $host = '127.0.0.1';
-	// 数据库用户名
-	private $user = 'root';
-	// 数据库密码
-	private $pwd = '';
-	// 数据库名
-	private $dbname = '';
+	/**
+	 * 数据库插入操作，向数据库中插入一个实体对象
+	 * @param String $table 表名称
+	 * @param entity $entity 实体对象
+	 * @return bool 插入成功返回true，插入失败返回false
+	 */
+	public function insert(String $table, entity $entity) {
+		$info = $entity->getAttributes();
+		$key = "";		// 字段名称
+		$value = "";	// 属性值
+		foreach ($info as $k => $v) {
+			// 生成sql语句的必要组成部分
+			$key .= "{$k},";
+			$value .= "'{$v}',";
+		}
 
-	public function __construct() {
-		parent::__construct($this->host, $this->user, $this->pwd, $this->dbname);
+		$key = substr($key, 0, -1);			// 删除多余的","
+		$value = substr($value, 0, -1);		// 删除多余的","
+
+		$sql = "insert into $table($key) values($value)";
+		
+		$flag = $this->query($sql);
+		return $flag;
+	}
+
+	/**
+	 * 删除数据库表中的一个实体对象（根据主键删除）
+	 * @param String $table 表名称
+	 * @param entity $entity 实体对象
+	 * @return bool 删除成功返回true，删除失败返回false
+	 */
+	public function delete(String $table, entity $entity) {
+		$condition = "";
+
+		$primary = $entity->getPrimaryKey();		// 获取主键名称
+		foreach ($primary as $key) {
+			// 生成删除条件
+			$value = $entity->getAttribute($key);	// 获取主键的值
+			$condition .= "{$key}='{$value}' and ";
+		}
+
+		$condition = substr($condition, 0, -5);
+
+		$sql = "delete from {$table} where {$condition}";
+		$flag = $this->query($sql);
+		return $flag;
+	}
+
+	/**
+	 * 修改数据表中的实体对象（根据主键修改）
+	 * @param String $table 表名称
+	 * @param entity $entity 实体对象
+	 * @return bool 修改成功返回true，修改失败返回false
+	 */
+	public function update(String $table, entity $entity) {
+		$content = "";		// 待修改的键值对
+		$condition = "";	// 修改条件
+
+		$primary = $entity->getPrimaryKey();
+		$other = $entity->getOtherKey();
+
+		foreach ($primary as $key) {
+			// 生成修改条件
+			$value = $entity->getAttribute($key);	// 获取主键的值
+			$condition .= "{$key}='{$value}' and ";
+		}
+		$condition = substr($condition, 0, -5);
+
+		foreach ($other as $key) {
+			$value = $entity->getAttribute($key);
+			$content .= "{$key}='{$value}',";
+		}
+		$content = substr($content, 0, -1);
+
+		$sql = "update {$table} set {$content} where {$condition}";
+		$flag = $this->query($sql);
+
+		return $flag;
+	}
+
+	/**
+	 * 查询数据库表中的一个实体对象（根据主键）
+	 * @param String $table 表名称
+	 * @param array $primaty 数据表中主键与值的关联数组
+	 * @return entity 查询成功返回实体对象，失败返回NULL
+	 */
+	public function select(String $table, $primary) {
+		$instance = EntityFactory::getInstance($table);		// 根据实体表名称获得实体类的实例化对象
+
+		$condition = "";
+		foreach ($primary as $key => $value) {
+			// 生成选择条件
+			$condition .= "{$key}='{$value}' and ";
+		}
+		$condition = substr($condition, 0, -5);
+
+		$sql = "select * from {$table} where {$condition}";
+		$res = $this->query($sql);
+		if($res->num_rows === 0) {
+			return NULL;
+		} else {
+			$row = $res->fetch_array(MYSQLI_ASSOC);
+			$instance->set($row);
+			return $instance;
+		}
+	}
+
+	/**
+	 * 查询数据库表（不根据主键）
+	 * @param String $table 表名称
+	 * @param array condition 查询条件
+	 * @return entity[] 返回一个实体对象的数组（因为不根据主键查询可能会有多条记录）
+	 */
+	public function selects(String $table, $condition) {
+		$arr = [];		// 返回一个数组
+
+		$cond = "";
+		foreach ($condition as $key => $value) {
+			// 生成选择条件
+			$cond .= "{$key}='{$value}' and ";
+		}
+		$cond = substr($cond, 0, -5);
+
+		$sql = "select * from {$table} where {$cond}";
+		$res = $this->query($sql);
+
+		if($res->num_rows === 0) {
+			// 没有查询到任何记录返回空
+			return NULL;
+		} else {
+			while($row = $res->fetch_array(MYSQLI_ASSOC)) {
+				$instance = EntityFactory::getInstance($table);		// 根据实体表名称获得实体类的实例化对象
+				$instance->set($row);
+				$arr[] = $instance;
+			}
+			return $arr;
+		}
 	}
 }
->>>>>>> a296d8df917b8b5e5044735b05e589a7dd805b51
 ?>
