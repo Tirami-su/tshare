@@ -18,11 +18,11 @@ function showLogin(){
 }
 
 /**
- * 登录模态对话框显示事件
+ * 注册模态对话框显示事件
  */ 
 function showRegister(){
 	// 清除错误提示
-	$('#modal-login form').find('input').each(function(){
+	$('#modal-register form').find('input').each(function(){
 		$(this).removeClass('input-error');
 	});
 	// 生成图形验证码，只生成一次
@@ -45,7 +45,7 @@ function sendEmailCode(){
 		return
 	}
 	// 发送邮箱验证码
-	var id=$("#modal-register #input-id").val()
+	var id=$("#input-id-register").val()
 	$.get('api/email_code.php', {id:id}, (res)=>{
 		res=JSON.parse(res)
 		if (res.code==0)
@@ -116,8 +116,8 @@ function register(){
 	});
 	// 注册
 	if (!empty){
-		var name=$('#modal-setting #input-name').val()
-		var pwd=$('#modal-setting #input-pwd').val()
+		var name=$('#input-name').val()
+		var pwd=$('#input-pwd-setting').val()
 		$.post('api/register.php', {name:name,pwd:pwd}, ()=>{
 			res=JSON.parse(res)
 			if (res.code==1){
@@ -144,9 +144,9 @@ function login(){
 	});
 	// 登录验证
 	if (!empty){
-		var id=$('#modal-login #input-id').val()
-		var pwd=$('#modal-login #input-pwd').val()
-		$.post('api/register.php', {name:name,pwd:pwd}, ()=>{
+		var id=$('#input-id-login').val()
+		var pwd=$('#input-pwd-login').val()
+		$.post('api/login.php', {id:id,pwd:pwd}, ()=>{
 			res=JSON.parse(res)
 			if (res.code==1){
 				location.pathname="/home.html"
