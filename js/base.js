@@ -118,9 +118,10 @@ function register(){
 	});
 	// 注册
 	if (!empty){
+		var id=$('#input-id-register').val()
 		var name=$('#input-name').val()
 		var pwd=$('#input-pwd-setting').val()
-		$.post('api/register.php', {name:name,pwd:pwd}, ()=>{
+		$.post('api/register.php', {id:id, name:name, pwd:pwd}, (res)=>{
 			res=JSON.parse(res)
 			if (res.code==1){
 				modalSwitch('login')
@@ -151,7 +152,7 @@ function login(){
 		$.post('api/login.php', {id:id,pwd:pwd}, (res)=>{
 			res=JSON.parse(res)
 			if (res.code==1){
-				location.pathname="/home.html"
+				location.pathname="home.html"
 			}
 			else{
 				alert(res.msg)
