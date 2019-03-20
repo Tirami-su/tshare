@@ -89,6 +89,8 @@ function confirmEmailCode(){
 		}
 	});
 	// 验证邮箱验证码
+	var id=$("#input-id-register").val()
+	var email_code=$("#input-email-code").val()
 	if (!empty) {
 		$.post('api/email_code_confirm.php', {id:id, email_code:email_code}, (res)=>{
 			res=JSON.parse(res)
