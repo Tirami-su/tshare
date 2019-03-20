@@ -148,7 +148,7 @@ function login(){
 	if (!empty){
 		var id=$('#input-id-login').val()
 		var pwd=$('#input-pwd-login').val()
-		$.post('api/login.php', {id:id,pwd:pwd}, ()=>{
+		$.post('api/login.php', {id:id,pwd:pwd}, (res)=>{
 			res=JSON.parse(res)
 			if (res.code==1){
 				location.pathname="/home.html"
