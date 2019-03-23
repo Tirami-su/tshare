@@ -8,7 +8,11 @@ session_start();
 
 $db = new Db();
 $user = $_SESSION['user'];		// 获取当前登录的对象
-$user->setStatus(0);			// 修改登录状态
+// 修改退出时间
+$user->setLogout_time(time());
+// 撤销session_id
+$user->setSession_id(0);
+
 $db->update("user", $user);		// 更新数据库
 
 ?>

@@ -3,6 +3,7 @@
  * 登录验证
  * 1. 确认用户名(学号)是否存在
  * 2. 确认密码是否正确
+ * 在浏览器中新建cookie或刷新cookie
  */
 
 /*登录之后需要一个session对象来保存当前登录的对象*/
@@ -10,6 +11,7 @@ session_start();
 
 include_once("../lib/Db.php");
 include_once("../entity/user.php");
+include_once("../lib/cookie.php");
 
 $id = $_POST['id'];		// 获取学号
 $pwd = $_POST['pwd'];	// 获取密码
@@ -36,20 +38,24 @@ function login($id, $password) {
 		$flag = ['code' => 0, 'msg' => '用户不存在'];
 	} else {
 		if($user->getPassword() == $password) {
-			// 密码正确，查询用户登录状态
-			if($user->getStatus() === '0') {
-				// 登录成功，修改用户的登录状态
-				$user->setStatus(1);
-				$db->update("user", $user);
+			// 修改登录时间
+			$user->setLogin_time(time());
+			// 设置学号和密码的cookie，有效时间24小时
+			$key = cookie::set('id', $user->getId(), '', time()+3600*24);
+			cookie::set('pwd', $user->getPassword(), $key['origin_key'], time()+3600*24);
+			// 将修改解密密钥
+			$user->setCookie_key($key['target_key']);
 
-				// 使用session保存登录用户的完整信息
-				$_SESSION['user'] = $user;
+			// 使用session保存登录用户的完整信息
+			$_SESSION['user'] = $user;
+			// 并随即生成一个session_id
+			$_SESSION['id'] = mt_rand(1, 100000);
 
-				$flag = ['code' => 1, 'msg' => '登录成功'];
-			} else {
-				// 用户已登录
-				$flag = ['code' => 0, 'msg' => '用户已经登录'];
-			}
+			// 修改session_id
+			$user->setSession_id($_SESSION['id']);
+			$db->update("user", $user);
+
+			$flag = ['code' => 1, 'msg' => '登录成功'];
 		} else {
 			// 密码错误
 			$flag = ['code' => 0, 'msg' => '密码错误'];

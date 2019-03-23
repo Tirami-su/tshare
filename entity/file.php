@@ -1,14 +1,21 @@
 <?php
-/******************* 文件实体类 ***********************/
-
+/******************* 上传文件实体类 ***********************/
+include_once("entity.php");
 /**
  * 对应于数据库中的file实体表
- *    字段       类型       主键    默认值    允许为空       描述
- * |   id    |   int     |  是   |   无   |    否     |    学号
- * |filename |  varchar  |  是   |   无   |    否     |    文件名
- * |  path   |  varchar  |  否   |   无   |    否     |   文件路径
- * |  type   |  varchar  |  否   |   无   |    是     |   文件分类
- * |  time   |   int     |  否   |   无   |    否     |   上传时间
+ *      字段        类型       主键    默认值    允许为空        描述
+ * 1.|     id     |   int     |  是   |   无   |    否     |     学号
+ * 2.|  filename  |  varchar  |  是   |   无   |    否     |     文件名
+ * 3.|    path    |  varchar  |  否   |   无   |    否     |   文件路径(以网站根目录起点)
+ * 4.|    type    |  varchar  |  否   |   无   |    是     |   文件分类
+ * 5.|upload_time |  varchar  |  否   |   无   |    否     |   上传时间
+ * 6.|   subject  |  varchar  |  否   |   无   |    否     |     科目
+ * 7.|  category  |   int     |  否   |   无   |    否     | 0课内/1课外（资料）
+ * 8.|description |  varchar  |  否   |   无   |    否     |    资料描述
+ * 9.|    time    |   int     |  否   |   无   |    是     | 资料针对的时间（试卷的年份）
+ *10.|    like    |   int     |  否   |   0    |    否     |     好评量
+ *11.|   dislike  |   int     |  否   |   0    |    否     |     差评量
+ *12.|  download  |   int     |  否   |   0    |    否     |     下载量
  */
 class file implements entity {
 	/*上传文件信息*/
@@ -28,20 +35,48 @@ class file implements entity {
 		$this->info['id'] = $id;
 	}
 
-	public function setFilename(int $filename) {
+	public function setFilename(String $filename) {
 		$this->info['filename'] = $filename;
 	}
 
-	public function setPath(int $path) {
+	public function setPath(String $path) {
 		$this->info['path'] = $path;
 	}
 
-	public function setType(int $type) {
+	public function setType(String $type) {
 		$this->info['type'] = $type;
+	}
+
+	public function setUpload_time(String $upload_time) {
+		$this->info['upload_time'] = $upload_time;
+	}
+
+	public function setSubject(String $subject) {
+		$this->info['subject'] = $subject;
+	}
+
+	public function setCategory(int $category){
+		$this->info['category'] = $category;
+	}
+
+	public function setDescription(String $description) {
+		$this->info['description'] = $description;
 	}
 
 	public function setTime(int $time) {
 		$this->info['time'] = $time;
+	}
+
+	public function setLike(int $like) {
+		$this->info['like'] = $like;
+	}
+
+	public function setDislike(int $dislike) {
+		$this->info['dislike'] = $dislike;
+	}
+
+	public function setDownload(int $download) {
+		$this->info['download'] = $download;
 	}
 
 	public function getId() {
@@ -60,8 +95,36 @@ class file implements entity {
 		return $this->info['type'];
 	}
 
+	public function getUpload_time() {
+		return $this->info['upload_time'];
+	}
+
+	public function getSubject() {
+		return $this->info['subject'];
+	}
+
+	public function getCategory() {
+		return $this->info['category'];
+	}
+
+	public function getDescription() {
+		return $this->info['description'];
+	}
+
 	public function getTime() {
 		return $this->info['time'];
+	}
+
+	public function getLike() {
+		return $this->info['like'];
+	}
+
+	public function getDislike() {
+		return $this->info['dislike'];
+	}
+
+	public function getDownload() {
+		return $this->info['download'];
 	}
 
 
@@ -81,11 +144,11 @@ class file implements entity {
 	}
 
 	public function getPrimaryKey() {
-		return ['id'];
+		return ['id', 'filename'];
 	}
 
 	public function getOtherKey() {
-		return ['username', 'password', 'status'];
+		return ['path', 'type', 'upload_time', 'subject', 'category', 'description', 'time', 'like', 'dislike', 'download'];
 	}
 }
 
