@@ -13,8 +13,10 @@ include_once("../lib/Db.php");
 include_once("../entity/user.php");
 include_once("../lib/cookie.php");
 
-$id = $_POST['id'];		// 获取学号
-$pwd = $_POST['pwd'];	// 获取密码
+$id = "160400423";
+$pwd = $id;
+// $id = $_POST['id'];		// 获取学号
+// $pwd = $_POST['pwd'];	// 获取密码
 
 $flag = login($id, $pwd);
 echo json_encode($flag);		// 返回错误信息
@@ -41,8 +43,8 @@ function login($id, $password) {
 			// 修改登录时间
 			$user->setLogin_time(time());
 			// 设置学号和密码的cookie，有效时间24小时
-			$key = cookie::set('id', $user->getId(), '', time()+3600*24);
-			cookie::set('pwd', $user->getPassword(), $key['origin_key'], time()+3600*24);
+			cookie::set('id', $user->getId(), time()+3600*24, false, '', "/");
+			$key = cookie::set('pwd', $user->getPassword(), time()+3600*24, true, '', "/");
 			// 将修改解密密钥
 			$user->setCookie_key($key['target_key']);
 
