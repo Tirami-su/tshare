@@ -13,8 +13,13 @@ if($id === NULL) {
 } else {
 	$db = new Db();
 	$user = $db->select("user", ['id' => $id]);
-	$pwd = cookie::get('pwd', $user->getCookie_key());
-	$flag = ['code' => 1, 'data' => ['id' => $id, 'pwd' => $pwd]];
+	if($user === NULL) {
+		// 学号不存在，可能是用户资料从数据库中删除了
+		$flag = ['code' => 0, 'data' => 'null'];
+	} else {
+		$pwd = cookie::get('pwd', $user->getCookie_key());
+		$flag = ['code' => 1, 'data' => ['id' => $id, 'pwd' => $pwd]];
+	}
 }
 
 echo json_encode($flag);
