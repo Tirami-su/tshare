@@ -1,0 +1,38 @@
+/* 导航栏 */
+form.search {
+	margin-left: 50px;
+}
+
+#msg {
+	width: 25x;
+	height: 25px;
+	margin-left: 40px;
+}
+
+#user-icon {
+	width: 35x;
+	height: 35px;
+	margin-left: 40px;
+}
+
+/* 轮播器 */
+.carousel-inner {
+	height: 300px;
+	border-radius: 20px;
+	overflow: hidden;
+}
+
+#carousel-home {
+	margin-top: 80px;
+	margin-bottom: 20px;
+}
+
+/* 动态列表tab标签 */
+/* .nav-pills {
+	margin-top: 10px;
+	margin-bottom: 10px;
+} */
+
+.nav-pills .nav-item:not(:first-child){
+	margin-top: 6px;
+}

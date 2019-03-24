@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<title>Tshare校园资源共享平台</title>
+		<meta name="description" content="Tshare校园资源共享平台，高质量资料分享和问答，闲置交易，失物招领，快来找到你的组织！">
+
+		<!-- 为移动设备添加 viewport -->
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+		<link rel="alternate" type="application/rss+xml" title="RSS" href="/rss.xml" />
+		<!-- <link rel="shortcut icon" href="img/favicon.png"> -->
+		
+		<!-- CSS Files -->
+		<link rel="stylesheet" href="../css/bootstrap.css">
+		<link rel="stylesheet" href="../css/now-ui-kit.css">
+		<link rel="stylesheet" href="../css/common.css"/>
+		<link rel="stylesheet" href="css/home.css"/>
+	</head>
+	<body class="bg-light">
+    <!-- 导航条 -->
+	<nav class="navbar navbar-expand-lg fixed-top bg-white" color-on-scroll="400">
+		<div class="container">
+			<img class="logo" src="../img/logo.png">
+			<ul class="navbar-nav">
+				<li class="nav-item">
+					<a class="nav-link" href="">首页</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="">资料</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="">问答</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="">闲置交易</a>
+				</li>
+			</ul>
+			<div class="collapse navbar-collapse justify-content-end">
+				<form class="form-inline search">
+					<input class="form-control mr-sm-2" type="search" placeholder="搜索" aria-label="Search">
+				</form>
+				<img id="msg" src="img/qipao.png">
+				<img id="user-icon" src="img/user.jpg">				
+			</div>
+		</div>
+    </nav>
+	<!-- 页面主体 -->
+	<div class="container bg-transparent">
+		<!-- 轮播器 -->
+		<div id="carousel-home" class="carousel slide carousel-fade" data-ride="carousel">
+			<!-- 指示器 -->
+			<ol class="carousel-indicators">
+				<li data-target="#carousel-home" data-slide-to="0" class="active"></li>
+				<li data-target="#carousel-home" data-slide-to="1"></li>
+				<li data-target="#carousel-home" data-slide-to="2"></li>
+			</ol>
+			<!-- 内容 -->
+			<div class="carousel-inner">
+				<div class="carousel-item active">
+					<img src="img/carousel-1.jpg" class="d-block w-100" alt="图片无法加载">
+				</div>
+				<div class="carousel-item">
+					<img src="img/carousel-2.jpg" class="d-block w-100" alt="图片无法加载">
+				</div>
+				<div class="carousel-item">
+					<img src="img/carousel-3.jpg" class="d-block w-100" alt="图片无法加载">
+				</div>
+			</div>
+			<!-- 按钮 -->
+			<a class="carousel-control-prev" href="#carousel-home" role="button" data-slide="prev">
+				<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+				<span class="sr-only">Previous</span>
+			</a>
+			<a class="carousel-control-next" href="#carousel-home" role="button" data-slide="next">
+				<span class="carousel-control-next-icon" aria-hidden="true"></span>
+				<span class="sr-only">Next</span>
+			</a>
+		</div>
+		<div class="row">
+			<div id="main" class="col-md-9 bg-white">
+				<ul class="nav nav-pills">
+					<li class="nav-item">
+						<a class="nav-link active" style="font-size: 1.4em;">全部</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" >关注</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" >提问</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" >求资料</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" >失物</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" >表白</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" >拼客</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" >上架</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" >收购</a>
+					</li>
+				</ul>
+				<ul class="news">
+					<li class="question">
+						<h4>什么地方可以买到不可描述的东西</h4>
+						<div class="content">
+							<div class="text">
+								神秘网友：就在那个不可描述的地方可以买到
+								<span class="readmore">...阅读全文</span>
+							</div>
+							<div class="action">
+								<span class="num-like">赞同20</span>
+								<span class="num-dislike">反对10</span>
+								<button type="button" class="comment">评论5</button>
+								<button type="button" class="collect">收藏</button>
+								<button type="button" class="more">...</button>
+							</div>
+						</div>
+					</li>
+					<li class="call-for-file">
+						<h4>有人有数据结构往年试卷吗</h4>
+						<div class="content">
+							<div class="text">
+								求数据结构往年试卷，最好是最近5年的
+								<span class="readmore">...阅读全文</span>
+							</div>
+							<div class="action">
+								<span class="num-provide">提供5</span>
+								<button type="button" class="provide">我能提供</button>
+								<button type="button" class="follow">关注</button>
+								<button type="button" class="more">...</button>
+							</div>
+						</div>
+					</li>
+					<li class="lost">
+						<h4>寻找校园卡</h4>
+						<div class="content">
+							<div class="text">
+								我今天大概在那个不可描述的地方丢了校园卡，如果有人捡到请立即告诉我，请你喝可乐！
+								<span class="readmore">...阅读全文</span>
+							</div>
+							<div class="action">
+								<button type="button" class="connect">私信</button>
+								<button type="button" class="more">...</button>
+							</div>
+						</div>
+					</li>
+					<li class="lost">
+						<h4>捡到一个包</h4>
+						<div class="content">
+							<div class="text">
+								我今天在那个不可描述的地方捡到一个包，失主
+								<span class="readmore">...阅读全文</span>
+							</div>
+							<div class="action">
+								<button type="button" class="connect">私信</button>
+								<button type="button" class="more">...</button>
+							</div>
+						</div>
+					</li>
+					<li class="confession">
+						<h4>表白:18级经管xxx</h4>
+						<div class="content">
+							<div class="text">
+								其实喜欢你很久了，只是太久了。久到我已经忘却，却无法释怀，那是一种朦胧的感觉，不真切。
+								<span class="readmore">...阅读全文</span>
+							</div>
+							<div class="action">
+								<span>鼓励80</span>
+								<button type="button" class="comment">评论77</button>
+								<button type="button" class="more">...</button>
+							</div>
+						</div>
+					</li>
+					<li class="pinker">
+						<h4>拼租：xx花园三室两厅</h4>
+						<div class="prince">总价 1500元/月</div>
+						<div class="need">还缺 2人</div>
+						<div class="content">
+							<div class="text">
+								拼租，xx花园三室两厅，1500一个月，要求女，没有恶习
+								<span class="readmore">...阅读全文</span>
+							</div>
+							<div class="action">
+								<button type="button" class="comment">评论15</button>
+								<button type="button" class="more">...</button>
+							</div>
+						</div>
+					</li>		
+					<li class="sale">
+						<h4>出神仙水，几乎没用过</h4>
+						<div class="prince">500元</div>
+						<div class="label">可议价</div>
+						<div class="content">
+							<div class="text">
+								2018年10月买的，因为我皮肤不合适这种，所以出，包装盒都在，很干净
+								<span class="readmore">...阅读全文</span>
+							</div>
+							<div class="action">
+								<button type="button" class="comment">评论12</button>
+								<button type="button" class="more">...</button>
+							</div>
+						</div>
+					</li>
+					<li class="buy">
+						<h4>收kindle</h4>
+						<div class="prince">500元</div>
+						<div class="content">
+							<div class="text">
+								收kindle，带灯的那种，没有明显的划伤损坏就行
+								<span class="readmore">...阅读全文</span>
+							</div>
+							<div class="action">
+								<button type="button" class="comment">评论8</button>
+								<button type="button" class="more">...</button>
+							</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+			<div id="side" class="col-md-3">
+				<div class="container bg-white">
+					<div>最近热门</div>
+					<ol>
+						<li>
+							<h6>nmsl到底什么意思</h6>
+						</li>
+						<li>
+							<h6>nmsl到底什么意思</h6>
+						</li>
+						<li>
+							<h6>nmsl到底什么意思</h6>
+						</li>
+						<li>
+							<h6>nmsl到底什么意思</h6>
+						</li>
+						<li>
+							<h6>nmsl到底什么意思</h6>
+						</li>
+						<li>
+							<h6>nmsl到底什么意思</h6>
+						</li>
+					</ol>			
+				</div>
+			</div>
+
+		</div>
+	</div>
+	</body>
+	<!-- 动态模板 -->
+	<script id="tm" type="text/template">
+		<h1>{{value}}</h1>
+	</script>
+	<script src="../js/core/jquery.3.2.1.min.js"></script>
+	<script src="../js/core/popper.min.js"></script>
+	<script src="../js/core/bootstrap.min.js"></script>
+	<script src="js/template-web.js"></script>
+	<script type="text/javascript">
+		// 加载动态
+		var data={value:3}
+		$('#news').append(template('tm',data))
+	</script>
+</html>

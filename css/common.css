@@ -1,26 +1,23 @@
-body {
-    font-family: 'Roboto', sans-serif;
-    font-size: 16px;
-    font-weight: 300;
-    color: #888;
-    line-height: 30px;
-    text-align: center;
+.logo {
+	height: 35px;
+	margin-right: 10px;
 }
 
+/* 模态对话框所需 */
 #img-graph-code{
 	height: 45px;
 	width: 150px;
 }
 
-strong { font-weight: 500; }
+/* strong { font-weight: 500; } */
 
-a, a:hover, a:focus {
+/* a, a:hover, a:focus {
 	color: #fd625e;
 	text-decoration: none;
     -o-transition: all .3s; -moz-transition: all .3s; -webkit-transition: all .3s; -ms-transition: all .3s; transition: all .3s;
-}
+} */
 
-h1, h2 {
+/* h1, h2 {
 	margin-top: 10px;
 	font-size: 38px;
     font-weight: 100;
@@ -33,13 +30,13 @@ h3 {
     font-weight: 300;
     color: #555;
     line-height: 30px;
-}
+} */
 
-img { max-width: 100%; }
+/* img { max-width: 100%; } */
 
-::-moz-selection { background: #fd625e; color: #fff; text-shadow: none; }
+/* ::-moz-selection { background: #fd625e; color: #fff; text-shadow: none; }
 ::selection { background: #fd625e; color: #fff; text-shadow: none; }
-
+ */
 
 .btn-link-1 {
 	display: inline-block;
