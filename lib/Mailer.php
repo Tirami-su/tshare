@@ -1,20 +1,13 @@
-<<<<<<< HEAD:lib/Mailer.php
 <?php
 
-require_once "phpmailer.php";
+require_once dirname(__FILE__).'/PHPMailer/PHPMailer.php';
+require_once dirname(__FILE__).'/PHPMailer/SMTP.php';
 
-/**
- * 封装邮件发送类，采用单例设计模式
- */
 class Mailer {
-	// 本类唯一一个实例化对象
-	protected static $instance;
-
 	// 发送邮件的对象
 	private $mail;
 
 	public function __construct() {
-		// 构造方法被保护，无法在外部实例化对象
 		$this->init();
 	}
 
@@ -23,18 +16,19 @@ class Mailer {
      * @param String $to 目标邮箱
      * @param String $subject 邮件主题
      * @param String $body 邮件内容
-     * @return bool 发送成功返回true，失败返回false
+     * @return  发送成功返回true，失败返回错误码
      */
 	public function send($to, $subject, $body) {
-		// 设置邮件接收人和邮件内容
-		$this->mail->addAddress($to, '');
+		// 设置邮件接收人，邮件主题和内容
+		$this->mail->addAddress($to);
 		$this->mail->Subject = $subject;
 		$this->mail->Body = $body;
 
-		if(!$this->mail->send()) {
-			return false;
-		} else {
+		try {
+			$this->mail->send();
 			return true;
+		} catch (Exception $e) {
+			return $this->mail->errorInfo;
 		}
 	}
 
@@ -44,97 +38,33 @@ class Mailer {
 	private function init() {
 		$this->mail = new PHPMailer();
 		
-		/* 并对对象进行一些默认的设置 */
-
-		// 使用SMTP发送
-    	$this->mail->isSMTP();
-    	// 使用163邮件服务器发送
-    	$this->mail->Host = 'smtp.163.com';
-    	// 使用身份验证
-    	$this->mail->SMTPAuth = true;
-    	// 官方邮箱
-    	$this->mail->Username = '@163.com';
-    	// 官方邮箱密码
-    	$this->mail->Password = '';
-    	// 设置编码
-    	$this->mail->CharSet = 'UTF-8';
-    	// 设置邮件的发送者
-    	$this->mail->setFrom('@163.com', '163');
-    	// 设置邮件的回复者
-		$this->mail->addReplyTo('@163.com', '163');
-		// 表示用HTML形式发送邮件
-		$this->mail->isHTML(true);
-	}
-}
-
-=======
-<?php
-
-require_once "phpmailer.php";
-
-/**
- * 封装邮件发送类，采用单例设计模式
- */
-class Mailer {
-	// 本类唯一一个实例化对象
-	protected static $instance;
-
-	// 发送邮件的对象
-	private $mail;
-
-	public function __construct() {
-		// 构造方法被保护，无法在外部实例化对象
-		$this->init();
+		/* 并对对象进行一些默认的设置 */		
+    	$this->mail->isSMTP(true);					// 使用SMTP发送
+    	$this->mail->Host = 'smtp.163.com';		// 使用163邮件服务器发送
+    	$this->mail->SMTPAuth = true;			// 使用身份验证
+    	$this->mail->Username = 'tshare_service@163.com';		// 官方邮箱账号
+    	$this->mail->Password = 'tshare123';	// 官方邮箱授权码
+    	$this->mail->SMTPSecure = 'ssl';		// 使用ssl加密协议
+    	$this->mail->Port = 994;				// 使用994端口
+    	// ssl认证
+    	$this->mail->SMTPOptions = array(
+	        'ssl' => array(
+	        'verify_peer' => false,
+	        'verify_peer_name' => false,
+	        'allow_self_signed' => true
+	        )
+	    );
+    	$this->mail->CharSet = 'UTF-8';			// 设置编码
+    	$this->mail->setFrom('tshare_service@163.com', 'Tshare客服团队');		// 设置邮件的发送者		
+		$this->mail->isHTML(true);				// 表示用HTML形式发送邮件
 	}
 
 	/**
-     * 发送邮件，以官方邮箱账号向目标邮箱发送验证码
-     * @param String $to 目标邮箱
-     * @param String $subject 邮件主题
-     * @param String $body 邮件内容
-     * @return bool 发送成功返回true，失败返回false
-     */
-	public function send($to, $subject, $body) {
-		// 设置邮件接收人和邮件内容
-		$this->mail->addAddress($to, '');
-		$this->mail->Subject = $subject;
-		$this->mail->Body = $body;
-
-		if(!$this->mail->send()) {
-			return false;
-		} else {
-			return true;
-		}
-	}
-
-	/**
-	 * 对mail对象进行一些初始化
+	 * 获取邮件发送对象
 	 */
-	private function init() {
-		$this->mail = new PHPMailer();
-		
-		/* 并对对象进行一些默认的设置 */
-
-		// 使用SMTP发送
-    	$this->mail->isSMTP();
-    	// 使用163邮件服务器发送
-    	$this->mail->Host = 'smtp.163.com';
-    	// 使用身份验证
-    	$this->mail->SMTPAuth = true;
-    	// 官方邮箱
-    	$this->mail->Username = '@163.com';
-    	// 官方邮箱密码
-    	$this->mail->Password = '';
-    	// 设置编码
-    	$this->mail->CharSet = 'UTF-8';
-    	// 设置邮件的发送者
-    	$this->mail->setFrom('@163.com', '163');
-    	// 设置邮件的回复者
-		$this->mail->addReplyTo('@163.com', '163');
-		// 表示用HTML形式发送邮件
-		$this->mail->isHTML(true);
+	public function getMailer() {
+		return $this->mail;
 	}
 }
 
->>>>>>> a296d8df917b8b5e5044735b05e589a7dd805b51:lib/Mailer.php
 ?>

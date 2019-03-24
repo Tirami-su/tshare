@@ -152,7 +152,7 @@ function login(){
 		$.post('api/login.php', {id:id,pwd:pwd}, (res)=>{
 			res=JSON.parse(res)
 			if (res.code==1){
-				location.pathname="home.html"
+				location.pathname="home"
 			}
 			else{
 				alert(res.msg)
