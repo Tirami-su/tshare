@@ -101,6 +101,32 @@ class Db extends mysqli{
 	}
 
 	/**
+	 * 重载update方法，不依据主键进行更新
+	 * @param String $table 表名称
+	 * @param array $condition 条件
+	 * @param array $value 更新目标
+	 */
+	public function update_reload(String $table, $condition, $values) {
+		// 生成修改条件
+		$cond = "";
+		foreach ($condition as $key => $value) {
+			$cond .= "{$key}='{$value}' and ";
+		}
+		$cond = substr($cond, 0, -5);
+
+		// 生成修改目标
+		$kv = "";
+		foreach ($values as $k => $v) {
+			$kv .= "{$k}='{$v}',";
+		}
+		$kv = substr($kv, 0, -1);
+
+		$sql = "update {$table} set {$kv} where {$cond}";
+		$flag = $this->query($sql);
+		return $flag;
+	}
+
+	/**
 	 * 查询数据库表中的一个实体对象（根据主键）
 	 * @param String $table 表名称
 	 * @param array $primaty 数据表中主键与值的关联数组
@@ -152,6 +178,34 @@ class Db extends mysqli{
 		} else {
 			while($row = $res->fetch_array(MYSQLI_ASSOC)) {
 				$instance = EntityFactory::getInstance($table);		// 根据实体表名称获得实体类的实例化对象
+				$instance->set($row);
+				$arr[] = $instance;
+			}
+			return $arr;
+		}
+	}
+
+	/**
+	 * 根据类别和关键字查询文件
+	 * @param String $key 关键字
+	 * @Param String $type 类别
+	 */
+	public function findFile(String $key, String $type="") {
+		$arr = array();
+
+		$sql = "";
+		if($type === "") {
+			$sql = "select * from file where filename like '%{$key}%'";
+		} else {
+			$sql = "select * from file where filename like '%{$key}%' and type='{$type}'";
+		}
+		$res = $this->query($sql);
+
+		if($res->num_rows === 0){
+			return NULL;
+		} else {
+			while($row = $res->fetch_array(MYSQLI_ASSOC)) {
+				$instance = EntityFactory::getInstance("file");
 				$instance->set($row);
 				$arr[] = $instance;
 			}
