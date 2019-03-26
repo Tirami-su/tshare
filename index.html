@@ -13,32 +13,26 @@
     <!-- <link rel="shortcut icon" href="img/favicon.png"> -->
 	
 	<!-- CSS Files -->
-	<link rel="stylesheet" href="css/bootstrap.min.css">
-	<link rel="stylesheet" href="css/now-ui-kit.css">
-	<link rel="stylesheet" href="css/form-elements.css">
-	<link rel="stylesheet" href="css/common.css">
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="css/now-ui-kit.css">
+	<link rel="stylesheet" type="text/css" href="css/form-elements.css">
+	<link rel="stylesheet" type="text/css" href="css/common.css">
+	<link rel="stylesheet" type="text/css" href="css/index.css"/>
 </head>
 <body>
     <!-- 导航条 -->
-    <nav class="navbar navbar-expand-lg bg-primary fixed-top navbar-transparent " color-on-scroll="400">
+    <nav class="navbar navbar-expand-lg bg-white fixed-top navbar-transparent" color-on-scroll="400">
         <div class="container">
 			<!-- 网站标志 -->
-<<<<<<< HEAD
 			<img class="logo" src="img/logo.png">
 			<!-- 登录、注册按钮 -->
             <div class="collapse navbar-collapse justify-content-end" data-nav-image="img/blurred-image-1.jpg">
                 <ul class="navbar-nav">
-=======
-			<img calss="logo" src="img/logo.png" style="height: 35px;">
-			<!-- 登录、注册按钮 -->
-            <div class="collapse navbar-collapse justify-content-end" data-nav-image="img/blurred-image-1.jpg">
-                <ul class="navbar-nav">
->>>>>>> 7ae0bf31f6cf7dfdbd2b36d9374c120de1be0c3f
                     <li class="nav-item">
-						<a class="nav-link" data-toggle="modal" href="#modal-login" onclick="showLogin()">登录</a>
+						<a class="nav-link" onclick="showLogin()">登录</a>
                     </li>
                     <li class="nav-item">
-						<a class="nav-link" data-toggle="modal" href="#modal-register" onclick="showRegister()">注册</a>
+						<a class="nav-link" onclick="showRegister()">注册</a>
                     </li>
                 </ul>
             </div>
@@ -204,75 +198,63 @@
 		</footer>
 	</div>
 	<!-- 注册模态对话框 -->
-	<div id="modal-register" class="modal fade"  tabindex="-1" role="dialog" aria-labelledby="modal-register-label" aria-hidden="true">
-		<div class="modal-dialog">
-			<button type="button" class="close" data-dismiss="modal">
-				<span aria-hidden="true">&times;</span>
-			</button>
-			<div class="modal-content">
+	<div id="modal-register" class="modal fade"  tabindex="-1" role="dialog">
+		<div class="modal-dialog" role="document">
+			<div id="content-register" class="modal-content">
 				<div class="modal-header">
-					<h3 id="modal-register-label" class="modal-title" >注册Tshare</h3>
-				</div>				
-				<div class="modal-body">
-	                <form role="form" class="registration-form">
-	                	<div class="form-group">
-	                    	<input id="input-id-register" type="text" placeholder="学号" class="form-first-name form-control">
-	                    </div>
-	                    <div class="form-group">
+					<h5 class="modal-title" >注册Tshare</h5>
+					<button type="button" class="close" data-dismiss="modal">
+					  <span>&times;</span>
+					</button>
+				</div>
+				<div class="modal-body col-md-10 offset-md-1">
+	                <form>
+						<div class="form-group">
+							<input id="input-id-register" type="text" placeholder="学号" class="form-control">
+						</div>
+						<div class="form-group d-flex">
+							<input id="input-graph-code" type="text" placeholder="图形验证码" class="form-control" autocomplete="off">
 							<div id="img-graph-code"></div>
-	                    	<input id="input-graph-code" type="text" placeholder="图形验证码" class="form-last-name form-control" autocomplete="off">
+						</div>
+						<div class="form-group">
+							<button id="btn-send" type="button" class="btn" onclick="sendEmailCode()">向教育邮箱发送验证码</button>
+							<input id="input-email-code" type="text" placeholder="邮箱验证码" class="form-control" autocomplete="off">
 	                    </div>
-	                    <div class="form-group">
-							<button id="btn-send" type="button" onclick="sendEmailCode()">向教育邮箱发送验证码</button>
-	                    	<input id="input-email-code" type="text" placeholder="邮箱验证码" class="form-last-name form-control" autocomplete="off">
-	                    </div>
-	                    <button id="btn-register" type="button" class="btn" onclick="confirmEmailCode()">注册</button>
+						<button type="button" class="btn" onclick="confirmEmailCode()">注册</button>
 	                </form>
 				</div>
-				<div class="modal-footer">
-					<p>
-						已有账号？<span onclick="modalSwitch('login')">登录</span>
-					</p>
+				<div class="modal-footer bg-light d-flex justify-content-center">已有账号？<a onclick="modalSwitch('login')">登录</a>
 				</div>
 			</div>
-		</div>
-	</div>
-	<!-- 设置用户名密码模态对话框 -->
-	<div id="modal-setting" class="modal fade" aria-hidden="true">
-		<div class="modal-dialog">
-			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-			<div class="modal-content">
+			<div id="content-setting" class="modal-content d-none">
 				<div class="modal-header">
-					<h3 class="modal-title" id="modal-register-label">设置用户名和密码</h3>
+					<h5 class="modal-title">设置用户名和密码</h5>
+					<button type="button" class="close" data-dismiss="modal">
+					  <span>&times;</span>
+					</button>
 				</div>			
-				<div class="modal-body">					
-	                <form role="form" class="registration-form">
+				<div class="modal-body col-md-10 offset-md-1">					
+	                <form>
 	                	<div class="form-group">
 	                    	<input id="input-name" type="text" placeholder="用户名" class="form-control">
 	                    </div>
 	                    <div class="form-group">
 	                    	<input id="input-pwd-setting" type="password" placeholder="密码" class="form-control">
 	                    </div>
-						<button type="submit" class="btn" onclick="register()">加入Tshare</button>
+						<button type="button" class="btn" onclick="register()">加入Tshare</button>
 	                </form>
-				</div>		
-				<div class="modal-footer">
-					<p>
-						已有账号？<span onclick="modalSwitch('login')">登录</span>
-					</p>
+				</div>
+				<div class="modal-footer bg-light d-flex justify-content-center">已有账号？<a onclick="modalSwitch('#modal-setting','#modal-login')">登录</a>
 				</div>
 			</div>
-		</div>
-	</div>
-	<!-- 登录模态对话框 -->
-	<div id="modal-login" class="modal fade" aria-hidden="true">
-		<div class="modal-dialog">
-			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-			<div class="modal-content">
+			<div id="content-login" class="modal-content d-none">
 				<div class="modal-header">
-					<h3 class="modal-title" id="modal-register-label">登录Tshare</h3>
+					<h5 class="modal-title" >登录Tshare</h5>
+					<button type="button" class="close" data-dismiss="modal">
+					  <span>&times;</span>
+					</button>
 				</div>			
-				<div class="modal-body">					
+				<div class="modal-body col-md-10 offset-md-1">
 	                <form>
 	                	<div class="form-group">
 	                    	<input id="input-id-login" type="text" placeholder="学号" class="form-control">
@@ -280,33 +262,51 @@
 	                    <div class="form-group">
 	                    	<input id="input-pwd-login" type="password" placeholder="密码" class="form-control">
 	                    </div>
-						<a href="">忘记密码</a>
+						<div id="forget-pwd" class="d-flex justify-content-end">
+							<a href="">忘记密码</a>
+						</div>
 						<button type="button" class="btn" onclick="login()">登录</button>
 	                </form>
 				</div>
-				<div class="modal-footer">
-					<p>
-						没有账号？<span onclick="modalSwitch('register')">注册</span>
-					</p>
+				<div class="modal-footer bg-light d-flex justify-content-center">没有账号？<a onclick="modalSwitch('register')">注册</a>
 				</div>
 			</div>
 		</div>
 	</div>
+	<!-- 登录模态对话框 -->
+<!-- 	<div id="modal-login" class="modal fade" tabindex="-1" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" >登录Tshare</h5>
+					<button type="button" class="close" data-dismiss="modal">
+					  <span>&times;</span>
+					</button>
+				</div>			
+				<div class="modal-body col-md-10 offset-md-1">					
+	                <form>
+	                	<div class="form-group">
+	                    	<input id="input-id-login" type="text" placeholder="学号" class="form-control">
+	                    </div>
+	                    <div class="form-group">
+	                    	<input id="input-pwd-login" type="password" placeholder="密码" class="form-control">
+	                    </div>
+						<div id="forget-pwd" class="d-flex justify-content-end">
+							<a href="">忘记密码</a>
+						</div>
+						<button type="button" class="btn" onclick="login()">登录</button>
+	                </form>
+				</div>
+				<div class="modal-footer bg-light d-flex justify-content-center">没有账号？<a onclick="modalSwitch('#modal-login','#modal-register')">注册</a>
+				</div>
+			</div>
+		</div>
+	</div> -->
 </body>
-<!--   Core JS Files   -->
-<script src="js/core/jquery.3.2.1.min.js" type="text/javascript"></script>
+<script src="js/core/jquery-3.3.1.js" type="text/javascript"></script>
 <script src="js/core/popper.min.js" type="text/javascript"></script>
-<script src="js/core/bootstrap.min.js" type="text/javascript"></script>
-<!--  Plugin for Switches, full documentation here: http://www.jque.re/plugins/version3/bootstrap.switch/ -->
-<script src="js/plugins/bootstrap-switch.js"></script>
-<!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
-<script src="js/plugins/nouislider.min.js" type="text/javascript"></script>
-<!--  Plugin for the DatePicker, full documentation here: https://github.com/uxsolutions/bootstrap-datepicker -->
-<script src="js/plugins/bootstrap-datepicker.js" type="text/javascript"></script>
-<!-- Share Library etc -->
-<script src="js/plugins/jquery.sharrre.js" type="text/javascript"></script>
-<!-- Control Center for Now Ui Kit: parallax effects, scripts for the example pages etc -->
-<script src="js/now-ui-kit.js?v=1.1.0" type="text/javascript"></script>
+<script src="js/core/bootstrap.js" type="text/javascript"></script>
+<script src="js/now-ui-kit.js" type="text/javascript"></script>
 
 <script src="js/graph_code.js"></script>
 <script src="js/base.js"></script>

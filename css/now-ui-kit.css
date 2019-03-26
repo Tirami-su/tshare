@@ -3474,6 +3474,7 @@ body {
     color: #00669c;
 }
 
+
 .nav-tabs {
     border: 0;
     padding: 15px 0.7rem;
@@ -3550,7 +3551,7 @@ body {
     padding-top: 0.625rem;
     padding-bottom: 0.625rem;
     min-height: 53px;
-	/* max-height: 59px; */
+	max-height: 59px;
     margin-bottom: 20px;
     box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.15);
 }
@@ -3627,11 +3628,11 @@ body {
 }
 
 .navbar .navbar-nav .nav-item.active .nav-link:not(.btn),
-.navbar .navbar-nav .nav-item .nav-link:not(.btn):focus,
+/* .navbar .navbar-nav .nav-item .nav-link:not(.btn):focus, */
 .navbar .navbar-nav .nav-item .nav-link:not(.btn):hover,
 .navbar .navbar-nav .nav-item .nav-link:not(.btn):active {
     background-color: rgba(255, 255, 255, 0.2);
-    border-radius: 0.1875rem;
+    border-radius: 0.1875rem; 
 }
 
 .navbar .logo-container {
@@ -3701,6 +3702,14 @@ body {
 
 .navbar.bg-white:not(.navbar-transparent) .logo-container {
     border: 1px solid #888;
+}
+
+.navbar .dropdown.show .dropdown-menu {
+    -webkit-transform: translate3d(0, 7px, 0);
+    -moz-transform: translate3d(0, 7px, 0);
+    -o-transform: translate3d(0, 7px, 0);
+    -ms-transform: translate3d(0, 7px, 0);
+    transform: translate3d(0, 7px, 0);
 }
 
 .bg-default {
@@ -3938,14 +3947,6 @@ body {
     -o-transform: translate3d(0, 0px, 0);
     -ms-transform: translate3d(0, 0px, 0);
     transform: translate3d(0, 0px, 0);
-}
-
-.navbar .dropdown.show .dropdown-menu {
-    -webkit-transform: translate3d(0, 7px, 0);
-    -moz-transform: translate3d(0, 7px, 0);
-    -o-transform: translate3d(0, 7px, 0);
-    -ms-transform: translate3d(0, 7px, 0);
-    transform: translate3d(0, 7px, 0);
 }
 
 .button-dropdown {
@@ -4784,12 +4785,12 @@ Created using IcoMoon - icomoon.io
     padding-left: 24px;
 }
 
-.modal-content .modal-header button {
+/* .modal-content .modal-header button {
     position: absolute;
     right: 27px;
     top: 30px;
     outline: 0;
-}
+} */
 
 .modal-content .modal-header .title {
     margin-top: 5px;
@@ -4828,9 +4829,9 @@ Created using IcoMoon - icomoon.io
     left: -5px;
 }
 
-.modal-content .modal-body+.modal-footer {
+/* .modal-content .modal-body+.modal-footer {
     padding-top: 0;
-}
+} */
 
 .modal-backdrop {
     background: rgba(0, 0, 0, 0.3);
@@ -4952,10 +4953,10 @@ Created using IcoMoon - icomoon.io
     transform: translate(0, 30%);
 }
 
-.modal .modal-header .close {
+/* .modal .modal-header .close {
     color: #FF3636;
     text-shadow: none;
-}
+} */
 
 .modal .modal-header .close:hover,
 .modal .modal-header .close:focus {

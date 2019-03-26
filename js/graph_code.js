@@ -10,7 +10,7 @@
         this.options = { 
             id: "", //容器Id
             canvasId: "verifyCanvas", //canvas的ID
-            width: "150", //默认canvas宽度
+            width: "120", //默认canvas宽度
             height: "45", //默认canvas高度
             type: "blend", //图形验证码默认类型blend:数字字母混合类型、number:纯数字、letter:纯字母
             code: "",

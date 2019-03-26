@@ -1,180 +1,68 @@
+/* 导航栏 */
 .logo {
 	height: 35px;
 	margin-right: 10px;
 }
 
-/* 模态对话框所需 */
-#img-graph-code{
-	height: 45px;
-	width: 150px;
+form.search {
+	margin-left: 50px;
 }
 
-/* strong { font-weight: 500; } */
-
-/* a, a:hover, a:focus {
-	color: #fd625e;
-	text-decoration: none;
-    -o-transition: all .3s; -moz-transition: all .3s; -webkit-transition: all .3s; -ms-transition: all .3s; transition: all .3s;
-} */
-
-/* h1, h2 {
-	margin-top: 10px;
-	font-size: 38px;
-    font-weight: 100;
-    color: #555;
-    line-height: 50px;
+#msg {
+	width: 25x;
+	height: 25px;
 }
 
-h3 {
-	font-size: 22px;
-    font-weight: 300;
-    color: #555;
-    line-height: 30px;
-} */
-
-/* img { max-width: 100%; } */
-
-/* ::-moz-selection { background: #fd625e; color: #fff; text-shadow: none; }
-::selection { background: #fd625e; color: #fff; text-shadow: none; }
- */
-
-.btn-link-1 {
-	display: inline-block;
-	height: 50px;
-	margin: 0 5px;
-	padding: 16px 20px 0 20px;
-	background: #fd625e;
-	font-size: 16px;
-    font-weight: 300;
-    line-height: 16px;
-    color: #fff;
-    -moz-border-radius: 4px; -webkit-border-radius: 4px; border-radius: 4px;
-}
-.btn-link-1:hover, .btn-link-1:focus, .btn-link-1:active { outline: 0; opacity: 0.6; color: #fff; }
-
-.copyrights{text-indent:-9999px;height:0;line-height:0;font-size:0;overflow:hidden;}
-/***** Content *****/
-
-.inner-bg {
-    padding: 120px 0;
+.nav-space{
+	width: 40px;
 }
 
-.top-content .text {
-	color: #fff;
+#user-icon {
+	width: 35x;
+	height: 35px;
 }
 
-.top-content .logo {
-	display: inline-block;
-	width: 181px;
-	height: 43px;
-	margin: 0 auto;
-	background: url(../img/logo.png) center center no-repeat;
+/* 导航栏下拉菜单 */
+.dropdown {
+    position: relative;
+    display: inline-block;
 }
 
-.top-content .text h1 {
-	margin-top: 30px;
-	color: #fff;
+.dropbtn {
+/*    background-color: #4CAF50;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none; */
+    cursor: pointer;
 }
 
-.top-content .description {
-	margin: 20px 0 10px 0;
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 }
 
-.top-content .description p { opacity: 0.8; }
-
-.top-content .description a {
-	color: #fff;
-}
-.top-content .description a:hover, 
-.top-content .description a:focus { border-bottom: 1px dotted #fff; }
-
-.top-content .top-big-link {
-	margin-top: 45px;
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
 }
 
+.dropdown-content a:hover {background-color: #f1f1f1}
 
-/***** Modal *****/
-
-.modal-content {
-	-moz-border-radius: 4px; -webkit-border-radius: 4px; border-radius: 4px;
-	border: 0;
-	text-align: left;
+.dropdown:hover .dropdown-content {
+    display: block;
 }
 
-.modal-header {
-	padding: 25px 25px 15px 25px;
-	background: #fff;
-	border: 0;
-	border-bottom: 1px solid #ddd;
-	-moz-border-radius: 4px 4px 0 0; -webkit-border-radius: 4px 4px 0 0; border-radius: 4px 4px 0 0;
+.dropdown:hover .dropbtn {
+    background-color: #3e8e41;
 }
 
-.modal-header .close {
-	font-size: 36px;
-	color: #888;
-	font-weight: 300;
-	text-shadow: none;
-	opacity: 1;
-}
-
-.modal-title {
-	margin-bottom: 10px;
-	line-height: 30px;
-}
-
-.modal-body {
-	padding: 25px 25px 30px 25px;
-	background: #eee;
-	text-align: left;
-	-moz-border-radius: 0 0 4px 4px; -webkit-border-radius: 0 0 4px 4px; border-radius: 0 0 4px 4px;
-}
-
-.modal-body img {
-	margin-bottom: 15px;
-}
-
-.modal-body form textarea {
-	height: 100px;
-}
-
-.modal-body form .input-error {
-	border-color: #fd625e;
-}
-
-
-/***** Media queries *****/
-
-@media (min-width: 992px) and (max-width: 1199px) {}
-
-@media (min-width: 768px) and (max-width: 991px) {}
-
-@media (max-width: 767px) {
-	
-	.top-content .top-big-link { margin-top: 25px; }
-	.top-content .top-big-link a.btn { margin-top: 10px; }
-
-}
-
-@media (max-width: 415px) {
-	
-	h1, h2 { font-size: 32px; }
-
-}
-
-
-/* Retina-ize images/icons */
-
-@media
-only screen and (-webkit-min-device-pixel-ratio: 2),
-only screen and (   min--moz-device-pixel-ratio: 2),
-only screen and (     -o-min-device-pixel-ratio: 2/1),
-only screen and (        min-device-pixel-ratio: 2),
-only screen and (                min-resolution: 192dpi),
-only screen and (                min-resolution: 2dppx) {
-	
-	/* logo */
-    .top-content .logo {
-    	background-image: url(../img/logo@2x.png) !important; background-repeat: no-repeat !important; background-size: 181px 43px !important;
-    }
-	
+/* 页面主体 */
+.main {
+	margin-top: 80px;
 }

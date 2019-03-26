@@ -25,10 +25,10 @@
 			<img class="logo" src="../img/logo.png">
 			<ul class="navbar-nav">
 				<li class="nav-item">
-					<a class="nav-link" href="">首页</a>
+					<a class="nav-link" href="home.html">首页</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="">资料</a>
+					<a class="nav-link" href="../repository/repository.html">资料</a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="">问答</a>
@@ -38,16 +38,25 @@
 				</li>
 			</ul>
 			<div class="collapse navbar-collapse justify-content-end">
-				<form class="form-inline search">
-					<input class="form-control mr-sm-2" type="search" placeholder="搜索" aria-label="Search">
+				<form class="form-inline search" action="api/search.php" method="get" onsubmit="globalSearch(e)">
+					<input id="global-search" class="form-control" type="search" placeholder="搜索">
 				</form>
+				<div class="nav-space"></div>
 				<img id="msg" src="img/qipao.png">
-				<img id="user-icon" src="img/user.jpg">				
+				<div class="nav-space"></div>
+				<div class="dropdown">
+					<img id="user-icon" class="dropbtn" src="img/user.jpg">	
+					<div class="dropdown-content">
+						<a class="dropdown-item" href="#">Action</a>
+						<a class="dropdown-item" href="#">Another action</a>
+						<a class="dropdown-item" href="#">Something else here</a>
+					</div>				
+				</div>
 			</div>
 		</div>
     </nav>
 	<!-- 页面主体 -->
-	<div class="container bg-transparent">
+	<div class="main container bg-transparent">
 		<!-- 轮播器 -->
 		<div id="carousel-home" class="carousel slide carousel-fade" data-ride="carousel">
 			<!-- 指示器 -->
@@ -85,7 +94,7 @@
 						<a class="nav-link active" style="font-size: 1.4em;">全部</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" >关注</a>
+						<a class="nav-link" onclick="">关注</a>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link" >提问</a>
@@ -252,7 +261,6 @@
 					</ol>			
 				</div>
 			</div>
-
 		</div>
 	</div>
 	</body>
@@ -260,10 +268,11 @@
 	<script id="tm" type="text/template">
 		<h1>{{value}}</h1>
 	</script>
-	<script src="../js/core/jquery.3.2.1.min.js"></script>
+	<script src="../js/core/jquery-3.3.1.js"></script>
 	<script src="../js/core/popper.min.js"></script>
-	<script src="../js/core/bootstrap.min.js"></script>
+	<script src="../js/core/bootstrap.js"></script>
 	<script src="js/template-web.js"></script>
+	<script src="js/home.js"></script>
 	<script type="text/javascript">
 		// 加载动态
 		var data={value:3}

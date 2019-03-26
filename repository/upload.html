@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<title>Tshare校园资源共享平台</title>
+		<meta name="description" content="Tshare校园资源共享平台，高质量资料分享和问答，闲置交易，失物招领，快来找到你的组织！">
+
+		<!-- 为移动设备添加 viewport -->
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+		<link rel="alternate" type="application/rss+xml" title="RSS" href="/rss.xml" />
+		<!-- <link rel="shortcut icon" href="img/favicon.png"> -->
+		
+		<!-- CSS Files -->
+		<link rel="stylesheet" href="../css/bootstrap.css">
+		<link rel="stylesheet" href="../css/now-ui-kit.css">
+		<link rel="stylesheet" href="../css/common.css"/>
+		<link rel="stylesheet" href="css/repository.css"/>
+	</head>
+	<body class="bg-light">
+		<!-- 导航条 -->
+		<nav class="navbar navbar-expand-lg fixed-top bg-white" color-on-scroll="400">
+			<div class="container">
+				<img class="logo" src="../img/logo.png">
+				<ul class="navbar-nav">
+					<li class="nav-item">
+						<a class="nav-link" href="../home/home.html">首页</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="repository.html">资料</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="">问答</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="">闲置交易</a>
+					</li>
+				</ul>
+				<div class="collapse navbar-collapse justify-content-end">
+					<form class="form-inline search">
+						<input class="form-control mr-sm-2" type="search" placeholder="搜索" aria-label="Search">
+					</form>
+					<div class="nav-space"></div>
+					<img id="msg" src="../home/img/qipao.png">
+					<div class="nav-space"></div>
+					<div class="dropdown">
+						<img id="user-icon" class="dropbtn" src="../home/img/user.jpg">	
+						<div class="dropdown-content">
+							<a class="dropdown-item" href="#">Action</a>
+							<a class="dropdown-item" href="#">Another action</a>
+							<a class="dropdown-item" href="#">Something else here</a>
+						</div>				
+					</div>
+				</div>
+			</div>
+		</nav>
+		<div class="main container bg-white">
+			<div id="upload-form" class="form-group col-md-6 offset-3">
+				<h3>上传资料</h3>
+				<input type="radio" name="category" value="0" />课内资料
+				<input type="radio" name="category" value="1" />课外资料
+				<br>
+				<label for="name" class="control-label">资料名称</label>
+				<input type="text" name="name" id="name" value="" />
+				<br>
+				<label for="subject" class="control-label">课程名称</label>
+				<input type="text" name="subject" id="subject" value="" />
+				<br>
+				<label for="type">资料类型</label>
+				<select name="type" id="type" class="form-control">
+					<option>课件</option>
+					<option>试卷</option>
+					<option>笔记</option>
+					<option>其他</option>
+				</select>
+				<br>
+				<label for="time">内容对应时间</label>
+				<input type="text" name="time" id="time" value="" />
+				<br>
+				<label for="time">资料描述</label>
+				<textarea rows="3" cols="50" name="description" id="description"></textarea>
+				<input type="file" name="file" id="file" value="" />
+				<br>
+				<input type="submit" value="上传"/>
+			</div>
+		</div>
+	</body>
+	<script src="../js/core/jquery.3.2.1.min.js"></script>
+	<script src="../js/core/popper.min.js"></script>
+	<script src="../js/core/bootstrap.js"></script>
+	<script src="js/repository.js"></script>
+</html>

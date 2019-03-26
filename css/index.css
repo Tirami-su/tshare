@@ -1,0 +1,19 @@
+/* 模态对话框 */
+.modal-dialog {
+	max-width: 400px;
+}
+
+#img-graph-code {
+	margin-left: 15px;
+	margin-top: 2.3px;
+	margin-right: 5px;
+}
+
+.modal-body form .input-error {
+	border-color: #fd625e;
+}
+
+#btn-send,
+#forget-pwd {
+	margin-bottom: 10px;
+}
