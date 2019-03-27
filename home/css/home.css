@@ -10,12 +10,67 @@
 	margin-bottom: 20px;
 }
 
-/* 动态列表tab标签 */
-/* .nav-pills {
-	margin-top: 10px;
-	margin-bottom: 10px;
-} */
-
-.nav-pills .nav-item:not(:first-child){
+/* 新闻标签 */
+.nav-pills .nav-item:not(:first-child) {
 	margin-top: 6px;
+}
+
+.nav-pills {
+	padding: 15px 15px 10px 15px;
+	border-bottom: 1px solid #f0f0f0;
+}
+
+/* 新闻列表 */
+#news {
+	padding-left: 0;
+	padding-right: 0;
+}
+
+.row {
+	margin-left: 0;
+}
+
+#news-list {
+	padding-left: 0;
+}
+
+#news-list li {
+	list-style-type: none;
+	border-bottom: 1px solid #f0f0f0;
+	padding: 20px;
+	color: black;
+}
+
+.news-title {
+	font-size: 1.3em;
+	font-weight: 500;
+	margin-bottom: 10px;
+}
+
+.news-text {
+	line-height: 1.4em;
+	max-height: 2.8em;
+	overflow: hidden;
+	margin-bottom: 10px;
+}
+
+.readmore::before {
+	content: "...";
+}
+
+#hot-title {
+	padding-top: 10px;
+	font-weight: 500;
+	font-size: 1.3em;
+}
+
+#hot-list {
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+#hot-list li {
+	padding-top: 7px;
+	padding-bottom: 7px;
+	border-bottom: 1px solid #f0f0f0;
 }

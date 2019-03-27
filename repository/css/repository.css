@@ -1,3 +1,4 @@
+/* 资料搜索框 */
 #search {
 	margin-top: 20vh;
 }
@@ -11,6 +12,22 @@
 	
 }
 
-#upload-form {
-	margin-top: 80px;
+/* 上传资料表单 */
+#upload-title {
+	padding: 30px 30px;
+	font-size: 1.5em;
+	
+}
+
+#upload-title img{
+	height: 35px;
+	margin-right: 5px;
+}
+
+#upload-form .form-control{
+	border-radius: 0;
+}
+
+.form-check {
+	margin-bottom: 10px;
 }

@@ -42,15 +42,28 @@
 						<input class="form-control mr-sm-2" type="search" placeholder="搜索" aria-label="Search">
 					</form>
 					<div class="nav-space"></div>
-					<img id="msg" src="../home/img/qipao.png">
+					<div class="dropdown">
+						<img id="msg-icon" class="dropdown-toggle" data-toggle="dropdown" src="../home/img/xinfeng.png">	
+						<div class="dropdown-menu dropdown-menu-right">
+							<a class="dropdown-item" href="#">系统通知</a>
+							<a class="dropdown-item" href="#">问答</a>
+							<a class="dropdown-item" href="#">交易</a>
+							<a class="dropdown-item" href="#">私信</a>
+							<a class="dropdown-item" href="#">其他消息</a>
+						</div>
+					</div>
 					<div class="nav-space"></div>
 					<div class="dropdown">
-						<img id="user-icon" class="dropbtn" src="../home/img/user.jpg">	
-						<div class="dropdown-content">
-							<a class="dropdown-item" href="#">Action</a>
-							<a class="dropdown-item" href="#">Another action</a>
-							<a class="dropdown-item" href="#">Something else here</a>
-						</div>				
+						<img id="user-icon" class="dropdown-toggle" data-toggle="dropdown" src="../home/img/user.jpg">	
+						<div class="dropdown-menu dropdown-menu-right">
+							<a class="dropdown-item" href="#">个人中心</a>
+							<a class="dropdown-item" href="upload.html">上传资料</a>
+							<a class="dropdown-item" href="#">提问</a>
+							<a class="dropdown-item" href="#">上架</a>
+							<a class="dropdown-item" href="#">小喇叭</a>
+							<div class="dropdown-divider"></div>
+							<a class="dropdown-item" href="#">退出</a>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -62,7 +75,7 @@
 			</div>
 		</div>
 	</body>
-	<script src="../js/core/jquery.3.2.1.min.js"></script>
+	<script src="../js/core/jquery-3.3.1.js"></script>
 	<script src="../js/core/popper.min.js"></script>
 	<script src="../js/core/bootstrap.js"></script>
 	<script src="js/repository.js"></script>

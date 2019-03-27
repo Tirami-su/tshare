@@ -19,250 +19,291 @@
 		<link rel="stylesheet" href="css/home.css"/>
 	</head>
 	<body class="bg-light">
-    <!-- 导航条 -->
-	<nav class="navbar navbar-expand-lg fixed-top bg-white" color-on-scroll="400">
-		<div class="container">
-			<img class="logo" src="../img/logo.png">
-			<ul class="navbar-nav">
-				<li class="nav-item">
-					<a class="nav-link" href="home.html">首页</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="../repository/repository.html">资料</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="">问答</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="">闲置交易</a>
-				</li>
-			</ul>
-			<div class="collapse navbar-collapse justify-content-end">
-				<form class="form-inline search" action="api/search.php" method="get" onsubmit="globalSearch(e)">
-					<input id="global-search" class="form-control" type="search" placeholder="搜索">
-				</form>
-				<div class="nav-space"></div>
-				<img id="msg" src="img/qipao.png">
-				<div class="nav-space"></div>
-				<div class="dropdown">
-					<img id="user-icon" class="dropbtn" src="img/user.jpg">	
-					<div class="dropdown-content">
-						<a class="dropdown-item" href="#">Action</a>
-						<a class="dropdown-item" href="#">Another action</a>
-						<a class="dropdown-item" href="#">Something else here</a>
-					</div>				
-				</div>
-			</div>
-		</div>
-    </nav>
-	<!-- 页面主体 -->
-	<div class="main container bg-transparent">
-		<!-- 轮播器 -->
-		<div id="carousel-home" class="carousel slide carousel-fade" data-ride="carousel">
-			<!-- 指示器 -->
-			<ol class="carousel-indicators">
-				<li data-target="#carousel-home" data-slide-to="0" class="active"></li>
-				<li data-target="#carousel-home" data-slide-to="1"></li>
-				<li data-target="#carousel-home" data-slide-to="2"></li>
-			</ol>
-			<!-- 内容 -->
-			<div class="carousel-inner">
-				<div class="carousel-item active">
-					<img src="img/carousel-1.jpg" class="d-block w-100" alt="图片无法加载">
-				</div>
-				<div class="carousel-item">
-					<img src="img/carousel-2.jpg" class="d-block w-100" alt="图片无法加载">
-				</div>
-				<div class="carousel-item">
-					<img src="img/carousel-3.jpg" class="d-block w-100" alt="图片无法加载">
-				</div>
-			</div>
-			<!-- 按钮 -->
-			<a class="carousel-control-prev" href="#carousel-home" role="button" data-slide="prev">
-				<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-				<span class="sr-only">Previous</span>
-			</a>
-			<a class="carousel-control-next" href="#carousel-home" role="button" data-slide="next">
-				<span class="carousel-control-next-icon" aria-hidden="true"></span>
-				<span class="sr-only">Next</span>
-			</a>
-		</div>
-		<div class="row">
-			<div id="main" class="col-md-9 bg-white">
-				<ul class="nav nav-pills">
+		<!-- 导航条 -->
+		<nav class="navbar navbar-expand-lg fixed-top bg-white">
+			<div class="container">
+				<img class="logo" src="../img/logo.png">
+				<ul class="navbar-nav">
 					<li class="nav-item">
-						<a class="nav-link active" style="font-size: 1.4em;">全部</a>
+						<a class="nav-link" href="home.html">首页</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" onclick="">关注</a>
+						<a class="nav-link" href="../repository/repository.html">资料</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" >提问</a>
+						<a class="nav-link" href="">问答</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" >求资料</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" >失物</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" >表白</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" >拼客</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" >上架</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" >收购</a>
+						<a class="nav-link" href="">闲置交易</a>
 					</li>
 				</ul>
-				<ul class="news">
-					<li class="question">
-						<h4>什么地方可以买到不可描述的东西</h4>
-						<div class="content">
-							<div class="text">
-								神秘网友：就在那个不可描述的地方可以买到
-								<span class="readmore">...阅读全文</span>
-							</div>
-							<div class="action">
-								<span class="num-like">赞同20</span>
-								<span class="num-dislike">反对10</span>
-								<button type="button" class="comment">评论5</button>
-								<button type="button" class="collect">收藏</button>
-								<button type="button" class="more">...</button>
-							</div>
+				<div class="collapse navbar-collapse justify-content-end">
+					<form class="form-inline search" action="api/search.php" method="get" onsubmit="globalSearch(e)">
+						<input id="global-search" class="form-control mr-sm-2" type="search" placeholder="搜索">
+					</form>
+					<div class="nav-space"></div>
+					<div class="dropdown">
+						<img id="msg-icon" class="dropdown-toggle" data-toggle="dropdown" src="../home/img/xinfeng.png">	
+						<div class="dropdown-menu dropdown-menu-right">
+							<a class="dropdown-item" href="#">系统通知</a>
+							<a class="dropdown-item" href="#">问答</a>
+							<a class="dropdown-item" href="#">交易</a>
+							<a class="dropdown-item" href="#">私信</a>
+							<a class="dropdown-item" href="#">其他消息</a>
 						</div>
-					</li>
-					<li class="call-for-file">
-						<h4>有人有数据结构往年试卷吗</h4>
-						<div class="content">
-							<div class="text">
-								求数据结构往年试卷，最好是最近5年的
-								<span class="readmore">...阅读全文</span>
-							</div>
-							<div class="action">
-								<span class="num-provide">提供5</span>
-								<button type="button" class="provide">我能提供</button>
-								<button type="button" class="follow">关注</button>
-								<button type="button" class="more">...</button>
-							</div>
+					</div>
+					<div class="nav-space"></div>
+					<div class="dropdown">
+						<img id="user-icon" class="dropdown-toggle" data-toggle="dropdown" src="../home/img/user.jpg">	
+						<div class="dropdown-menu dropdown-menu-right">
+							<a class="dropdown-item" href="#">个人中心</a>
+							<a class="dropdown-item" href="../repository/upload.html">上传资料</a>
+							<a class="dropdown-item" href="#">提问</a>
+							<a class="dropdown-item" href="#">上架</a>
+							<a class="dropdown-item" href="#">小喇叭</a>
+							<div class="dropdown-divider"></div>
+							<a class="dropdown-item" href="#">退出</a>
 						</div>
-					</li>
-					<li class="lost">
-						<h4>寻找校园卡</h4>
-						<div class="content">
-							<div class="text">
-								我今天大概在那个不可描述的地方丢了校园卡，如果有人捡到请立即告诉我，请你喝可乐！
-								<span class="readmore">...阅读全文</span>
-							</div>
-							<div class="action">
-								<button type="button" class="connect">私信</button>
-								<button type="button" class="more">...</button>
-							</div>
-						</div>
-					</li>
-					<li class="lost">
-						<h4>捡到一个包</h4>
-						<div class="content">
-							<div class="text">
-								我今天在那个不可描述的地方捡到一个包，失主
-								<span class="readmore">...阅读全文</span>
-							</div>
-							<div class="action">
-								<button type="button" class="connect">私信</button>
-								<button type="button" class="more">...</button>
-							</div>
-						</div>
-					</li>
-					<li class="confession">
-						<h4>表白:18级经管xxx</h4>
-						<div class="content">
-							<div class="text">
-								其实喜欢你很久了，只是太久了。久到我已经忘却，却无法释怀，那是一种朦胧的感觉，不真切。
-								<span class="readmore">...阅读全文</span>
-							</div>
-							<div class="action">
-								<span>鼓励80</span>
-								<button type="button" class="comment">评论77</button>
-								<button type="button" class="more">...</button>
-							</div>
-						</div>
-					</li>
-					<li class="pinker">
-						<h4>拼租：xx花园三室两厅</h4>
-						<div class="prince">总价 1500元/月</div>
-						<div class="need">还缺 2人</div>
-						<div class="content">
-							<div class="text">
-								拼租，xx花园三室两厅，1500一个月，要求女，没有恶习
-								<span class="readmore">...阅读全文</span>
-							</div>
-							<div class="action">
-								<button type="button" class="comment">评论15</button>
-								<button type="button" class="more">...</button>
-							</div>
-						</div>
-					</li>		
-					<li class="sale">
-						<h4>出神仙水，几乎没用过</h4>
-						<div class="prince">500元</div>
-						<div class="label">可议价</div>
-						<div class="content">
-							<div class="text">
-								2018年10月买的，因为我皮肤不合适这种，所以出，包装盒都在，很干净
-								<span class="readmore">...阅读全文</span>
-							</div>
-							<div class="action">
-								<button type="button" class="comment">评论12</button>
-								<button type="button" class="more">...</button>
-							</div>
-						</div>
-					</li>
-					<li class="buy">
-						<h4>收kindle</h4>
-						<div class="prince">500元</div>
-						<div class="content">
-							<div class="text">
-								收kindle，带灯的那种，没有明显的划伤损坏就行
-								<span class="readmore">...阅读全文</span>
-							</div>
-							<div class="action">
-								<button type="button" class="comment">评论8</button>
-								<button type="button" class="more">...</button>
-							</div>
-						</div>
-					</li>
-				</ul>
+					</div>
+				</div>
 			</div>
-			<div id="side" class="col-md-3">
-				<div class="container bg-white">
-					<div>最近热门</div>
-					<ol>
-						<li>
-							<h6>nmsl到底什么意思</h6>
+		</nav>
+		<!-- 页面主体 -->
+		<div class="main container bg-transparent">
+			<!-- 轮播器 -->
+			<div id="carousel-home" class="carousel slide carousel-fade" data-ride="carousel">
+				<!-- 指示器 -->
+				<ol class="carousel-indicators">
+					<li data-target="#carousel-home" data-slide-to="0" class="active"></li>
+					<li data-target="#carousel-home" data-slide-to="1"></li>
+					<li data-target="#carousel-home" data-slide-to="2"></li>
+				</ol>
+				<!-- 内容 -->
+				<div class="carousel-inner">
+					<div class="carousel-item active">
+						<img src="img/carousel-1.jpg" class="d-block w-100" alt="图片无法加载">
+					</div>
+					<div class="carousel-item">
+						<img src="img/carousel-2.jpg" class="d-block w-100" alt="图片无法加载">
+					</div>
+					<div class="carousel-item">
+						<img src="img/carousel-3.jpg" class="d-block w-100" alt="图片无法加载">
+					</div>
+				</div>
+				<!-- 按钮 -->
+				<a class="carousel-control-prev" href="#carousel-home" role="button" data-slide="prev">
+					<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+					<span class="sr-only">Previous</span>
+				</a>
+				<a class="carousel-control-next" href="#carousel-home" role="button" data-slide="next">
+					<span class="carousel-control-next-icon" aria-hidden="true"></span>
+					<span class="sr-only">Next</span>
+				</a>
+			</div>
+			<div class="row">
+				<!-- 新闻 -->
+				<div id="news" class="col-md-8 bg-white shadow-sm">
+					<!-- 新闻选项卡 -->
+					<ul class="nav nav-pills">
+						<li class="nav-item">
+							<a class="nav-link active" data-toggle="pill" data-target="#news-all" style="font-size: 1.4em;">全部</a>
 						</li>
-						<li>
-							<h6>nmsl到底什么意思</h6>
+						<li class="nav-item">
+							<a class="nav-link" data-toggle="pill" data-target="#news-follow">关注</a>
 						</li>
-						<li>
-							<h6>nmsl到底什么意思</h6>
+						<li class="nav-item">
+							<a class="nav-link" data-toggle="pill" data-target="#news-question">提问</a>
 						</li>
-						<li>
-							<h6>nmsl到底什么意思</h6>
+						<li class="nav-item">
+							<a class="nav-link" data-toggle="pill" data-target="#news-call-for-file">求资料</a>
 						</li>
-						<li>
-							<h6>nmsl到底什么意思</h6>
+						<li class="nav-item">
+							<a class="nav-link" data-toggle="pill" data-target="#news-lost">失物</a>
 						</li>
-						<li>
-							<h6>nmsl到底什么意思</h6>
+						<li class="nav-item">
+							<a class="nav-link" data-toggle="pill" data-target="#news-confession">表白</a>
 						</li>
-					</ol>			
+						<li class="nav-item">
+							<a class="nav-link" data-toggle="pill" data-target="#news-pinker">拼客</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" data-toggle="pill" data-target="#news-sale">上架</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" data-toggle="pill" data-target="#news-buy">收购</a>
+						</li>
+					</ul>
+					<!-- 新闻内容 -->
+					<div class="tab-content">
+						<div class="tab-pane active" id="news-all">
+								<ul id="news-list">
+									<li class="question">
+										<div class="news-title">什么地方可以买到不可描述的东西</div>
+										<div class="content">
+											<div class="news-text">
+												神秘网友：就在那个不可描述的地方可以买到	
+												<a class="readmore">阅读全文</a>
+											</div>
+											
+											<div class="action">
+												<span class="num-like">赞同20</span>
+												<span class="num-dislike">反对10</span>
+												<button type="button" class="comment">评论5</button>
+												<button type="button" class="collect">收藏</button>
+												<button type="button" class="more">...</button>
+											</div>
+										</div>
+									</li>
+									<li class="call-for-file">
+										<div class="news-title">有人有数据结构往年试卷吗</div>
+										<div class="content">
+											<div class="news-text">
+												求数据结构往年试卷，最好是最近5年的
+												<span class="readmore">...阅读全文</span>
+											</div>
+											<div class="action">
+												<span class="num-provide">提供5</span>
+												<button type="button" class="provide">我能提供</button>
+												<button type="button" class="follow">关注</button>
+												<button type="button" class="more">...</button>
+											</div>
+										</div>
+									</li>
+									<li class="lost">
+										<div class="news-title">寻找校园卡</div>
+										<div class="content">
+											<div class="news-text">
+												我今天大概在那个不可描述的地方丢了校园卡，如果有人捡到请立即告诉我，请你喝可乐！
+												<span class="readmore">...阅读全文</span>
+											</div>
+											<div class="action">
+												<button type="button" class="connect">私信</button>
+												<button type="button" class="more">...</button>
+											</div>
+										</div>
+									</li>
+									<li class="lost">
+										<div class="news-title">捡到一个包</div>
+										<div class="content">
+											<div class="news-text">
+												我今天在那个不可描述的地方捡到一个包，失主
+												<span class="readmore">...阅读全文</span>
+											</div>
+											<div class="action">
+												<button type="button" class="connect">私信</button>
+												<button type="button" class="more">...</button>
+											</div>
+										</div>
+									</li>
+									<li class="confession">
+										<div class="news-title">表白:18级经管xxx</div>
+										<div class="content">
+											<div class="news-text">
+												其实喜欢你很久了，只是太久了。久到我已经忘却，却无法释怀，那是一种朦胧的感觉，不真切。
+												<span class="readmore">阅读全文</span>
+											</div>
+											<div class="action">
+												<span>鼓励80</span>
+												<button type="button" class="comment">评论77</button>
+												<button type="button" class="more">...</button>
+											</div>
+										</div>
+									</li>
+									<li class="pinker">
+										<div class="news-title">拼租：xx花园三室两厅</div>
+										<div class="prince">总价 1500元/月</div>
+										<div class="need">还缺 2人</div>
+										<div class="content">
+											<div class="news-text">
+												拼租，xx花园三室两厅，1500一个月，要求女，没有恶习
+												<span class="readmore">...阅读全文</span>
+											</div>
+											<div class="action">
+												<button type="button" class="comment">评论15</button>
+												<button type="button" class="more">...</button>
+											</div>
+										</div>
+									</li>		
+									<li class="sale">
+										<div class="news-title">出神仙水，几乎没用过</div>
+										<div class="prince">500元</div>
+										<div class="label">可议价</div>
+										<div class="content">
+											<div class="news-text">
+												2018年10月买的，因为我皮肤不合适这种，所以出，包装盒都在，很干净
+												<span class="readmore">...阅读全文</span>
+											</div>
+											<div class="action">
+												<button type="button" class="comment">评论12</button>
+												<button type="button" class="more">...</button>
+											</div>
+										</div>
+									</li>
+									<li class="buy">
+										<div class="news-title">收kindle</div>
+										<div class="prince">500元</div>
+										<div class="content">
+											<div class="news-text">
+												收kindle，带灯的那种，没有明显的划伤损坏就行
+												<span class="readmore">...阅读全文</span>
+											</div>
+											<div class="action">
+												<button type="button" class="comment">评论8</button>
+												<button type="button" class="more">...</button>
+											</div>
+										</div>
+									</li>
+								</ul>	
+						</div>
+						<div class="tab-pane" id="news-follow">...</div>
+						<div class="tab-pane" id="news-question">...</div>
+						<div class="tab-pane" id="news-call-for-file">...</div>
+						<div class="tab-pane" id="news-lost">...</div>
+						<div class="tab-pane" id="news-confession">...</div>
+						<div class="tab-pane" id="news-pinker">...</div>
+						<div class="tab-pane" id="news-sale">...</div>
+						<div class="tab-pane" id="news-buy">...</div>					
+					</div>
+				</div>
+				<div id="side" class="col-md-4">
+					<div class="container bg-white shadow-sm">
+						<div id="hot-title">最近热门</div>
+						<ol id="hot-list">
+							<li>
+								<div class="hot-item">nmsl到底什么意思</div>
+							</li>
+							<li>
+								<div class="hot-item">nmsl到底什么意思</div>
+							</li>
+							<li>
+								<div class="hot-item">nmsl到底什么意思</div>
+							</li>
+							<li>
+								<div class="hot-item">nmsl到底什么意思</div>
+							</li>
+							<li>
+								<div class="hot-item">nmsl到底什么意思</div>
+							</li>
+							<li>
+								<div class="hot-item">nmsl到底什么意思</div>
+							</li>
+							<li>
+								<div class="hot-item">nmsl到底什么意思</div>
+							</li>
+							<li>
+								<div class="hot-item">nmsl到底什么意思</div>
+							</li>
+							<li>
+								<div class="hot-item">nmsl到底什么意思</div>
+							</li>
+							<li>
+								<div class="hot-item">nmsl到底什么意思</div>
+							</li>
+						</ol>			
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
 	</body>
 	<!-- 动态模板 -->
 	<script id="tm" type="text/template">
