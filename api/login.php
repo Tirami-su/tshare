@@ -42,7 +42,7 @@ function login($id, $password) {
 			// 设置学号和密码的cookie，有效时间24小时
 			cookie::set('id', $user->getId(), time()+3600*24, false, '', "login_cookie.php");
 			$key = cookie::set('pwd', $user->getPassword(), time()+3600*24, true, '', "login_cookie.php");
-			// 将修改解密密钥
+			// 修改解密密钥
 			$user->setCookie_key($key['target_key']);
 
 			// 使用session保存登录用户的完整信息
