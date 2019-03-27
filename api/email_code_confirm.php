@@ -9,6 +9,10 @@ $verification = $_POST['email_code'];		// 获取验证码
 $flag = email_code_confirm($id, $verification);
 echo json_encode($flag);			// 将错误信息以json字符串形式返回
 
+// $id = "160400423";
+// $verification = "146561";
+// var_dump(email_code_confirm($id, $verification));
+
 /**
  * 验证邮箱验证码的正确性，匹配性和有效性
  * @param String $id 学号

@@ -9,6 +9,7 @@ $username = $_POST['name'];
 $password = $_POST['pwd'];
 
 register($id, $username, $password);
+echo ['code' => 1, 'msg' => '注册成功'];
 
 
 /**

@@ -100,7 +100,7 @@ function confirmEmailCode() {
 		}, (res) => {
 			res = JSON.parse(res)
 			if (res.code == 1) {
-				modalSwitch('#modal-register', '#modal-setting')
+				modalSwitch('setting')
 			} else {
 				alert(res.msg)
 			}
@@ -132,7 +132,7 @@ function register() {
 		}, (res) => {
 			res = JSON.parse(res)
 			if (res.code == 1) {
-				modalSwitch('#modal-register', '#modal-login')
+				modalSwitch('login')
 			} else {
 				alert(res.msg)
 			}
