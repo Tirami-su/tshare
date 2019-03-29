@@ -9,11 +9,11 @@
 	margin-right: 5px;
 }
 
-.modal-body form .input-error {
-	border-color: #fd625e;
-}
-
 #btn-send,
 #forget-pwd {
 	margin-bottom: 10px;
+}
+
+#remember {
+	margin-top: 0.45rem;
 }

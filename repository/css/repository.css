@@ -1,13 +1,13 @@
 /* 资料搜索框 */
-#search {
+#search-form {
 	margin-top: 20vh;
 }
 
-#search-up {
+#search-img {
 	height: 200px;
 }
 
-#search input {
+#input-search {
 	height: 50px;
 	
 }

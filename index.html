@@ -272,7 +272,11 @@ if(array_key_exists("seize", $_SESSION)) {
 	                    <div class="form-group">
 	                    	<input id="input-pwd-login" type="password" placeholder="密码" class="form-control">
 	                    </div>
-						<div id="forget-pwd" class="d-flex justify-content-end">
+						<div id="forget-pwd" class="d-flex justify-content-between">
+							<div class="form-check">
+								<input type="checkbox" id="remember" class="form-check-input" />
+								<label class="form-check-label" for="remember">一周内自动登录</label>
+							</div>
 							<a href="">忘记密码</a>
 						</div>
 						<button type="button" class="btn" onclick="login()">登录</button>
@@ -318,6 +322,6 @@ if(array_key_exists("seize", $_SESSION)) {
 <script src="js/core/bootstrap.js" type="text/javascript"></script>
 <script src="js/now-ui-kit.js" type="text/javascript"></script>
 
-<script src="js/graph_code.js"></script>
-<script src="js/base.js"></script>
+<script src="js/base.js" type="text/javascript"></script>
+<script src="js/index.js" type="text/javascript"></script>
 </html>

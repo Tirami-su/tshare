@@ -35,3 +35,7 @@ form.search {
 .bg-coral{
 	background-color: #f96332 !important;
 }
+/* 表单 */
+form .input-error {
+	border-color: #fd625e;
+}

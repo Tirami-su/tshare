@@ -15,7 +15,6 @@
 		<!-- CSS Files -->
 		<link rel="stylesheet" href="../css/bootstrap.css">
 		<link rel="stylesheet" href="../css/now-ui-kit.css">
-		<!-- <link rel="stylesheet" type="text/css" href="../css/form-elements.css"/> -->
 		<link rel="stylesheet" href="../css/common.css"/>
 		<link rel="stylesheet" href="css/repository.css"/>
 	</head>
@@ -73,7 +72,7 @@
 			<div id="upload-title">
 				<img src="img/vertical_line.png">上传资料
 			</div>
-			<form id="upload-form" class="form-group col-md-6 offset-3">
+			<form id="upload-form" class="form-group col-md-6 offset-3" action="api/upload.php" method="post" enctype="multipart/form-data">
 				<!-- 单选 -->
 				<div class="form-check form-check-inline">
 					<input class="form-check-input" type="radio" name="category" id="category0" value="0" checked onclick="categorySwitch(this.value)">
@@ -83,16 +82,16 @@
 					<input class="form-check-input" type="radio" name="category" id="category1" value="1" onclick="categorySwitch(this.value)">
 					<label class="form-check-label" for="category1">课外资料</label>
 				</div>
+				<div class="form-group">
+					<label for="name">资料名称</label>
+					<input type="text" id="name" class="form-control" />
+				</div>
+				<div class="form-group">
+					<label for="subject">课程名称</label>
+					<input type="text" id="subject" class="form-control" />
+				</div>
 				<!-- 课内资料表单 -->
-				<div id="content0">
-					<div class="form-group">
-						<label for="name">资料名称</label>
-						<input type="text" id="name" class="form-control" />
-					</div>
-					<div class="form-group">
-						<label for="subject">课程名称</label>
-						<input type="text" id="subject" class="form-control" />
-					</div>
+				<div id="content0"">
 					<div class="form-group">
 						<label for="teacher">教师</label>
 						<input type="text" id="teacher" class="form-control" />
@@ -114,28 +113,22 @@
 				<!-- 课外资料表单 -->
 				<div id="content1" class="d-none">
 					<div class="form-group">
-						<label for="name">资料名称</label>
-						<input type="text" id="name" class="form-control" />
-					</div>
-					<div class="form-group">
-						<label for="subject">主题名称</label>
-						<input type="text" id="subject" class="form-control" placeholder='例如"托福考试","数学建模大赛"' />
-					</div>
-					<div class="form-group">
-						<label for="time">资料描述</label>
+						<label for="description">资料描述</label>
 						<textarea class="form-control" id="description" rows="3"></textarea>
 					</div>
 				</div>
 				<div class="custom-file">
-					<input type="file" class="custom-file-input" id="validatedCustomFile" required>
+					<input type="file" class="custom-file-input" id="file" required>
 					<label class="custom-file-label" for="validatedCustomFile">文件不超过1G</label>
 				</div>
-				<input type="submit" class="btn" value="上传"/>
+				<input type="submit" class="btn" onclick="upload(event)" value="上传" />
 			</form>
 		</div>
 	</body>
-	<script src="../js/core/jquery-3.3.1.js"></script>
-	<script src="../js/core/popper.min.js"></script>
-	<script src="../js/core/bootstrap.js"></script>
-	<script src="js/repository.js"></script>
+	<script src="../js/core/jquery-3.3.1.js" type="text/javascript"></script>
+	<script src="../js/core/popper.min.js" type="text/javascript"></script>
+	<script src="../js/core/bootstrap.js" type="text/javascript"></script>
+	
+	<script src="../js/base.js" type="text/javascript"></script>
+	<script src="js/repository.js" type="text/javascript"></script>
 </html>
