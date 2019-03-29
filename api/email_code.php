@@ -9,6 +9,9 @@ $id = $_GET['id'];	// 获取学号
 $flag = sendVerification($id);	// 调用函数发送验证码
 echo json_encode($flag);		// 将邮件发送成功或失败的信息以json字符串传递给js
 
+// $id = "1604004223";
+// var_dump(sendVerification($id));
+
 /**
  * 注册，发送邮箱验证码
  * @param String $id 学号
