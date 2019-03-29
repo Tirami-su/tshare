@@ -1,14 +1,17 @@
 <?php
 /****************** 接收上传的文件 **********************/
-
-include_once("../../lib/isLogin.php");		
-if(isLogin() === false) {		// 这里已经执行了session_start();
-	// 判断是否登录
-	header("Location:../../forbidden.html");	// 没有登陆无法上传文件，重定向到forbidden页面
-}
-
 include_once("../../entity/file.php");
 include_once("../../lib/Db.php");
+
+include_once("../../lib/isLogin.php");	
+session_start();	
+if(isLogin() === false) {
+	// 判断是否登录
+	// header("Location:../../forbidden.html");	// 没有登陆无法上传文件，重定向到forbidden页面
+	header("Location: ../../");
+}
+
+
 define("FIRST_DIR", "../../upload_file/");
 
 $file = $_FILES['file'];				// 获取上传的文件

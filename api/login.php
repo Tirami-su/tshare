@@ -16,6 +16,9 @@ include_once("../lib/cookie.php");
 $id = $_POST['id'];		// 获取学号
 $pwd = $_POST['pwd'];	// 获取密码
 
+// 是否一周内自动登录
+$auto_login = $_POST['auto_login'];
+
 $flag = login($id, $pwd);
 echo json_encode($flag);		// 返回错误信息
 
@@ -39,20 +42,22 @@ function login($id, $password) {
 		if($user->getPassword() == $password) {
 			// 修改登录时间
 			$user->setLogin_time(time());
-			// 设置学号和密码的cookie，有效时间24小时
-			cookie::set('id', $user->getId(), time()+3600*24, false, '', "login_cookie.php");
-			$key = cookie::set('pwd', $user->getPassword(), time()+3600*24, true, '', "login_cookie.php");
+			// 设置学号和密码的cookie，有效时间一个月
+			cookie::set('id', $user->getId(), time()+3600*24*30, false, '', "login_cookie.php");
+			$key = cookie::set('pwd', $user->getPassword(), time()+3600*24*30, true, '', "login_cookie.php");
+			// 设置自动登陆
+			$auto_login = ($auto_login==1) ? time() : 0;
+			cookie::set('auto_login', $auto_login, time()+3600*24*30, flase, '', 'login_cookie.php');
 			// 修改解密密钥
 			$user->setCookie_key($key['target_key']);
-
-			// 使用session保存登录用户的完整信息
-			$_SESSION['user'] = $user;
 			// 并随即生成一个session_id
 			$_SESSION['id'] = mt_rand(1, 100000);
-
 			// 修改session_id
 			$user->setSession_id($_SESSION['id']);
 			$db->update("user", $user);
+
+			// 使用session保存登录用户的完整信息
+			$_SESSION['user'] = $user;
 
 			$flag = ['code' => 1, 'msg' => '登录成功'];
 		} else {
