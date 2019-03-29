@@ -18,7 +18,8 @@ if($id === NULL) {
 		$flag = ['code' => 0, 'data' => 'null'];
 	} else {
 		$pwd = cookie::get('pwd', $user->getCookie_key());
-		$flag = ['code' => 1, 'data' => ['id' => $id, 'pwd' => $pwd]];
+		$auto_login = cookie::get("auto_login");
+		$flag = ['code' => 1, 'data' => ['id' => $id, 'pwd' => $pwd, 'auto_login' => $auto_login]];
 	}
 }
 

@@ -1,7 +1,14 @@
 <?php
-/************* 判断抢占登录 ****************/
+/************* 判断是否登录 ****************/
+include_once("../lib/isLogin.php");
 include_once("../lib/isSeize.php");
-if(isSeize()) {
+
+if(isLogin() === false) {
+	header("Location: ../");
+}
+
+/************* 判断抢占登录 ****************/
+if(isSeize() === true) {
 	header("Location: ../");
 }
 

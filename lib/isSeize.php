@@ -3,12 +3,16 @@
 include_once(dirname(__FILE__)."/../entity/user.php");
 include_once(dirname(__FILE__)."/Db.php");
 
+
 /**
  * 根据session_id查询是否有人抢占登录。如果用户正常退出后再登录并不算抢占
  * @return bool 如果有则返回true并设置抢占标志位，没有返回false并撤销抢占标志位
  */
 function isSeize() {
-	session_start();
+	if(!isset($_SESSION)) {
+		session_start();
+	}
+
 	$db = new Db();
 	$user = $_SESSION['user'];
 	$user = $db->select('user', ['id'=>$user->getId()]);
