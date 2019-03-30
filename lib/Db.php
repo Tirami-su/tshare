@@ -8,13 +8,13 @@ require_once dirname(__FILE__) .'/../entity/EntityFactory.php';	// 导入实体�
  */
 class Db extends mysqli{
 	// 数据库主机名
-	private $host = '127.0.0.1';
+	private $host = '39.106.117.190';
 	// 数据库用户名
-	private $user = 'root';
+	private $user = 'fuhao';
 	// 数据库密码
-	private $pwd = 'fuhao520999';
+	private $pwd = 'Adm401_fhao';
 	// 数据库名
-	private $dbname = 'tshare';
+	private $dbname = 'tshare-dev';
 
 	public function __construct() {
 		parent::__construct($this->host, $this->user, $this->pwd, $this->dbname);
