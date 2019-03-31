@@ -1,14 +1,36 @@
-/* 资料搜索框 */
-#search-form {
-	margin-top: 20vh;
+/* 资料搜索框（中心） */
+#search-form-mid {
+	margin-top: 30vh;
 }
 
-#search-img {
-	height: 200px;
+#search-form-mid img {
+	height: 100px;
 }
 
-#input-search {
-	height: 50px;
+#search-form-mid input {
+	margin-top: 20px;
+	height: 50px;	
+}
+
+/* 资料搜索框（顶部） */
+#search-form-top {
+	padding: 10px;
+}
+
+#search-form-top img {
+	height: 40px;
+}
+
+#search-form-top input {
+	margin-left: 15px;
+	margin-right: -1px;
+	margin-top: 1px;
+	height: 40px;
+	width: 400px;
+	border-radius: 0;
+}
+
+#result .nav-pills{
 	
 }
 

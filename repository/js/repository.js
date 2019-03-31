@@ -28,7 +28,7 @@ function categorySwitch(value) {
 /**
  * 上传文件
  */
-function upload(event) {
+function upload() {
 	// 检查输入框是否为空，空则提示，并阻止上传
 	var empty = false
 	$('#upload-form').children().not('.d-none').find('input').each(function() {
@@ -61,14 +61,32 @@ function upload(event) {
 /**
  * 搜索资料
  */
-function search(event) {
+function search(key) {
 	// 回车搜索
 	if (event.keyCode == 13) {
+		// 阻止搜索空字符串
+		if (key == '')
+			return
 		$.get('api/search_file.php', {
-			key: $('#input-search').val(),
-			page: 1
+			key: key,
+			type:'all',
+			page:1
 		}, (res) => {
-			$('body').html(res)
+			fileList(key, JSON.parse(res))
 		})
 	}
+}
+
+/**
+ * 显示搜索结果
+ */
+function fileList(key, data){
+	$('#search-form-mid').remove()
+	$('#result input').val(key)
+	$('#result').removeClass('d-none')
+	
+	var html
+	for (var i = 0; i < data.length; i++) 
+		html+=template('template-file',data[i])
+	$('#file-list').append(html)
 }
