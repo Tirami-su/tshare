@@ -1,0 +1,102 @@
+2019-03-30 16:04:22 pid:1 Exception: class \Protocols\Www.haoye.com not exist in C:\Users\fuhao\Desktop\software_engineering\tshare\lib\phpsocket.io\vendor\workerman\workerman\Worker.php:2155
+Stack trace:
+#0 C:\Users\fuhao\Desktop\software_engineering\tshare\test\server.php(67): Workerman\Worker->listen()
+#1 [internal function]: {closure}(Object(Workerman\Worker))
+#2 C:\Users\fuhao\Desktop\software_engineering\tshare\lib\phpsocket.io\vendor\workerman\workerman\Worker.php(2306): call_user_func(Object(Closure), Object(Workerman\Worker))
+#3 C:\Users\fuhao\Desktop\software_engineering\tshare\lib\phpsocket.io\vendor\workerman\workerman\Worker.php(1315): Workerman\Worker->run()
+#4 C:\Users\fuhao\Desktop\software_engineering\tshare\lib\phpsocket.io\vendor\workerman\workerman\Worker.php(1258): Workerman\Worker::forkWorkersForWindows()
+#5 C:\Users\fuhao\Desktop\software_engineering\tshare\lib\phpsocket.io\vendor\workerman\workerman\Worker.php(507): Workerman\Worker::forkWorkers()
+#6 C:\Users\fuhao\Desktop\software_engineering\tshare\test\server.php(70): Workerman\Worker::runAll()
+#7 {main}
+2019-03-30 16:04:23 pid:1 Worker process terminated
+2019-03-30 16:24:49 pid:1 Error: Call to a member function emit() on null in C:\Users\fuhao\Desktop\software_engineering\tshare\test\server.php:41
+Stack trace:
+#0 [internal function]: {closure}(Object(Workerman\Connection\TcpConnection), Array)
+#1 C:\Users\fuhao\Desktop\software_engineering\tshare\lib\phpsocket.io\vendor\workerman\workerman\Connection\TcpConnection.php(658): call_user_func(Object(Closure), Object(Workerman\Connection\TcpConnection), Array)
+#2 [internal function]: Workerman\Connection\TcpConnection->baseRead(Resource id #52)
+#3 C:\Users\fuhao\Desktop\software_engineering\tshare\lib\phpsocket.io\vendor\workerman\workerman\Events\Select.php(294): call_user_func_array(Array, Array)
+#4 C:\Users\fuhao\Desktop\software_engineering\tshare\lib\phpsocket.io\vendor\workerman\workerman\Worker.php(2321): Workerman\Events\Select->loop()
+#5 C:\Users\fuhao\Desktop\software_engineering\tshare\lib\phpsocket.io\vendor\workerman\workerman\Worker.php(1315): Workerman\Worker->run()
+#6 C:\Users\fuhao\Desktop\software_engineering\tshare\lib\phpsocket.io\vendor\workerman\workerman\Worker.php(1258): Workerman\Worker::forkWorkersForWindows()
+#7 C:\Users\fuhao\Desktop\software_engineering\tshare\lib\phpsocket.io\vendor\workerman\workerman\Worker.php(507): Workerman\Worker::forkWorkers()
+#8 C:\Users\fuhao\Desktop\software_engineering\tshare\test\server.php(57): Workerman\Worker::runAll()
+#9 {main}
+2019-03-30 16:24:49 pid:1 Worker process terminated
+2019-03-30 16:25:43 pid:1 Error: Call to a member function emit() on null in C:\Users\fuhao\Desktop\software_engineering\tshare\test\server.php:41
+Stack trace:
+#0 [internal function]: {closure}(Object(Workerman\Connection\TcpConnection), Array)
+#1 C:\Users\fuhao\Desktop\software_engineering\tshare\lib\phpsocket.io\vendor\workerman\workerman\Connection\TcpConnection.php(658): call_user_func(Object(Closure), Object(Workerman\Connection\TcpConnection), Array)
+#2 [internal function]: Workerman\Connection\TcpConnection->baseRead(Resource id #50)
+#3 C:\Users\fuhao\Desktop\software_engineering\tshare\lib\phpsocket.io\vendor\workerman\workerman\Events\Select.php(294): call_user_func_array(Array, Array)
+#4 C:\Users\fuhao\Desktop\software_engineering\tshare\lib\phpsocket.io\vendor\workerman\workerman\Worker.php(2321): Workerman\Events\Select->loop()
+#5 C:\Users\fuhao\Desktop\software_engineering\tshare\lib\phpsocket.io\vendor\workerman\workerman\Worker.php(1315): Workerman\Worker->run()
+#6 C:\Users\fuhao\Desktop\software_engineering\tshare\lib\phpsocket.io\vendor\workerman\workerman\Worker.php(1258): Workerman\Worker::forkWorkersForWindows()
+#7 C:\Users\fuhao\Desktop\software_engineering\tshare\lib\phpsocket.io\vendor\workerman\workerman\Worker.php(507): Workerman\Worker::forkWorkers()
+#8 C:\Users\fuhao\Desktop\software_engineering\tshare\test\server.php(57): Workerman\Worker::runAll()
+#9 {main}
+2019-03-30 16:25:43 pid:1 Worker process terminated
+2019-03-30 16:27:05 pid:1 Error: Call to a member function emit() on null in C:\Users\fuhao\Desktop\software_engineering\tshare\test\server.php:41
+Stack trace:
+#0 [internal function]: {closure}(Object(Workerman\Connection\TcpConnection), Array)
+#1 C:\Users\fuhao\Desktop\software_engineering\tshare\lib\phpsocket.io\vendor\workerman\workerman\Connection\TcpConnection.php(658): call_user_func(Object(Closure), Object(Workerman\Connection\TcpConnection), Array)
+#2 [internal function]: Workerman\Connection\TcpConnection->baseRead(Resource id #31)
+#3 C:\Users\fuhao\Desktop\software_engineering\tshare\lib\phpsocket.io\vendor\workerman\workerman\Events\Select.php(294): call_user_func_array(Array, Array)
+#4 C:\Users\fuhao\Desktop\software_engineering\tshare\lib\phpsocket.io\vendor\workerman\workerman\Worker.php(2321): Workerman\Events\Select->loop()
+#5 C:\Users\fuhao\Desktop\software_engineering\tshare\lib\phpsocket.io\vendor\workerman\workerman\Worker.php(1315): Workerman\Worker->run()
+#6 C:\Users\fuhao\Desktop\software_engineering\tshare\lib\phpsocket.io\vendor\workerman\workerman\Worker.php(1258): Workerman\Worker::forkWorkersForWindows()
+#7 C:\Users\fuhao\Desktop\software_engineering\tshare\lib\phpsocket.io\vendor\workerman\workerman\Worker.php(507): Workerman\Worker::forkWorkers()
+#8 C:\Users\fuhao\Desktop\software_engineering\tshare\test\server.php(57): Workerman\Worker::runAll()
+#9 {main}
+2019-03-30 16:27:05 pid:1 Worker process terminated
+2019-03-30 16:27:37 pid:1 Error: Call to a member function emit() on null in C:\Users\fuhao\Desktop\software_engineering\tshare\test\server.php:41
+Stack trace:
+#0 [internal function]: {closure}(Object(Workerman\Connection\TcpConnection), Array)
+#1 C:\Users\fuhao\Desktop\software_engineering\tshare\lib\phpsocket.io\vendor\workerman\workerman\Connection\TcpConnection.php(658): call_user_func(Object(Closure), Object(Workerman\Connection\TcpConnection), Array)
+#2 [internal function]: Workerman\Connection\TcpConnection->baseRead(Resource id #52)
+#3 C:\Users\fuhao\Desktop\software_engineering\tshare\lib\phpsocket.io\vendor\workerman\workerman\Events\Select.php(294): call_user_func_array(Array, Array)
+#4 C:\Users\fuhao\Desktop\software_engineering\tshare\lib\phpsocket.io\vendor\workerman\workerman\Worker.php(2321): Workerman\Events\Select->loop()
+#5 C:\Users\fuhao\Desktop\software_engineering\tshare\lib\phpsocket.io\vendor\workerman\workerman\Worker.php(1315): Workerman\Worker->run()
+#6 C:\Users\fuhao\Desktop\software_engineering\tshare\lib\phpsocket.io\vendor\workerman\workerman\Worker.php(1258): Workerman\Worker::forkWorkersForWindows()
+#7 C:\Users\fuhao\Desktop\software_engineering\tshare\lib\phpsocket.io\vendor\workerman\workerman\Worker.php(507): Workerman\Worker::forkWorkers()
+#8 C:\Users\fuhao\Desktop\software_engineering\tshare\test\server.php(57): Workerman\Worker::runAll()
+#9 {main}
+2019-03-30 16:27:37 pid:1 Worker process terminated
+2019-03-30 16:31:01 pid:1 Error: Call to a member function emit() on null in C:\Users\fuhao\Desktop\software_engineering\tshare\test\server.php:41
+Stack trace:
+#0 [internal function]: {closure}(Object(Workerman\Connection\TcpConnection), Array)
+#1 C:\Users\fuhao\Desktop\software_engineering\tshare\lib\phpsocket.io\vendor\workerman\workerman\Connection\TcpConnection.php(658): call_user_func(Object(Closure), Object(Workerman\Connection\TcpConnection), Array)
+#2 [internal function]: Workerman\Connection\TcpConnection->baseRead(Resource id #50)
+#3 C:\Users\fuhao\Desktop\software_engineering\tshare\lib\phpsocket.io\vendor\workerman\workerman\Events\Select.php(294): call_user_func_array(Array, Array)
+#4 C:\Users\fuhao\Desktop\software_engineering\tshare\lib\phpsocket.io\vendor\workerman\workerman\Worker.php(2321): Workerman\Events\Select->loop()
+#5 C:\Users\fuhao\Desktop\software_engineering\tshare\lib\phpsocket.io\vendor\workerman\workerman\Worker.php(1315): Workerman\Worker->run()
+#6 C:\Users\fuhao\Desktop\software_engineering\tshare\lib\phpsocket.io\vendor\workerman\workerman\Worker.php(1258): Workerman\Worker::forkWorkersForWindows()
+#7 C:\Users\fuhao\Desktop\software_engineering\tshare\lib\phpsocket.io\vendor\workerman\workerman\Worker.php(507): Workerman\Worker::forkWorkers()
+#8 C:\Users\fuhao\Desktop\software_engineering\tshare\test\server.php(57): Workerman\Worker::runAll()
+#9 {main}
+2019-03-30 16:31:01 pid:1 Worker process terminated
+2019-03-30 16:31:30 pid:1 Error: Call to a member function emit() on null in C:\Users\fuhao\Desktop\software_engineering\tshare\test\server.php:42
+Stack trace:
+#0 [internal function]: {closure}(Object(Workerman\Connection\TcpConnection), Array)
+#1 C:\Users\fuhao\Desktop\software_engineering\tshare\lib\phpsocket.io\vendor\workerman\workerman\Connection\TcpConnection.php(658): call_user_func(Object(Closure), Object(Workerman\Connection\TcpConnection), Array)
+#2 [internal function]: Workerman\Connection\TcpConnection->baseRead(Resource id #52)
+#3 C:\Users\fuhao\Desktop\software_engineering\tshare\lib\phpsocket.io\vendor\workerman\workerman\Events\Select.php(294): call_user_func_array(Array, Array)
+#4 C:\Users\fuhao\Desktop\software_engineering\tshare\lib\phpsocket.io\vendor\workerman\workerman\Worker.php(2321): Workerman\Events\Select->loop()
+#5 C:\Users\fuhao\Desktop\software_engineering\tshare\lib\phpsocket.io\vendor\workerman\workerman\Worker.php(1315): Workerman\Worker->run()
+#6 C:\Users\fuhao\Desktop\software_engineering\tshare\lib\phpsocket.io\vendor\workerman\workerman\Worker.php(1258): Workerman\Worker::forkWorkersForWindows()
+#7 C:\Users\fuhao\Desktop\software_engineering\tshare\lib\phpsocket.io\vendor\workerman\workerman\Worker.php(507): Workerman\Worker::forkWorkers()
+#8 C:\Users\fuhao\Desktop\software_engineering\tshare\test\server.php(58): Workerman\Worker::runAll()
+#9 {main}
+2019-03-30 16:31:30 pid:1 Worker process terminated
+2019-03-30 16:33:22 pid:1 Error: Call to a member function emit() on null in C:\Users\fuhao\Desktop\software_engineering\tshare\test\server.php:42
+Stack trace:
+#0 [internal function]: {closure}(Object(Workerman\Connection\TcpConnection), Array)
+#1 C:\Users\fuhao\Desktop\software_engineering\tshare\lib\phpsocket.io\vendor\workerman\workerman\Connection\TcpConnection.php(658): call_user_func(Object(Closure), Object(Workerman\Connection\TcpConnection), Array)
+#2 [internal function]: Workerman\Connection\TcpConnection->baseRead(Resource id #52)
+#3 C:\Users\fuhao\Desktop\software_engineering\tshare\lib\phpsocket.io\vendor\workerman\workerman\Events\Select.php(294): call_user_func_array(Array, Array)
+#4 C:\Users\fuhao\Desktop\software_engineering\tshare\lib\phpsocket.io\vendor\workerman\workerman\Worker.php(2321): Workerman\Events\Select->loop()
+#5 C:\Users\fuhao\Desktop\software_engineering\tshare\lib\phpsocket.io\vendor\workerman\workerman\Worker.php(1315): Workerman\Worker->run()
+#6 C:\Users\fuhao\Desktop\software_engineering\tshare\lib\phpsocket.io\vendor\workerman\workerman\Worker.php(1258): Workerman\Worker::forkWorkersForWindows()
+#7 C:\Users\fuhao\Desktop\software_engineering\tshare\lib\phpsocket.io\vendor\workerman\workerman\Worker.php(507): Workerman\Worker::forkWorkers()
+#8 C:\Users\fuhao\Desktop\software_engineering\tshare\test\server.php(58): Workerman\Worker::runAll()
+#9 {main}
+2019-03-30 16:33:22 pid:1 Worker process terminated

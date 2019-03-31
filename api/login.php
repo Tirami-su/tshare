@@ -13,11 +13,13 @@ include_once("../lib/Db.php");
 include_once("../entity/user.php");
 include_once("../lib/cookie.php");
 
-$id = $_POST['id'];		// 获取学号
-$pwd = $_POST['pwd'];	// 获取密码
+// $id = $_POST['id'];		// 获取学号
+// $pwd = $_POST['pwd'];	// 获取密码
+$id = "160400423";
+$pwd = "520999";
 
 // 是否一周内自动登录
-$auto_login = $_POST['auto_login'];
+// $auto_login = $_POST['auto_login'];
 
 $flag = login($id, $pwd);
 echo json_encode($flag);		// 返回错误信息
@@ -46,8 +48,8 @@ function login($id, $password) {
 			cookie::set('id', $user->getId(), time()+3600*24*30, false, '', "login_cookie.php");
 			$key = cookie::set('pwd', $user->getPassword(), time()+3600*24*30, true, '', "login_cookie.php");
 			// 设置自动登陆
-			$auto_login = ($auto_login==1) ? time() : 0;
-			cookie::set('auto_login', $auto_login, time()+3600*24*30, flase, '', 'login_cookie.php');
+			// $auto_login = ($auto_login==1) ? time() : 0;
+			// cookie::set('auto_login', $auto_login, time()+3600*24*30, flase, '', 'login_cookie.php');
 			// 修改解密密钥
 			$user->setCookie_key($key['target_key']);
 			// 并随即生成一个session_id

@@ -1,10 +1,9 @@
 <?php
 /****************** 接收上传的文件 **********************/
-include_once("../../entity/file.php");
-include_once("../../lib/Db.php");
-
 include_once("../../lib/isLogin.php");	
-session_start();	
+include_once("../../entity/file.php");
+include_once("../../entity/user.php");
+include_once("../../lib/Db.php");
 if(isLogin() === false) {
 	// 判断是否登录
 	// header("Location:../../forbidden.html");	// 没有登陆无法上传文件，重定向到forbidden页面
@@ -34,7 +33,7 @@ $time 		 = $_POST['time'];				// 资料针对时间
 $description = $_POST['description'];		// 资料描述信息
 $upload_time = date("Y-m-d", time());		// 上传时间(年月日)
 $filename	 = $file['name'];				// 文件名
-$id 		 = $user['id'];					// 上传者学号
+$id 		 = $user->getId();				// 上传者学号
 
 /*********** 测试参数 ************
 $id = "160400423";
@@ -76,7 +75,7 @@ $flag = move_uploaded_file($file['tmp_name'], $dest_dir."/".$name);			// 保存�
 
 if($flag === true) {
 	// 上传成功
-	echo ['code' => 1, 'msg' => '上传成功'];
+	$flag = ['code' => 1, 'msg' => '上传成功'];
 }
 
 // 将上传的文件信息写入数据库
@@ -98,4 +97,5 @@ $newFile->set($arr);
 
 $db = new Db();
 $db->insert("file", $newFile);
+echo json_encode($flag);
 ?>
