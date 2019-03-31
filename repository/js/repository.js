@@ -69,8 +69,8 @@ function search(key) {
 			return
 		$.get('api/search_file.php', {
 			key: key,
-			type:'all',
-			page:1
+			type: 'all',
+			page: 1
 		}, (res) => {
 			fileList(key, JSON.parse(res))
 		})
@@ -80,13 +80,13 @@ function search(key) {
 /**
  * 显示搜索结果
  */
-function fileList(key, data){
+function fileList(key, data) {
 	$('#search-form-mid').remove()
 	$('#result input').val(key)
 	$('#result').removeClass('d-none')
-	
+
 	var html
-	for (var i = 0; i < data.length; i++) 
-		html+=template('template-file',data[i])
+	for (var i = 0; i < data.length; i++)
+		html += template('template-file', data[i])
 	$('#file-list').append(html)
 }
