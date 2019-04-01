@@ -3752,7 +3752,7 @@ body {
     transition: all 150ms linear;
     /* font-size: 14px; */
 }
-
+/* 
 .dropdown-menu.dropdown-menu-right:before {
     left: auto;
     right: 10px;
@@ -3772,7 +3772,7 @@ body {
     border-bottom: .4em solid;
     border-right: .4em solid transparent;
     border-left: .4em solid transparent;
-}
+} */
 
 .dropdown-menu .dropdown-item {
     font-size: 0.8571em;

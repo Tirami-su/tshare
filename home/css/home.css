@@ -1,13 +1,16 @@
 /* 轮播器 */
+#carousel-home {
+	margin-bottom: 20px;
+}
+
 .carousel-inner {
-	height: 300px;
 	border-radius: 20px;
+	height: 300px;
 	overflow: hidden;
 }
 
-#carousel-home {
-	/* margin-top: 80px; */
-	margin-bottom: 20px;
+.carousel-inner {
+    box-shadow: 0 3px 5px 0px gray;
 }
 
 /* 新闻标签 */
