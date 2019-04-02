@@ -33,7 +33,11 @@ class Db extends mysqli{
 		foreach ($info as $k => $v) {
 			// 生成sql语句的必要组成部分
 			$key .= "{$k},";
-			$value .= "'{$v}',";
+			if($v === NULL) {
+				$value .= "NULL,";
+			} else {
+				$value .= "'{$v}',";
+			}			
 		}
 
 		$key = substr($key, 0, -1);			// 删除多余的","
@@ -188,17 +192,17 @@ class Db extends mysqli{
 	/**
 	 * 根据类别和关键字查询文件
 	 * @param String $key 关键字
-	 * @Param String $type 类别
+	 * @param String $field 字段名称
+	 * @param bool $onlyFile 是否只查询文件而不查询文件夹
 	 */
-	public function findFile(String $key, String $type="") {
+	public function findFile(String $key, String $field, bool $onlyFile=true) {
 		$arr = array();
 
-		$sql = "";
-		if($type === "") {
-			$sql = "select * from file where filename like '%{$key}%'";
-		} else {
-			$sql = "select * from file where filename like '%{$key}%' and type='{$type}'";
+		$sql = "select * from file where {$field} like '%{$key}%'";
+		if($onlyFile === true) {
+			$sql .= " and is_dir=0";
 		}
+		
 		$res = $this->query($sql);
 
 		if($res->num_rows === 0){

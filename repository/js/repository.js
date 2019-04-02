@@ -84,6 +84,12 @@ function search(key) {
  */
 function fileList(key, res) {
 	var html
+<<<<<<< HEAD
+	for (var i = 0; i < data.length; i++)
+		html += template('template-file', data[i])
+	$('#file-list').append(html)
+}
+=======
 	if (res.code == 0){
 		html = template('template-nofound', key)
 		$('body').append(html)
@@ -96,3 +102,4 @@ function fileList(key, res) {
 		$('#file-list').append(html)
 	}
 }
+>>>>>>> 1ed2d00f29d874406b2440b7f4d8df669ca00ee7

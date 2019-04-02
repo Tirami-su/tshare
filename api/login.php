@@ -13,10 +13,10 @@ include_once("../lib/Db.php");
 include_once("../entity/user.php");
 include_once("../lib/cookie.php");
 
-// $id = $_POST['id'];		// 获取学号
-// $pwd = $_POST['pwd'];	// 获取密码
-$id = "160400423";
-$pwd = "520999";
+$id = $_POST['id'];		// 获取学号
+$pwd = $_POST['pwd'];	// 获取密码
+// $id = "160400423";
+// $pwd = "520999";
 
 // 是否一周内自动登录
 // $auto_login = $_POST['auto_login'];

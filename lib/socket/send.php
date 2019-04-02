@@ -1,32 +1,25 @@
 <?php
-
-$sender = $_POST['from'];
-$address = $_POST['to'];
-$content = $_POST['content'];
-$time = $_POST['time'];
-
-// $sender = $_GET['from'];
-// $address = $_GET['to'];
-// $content = $_GET['content'];
-// $time = $_GET['time'];
-
-$flag = sendMsg($sender, $address, $content, $time);
-echo json_encode($flag);
-
-function sendMsg($sender, $address, $content, $time) {
-	// 处理发件人和收件人为空的情况
-	if($sender == '') {
-		$sender = NULL;
+include_once(dirname(__FILE__) . "/../../entity/notice.php")
+/**
+ * 发送消息给指定的客户端套接字
+ * @param $from 发件人(可以为空，表示由系统管理员发送消息)
+ * @param $to 收件人(可以为空，表示向所有用户发送消息)
+ * @param $content 消息内容
+ */
+function send($from, $to, $content) {
+	// 处理发件人为空的情况
+	if($from == '') {
+		$from = NULL;
 	}
 
-	if($address == '') {
-		$address = NULL;
+	if($to == '') {
+		$to = NULL;
 	}
 
 	$url = "http://www.haoye.com:3121";
 	$data = [
 		'type' => 'publish',
-		'data' => json_encode(['sender' => $sender, 'address' => $address, 'content' => $content, 'time' => $time])
+		'data' => ['from' => $from, 'to' => $to, 'content' => $content]
 	];
 
 	$ch = curl_init ();
