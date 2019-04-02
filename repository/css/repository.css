@@ -30,8 +30,13 @@
 	border-radius: 0;
 }
 
-#result .nav-pills{
-	
+#nofound {
+	margin-top: 40vh;
+}
+
+#nofound .prompt {
+	font-size: 1.5em;
+	font-weight: 300;
 }
 
 /* 上传资料表单 */

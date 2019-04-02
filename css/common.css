@@ -2,6 +2,8 @@
 body {
 	-webkit-font-smoothing: antialiased;
 }
+
+/* 超链接 鼠标样式 */
 a {
 	cursor: pointer;
 }
@@ -28,13 +30,12 @@ a {
 	opacity: .5;
 	color: #888;
 }
-/* 链接 */
+
 .navbar .navbar-nav .nav-link:not(.btn) {
     padding: 0.5rem 0.7rem;
 }
 
 .navbar .navbar-nav .nav-item.active .nav-link:not(.btn),
-/* .navbar .navbar-nav .nav-item .nav-link:not(.btn):focus, */
 .navbar .navbar-nav .nav-item .nav-link:not(.btn):hover,
 .navbar .navbar-nav .nav-item .nav-link:not(.btn):active {
     background-color: rgba(255, 255, 255, 0.2);
@@ -48,19 +49,9 @@ a {
     background-color: rgba(222, 222, 222, 0.3);
 }
 
-/* 导航栏上的元素 */
 .logo {
 	height: 35px;
 	margin-right: 10px;
-}
-
-form.search {
-	margin-left: 50px;
-}
-
-#msg {
-	width: 25x;
-	height: 25px;
 }
 
 .nav-space {
@@ -87,6 +78,18 @@ form.search {
 	-o-transition: all 300ms ease 0s;
 	-ms-transition: all 300ms ease 0s;
 	transition: all 300ms ease 0s;
+}
+
+.navbar input[type="search"] {
+	width: 170px;
+	-webkit-transition: width 300ms;
+	-moz-transition: width 300ms;
+	-o-transition: width 300ms;
+	-ms-transition: width 300ms;
+	transition: all 300ms;
+}
+.navbar input[type="search"]:focus {
+	width: 250px;
 }
 
 .dropdown-toggle:after,

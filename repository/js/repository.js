@@ -74,19 +74,25 @@ function search(key) {
 		}, (res) => {
 			fileList(key, JSON.parse(res))
 		})
+		$('#search-form-mid').remove()
+		$('#result input').val(key)
 	}
 }
 
 /**
  * 显示搜索结果
  */
-function fileList(key, data) {
-	$('#search-form-mid').remove()
-	$('#result input').val(key)
-	$('#result').removeClass('d-none')
-
+function fileList(key, res) {
 	var html
-	for (var i = 0; i < data.length; i++)
-		html += template('template-file', data[i])
-	$('#file-list').append(html)
+	if (res.code == 0){
+		html = template('template-nofound', key)
+		$('body').append(html)
+	}
+	else {
+		$('#result').removeClass('d-none')
+		var data = res.data
+		for (var i = 0; i < data.length; i++)
+			html += template('template-file', data[i])
+		$('#file-list').append(html)
+	}
 }
