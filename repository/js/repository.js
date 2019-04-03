@@ -72,6 +72,7 @@ function search(key) {
 		$.get('api/search_file.php', {
 			key: key,
 			mode: 0,
+			sort: 0,
 			page: 1
 		}, (res) => {
 			fileList(key, JSON.parse(res))
