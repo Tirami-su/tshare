@@ -13,8 +13,7 @@ include_once("entity.php");
  * 7.|  category  |   int     |  否   |   无   |    否     | 0课内/1课外（资料）
  * 8.|description |  varchar  |  否   |   无   |    否     |    资料描述
  * 9.|    time    |   int     |  否   |   无   |    是     | 资料针对的时间（试卷的年份）
- *10.|    like    |   int     |  否   |   0    |    否     |     好评量
- *11.|   dislike  |   int     |  否   |   0    |    否     |     差评量
+ *10.|   score    |   int     |  否   |   0    |    否     |     评分
  *12.|  download  |   int     |  否   |   0    |    否     |     下载量
  *13.|   is_dir   |   int     |  否   |   0    |    否     |  是否为文件夹
  */
@@ -68,12 +67,8 @@ class file implements entity {
 		$this->info['time'] = $time;
 	}
 
-	public function setLike(int $like) {
-		$this->info['like'] = $like;
-	}
-
-	public function setDislike(int $dislike) {
-		$this->info['dislike'] = $dislike;
+	public function setScore(int $score) {
+		$this->info['score'] = $score;
 	}
 
 	public function setDownload(int $download) {
@@ -120,12 +115,8 @@ class file implements entity {
 		return $this->info['time'];
 	}
 
-	public function getLike() {
-		return $this->info['like'];
-	}
-
-	public function getDislike() {
-		return $this->info['dislike'];
+	public function getScore() {
+		return $this->info['score'];
 	}
 
 	public function getDownload() {
@@ -157,7 +148,7 @@ class file implements entity {
 	}
 
 	public function getOtherKey() {
-		return ['type', 'upload_time', 'subject', 'category', 'description', 'time', 'like', 'dislike', 'download', 'is_dir'];
+		return ['type', 'upload_time', 'subject', 'category', 'description', 'time', 'score', 'download', 'is_dir'];
 	}
 }
 
