@@ -92,15 +92,15 @@ if($mode === 1) {
 }
 
 if(count($json_data) === 0) {
-	// echo json_encode(['code' => 0, 'msg' => '没有找到您需要的文件']);
-	var_dump(['code' => 0, 'msg' => '没有找到您需要的文件']);
+	echo json_encode(['code' => 0, 'msg' => '没有找到您需要的文件']);
+	// var_dump(['code' => 0, 'msg' => '没有找到您需要的文件']);
 } else {
 	if($page <= count($json_data)) {
-		// echo json_encode(['code' => 1, "data" => $json_data[$page-1]]);
-		var_dump(['code' => 1, "data" => $json_data[$page-1]]);
+		echo json_encode(['code' => 1, "data" => $json_data[$page-1]]);
+		// var_dump(['code' => 1, "data" => $json_data[$page-1]]);
 	} else {
-		// echo json_encode(['code' => 0, 'msg' => '该页不存在']);
-		var_dump(['code' => 0, 'msg' => '该页不存在']);
+		echo json_encode(['code' => 0, 'msg' => '该页不存在']);
+		// var_dump(['code' => 0, 'msg' => '该页不存在']);
 	}
 }
 
