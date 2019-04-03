@@ -31,15 +31,19 @@
 include_once("../../lib/Db.php");
 include_once("../../lib/PHPAnalysis/PHPAnalysis.class.php");
 include_once("../../entity/file.php");
+include_once("../../entity/user.php");
 
 $db = new Db();
 $analysis = new PhpAnalysis();
 
 $root = dirname(__FILE__) . "/../../";
 
-$key = $_GET['key'];		// 获取关键字
-$page = $_GET['page'];		// 获取查询页码
-$mode = $_GET['mode'];		// 搜索模式
+// $key = $_GET['key'];		// 获取关键字
+// $page = $_GET['page'];		// 获取查询页码
+// $mode = $_GET['mode'];		// 搜索模式
+$key = "java";
+$page = 1;
+$mode = 0;
 
 /**
  * 保存所有的查询结果，按相似度排序
@@ -299,27 +303,13 @@ function file_sort() {
 				// 同时交换对象
 				$key1 = $key2;
 				$index1 = $index2;
-			} else if(strlen($key1) === strlen($key2)) {
-				// 关键字长度相等
-				$recommend1 = getRecommend($data[$index1]);
-				$recommend2 = getRecommend($data[$index2]);
-				if($recommend2 > $recommend1) {
-					// 交换索引
-					$temp = $indexArray[$i];
-					$indexArray[$i] = $indexArray[$j];
-					$indexArray[$j] = $temp;
-
-					// 同时交换对象
-					$key1 = $key2;
-					$index1 = $index2;
-				}
 			}
 		}
 	}
 }
 
 function page() {
-	global $data, $indexArray;
+	global $data, $indexArray, $db;
 
 	$json_data = array();
 	$json_index = 0;
@@ -335,9 +325,9 @@ function page() {
 		$time 			= $file->getTime();
 		$description 	= $file->getDescription();
 		$upload_time 	= $file->getUpload_time();
-		$upload_user 	= $file->getId();			// 暂时先用学号代表上传人
-		$like 			= $file->getLike();
-		$dislike 		= $file->getDislike();
+		$upload_uid 	= $file->getId();											// 暂时先用学号代表上传人
+		$upload_uname	= $db->select("user", ['id' => $upload_uid])->getUsername();	// 上传人名称
+		$score			= $file->getScore();
 		$download 		= $file->getDownload();
 		$path			= $file->getPath();
 		$size			= 0;
@@ -348,8 +338,8 @@ function page() {
 			$size = filesize(dirname(__FILE__)."/../../".$path."/".$name);
 			$path .= "/{$name}";
 		} else {
-			$size = filesize(dirname(__FILE__)."/../../".$path."/".$upload_user."_".$name);
-			$path .= "/{$upload_user}_{$name}";
+			$size = filesize(dirname(__FILE__)."/../../".$path."/".$upload_uid."_".$name);
+			$path .= "/{$upload_uid}_{$name}";
 		}
 
 		$json_data[$json_index][] = [
@@ -360,13 +350,13 @@ function page() {
 				"time" 			=> $time,
 				"description" 	=> $description,
 				"upload_time" 	=> $upload_time,
-				"upload_user" 	=> $upload_user,
-				"like"			=> $like,
-				"dislike" 		=> $dislike,
+				"upload_uid" 	=> $upload_uid,
+				"upload_uname"	=> $upload_uname,
+				"score"			=> $score,
 				"download" 		=> $download,
 				"url"			=> $path,
 				"size"			=> $size,
-				"contents"		=> $name
+				"contents"		=> ""
 			];
 
 		if($i%10 === 9) {
@@ -375,17 +365,6 @@ function page() {
 	}
 
 	return $json_data;
-}
-
-/**
- * 计算文件的推荐值
- */
-function getRecommend($file) {
-	$like = $file->getLike();
-	$dislike = $file->getDislike();
-	$download = $file->getDownload();
-
-	return $like - 2*$dislike + $download;
 }
 
 class dirctory {
