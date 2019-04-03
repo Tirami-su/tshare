@@ -87,7 +87,7 @@ function fileList(key, res) {
 	for (var i = 0; i < data.length; i++)
 		html += template('template-file', data[i])
 	$('#file-list').append(html)
-}
+
 	if (res.code == 0){
 		html = template('template-nofound', key)
 		$('body').append(html)
