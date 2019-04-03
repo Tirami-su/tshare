@@ -3,7 +3,7 @@
 include_once("entity.php");
 /**
  * 对应于数据库中的file实体表
- *      字段        类型       主键    默认值    允许为空        描述
+ *      字段        类型         主键    默认值    允许为空        描述
  * 1.|     id     |   int     |  是   |   无   |    否     |     学号
  * 2.|  filename  |  varchar  |  是   |   无   |    否     |     文件名
  * 3.|    path    |  varchar  |  否   |   无   |    否     |   文件路径(以网站根目录起点)
@@ -16,6 +16,7 @@ include_once("entity.php");
  *10.|    like    |   int     |  否   |   0    |    否     |     好评量
  *11.|   dislike  |   int     |  否   |   0    |    否     |     差评量
  *12.|  download  |   int     |  否   |   0    |    否     |     下载量
+ *13.|   is_dir   |   int     |  否   |   0    |    否     |  是否为文件夹
  */
 class file implements entity {
 	/*上传文件信息*/
@@ -79,6 +80,10 @@ class file implements entity {
 		$this->info['download'] = $download;
 	}
 
+	public function setIs_dir(int $is_dir) {
+		$this->info['is_dir'] = $is_dir;
+	}
+
 	public function getId() {
 		return $this->info['id'];
 	}
@@ -127,6 +132,10 @@ class file implements entity {
 		return $this->info['download'];
 	}
 
+	public function getIs_dir() {
+		return $this->info['is_dir'];
+	}
+
 
 	/****************** Entity接口方法 ********************/
 
@@ -144,11 +153,11 @@ class file implements entity {
 	}
 
 	public function getPrimaryKey() {
-		return ['id', 'filename'];
+		return ['id', 'filename', 'path'];
 	}
 
 	public function getOtherKey() {
-		return ['path', 'type', 'upload_time', 'subject', 'category', 'description', 'time', 'like', 'dislike', 'download'];
+		return ['type', 'upload_time', 'subject', 'category', 'description', 'time', 'like', 'dislike', 'download', 'is_dir'];
 	}
 }
 

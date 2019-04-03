@@ -107,6 +107,6 @@ function fileList(key, res) {
 	}
 }
 
-function modeSwitch(elem){
+function modeSwitch(){
 	
 }
