@@ -65,7 +65,7 @@ function search(key) {
 	// 回车搜索
 	if (event.keyCode == 13) {
 		// 阻止搜索空字符串
-		if (key == ''){
+		if (key == '') {
 			event.preventDefault()
 			return
 		}
@@ -79,11 +79,11 @@ function search(key) {
 		$('#search-form-mid').remove()
 		$('#navbar-search').val(key)
 		$('.main').waitMe({
-			effect:'rotateplane',
+			effect: 'rotateplane',
 			// text:'正在搜索...',
-			bg : 'rgba(255,255,255,0)',
-			color: ['#aaa','#666'],//前者是字体颜色，后者是动画颜色
-			fontSize:'16px'
+			bg: 'rgba(255,255,255,0.8)',
+			color: ['#aaa', '#666'], //前者是字体颜色，后者是动画颜色
+			fontSize: '16px'
 		})
 	}
 }
@@ -92,21 +92,28 @@ function search(key) {
  * 显示搜索结果
  */
 function fileList(key, res) {
+	$('.main').waitMe('hide')
+	$('#nofound').remove()
 	var html
-	if (res.code == 0){
-		html = template('template-nofound', {keyword:key})
-		$('.main').waitMe('hide')
-		$('body').append(html)
-	}
-	else {
+	if (res.code == 0) {
+		html = template('template-nofound', {
+			keyword: key
+		})
+		$('#result').addClass('d-none')
+		$('.main').append(html)
+	} else {
 		$('#result').removeClass('d-none')
 		var data = res.data
-		for (var i = 0; i < data.length; i++)
-			html += template('template-file', data[i])
-		$('#file-list').append(html)
+		for (var i = 0; i < data.length; i++) {
+			if (data[i].contents == 0)
+				html += template('template-file', data[i])
+			else
+				html += template('template-folder', data[i])
+		}
+		$('#file-list').empty().append(html)
 	}
 }
 
-function modeSwitch(){
-	
+function modeSwitch() {
+
 }

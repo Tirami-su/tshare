@@ -1,6 +1,6 @@
 /* 资料搜索框（中心） */
 #search-form-mid {
-	margin-top: 30vh;
+	padding-top: 20vh;
 }
 
 #search-form-mid img {
@@ -14,7 +14,7 @@
 
 /* 找不到提示 */
 #nofound {
-	margin-top: 30vh;
+	padding-top: 30vh;
 }
 
 #nofound .prompt {
