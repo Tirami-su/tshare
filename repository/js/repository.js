@@ -65,17 +65,26 @@ function search(key) {
 	// 回车搜索
 	if (event.keyCode == 13) {
 		// 阻止搜索空字符串
-		if (key == '')
+		if (key == ''){
+			event.preventDefault()
 			return
+		}
 		$.get('api/search_file.php', {
 			key: key,
-			type: 'all',
+			mode: 0,
 			page: 1
 		}, (res) => {
 			fileList(key, JSON.parse(res))
 		})
 		$('#search-form-mid').remove()
-		$('#result input').val(key)
+		$('#navbar-search').val(key)
+		$('.main').waitMe({
+			effect:'rotateplane',
+			// text:'正在搜索...',
+			bg : 'rgba(255,255,255,0)',
+			color: ['#aaa','#666'],//前者是字体颜色，后者是动画颜色
+			fontSize:'16px'
+		})
 	}
 }
 
@@ -85,7 +94,8 @@ function search(key) {
 function fileList(key, res) {
 	var html
 	if (res.code == 0){
-		html = template('template-nofound', key)
+		html = template('template-nofound', {keyword:key})
+		$('.main').waitMe('hide')
 		$('body').append(html)
 	}
 	else {
@@ -95,4 +105,8 @@ function fileList(key, res) {
 			html += template('template-file', data[i])
 		$('#file-list').append(html)
 	}
+}
+
+function modeSwitch(elem){
+	
 }

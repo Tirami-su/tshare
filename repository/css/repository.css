@@ -12,32 +12,33 @@
 	height: 50px;	
 }
 
-/* 资料搜索框（顶部） */
-#search-form-top {
-	padding: 10px;
-}
-
-#search-form-top img {
-	height: 40px;
-}
-
-#search-form-top input {
-	margin-left: 15px;
-	margin-right: -1px;
-	margin-top: 1px;
-	height: 40px;
-	width: 400px;
-	border-radius: 0;
-}
-
+/* 找不到提示 */
 #nofound {
-	margin-top: 40vh;
+	margin-top: 30vh;
 }
 
 #nofound .prompt {
-	font-size: 1.5em;
-	font-weight: 300;
+	padding-top: 20px;
+	font-size: 1.2em;
 }
+
+/* 搜索选项 */
+#options-col{
+	padding-left: 0;
+}
+
+#options {
+	padding: 10px;
+}
+
+#options .form-check {
+	font-size: 0.9em;
+	margin-left: 15px;
+}
+ 
+.option-title {
+	padding-bottom: 10px;
+} 
 
 /* 上传资料表单 */
 #upload-title {
@@ -57,4 +58,40 @@
 
 .form-check {
 	margin-bottom: 10px;
+}
+
+/* 搜索结果列表 */
+.file-item-file,
+.file-item-folder{
+	
+}
+
+.file-item-file{
+	
+}
+
+.file-item-folder{
+	
+}
+
+#file-list {
+	padding-left: 0;
+}
+
+#file-list li {
+	list-style-type: none;
+	border-bottom: 1px solid #f0f0f0;
+	padding: 20px;
+	color: black;
+}
+
+.file-name {
+	font-size: 1.2em;
+}
+
+.file-description,
+.contents,
+.action{
+	color: #555;
+	margin-top: 10px;
 }
