@@ -21,7 +21,7 @@
  *	|- 如果关键字a包含关键字b，则删除关键字b对应的项
  *	|- 如果关键字a和关键字b没有包含关系，则将两者合并成新的一项，并且删除这两项
  *
- * 根据关键字的长度进行排序，对于关键字长度相同的则根据点赞量、差评量和下载量进行排序
+ * 对搜索到的文件进行排序，排序根据需求而定（相关度、下载量、评分等）
  *	|- 采用冒泡排序
  * 
  * 进行分页处理，每10项一页，最后不足10项算一页
@@ -38,12 +38,10 @@ $analysis = new PhpAnalysis();
 
 $root = dirname(__FILE__) . "/../../";
 
-// $key = $_GET['key'];		// 获取关键字
-// $page = $_GET['page'];		// 获取查询页码
-// $mode = $_GET['mode'];		// 搜索模式
-$key = "java";
-$page = 1;
-$mode = 0;
+$key = $_GET['key'];		// 获取关键字
+$page = $_GET['page'];		// 获取查询页码
+$mode = $_GET['mode'];		// 搜索模式
+$sort = $_GET['sort'];		// 排序方式
 
 /**
  * 保存所有的查询结果，按相似度排序
@@ -74,7 +72,7 @@ foreach ($keys as $key) {
 delAndNew();
 
 // 3、排序
-file_sort();
+file_sort($sort);
 
 // 4、分页
 $json_data = page();
@@ -100,7 +98,7 @@ if(count($json_data) === 0) {
 	// var_dump(['code' => 0, 'msg' => '没有找到您需要的文件']);
 } else {
 	if($page <= count($json_data)) {
-		echo json_encode(['code' => 1, "data" => $json_data[$page-1]]);
+		echo json_encode(['code' => 1, "data" => $json_data[$page-1], "amount" => count($json_data)]);
 		// var_dump(['code' => 1, "data" => $json_data[$page-1]]);
 	} else {
 		echo json_encode(['code' => 0, 'msg' => '该页不存在']);
@@ -281,28 +279,110 @@ function delAndNew() {
 	}
 }
 
-function file_sort() {
+/**
+ * 对搜索到的文件进行排序
+ * @param $mode 排序模式 0为相关度，1为下载量，2为上传时间，3为评分
+ */
+function file_sort($mode) {
+	/*********************** 有待修改 **************************/
 	global $data, $indexArray;
+	if($mode == 0) {
+		// 相关度降序排列
+		for($i=0;$i<count($indexArray);$i++) {
+			$index1 = $indexArray[$i];
+			$list = explode("$", $index1);
+			$key1 = $list[1];
 
-	for($i=0;$i<count($indexArray);$i++) {
-		$index1 = $indexArray[$i];
-		$list = explode("$", $index1);
-		$key1 = $list[1];
+			for($j=$i+1;$j<count($indexArray);$j++) {
+				$index2 = $indexArray[$j];
+				$list = explode("$", $index2);
+				$key2 = $list[1];
 
-		for($j=$i+1;$j<count($indexArray);$j++) {
-			$index2 = $indexArray[$j];
-			$list = explode("$", $index2);
-			$key2 = $list[1];
+				if(strlen($key2) > strlen($key1)) {
+					// 交换索引
+					$temp = $indexArray[$i];
+					$indexArray[$i] = $indexArray[$j];
+					$indexArray[$j] = $temp;
 
-			if(strlen($key2) > strlen($key1)) {
-				// 交换索引
-				$temp = $indexArray[$i];
-				$indexArray[$i] = $indexArray[$j];
-				$indexArray[$j] = $temp;
+					// 同时交换对象
+					$key1 = $key2;
+					$index1 = $index2;
+				}
+			}
+		}
+	} else if($mode == 1) {
+		// 下载量降序排列
+		for($i=0;$i<count($indexArray);$i++) {
+			$index1 = $indexArray[$i];
+			$file1 = $data[$index1];
+			$download1 = $file1->getDownload();
 
-				// 同时交换对象
-				$key1 = $key2;
-				$index1 = $index2;
+			for($j=$i+1;$j<count($indexArray);$j++) {
+				$index2 = $indexArray[$j];
+				$file2 = $data[$index2];
+				$download2 = $file2->getDownload();
+				
+				if($download2 > $download1) {
+					// 交换索引
+					$temp = $indexArray[$i];
+					$indexArray[$i] = $indexArray[$j];
+					$indexArray[$j] = $temp;
+
+					// 同时交换对象
+					$file1 = $file2;
+					$download1 = $download2;
+					$index1 = $index2;
+				}
+			}
+		}
+	} else if($mode == 2) {
+		// 根据上传时间排序
+		for($i=0;$i<count($indexArray);$i++) {
+			$index1 = $indexArray[$i];
+			$file1 = $data[$index1];
+			$time1 = strtotime($file1->getUpload_time());
+
+			for($j=$i+1;$j<count($indexArray);$j++) {
+				$index2 = $indexArray[$j];
+				$file2 = $data[$index2];
+				$time2 = strtotime($file2->getUpload_time());
+				
+				if($time2 > $time1) {
+					// 交换索引
+					$temp = $indexArray[$i];
+					$indexArray[$i] = $indexArray[$j];
+					$indexArray[$j] = $temp;
+
+					// 同时交换对象
+					$file1 = $file2;
+					$time1 = $time2;
+					$index1 = $index2;
+				}
+			}
+		}
+	} else if($mode == 3) {
+		// 根据评分排序
+		for($i=0;$i<count($indexArray);$i++) {
+			$index1 = $indexArray[$i];
+			$file1 = $data[$index1];
+			$score1 = $file1->getScore();
+
+			for($j=$i+1;$j<count($indexArray);$j++) {
+				$index2 = $indexArray[$j];
+				$file2 = $data[$index2];
+				$score2 = $file2->getScore();
+				
+				if($score2 > $score1) {
+					// 交换索引
+					$temp = $indexArray[$i];
+					$indexArray[$i] = $indexArray[$j];
+					$indexArray[$j] = $temp;
+
+					// 同时交换对象
+					$file1 = $file2;
+					$score1 = $score2;
+					$index1 = $index2;
+				}
 			}
 		}
 	}
@@ -341,6 +421,7 @@ function page() {
 			$size = filesize(dirname(__FILE__)."/../../".$path."/".$upload_uid."_".$name);
 			$path .= "/{$upload_uid}_{$name}";
 		}
+		$size = getSize($size, "kb");
 
 		$json_data[$json_index][] = [
 				"name" 			=> $name,
@@ -367,6 +448,23 @@ function page() {
 	return $json_data;
 }
 
+/**
+ * 文件单位转换
+ */
+function getSize($size, $format) {
+	$p = 0;
+    if ($format == 'kb') {
+        $p = 1;
+    } elseif ($format == 'mb') {
+        $p = 2;
+    } elseif ($format == 'gb') {
+        $p = 3;
+    }
+    $size /= pow(1024, $p);
+    return number_format($size, 3);
+}
+
+/************ 类定义 **************/
 class dirctory {
 	private $dirs = [];
 	private $files = [];
@@ -386,17 +484,6 @@ class dirctory {
 					$this->files[] = $filename;
 				}
 			}
-		}
-	}
-
-	public function print() {
-		foreach ($this->dirs as $key => $value) {
-			echo $key."<br/>";
-			$value->print();
-		}
-
-		for($i=0;$i<count($this->files);$i++) {
-			echo $this->files[$i]."<br/>";
 		}
 	}
 
