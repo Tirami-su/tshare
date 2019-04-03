@@ -95,18 +95,16 @@ function search(key) {
 function fileList(key, res) {
 	$('.main').waitMe('hide')
 	$('#nofound').remove()
-	var html
+	var html=''
 	if (res.code == 0) {
-		html = template('template-nofound', {
-			keyword: key
-		})
+		html = template('template-nofound', {keyword: key})
 		$('#result').addClass('d-none')
 		$('.main').append(html)
 	} else {
 		$('#result').removeClass('d-none')
 		var data = res.data
 		for (var i = 0; i < data.length; i++) {
-			if (data[i].contents == 0)
+			if (data[i].contents == '')
 				html += template('template-file', data[i])
 			else
 				html += template('template-folder', data[i])
