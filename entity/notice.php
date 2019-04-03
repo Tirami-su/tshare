@@ -3,13 +3,13 @@
 include_once("entity.php");
 
 /**
- *     字段         类型      主键    默认值   允许为空      描述
- * |    mid    |    int    |  是   |   无   |   否   | 信箱编号(接收者学号)
- * |    nid    |    int    |  是   |   无   |   否   | 消息编号
- * |   sender  |    int    |  否   |   无   |   是   | 发件人学号
+ *     字段         类型      主键    默认值   允许为空    描述
+ * |    nid    |    int    |  是   |   无   |   否   |  消息编号
+ * |   sender  |    int    |  否   |   无   |   是   |  发件人学号（为空表示由管理员发送）
+ * |  address  |    int    |  否   |   无   |   是   |  接收者学号（为空表示向所有用户发送）
  * |  content  |  varchar  |  否   |   无   |   否   |  通知内容
  * |   time    |    int    |  否   |   无   |   否   |  通知时间
- * |  receive  |    int    |  否   |   0    |   否   |  该消息是否被接收(0表示没有) 
+ * |  received |    int    |  否   |   0    |   否   |该消息是否被接收(0表示没有) 
  */
 class notice implements entity {
 	private  $info;
@@ -20,16 +20,16 @@ class notice implements entity {
 		$this->info = $info;
 	}
 
-	public function setMid(int $mid) {
-		$this->info['mid'] = $mid;
-	}
-
 	public function setNid(int $nid) {
 		$this->info['nid'] = $nid;
 	}
 
 	public function setSender(int $sender) {
 		$this->info['sender'] = $sender;
+	}
+
+	public function setAddress(int $address) {
+		$this->info['address'] = $address;
 	}
 
 	public function setContent(String $content) {
@@ -40,12 +40,8 @@ class notice implements entity {
 		$this->info['time'] = $time;
 	}
 
-	public function setReceive(int $receive) {
-		$this->info['receive'] = $receive;
-	}
-
-	public function getMid() {
-		return $this->info['mid'];
+	public function setReceived(int $received) {
+		$this->info['received'] = $received;
 	}
 
 	public function getNid() {
@@ -56,6 +52,10 @@ class notice implements entity {
 		return $this->info['sender'];
 	}
 
+	public function getAddress() {
+		return $this->info['address'];
+	}
+
 	public function getContent() {
 		return $this->info['content'];
 	}
@@ -64,8 +64,8 @@ class notice implements entity {
 		return $this->info['time'];
 	}
 
-	public function getReceive() {
-		return $this->info['receive'];
+	public function getReceived() {
+		return $this->info['received'];
 	}
 
 
@@ -85,11 +85,11 @@ class notice implements entity {
 	}
 
 	public function getPrimaryKey() {
-		return ['mid', 'nid'];
+		return ['nid'];
 	}
 
 	public function getOtherKey() {
-		return ['sender', 'content', 'time', 'receive'];
+		return ['sender', 'address', 'content', 'time', 'received'];
 	}
 }
 
