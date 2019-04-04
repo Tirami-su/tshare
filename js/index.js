@@ -8,7 +8,7 @@ $(document).ready(function() {
 				location.pathname = "home/home.html"
 			}
 		})
-}
+})
 
 /**
  * 登录模态对话框显示事件
