@@ -30,6 +30,7 @@ function isSeize() {
 			// 一旦被登录抢占就删除cookie
 			cookie::destroy("email");
 			cookie::destroy("pwd");
+			cookie::destroy("encode");
 		} else {
 			$_SESSION['seize'] = false;
 		}

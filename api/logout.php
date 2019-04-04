@@ -21,6 +21,7 @@ $db->update("user", $user);		// 更新数据库
 // 销毁cookie
 cookie::destroy("email");
 cookie::destroy("pwd");
+cookie::destroy("encode");
 
 echo json_encode(['code' => 1, 'msg' => '退出成功']);
 ?>

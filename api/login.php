@@ -69,9 +69,20 @@ function login($email, $password, $auto_login) {
 			$user->setLogin_time(time());
 
 			if($auto_login == '1') {
-				// 设置学号和密码的cookie，有效时间一个月
+				// 设置学号的cookie，有效时间7天
 				cookie::set('email', $user->getEmail(), time()+3600*24*7, false, '', "/");
-				$key = cookie::set('pwd', $user->getPassword(), time()+3600*24*7, true, '', "/");
+				
+				// 设置密码的cookie
+				$encode = cookie::get('encode');
+				$key = array();
+				if($encode === NULL) {
+					$key = cookie::set('pwd', $user->getPassword(), time()+3600*24*7, true, '', "/");
+				} else {
+					$key = cookie::set('pwd', $user->getPassword(), time()+3600*24*7, true, $encode, "/");
+				}
+				
+				// 将加密密钥放到cookie
+				cookie::set('encode', $key['origin_key'], time()+3600*24*7, false, '', '/');
 				
 				// 修改解密密钥
 				$user->setCookie_key($key['target_key']);
