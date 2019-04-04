@@ -70,8 +70,8 @@ function login($email, $password, $auto_login) {
 
 			if($auto_login == '1') {
 				// 设置学号和密码的cookie，有效时间一个月
-				cookie::set('email', $user->getEmail(), time()+3600*24*7, false, '', "login.php");
-				$key = cookie::set('pwd', $user->getPassword(), time()+3600*24*7, true, '', "login.php");
+				cookie::set('email', $user->getEmail(), time()+3600*24*7, false, '', "/");
+				$key = cookie::set('pwd', $user->getPassword(), time()+3600*24*7, true, '', "/");
 				
 				// 修改解密密钥
 				$user->setCookie_key($key['target_key']);

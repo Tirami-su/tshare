@@ -62,7 +62,7 @@ class cookie {
 	 * @param String $name cookie名
 	 */
 	public static function destroy($name) {
-		setcookie($name, "", time()-3600);
+		setcookie($name, "", time()-3600, "/");
 	}
 }
 ?>
