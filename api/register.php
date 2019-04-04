@@ -23,7 +23,7 @@ function register($email, $username, $password) {
 	$user = new user();
 
 	$res = $db->select("user", ['email' => $email]);
-	if($res === NULL) {
+	if($res !== NULL) {
 		return ['code' => 0, 'msg' => '邮箱已注册'];
 	}
 
