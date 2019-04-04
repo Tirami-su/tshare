@@ -25,7 +25,7 @@ if(array_key_exists("seize", $_SESSION)) {
 	<!-- CSS Files -->
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
 	<link rel="stylesheet" type="text/css" href="css/now-ui-kit.css">
-	<link rel="stylesheet" type="text/css" href="css/form-elements.css">
+	<!-- <link rel="stylesheet" type="text/css" href="css/form-elements.css"> -->
 	<link rel="stylesheet" type="text/css" href="css/common.css">
 	<link rel="stylesheet" type="text/css" href="css/index.css"/>
 </head>
@@ -220,15 +220,30 @@ if(array_key_exists("seize", $_SESSION)) {
 				<div class="modal-body col-md-10 offset-md-1">
 	                <form>
 						<div class="form-group">
-							<input id="input-id-register" type="text" placeholder="学号" class="form-control">
+							<input id="input-id-register" type="text" placeholder="教育邮箱" class="form-control">
+						</div>
+						<div class="input-group">
+							<div class="input-group-prepend">
+								<div class="input-group-text">@</div>
+							</div>
+							<button class="dropdown-toggle email-addr" type="button" id="input-addr-register" data-toggle="dropdown">stu.hit.edu.cn</button>
+							<div class="dropdown-menu">
+								<a class="dropdown-item" >stu.hit.edu.cn</a>
+								<a class="dropdown-item" >hit.edu.cn</a>
+								<a class="dropdown-item" >hitwh.edu.cn</a>
+								<a class="dropdown-item" >alu.hit.edu.cn</a>
+								<a class="dropdown-item" >2004.hit.edu.cn</a>
+								<a class="dropdown-item" >ftcl.hit.edu.cn</a>
+								<a class="dropdown-item" >ir.hit.edu.cn</a>
+							</div>
 						</div>
 						<div class="form-group d-flex">
 							<input id="input-graph-code" type="text" placeholder="图形验证码" class="form-control" autocomplete="off">
 							<div id="img-graph-code"></div>
 						</div>
-						<div class="form-group">
-							<button id="btn-send" type="button" class="btn" onclick="sendEmailCode()">向教育邮箱发送验证码</button>
+						<div class="form-group d-flex">
 							<input id="input-email-code" type="text" placeholder="邮箱验证码" class="form-control" autocomplete="off">
+							<button id="btn-send" type="button" class="btn" onclick="sendEmailCode()">发送邮箱验证码</button>
 	                    </div>
 						<button type="button" class="btn" onclick="confirmEmailCode()">注册</button>
 	                </form>
@@ -266,9 +281,24 @@ if(array_key_exists("seize", $_SESSION)) {
 				</div>			
 				<div class="modal-body col-md-10 offset-md-1">
 	                <form>
-	                	<div class="form-group">
-	                    	<input id="input-id-login" type="text" placeholder="学号" class="form-control">
-	                    </div>
+						<div class="form-group">
+							<input id="input-id-login" type="text" placeholder="教育邮箱" class="form-control">
+						</div>
+						<div class="input-group">
+							<div class="input-group-prepend">
+								<div class="input-group-text">@</div>
+							</div>
+							<button class="dropdown-toggle email-addr" type="button" id="input-addr-login" data-toggle="dropdown">stu.hit.edu.cn</button>
+							<div class="dropdown-menu">
+								<a class="dropdown-item" >stu.hit.edu.cn</a>
+								<a class="dropdown-item" >hit.edu.cn</a>
+								<a class="dropdown-item" >hitwh.edu.cn</a>
+								<a class="dropdown-item" >alu.hit.edu.cn</a>
+								<a class="dropdown-item" >2004.hit.edu.cn</a>
+								<a class="dropdown-item" >ftcl.hit.edu.cn</a>
+								<a class="dropdown-item" >ir.hit.edu.cn</a>
+							</div>
+						</div>
 	                    <div class="form-group">
 	                    	<input id="input-pwd-login" type="password" placeholder="密码" class="form-control">
 	                    </div>

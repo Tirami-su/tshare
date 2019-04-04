@@ -16,3 +16,17 @@ function globalSearch(e) {
 	if (key == "")
 		e.preventDefault()
 }
+
+/**
+ * 退出
+ */
+function logout() {
+	$.get('api/logout.php', (res) => {
+		res = JSON.parse(res)
+		if (res.code == 1) {
+			location.pathname = "index.html"
+		} else {
+			alert(res.msg)
+		}
+	})
+}

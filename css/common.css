@@ -107,19 +107,16 @@ a {
     border: 1px solid #bbb;
     border-radius: 30px;
     color: #2c2c2c;
-    /* line-height: normal; */
     font-size: 0.86em;
     -webkit-transition: color 0.3s ease-in-out, border-color 0.3s ease-in-out, background-color 0.3s ease-in-out;
     -moz-transition: color 0.3s ease-in-out, border-color 0.3s ease-in-out, background-color 0.3s ease-in-out;
     -o-transition: color 0.3s ease-in-out, border-color 0.3s ease-in-out, background-color 0.3s ease-in-out;
     -ms-transition: color 0.3s ease-in-out, border-color 0.3s ease-in-out, background-color 0.3s ease-in-out;
     transition: color 0.3s ease-in-out, border-color 0.3s ease-in-out, background-color 0.3s ease-in-out;
-/*    -webkit-box-shadow: none;
-    box-shadow: none; */
 }
 
 form .input-error {
-	border-color: #fd625e;
+	border-color: #fd625e !important;
 }
 
 /* 下拉菜单 */
@@ -223,3 +220,4 @@ form .input-error {
 .bg-coral {
 	background-color: #f96332 !important;
 }
+

@@ -17,6 +17,18 @@ function showRegister() {
 }
 
 /**
+ * 选择教育邮箱地址
+ */
+$(document).ready(function() {
+	$('#input-addr-login').next().children().on('click', function() {
+		$('#input-addr-login').text($(this).text())
+	});
+	$('#input-addr-register').next().children().on('click', function() {
+		$('#input-addr-register').text($(this).text())
+	});
+});
+
+/**
  * 图像验证码
  */
 class GraphVerify {
@@ -155,7 +167,7 @@ function sendEmailCode() {
 	}
 	// 发送邮箱验证码
 	$.get('api/email_code.php', {
-		id: $("#input-id-register").val()
+		id: $("#input-id-register").val()+'@'+$('#input-addr-register').text()
 	}, (res) => {
 		res = JSON.parse(res)
 		if (res.code == 0)
@@ -164,7 +176,7 @@ function sendEmailCode() {
 
 	// 发送验证码按钮的倒计时
 	$('#btn-send').attr('disabled', true)
-	$('#btn-send').text('60秒后可重新发送')
+	$('#btn-send').text('60秒后可重发')
 	$('#btn-send').css({
 		background: '#d8d8d8',
 		color: '#707070',
@@ -181,7 +193,7 @@ function sendEmailCode() {
 			})
 			clearInterval(sendCD)
 		} else
-			btn.text(count + '秒后可重新发送')
+			btn.text(count + '秒后可重发')
 		count--
 	}, 1000)
 }
@@ -201,7 +213,7 @@ function confirmEmailCode() {
 	// 验证邮箱验证码
 	if (!empty) {
 		$.post('api/email_code_confirm.php', {
-			id: $("#input-id-register").val(),
+			id: $("#input-id-register").val()+'@'+$('#input-addr-register').text(),
 			email_code: $("#input-email-code").val()
 		}, (res) => {
 			res = JSON.parse(res)
@@ -258,9 +270,9 @@ function login() {
 	// 登录验证
 	if (!empty) {
 		$.post('api/login.php', {
-			id: $('#input-id-login').val(),
+			id: $('#input-id-login').val()+'@'+$('#input-addr-login').text(),
 			pwd: $('#input-pwd-login').val(),
-			auto_login:$('#remember').prop('checked')?1:0
+			auto_login: $('#remember').prop('checked') ? 1 : 0
 		}, (res) => {
 			res = JSON.parse(res)
 			if (res.code == 1) {
