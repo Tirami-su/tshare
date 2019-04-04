@@ -4,14 +4,15 @@ include_once("entity.php");
 
 /**
  * 对应于数据库中的user实体表
- *     字段         类型       主键     默认值    允许为空     描述
- * |   email   |  varchar  |  是   |    无   |    否     |   学号
- * | username  |  varchar  |  否   |    无   |    否     |   昵称
- * | password  |  varchar  |  否   |    无   |    否     |   密码
- * |cookie_key |  varchar  |  否   |    无   |    否     | cookie解密密钥
- * |login_time |    int    |  否   |    0    |    否     | 登录时间
- * |logout_time|    int    |  否   |    0    |    否     | 退出时间
- * |session_id |    int    |  否   |    0    |    否     | 标识登录者
+ *     字段           类型      主键     默认值    允许为空     描述
+ * |    email    |  varchar  |  是   |    无   |    否     |   学号
+ * |   username  |  varchar  |  否   |    无   |    否     |   昵称
+ * |   password  |  varchar  |  否   |    无   |    否     |   密码
+ * |cookie_encode|  varchar  |  否   |    0    |    否     | cookie加密密钥
+ * |cookie_decode|  varchar  |  否   |    0    |    否     | cookie解密密钥
+ * | login_time  |    int    |  否   |    0    |    否     | 登录时间
+ * | logout_time |    int    |  否   |    0    |    否     | 退出时间
+ * | session_id  |    int    |  否   |    0    |    否     | 标识登录者
  */
 class user implements entity {
 
@@ -44,8 +45,12 @@ class user implements entity {
 		$this->info['password'] = $password;
 	}
 
-	public function setCookie_key(String $key) {
-		$this->info['cookie_key'] = $key;
+	public function setCookie_encode(String $encode) {
+		$this->info['cookie_encode'] = $encode;
+	}
+
+	public function setCookie_decode(String $decode) {
+		$this->info['cookie_decode'] = $decode;
 	}
 
 	public function setLogin_time(int $login_time) {
@@ -72,8 +77,12 @@ class user implements entity {
 		return $this->info['password'];
 	}
 
-	public function getCookie_key() {
-		return $this->info['cookie_key'];
+	public function getCookie_encode() {
+		return $this->info['cookie_encode'];
+	}
+
+	public function getCookie_decode() {
+		return $this->info['cookie_decode'];
 	}
 
 	public function getLogin_time() {
@@ -108,7 +117,7 @@ class user implements entity {
 	}
 
 	public function getOtherKey() {
-		return ['username', 'password', 'cookie_key', 'login_time', 'logout_time', 'session_id'];
+		return ['username', 'password', 'cookie_encode', 'cookie_decode', 'login_time', 'logout_time', 'session_id'];
 	}
 }
 
