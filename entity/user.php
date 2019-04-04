@@ -4,8 +4,8 @@ include_once("entity.php");
 
 /**
  * 对应于数据库中的user实体表
- *    字段         类型       主键     默认值    允许为空      描述
- * |   id      |    int    |  是   |    无   |    否     |   学号
+ *     字段         类型       主键     默认值    允许为空     描述
+ * |   email   |  varchar  |  是   |    无   |    否     |   学号
  * | username  |  varchar  |  否   |    无   |    否     |   昵称
  * | password  |  varchar  |  否   |    无   |    否     |   密码
  * |cookie_key |  varchar  |  否   |    无   |    否     | cookie解密密钥
@@ -32,8 +32,8 @@ class user implements entity {
 		$this->info = $info;
 	}
 
-	public function setId(int $id) {
-		$this->info['id'] = $id;
+	public function setEmail(String $email) {
+		$this->info['email'] = $email;
 	}
 
 	public function setUsername(String $username) {
@@ -60,8 +60,8 @@ class user implements entity {
 		$this->info['session_id'] = $session_id;
 	}
 
-	public function getId() {
-		return $this->info['id'];
+	public function getEmail() {
+		return $this->info['email'];
 	}
 
 	public function getUsername() {
@@ -104,7 +104,7 @@ class user implements entity {
 	}
 
 	public function getPrimaryKey() {
-		return ['id'];
+		return ['email'];
 	}
 
 	public function getOtherKey() {

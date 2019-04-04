@@ -6,12 +6,12 @@ include_once("../entity/verification.php");
 
 $id = $_POST['id'];					// 获取学号
 $verification = $_POST['email_code'];		// 获取验证码
-$flag = email_code_confirm($id, $verification);
+$flag = id_code_confirm($id, $verification);
 echo json_encode($flag);			// 将错误信息以json字符串形式返回
 
 // $id = "160400423";
 // $verification = "146561";
-// var_dump(email_code_confirm($id, $verification));
+// var_dump(id_code_confirm($id, $verification));
 
 /**
  * 验证邮箱验证码的正确性，匹配性和有效性
@@ -19,7 +19,7 @@ echo json_encode($flag);			// 将错误信息以json字符串形式返回
  * @param String $code 验证码
  * @return array[code, msg] 验证成功code为1，验证失败code为0
  */
-function email_code_confirm($id, $code) {
+function id_code_confirm($email, $code) {
 	$flag = [];		// 返回信息
 
 	$db = new Db();
@@ -31,7 +31,7 @@ function email_code_confirm($id, $code) {
 		$flag = ['code' => 0, 'msg' => '验证码错误'];
 	} else {
 		$veri = $veri[0];
-		if($veri->getId() == $id) {
+		if($veri->getEmail() == $email) {
 			if($veri->getTime() > time()) {
 				$flag = ['code' => 1, 'msg' => '验证成功'];
 			} else {

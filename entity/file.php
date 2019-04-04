@@ -3,8 +3,8 @@
 include_once("entity.php");
 /**
  * 对应于数据库中的file实体表
- *      字段        类型         主键    默认值    允许为空        描述
- * 1.|     id     |   int     |  是   |   无   |    否     |     学号
+ *        字段        类型       主键    默认值    允许为空       描述
+ * 1.|    email   |   int     |  是   |   无   |    否     |     学号
  * 2.|  filename  |  varchar  |  是   |   无   |    否     |     文件名
  * 3.|    path    |  varchar  |  否   |   无   |    否     |   文件路径(以网站根目录起点)
  * 4.|    type    |  varchar  |  否   |   无   |    是     |   文件分类
@@ -31,8 +31,8 @@ class file implements entity {
 		$this->info = $info;
 	}
 
-	public function setId(int $id) {
-		$this->info['id'] = $id;
+	public function setEmail(String $email) {
+		$this->info['email'] = $email;
 	}
 
 	public function setFilename(String $filename) {
@@ -79,8 +79,8 @@ class file implements entity {
 		$this->info['is_dir'] = $is_dir;
 	}
 
-	public function getId() {
-		return $this->info['id'];
+	public function getEmail() {
+		return $this->info['email'];
 	}
 
 	public function getFilename() {
@@ -144,7 +144,7 @@ class file implements entity {
 	}
 
 	public function getPrimaryKey() {
-		return ['id', 'filename', 'path'];
+		return ['email', 'filename', 'path'];
 	}
 
 	public function getOtherKey() {
