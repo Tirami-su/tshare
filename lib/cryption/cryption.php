@@ -38,7 +38,8 @@ class cryption {
 		for($i=0;$i<strlen($str);$i+=16) {
 			$hex_key = $origin_key;
 
-			$hex = substr($str, $i*16, 16);		// 取出16个字节
+			$hex = substr($str, $i, 16);		// 取出16个字节
+
 			// 转换位16进制串
 			$hex = strtoupper(String2Hex($hex));
 
@@ -80,7 +81,7 @@ class cryption {
 		$target_str = "";		// 保存解密16进制串
 
 		for($i=0;$i<strlen($str);$i+=32) {
-			$hex = substr($str, $i*32, 32);		// 取出16个字节
+			$hex = substr($str, $i, 32);		// 取出16个字节
 			$hex_key = $decrypt_key;
 
 			for($j=0;$j<10;$j++) {

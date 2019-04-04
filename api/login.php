@@ -19,8 +19,7 @@ $auto_login = 0;
 
 $id = cookie::get('email');
 if($id === NULL) {
-	// 没有设置cookie
-	if(isset($_POST['id'] && isset($_POST['pwd']) && isset($_POST['auto_login'])) {
+	if(isset($_POST['id']) && isset($_POST['pwd']) && isset($_POST['auto_login'])) {
 		// 正常输入账号密码登录
 		$id = $_POST['id'];
 		$pwd = $_POST['pwd'];
@@ -29,6 +28,7 @@ if($id === NULL) {
 		// 没有账号密码，返回
 		$flag = ['code' => 0, 'msg' => '没有设置自动登陆'];
 		echo json_encode($flag);
+		exit;
 	}
 } else {
 	$db = new Db();
@@ -37,6 +37,7 @@ if($id === NULL) {
 		// 学号不存在，可能是用户资料从数据库中删除了
 		$flag = ['code' => 0, 'msg' => '账号被删除'];
 		echo json_encode($flag);
+		exit;
 	} else {
 		$pwd = cookie::get('pwd', $user->getCookie_key());
 		$auto_login = 1;
@@ -69,8 +70,8 @@ function login($email, $password, $auto_login) {
 
 			if($auto_login == '1') {
 				// 设置学号和密码的cookie，有效时间一个月
-				cookie::set('email', $user->getEmail(), time()+3600*24*30, false, '', "login.php");
-				$key = cookie::set('pwd', $user->getPassword(), time()+3600*24*30, true, '', "login.php");
+				cookie::set('email', $user->getEmail(), time()+3600*24*7, false, '', "login.php");
+				$key = cookie::set('pwd', $user->getPassword(), time()+3600*24*7, true, '', "login.php");
 				
 				// 修改解密密钥
 				$user->setCookie_key($key['target_key']);

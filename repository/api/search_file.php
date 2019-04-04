@@ -38,10 +38,14 @@ $analysis = new PhpAnalysis();
 
 $root = dirname(__FILE__) . "/../../";
 
-$key = $_GET['key'];		// 获取关键字
-$page = $_GET['page'];		// 获取查询页码
-$mode = $_GET['mode'];		// 搜索模式
-$sort = $_GET['sort'];		// 排序方式
+// $key = $_GET['key'];		// 获取关键字
+// $page = $_GET['page'];		// 获取查询页码
+// $mode = $_GET['mode'];		// 搜索模式
+// $sort = $_GET['sort'];		// 排序方式
+$key = "client";
+$page = 1;
+$mode = 0;
+$sort = 0;
 
 /**
  * 保存所有的查询结果，按相似度排序
@@ -117,7 +121,7 @@ function store0($res, $key) {
 	if($res !== NULL) {
 		global $data, $indexArray;
 		for($i=0;$i<count($res);$i++) {
-			$fileIndex = $res[$i]->getId(). $res[$i]->getFilename(). "$". $key;
+			$fileIndex = $res[$i]->getEmail(). $res[$i]->getFilename(). "$". $key;
 			if(!(in_array($fileIndex, $indexArray))) {
 				$data[$fileIndex] = $res[$i];
 				$indexArray[] = $fileIndex;
@@ -133,7 +137,7 @@ function store1($res, $key) {
 			// 判断是否为顶层文件或文件夹
 			$path = $res[$i]->getPath();
 			if(count(explode("/", $path)) === 4) {
-				$fileIndex = $res[$i]->getId(). $res[$i]->getFilename(). "$". $key;
+				$fileIndex = $res[$i]->getEmail(). $res[$i]->getFilename(). "$". $key;
 				if(!(in_array($fileIndex, $indexArray))) {
 					$data[$fileIndex] = $res[$i];
 					$indexArray[] = $fileIndex;
@@ -405,8 +409,8 @@ function page() {
 		$time 			= $file->getTime();
 		$description 	= $file->getDescription();
 		$upload_time 	= $file->getUpload_time();
-		$upload_uid 	= $file->getId();											// 暂时先用学号代表上传人
-		$upload_uname	= $db->select("user", ['id' => $upload_uid])->getUsername();	// 上传人名称
+		$upload_uid 	= $file->getEmail();											// 暂时先用学号代表上传人
+		$upload_uname	= $db->select("user", ['email' => $upload_uid])->getUsername();	// 上传人名称
 		$score			= $file->getScore();
 		$download 		= $file->getDownload();
 		$path			= $file->getPath();

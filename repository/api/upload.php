@@ -5,12 +5,7 @@ include_once("../../entity/file.php");
 include_once("../../entity/user.php");
 include_once("../../lib/Db.php");
 include_once("../../lib/zip.php");
-if(isLogin() === false) {
-	// 判断是否登录
-	// header("Location:../../forbidden.html");	// 没有登陆无法上传文件，重定向到forbidden页面
-	header("Location: ../../");
-}
-
+session_start();
 
 define("FIRST_DIR", "../../upload_file/");
 
@@ -35,7 +30,7 @@ $time 		 = $_POST['time'];				// 资料针对时间
 $description = $_POST['description'];		// 资料描述信息
 $upload_time = date("Y-m-d", time());		// 上传时间(年月日)
 $name	 	 = $_POST['name'];				// 资料名称
-$id 		 = $user->getId();				// 上传者学号
+$id 		 = $user->getEmail();			// 上传者学号
 
 /*********** 测试参数 ************
 $id = "160400423";
@@ -93,7 +88,7 @@ $arr = [
 	"description"	=> $description,
 	"upload_time"	=> $upload_time,
 	"filename"		=> $filename,
-	"id"			=> $id,
+	"email"			=> $id,
 	"path"			=> $path
 ];
 $db = new Db();
@@ -114,7 +109,7 @@ if($fourth_dir === "zip"){
 } else {
 	$newFile = new file();
 	$newFile->set($arr);
-	$db->insert("file", $newFile);
+	echo $db->insert("file", $newFile);
 }
 
 echo json_encode($flag);
