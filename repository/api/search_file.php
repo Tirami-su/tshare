@@ -38,14 +38,10 @@ $analysis = new PhpAnalysis();
 
 $root = dirname(__FILE__) . "/../../";
 
-// $key = $_GET['key'];		// 获取关键字
-// $page = $_GET['page'];		// 获取查询页码
-// $mode = $_GET['mode'];		// 搜索模式
-// $sort = $_GET['sort'];		// 排序方式
-$key = "client";
-$page = 1;
-$mode = 0;
-$sort = 0;
+$key = $_GET['key'];		// 获取关键字
+$page = $_GET['page'];		// 获取查询页码
+$mode = $_GET['mode'];		// 搜索模式
+$sort = $_GET['sort'];		// 排序方式
 
 /**
  * 保存所有的查询结果，按相似度排序
