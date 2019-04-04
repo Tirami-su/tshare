@@ -16,5 +16,5 @@ $user->setSession_id(0);
 session_destroy();
 
 $db->update("user", $user);		// 更新数据库
-echo ['code' => 1, 'msg' => '退出成功'];
+echo json_encode(['code' => 1, 'msg' => '退出成功']);
 ?>
