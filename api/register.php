@@ -8,8 +8,8 @@ $id = $_POST['id'];
 $username = $_POST['name'];
 $password = $_POST['pwd'];
 
-register($id, $username, $password);
-echo json_encode(['code' => 1, 'msg' => '注册成功']);
+$flag = register($id, $username, $password);
+echo json_encode($flag);
 
 
 /**
@@ -21,11 +21,18 @@ echo json_encode(['code' => 1, 'msg' => '注册成功']);
 function register($email, $username, $password) {
 	$db = new Db();
 	$user = new user();
+
+	$res = $db->select("user", ['email' => $email]);
+	if($res === NULL) {
+		return ['code' => 0, 'msg' => '邮箱已注册'];
+	}
+
 	$user->setEmail($email);
 	$user->setUsername($username);
 	$user->setPassword($password);
 
 	$db->insert("user", $user);
+	return ['code' => 1, 'msg' => '注册成功'];
 }
 
 ?>
