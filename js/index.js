@@ -1,4 +1,16 @@
 /**
+ * 自动登录
+ */
+$(document).ready(function() {
+		$.post('api/login.php', (res) => {
+			res = JSON.parse(res)
+			if (res.code == 1) {
+				location.pathname = "home/home.html"
+			}
+		})
+}
+
+/**
  * 登录模态对话框显示事件
  */
 function showLogin() {
