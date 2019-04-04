@@ -30,12 +30,12 @@ echo json_encode($flag);		// 返回错误信息
  * @param String $password 密码
  * @return array[code, msg] 登录成功code为1，登录失败code为0
  */
-function login($id, $password) {
+function login($email, $password) {
 	$flag = [];		// 错误信息
 
 	// 从数据库中进行查询
 	$db = new Db();
-	$user = $db->select("user", ["id" => $id]);
+	$user = $db->select("user", ["email" => $email]);
 
 	if($user === NULL) {
 		// 用户不存在
@@ -45,7 +45,7 @@ function login($id, $password) {
 			// 修改登录时间
 			$user->setLogin_time(time());
 			// 设置学号和密码的cookie，有效时间一个月
-			cookie::set('id', $user->getId(), time()+3600*24*30, false, '', "login_cookie.php");
+			cookie::set('email', $user->getEmail(), time()+3600*24*30, false, '', "login_cookie.php");
 			$key = cookie::set('pwd', $user->getPassword(), time()+3600*24*30, true, '', "login_cookie.php");
 			// 设置自动登陆
 			// $auto_login = ($auto_login==1) ? time() : 0;

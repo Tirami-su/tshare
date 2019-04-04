@@ -5,7 +5,7 @@ include_once("entity.php");
 /**
  *    字段         类型      主键     默认值    允许为空      描述
  * |   nid    |    int    |  是   |    无   |    否     |  通知编号
- * | address  |    int    |  是   |    无   |    否     |  接收者学号
+ * | address  |  varchar  |  是   |    无   |    否     |  接收者学号
  */
 class noticeTemp implements entity {
 
@@ -21,7 +21,7 @@ class noticeTemp implements entity {
 		$this->info['nid'] = $nid;
 	}
 
-	public function setAddress(int $address) {
+	public function setAddress(String $address) {
 		$this->info['address'] = $address;
 	}
 

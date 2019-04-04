@@ -15,7 +15,7 @@ function isSeize() {
 
 	$db = new Db();
 	$user = $_SESSION['user'];
-	$user = $db->select('user', ['id'=>$user->getId()]);
+	$user = $db->select('user', ['email'=>$user->getEmail()]);
 
 	if($user->getSession_id() == '0') {
 		// 上一次用户正常退出登录了

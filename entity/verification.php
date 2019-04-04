@@ -20,8 +20,8 @@ class verification implements entity {
 		$this->info = $info;
 	}
 
-	public function setId(int $id) {
-		$this->info['id'] = $id;
+	public function setEmail(String $email) {
+		$this->info['email'] = $email;
 	}
 
 	public function setCode(String $code) {
@@ -32,8 +32,8 @@ class verification implements entity {
 		$this->info['time'] = $time;
 	}
 
-	public function getId() {
-		return $this->info['id'];
+	public function getEmail() {
+		return $this->info['email'];
 	}
 
 	public function getCode() {
@@ -61,7 +61,7 @@ class verification implements entity {
 	}
 
 	public function getPrimaryKey() {
-		return ['id'];
+		return ['email'];
 	}
 
 	public function getOtherKey() {
