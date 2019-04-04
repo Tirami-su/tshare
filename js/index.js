@@ -2,12 +2,12 @@
  * 自动登录
  */
 $(document).ready(function() {
-		$.post('api/login.php', (res) => {
-			res = JSON.parse(res)
-			if (res.code == 1) {
-				location.pathname = "home/home.html"
-			}
-		})
+	$.post('api/login.php', (res) => {
+		res = JSON.parse(res)
+		if (res.code == 1) {
+			location.pathname = "home/home.html"
+		}
+	})
 })
 
 /**
@@ -253,7 +253,7 @@ function register() {
 	// 注册
 	if (!empty) {
 		$.post('api/register.php', {
-			id: $('#input-id-register').val(),
+			id: $('#input-id-register').val()+'@'+$('#input-addr-register').text(),
 			name: $('#input-name').val(),
 			pwd: $('#input-pwd-setting').val()
 		}, (res) => {
