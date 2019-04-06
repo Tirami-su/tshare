@@ -19,6 +19,17 @@ $auto_login = 0;
 
 $id = cookie::get('email');
 if($id === NULL) {
+	// if(isset($_GET['id']) && isset($_GET['pwd']) && isset($_GET['auto_login'])) {
+	// 	// 正常输入账号密码登录
+	// 	$id = $_GET['id'];
+	// 	$pwd = $_GET['pwd'];
+	// 	$auto_login = $_GET['auto_login'];
+	// } else {
+	// 	// 没有账号密码，返回
+	// 	$flag = ['code' => 0, 'msg' => '没有设置自动登陆'];
+	// 	echo json_encode($flag);
+	// 	exit;
+	// }
 	if(isset($_POST['id']) && isset($_POST['pwd']) && isset($_POST['auto_login'])) {
 		// 正常输入账号密码登录
 		$id = $_POST['id'];
@@ -39,7 +50,7 @@ if($id === NULL) {
 		echo json_encode($flag);
 		exit;
 	} else {
-		$pwd = cookie::get('pwd', $user->getCookie_key());
+		$pwd = cookie::get('pwd', $user->getCookie_decode());
 		$auto_login = 1;
 	}
 }
@@ -69,12 +80,21 @@ function login($email, $password, $auto_login) {
 			$user->setLogin_time(time());
 
 			if($auto_login == '1') {
-				// 设置学号和密码的cookie，有效时间一个月
+				// 设置学号的cookie，有效时间7天
 				cookie::set('email', $user->getEmail(), time()+3600*24*7, false, '', "/");
-				$key = cookie::set('pwd', $user->getPassword(), time()+3600*24*7, true, '', "/");
+				
+				// 设置密码的cookie
+				$encode = $user->getCookie_encode();
+				$key = array();
+				if($encode == '0') {
+					$key = cookie::set('pwd', $user->getPassword(), time()+3600*24*7, true, '', "/");
+					$user->setCookie_encode($key['origin_key']);
+				} else {
+					$key = cookie::set('pwd', $user->getPassword(), time()+3600*24*7, true, $encode, "/");
+				}
 				
 				// 修改解密密钥
-				$user->setCookie_key($key['target_key']);
+				$user->setCookie_decode($key['target_key']);
 			}
 			
 			// 并随即生成一个session_id

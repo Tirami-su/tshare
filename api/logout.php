@@ -3,6 +3,7 @@
 
 include_once("../lib/Db.php");
 include_once("../entity/user.php");
+include_once("../lib/cookie.php");
 
 session_start();
 
@@ -16,5 +17,11 @@ $user->setSession_id(0);
 session_destroy();
 
 $db->update("user", $user);		// 更新数据库
+
+// 销毁cookie
+cookie::destroy("email");
+cookie::destroy("pwd");
+cookie::destroy("encode");
+
 echo json_encode(['code' => 1, 'msg' => '退出成功']);
 ?>
