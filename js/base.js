@@ -21,12 +21,11 @@ function globalSearch(e) {
  * 退出
  */
 function logout() {
-	$.get('/api/logout.php', (res) => {
-		res = JSON.parse(res)
+	$.get('/api/logout.php', res => {
 		if (res.code == 1) {
 			location.pathname = "index.html"
 		} else {
 			alert(res.msg)
 		}
-	})
+	}, "json")
 }

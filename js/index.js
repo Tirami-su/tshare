@@ -2,12 +2,10 @@
  * 自动登录
  */
 $(document).ready(function() {
-	$.post('api/login.php', (res) => {
-		res = JSON.parse(res)
-		if (res.code == 1) {
+	$.post('api/login.php', res => {
+		if (res.code == 1)
 			location.pathname = "home/home.html"
-		}
-	})
+	}, "json")
 })
 
 /**
@@ -179,12 +177,11 @@ function sendEmailCode() {
 	}
 	// 发送邮箱验证码
 	$.get('api/email_code.php', {
-		id: $("#input-id-register").val()+'@'+$('#input-addr-register').text()
-	}, (res) => {
-		res = JSON.parse(res)
+		id: $("#input-id-register").val() + '@' + $('#input-addr-register').text()
+	}, res => {
 		if (res.code == 0)
 			alert(res.msg)
-	})
+	}, "json")
 
 	// 发送验证码按钮的倒计时
 	$('#btn-send').attr('disabled', true)
@@ -225,16 +222,15 @@ function confirmEmailCode() {
 	// 验证邮箱验证码
 	if (!empty) {
 		$.post('api/email_code_confirm.php', {
-			id: $("#input-id-register").val()+'@'+$('#input-addr-register').text(),
+			id: $("#input-id-register").val() + '@' + $('#input-addr-register').text(),
 			email_code: $("#input-email-code").val()
-		}, (res) => {
-			res = JSON.parse(res)
+		}, res => {
 			if (res.code == 1) {
 				modalSwitch('setting')
 			} else {
 				alert(res.msg)
 			}
-		})
+		}, "json")
 	}
 }
 
@@ -253,17 +249,16 @@ function register() {
 	// 注册
 	if (!empty) {
 		$.post('api/register.php', {
-			id: $('#input-id-register').val()+'@'+$('#input-addr-register').text(),
+			id: $('#input-id-register').val() + '@' + $('#input-addr-register').text(),
 			name: $('#input-name').val(),
 			pwd: $('#input-pwd-setting').val()
-		}, (res) => {
-			res = JSON.parse(res)
+		}, res => {
 			if (res.code == 1) {
 				modalSwitch('login')
 			} else {
 				alert(res.msg)
 			}
-		})
+		}, "json")
 	}
 }
 
@@ -282,17 +277,16 @@ function login() {
 	// 登录验证
 	if (!empty) {
 		$.post('api/login.php', {
-			id: $('#input-id-login').val()+'@'+$('#input-addr-login').text(),
+			id: $('#input-id-login').val() + '@' + $('#input-addr-login').text(),
 			pwd: $('#input-pwd-login').val(),
 			auto_login: $('#remember').prop('checked') ? 1 : 0
-		}, (res) => {
-			res = JSON.parse(res)
+		}, res => {
 			if (res.code == 1) {
 				location.pathname = "home/home.html"
 			} else {
 				alert(res.msg)
 			}
-		})
+		}, "json")
 	}
 }
 
