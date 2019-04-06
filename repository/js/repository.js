@@ -64,29 +64,36 @@ function upload() {
 function inputSearch(key) {
 	if (event.keyCode == 13) {
 		// 阻止搜索空字符串
-		if (key == '') 
+		if (key == '')
 			event.preventDefault()
-		else
-			searchFile(key,0,0,1,true)
+		else {
+			// 全局变量初始化
+			if (typeof globalMode == 'undefined')
+				globalMode = $('#search-mode').is(':checked') ? 0 : 1,
+				if (typeof globalSort == 'undefined')
+					globalSort = $('input[name=sort]:checked').val()
+			curPage = 1
+			// 搜索
+			searchFile(key, true)
+		}
 	}
 }
 
 /**
  * 搜索资料
- * key,mode,sort,page,change
  */
-function searchFile(key,mode,sort,page,change=false) {
+function searchFile(key, change = false) {
 	// 请求服务器
 	$.get('api/search_file.php', {
 		key: key,
-		mode: mode,
-		sort: sort,
-		page: page
+		mode: globalMode,
+		sort: globalSort,
+		page: curPage
 	}, res => {
 		fileList(key, res)
-	},"json")
+	}, "json")
 	// 局部页面改变
-	if (change){
+	if (change) {
 		$('#search-form-mid').remove()
 		$('#navbar-search').val(key)
 	}
@@ -117,7 +124,7 @@ function fileList(key, res) {
 		$('.main').append(cellHtml)
 	} else {
 		$('#result').removeClass('d-none')
-		// 填列表项模版
+		// 填cell模版
 		var data = res.data
 		for (var i = 0; i < data.length; i++) {
 			if (data[i].contents == '')
@@ -125,15 +132,33 @@ function fileList(key, res) {
 			else
 				cellHtml += template('template-folder', data[i])
 		}
+		// 清空列表，重新添加cell
 		$('#file-list').empty().append(cellHtml)
-		// 分页器
-		pageHtml=''
-		if (res.amount>10){
-			for (var i = 0; i < res.amount/10; i++) 
-				cellHtml += template('template-page', {num:i})
-			$('.page-item:last').before(pageHtml)
-			$('.page-item:last').removeClass('disabled')
-		}
+
+		//填分页器模板
+		pageHtml = '<li id="page-prev" class="page-item disabled"><a class="page-link" href="#" onclick="prevPage()">上一页</a></li>'
+		if (res.amount > 10) {
+			totalpages = Meth.ceil(res.amount / 10)
+			// 如果页数太多，只显示当前页前后9页
+			if (totalpages > 9) {
+				var start = curPage - 4 > 1 ? curPage - 4 : 1,
+					var end = curPage + 4 < totalpages ? curPage + 4 : totalpages,
+						for (var i = start; i <= end; i++)
+							pageHtml += template('template-page', {num: i})
+			} else
+				for (var i = 1; i <= totalpages; i++)
+					pageHtml += template('template-page', {num: i})
+		} else
+			pageHtml += '<li id="page-1" class="page-item"><a class="page-link" href="#" onclick="toPage(this.text)">1</a></li>'
+		pageHtml += '<li id="page-next" class="page-item disabled"><a class="page-link" href="#" onclick="nextPage()">下一页</a></li>'
+		// 清空分页器，重新添加页项
+		$('#pagination').empty().append(pageHtml)
+		// 设置按钮状态
+		if (curPage != 1)
+			$('#page-prev').removeClass('disabled')
+		if (curPage < totalpages)
+			$('#page-next').removeClass('disabled')
+		$('#page-' + curPage).addClass('active')
 	}
 }
 
@@ -141,19 +166,40 @@ function fileList(key, res) {
  * 切换搜索模式，可分或不可分
  */
 function modeSwitch() {
-	// 选中，则可分模式
-	if ($('#search-mode').is(':checked')) 
-		searchFile($('#navbar-search').val(),1,$('input[name=sort]:checked').val(),1)
-	else 
-		searchFile($('#navbar-search').val(),0,$('input[name=sort]:checked').val(),1)
+	globalMode = $('#search-mode').is(':checked') ? 0 : 1,
+		curPage = 1
+	searchFile($('#navbar-search').val())
 }
 
 /**
  * 	切换排序方式
  */
 function sortSwitch(sort) {
-	var mode=0
-	if (!$('#search-mode').is(':checked')) 
-		mode=1
-	searchFile($('#navbar-search').val(),mode,sort,1)
+	globalSort = sort
+	curPage = 1
+	searchFile($('#navbar-search').val())
+}
+
+/**
+ * 上一页
+ */
+function prevPage() {
+	curPage -= 1
+	searchFile($('#navbar-search').val())
+}
+
+/**
+ * 下一页
+ */
+function nextPage() {
+	curPage += 1
+	searchFile($('#navbar-search').val())
+}
+
+/**
+ * 跳转到某一页
+ */
+function toPage(page) {
+	curPage = page
+	searchFile($('#navbar-search').val())
 }
