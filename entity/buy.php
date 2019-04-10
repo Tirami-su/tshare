@@ -1,5 +1,5 @@
 <?php
-/************ 物品出售表 ***************/
+/************* 物品收购表 **************/
 include_once("entity.php");
 
 /**
@@ -7,12 +7,11 @@ include_once("entity.php");
  * |      id      |    int    |  是   |    无   |    否     | 物品编号
  * |     email    |  varchar  |  否   |    无   |    否     | 出售者邮箱
  * |    objName   |  varchar  |  否   |    无   |    否     | 物品名称
- * |  objPicture  |  varchar  |  否   |    无   |    否     | 物品图片路径
  * |objDescription|  varchar  |  否   |    无   |    否     | 物品描述
  * |    price     |   float   |  否   |    无   |    否     | 预期价格
- * |    isSell    |    int    |  否   |    0    |    否     | 是否完成交易
+ * |    isBuy     |    int    |  否   |    0    |    否     | 是否完成交易
  */
-class sell implements entity {
+class buy implements entity {
 	private $info;
 
 	public function __construct() {}
@@ -33,10 +32,6 @@ class sell implements entity {
 		$this->info['objName'] = $objName;
 	}
 
-	public function setObjPicture(String $objPicture) {
-		$this->info['objPicture'] = $objPicture;
-	}
-
 	public function setObjDescription(String $objDescription) {
 		$this->info['objDescription'] = $objDescription;
 	}
@@ -45,8 +40,8 @@ class sell implements entity {
 		$this->info['price'] = $price;
 	}
 
-	public function setIsSell(int $isSell) {
-		$this->info['isSell'] = $isSell;
+	public function setIsBuy(int $isBuy) {
+		$this->info['isBuy'] = $isBuy;
 	}
 
 	public function getId() {
@@ -61,10 +56,6 @@ class sell implements entity {
 		return $this->info['objName'];
 	}
 
-	public function getObjPicture() {
-		return $this->info['objPicture'];
-	}
-
 	public function getObjDescription() {
 		return $this->info['objDescription'];
 	}
@@ -73,8 +64,8 @@ class sell implements entity {
 		return $this->info['price'];
 	}
 
-	public function getIsSell() {
-		return $this->info['isSell'];
+	public function getIsBuy() {
+		return $this->info['isBuy'];
 	}
 
 
@@ -98,8 +89,7 @@ class sell implements entity {
 	}
 
 	public function getOtherKey() {
-		return ['email', 'objName', 'objPicture', 'objDescription', 'price', 'isSell'];
+		return ['email', 'objName', 'objDescription', 'price', 'isBuy'];
 	}
 }
-
 ?>
