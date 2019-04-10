@@ -98,7 +98,7 @@ if(count($json_data) === 0) {
 	// var_dump(['code' => 0, 'msg' => '没有找到您需要的文件']);
 } else {
 	if($page <= count($json_data)) {
-		echo json_encode(['code' => 1, "data" => $json_data[$page-1], "amount" => count($json_data)]);
+		echo json_encode(['code' => 1, "data" => $json_data[$page-1], "amount" => count($data)]);
 		// var_dump(['code' => 1, "data" => $json_data[$page-1]]);
 	} else {
 		echo json_encode(['code' => 0, 'msg' => '该页不存在']);
@@ -421,7 +421,9 @@ function page() {
 			$size = filesize(dirname(__FILE__)."/../../".$path."/".$upload_uid."_".$name);
 			$path .= "/{$upload_uid}_{$name}";
 		}
-		$size = getSize($size, "kb");
+		
+		// 文件大小单位转换
+		$size = getSize($size);		// 转换为合适的单位
 
 		$json_data[$json_index][] = [
 				"name" 			=> $name,
@@ -451,17 +453,23 @@ function page() {
 /**
  * 文件单位转换
  */
-function getSize($size, $format) {
-	$p = 0;
-    if ($format == 'kb') {
-        $p = 1;
-    } elseif ($format == 'mb') {
-        $p = 2;
-    } elseif ($format == 'gb') {
-        $p = 3;
-    }
-    $size /= pow(1024, $p);
-    return number_format($size, 3);
+function getSize($size) {
+	$time = 0;
+	$unit = "b";
+	while($size > 1024) {
+		$time++;
+		$size /= 1024;
+	}
+
+	if($time === 1) {
+		$unit = "kb";
+	} else if($time === 2) {
+		$unit = "mb";
+	} else if($time === 3) {
+		$unit = "gb";
+	}
+
+    return number_format($size, $time-1).$unit;
 }
 
 /************ 类定义 **************/

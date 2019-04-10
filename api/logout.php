@@ -16,12 +16,16 @@ $user->setSession_id(0);
 // 销毁session对象，释放资源
 session_destroy();
 
-$db->update("user", $user);		// 更新数据库
-
 // 销毁cookie
 cookie::destroy("email");
 cookie::destroy("pwd");
 cookie::destroy("encode");
+
+// 删除密钥
+$user->setCookie_encode("0");
+$user->setCookie_decode("0");
+
+$db->update("user", $user);		// 更新数据库
 
 echo json_encode(['code' => 1, 'msg' => '退出成功']);
 ?>
