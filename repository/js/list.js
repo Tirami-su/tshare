@@ -83,7 +83,7 @@ function fileList(key, res) {
 		pageHtml =
 			'<li id="page-prev" class="page-item disabled"><a class="page-link" href="#" onclick="prevPage()">上一页</a></li>'
 		if (res.amount > 10) {
-			totalpages = Meth.ceil(res.amount / 10)
+			totalpages = Math.ceil(res.amount / 10)
 			// 如果页数太多，只显示当前页前后9页
 			if (totalpages > 9) {
 				var start = curPage - 4 > 1 ? curPage - 4 : 1
