@@ -55,7 +55,7 @@ $data = array();
  */
 $indexArray = array();
 
-$flag = $mode===0 ? true : false;
+$flag = $mode==0 ? true : false;
 
 // 1.1、完全匹配搜索
 search($key, $flag);
@@ -76,7 +76,7 @@ file_sort($sort);
 
 // 4、分页
 $json_data = page();
-if($mode === 1) {
+if($mode == 1) {
 	// 重构目录结构
 	for($i=0;$i<count($json_data);$i++) {
 		$files = $json_data[$i];
