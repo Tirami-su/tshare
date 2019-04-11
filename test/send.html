@@ -9,8 +9,7 @@
 			$.post('client.php', {
 				from: $("#from").val(),
 				to: $("#to").val(),
-				content: $("#content").val(),
-				time: new Date()
+				content: $("#content").val()
 			}, (res) => {
 				res = JSON.parse(res)
 				if (res.code == 1) {
