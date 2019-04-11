@@ -15,7 +15,7 @@
 		<!-- CSS Files -->
 		<link rel="stylesheet" href="../css/bootstrap.css">
 		<link rel="stylesheet" href="../css/common.css"/>
-		<link rel="stylesheet" href="css/repository.css"/>
+		<link rel="stylesheet" href="css/upload.css"/>
 	</head>
 	<body class="bg-light">
 		<!-- 导航条 -->
@@ -71,63 +71,69 @@
 			<div id="upload-title">
 				<img src="img/vertical_line.png">上传资料
 			</div>
-			<form id="upload-form" class="form-group col-md-6 offset-3" action="api/upload.php" method="post" enctype="multipart/form-data">
-				<!-- 单选 -->
-				<div class="form-check form-check-inline">
-					<input class="form-check-input" type="radio" name="category" id="category0" value="0" checked onclick="categorySwitch(this.value)">
-					<label class="form-check-label" for="category0">课内资料</label>
-				</div>
-				<div class="form-check form-check-inline">
-					<input class="form-check-input" type="radio" name="category" id="category1" value="1" onclick="categorySwitch(this.value)">
-					<label class="form-check-label" for="category1">课外资料</label>
-				</div>
-				<div class="form-group">
-					<label for="name">资料名称</label>
-					<input type="text" name="name" id="name" class="form-control" />
-				</div>
-				<div class="form-group">
-					<label for="subject">课程名称</label>
-					<input type="text" name="subject" id="subject" class="form-control" />
-				</div>
-				<!-- 课内资料表单 -->
-				<div id="content0"">
-					<div class="form-group">
-						<label for="teacher">教师</label>
-						<input type="text" name="teacher" id="teacher" class="form-control" />
+			<div id="upload-body" class="col-md-8 offset-md-3">
+				<!-- tab -->
+				<ul class="nav nav-tabs col-md-10">
+					<li class="nav-item">
+						<a class="nav-link active" data-toggle="tab" href="#form-inclass" onclick="categorySwitch()">课内资料</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" data-toggle="tab" href="#form-extra" onclick="categorySwitch()">课外资料</a>
+					</li>
+				</ul>
+				<!-- 表单 -->
+				<form id="upload-form">
+					<div id="input-file" class="custom-file col-md-9">
+						<input type="file" class="custom-file-input" name="file" id="file" required onchange="selectFile()">
+						<label class="custom-file-label" for="file" data-browse="选择文件">文件大小不超过1G</label>
+						<!-- <div class="invalid-feedback">未选择文件</div> -->
 					</div>
-					<div class="form-group">
-						<label for="type">资料类型</label>
-						<select name="type" id="type" class="form-control">
-							<option>课件</option>
-							<option>试卷</option>
-							<option>笔记</option>
-							<option>其他</option>
-						</select>
+					<div class="form-group row">
+						<label for="name" class="col-md-2 col-form-label">资料名称</label>
+						<input type="text" name="name" id="name" class="form-control col-md-7" autocomplete="off" maxlength="20"/>
 					</div>
-					<div class="form-group">
-						<label for="time">上课时间</label>
-						<input type="text" name="time" id="time" class="form-control" placeholder='例如"2019年春"'/>
-					</div>					
-				</div>
-				<!-- 课外资料表单 -->
-				<div id="content1" class="d-none">
-					<div class="form-group">
-						<label for="description">资料描述</label>
-						<textarea class="form-control" name="description" id="description" rows="3"></textarea>
+					<div class="tab-content">
+						<!-- 课内资料专用表单 -->
+						<div class="tab-pane show active" id="form-inclass">
+							<div class="form-group row">
+								<label for="subject" class="col-md-2 col-form-label">课程名称</label>
+								<input type="text" name="subject" id="subject" class="form-control col-md-7" autocomplete="off" maxlength="20"/>
+							</div>
+							<div class="form-group row">
+								<label for="teacher" class="col-md-2 col-form-label">教师</label>
+								<input type="text" name="teacher" id="teacher" class="form-control col-md-7" autocomplete="off" maxlength="20"/>
+							</div>
+							<div class="form-group row">
+								<label for="type" class="col-md-2 col-form-label">资料类型</label>
+								<select name="type" id="type" class="form-control col-md-3">
+									<option>课件</option>
+									<option>试卷</option>
+									<option>笔记</option>
+									<option>其他</option>
+								</select>
+							</div>
+							<div class="form-group row">
+								<label for="time" class="col-md-2 col-form-label">上课时间</label>
+								<input type="text" name="time" id="time" class="form-control col-md-7" placeholder='例如"2019年春"' maxlength="10"/>
+							</div>		
+						</div>
+						<!-- 课外资料专用表单 -->
+						<div class="tab-pane" id="form-extra">
+							<div class="form-group row">
+								<label for="description" class="col-md-2 col-form-label">资料描述</label>
+								<textarea class="form-control col-md-7" name="description" id="description" rows="5" cols="10"></textarea>
+							</div>	
+						</div>
 					</div>
-				</div>
-				<div class="custom-file">
-					<input type="file" class="custom-file-input" name="file" id="file" required>
-					<label class="custom-file-label" for="validatedCustomFile">文件不超过1G</label>
-				</div>
-				<input type="submit" class="btn" onclick="upload()" value="上传" />
-			</form>
+					<button id="btn-upload" type="button" class="btn col-md-3 offset-md-3" onclick="upload()">上传</button>
+				</form>
+			</div>
 		</div>
 	</body>
 	<script src="../js/core/jquery-3.3.1.js" type="text/javascript"></script>
 	<script src="../js/core/popper.min.js" type="text/javascript"></script>
 	<script src="../js/core/bootstrap.js" type="text/javascript"></script>
-	
+	<script src="../js/bs-custom-file-input.js" type="text/javascript" charset="utf-8"></script>
 	<script src="../js/base.js" type="text/javascript"></script>
-	<script src="js/repository.js" type="text/javascript"></script>
+	<script src="js/upload.js" type="text/javascript"></script>
 </html>

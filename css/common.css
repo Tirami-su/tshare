@@ -119,6 +119,10 @@ form .input-error {
 	border-color: #fd625e !important;
 }
 
+textarea {
+	resize: none;
+}
+
 /* 下拉菜单 */
 .dropdown .dropdown-menu {
     -webkit-transform: translate3d(0, -25px, 0);
@@ -214,7 +218,7 @@ form .input-error {
 /* 页面主体 */
 .main {
 	margin-top: 80px;
-	min-height: 80vh;
+	min-height: 89vh;
 }
 
 .bg-coral {

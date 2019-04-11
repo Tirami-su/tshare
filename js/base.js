@@ -5,6 +5,9 @@ $(document).ready(function() {
 	$('input').on('focus', function() {
 		$(this).removeClass('input-error');
 	});
+	$('.custom-file-input').on('focus',function(){
+		$(this).next().removeClass('input-error');
+	})
 });
 
 /**

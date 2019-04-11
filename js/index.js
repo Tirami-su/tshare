@@ -179,8 +179,10 @@ function sendEmailCode() {
 	$.get('api/email_code.php', {
 		id: $("#input-id-register").val() + '@' + $('#input-addr-register').text()
 	}, res => {
-		if (res.code == 0)
+		if (res.code == 0){
 			alert(res.msg)
+			return
+		}
 	}, "json")
 
 	// 发送验证码按钮的倒计时
