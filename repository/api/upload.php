@@ -109,7 +109,7 @@ if($fourth_dir === "zip"){
 } else {
 	$newFile = new file();
 	$newFile->set($arr);
-	echo $db->insert("file", $newFile);
+	$db->insert("file", $newFile);
 }
 
 echo json_encode($flag);
@@ -130,6 +130,9 @@ function store($dir, $arr, $db) {
 				$db->insert('file', $file);
 				store($dir."/".$filename, $arr, $db);
 			} else {
+				// $code = mb_detect_encoding($filename);
+				// $newname = iconv($code, "GB2312//IGNORE", $filename);
+				// echo "{$newname}<br/>";
 				$arr['filename'] = $filename;
 				$arr['path'] = substr($dir, 6);
 				$file = new file();

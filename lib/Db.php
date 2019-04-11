@@ -46,7 +46,7 @@ class Db extends mysqli{
 		$sql = "insert into $table($key) values($value)";
 		
 		$flag = $this->query($sql);
-		return $sql;
+		return $flag;
 	}
 
 	/**
@@ -94,7 +94,11 @@ class Db extends mysqli{
 
 		foreach ($other as $key) {
 			$value = $entity->getAttribute($key);
-			$content .= "{$key}='{$value}',";
+			if($value === NULL) {
+				$content .= "{$key}=NULL,";
+			} else {
+				$content .= "{$key}='{$value}',";
+			}			
 		}
 		$content = substr($content, 0, -1);
 
@@ -169,7 +173,11 @@ class Db extends mysqli{
 		$cond = "";
 		foreach ($condition as $key => $value) {
 			// 生成选择条件
-			$cond .= "{$key}='{$value}' and ";
+			if($value === NULL) {
+				$cond .= "{$key} is null and ";
+			} else {
+				$cond .= "{$key}='{$value}' and ";
+			}
 		}
 		$cond = substr($cond, 0, -5);
 
@@ -215,6 +223,18 @@ class Db extends mysqli{
 			}
 			return $arr;
 		}
+	}
+
+	/**
+	 * 获取某张数据表中数据的条数
+	 * @param String $table 表名称
+	 */
+	public function count(String $table) {
+		$sql = "select count(*) count from $table";
+		$res = $this->query($sql);
+
+		$count = $res->fetch_array(MYSQLI_ASSOC);
+		return $count['count'];
 	}
 }
 ?>
