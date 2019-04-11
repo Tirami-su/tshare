@@ -462,11 +462,11 @@ function getSize($size) {
 	}
 
 	if($time === 1) {
-		$unit = "kb";
+		$unit = "KB";
 	} else if($time === 2) {
-		$unit = "mb";
+		$unit = "MB";
 	} else if($time === 3) {
-		$unit = "gb";
+		$unit = "GB";
 	}
 
     return number_format($size, $time-1).$unit;
