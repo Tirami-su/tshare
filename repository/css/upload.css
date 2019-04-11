@@ -95,33 +95,3 @@
 	background: #fd625e;
 	color: #fff;
 }
-
-/* 搜索结果列表 */
-.file-item-file,
-.file-item-folder {}
-
-.file-item-file {}
-
-.file-item-folder {}
-
-#file-list {
-	padding-left: 0;
-}
-
-#file-list li {
-	list-style-type: none;
-	border-bottom: 1px solid #f0f0f0;
-	padding: 20px;
-	color: black;
-}
-
-.file-name {
-	font-size: 1.2em;
-}
-
-.file-description,
-.contents,
-.action {
-	color: #555;
-	margin-top: 10px;
-}

@@ -15,7 +15,6 @@
 		<!-- CSS Files -->
 		<link rel="stylesheet" href="../css/bootstrap.css">
 		<link rel="stylesheet" href="../css/common.css"/>
-		<link rel="stylesheet" href="../css/waitMe.css"/>
 		<link rel="stylesheet" href="css/repository.css"/>
 	</head>
 	<body class="bg-light">
@@ -70,116 +69,15 @@
 		</nav>
 		<div class="container main">
 			<!-- 中心搜索框 -->
-			<div id="search-form-mid" class="container text-center d-none">
+			<div id="search-form-mid" class="container text-center">
 				<img src="img/bulb.png" >
 				<input onkeyup="inputSearch(this.value)" class="form-control col-md-6 offset-3 text-center" type="search" placeholder="42,098,504份资料">
 			</div>
-			<!-- 搜索结果 -->
-			<div id="result" class="row ">				
-				<!-- 选项 -->
-				<div id="options-col" class="col-md-3">
-					<div id="options" class="bg-white shadow-sm">
-						<div class="option-title">选项</div>
-						<div class="form-check">
-							<input type="checkbox" id="search-mode" class="form-check-input" checked onclick="modeSwitch()"/>
-							<label class="form-check-label" for="search-mode">列出资料包内的文件</label>
-						</div>
-						<div class="option-title">排序</div>
-						<div class="form-check">
-							<input class="form-check-input" type="radio" name="sort" id="sort1" value="0" checked onclick="sortSwitch(this.value)">
-							<label class="form-check-label" for="sort1">相关度</label>
-						</div>
-						<div class="form-check">
-							<input class="form-check-input" type="radio" name="sort" id="sort2" value="1" onclick="sortSwitch(this.value)">
-							<label class="form-check-label" for="sort2">下载量</label>
-						</div>
-						<div class="form-check">
-							<input class="form-check-input" type="radio" name="sort" id="sort3" value="2" onclick="sortSwitch(this.value)">
-							<label class="form-check-label" for="sort3">评分</label>
-						</div>
-						<div class="form-check">
-							<input class="form-check-input" type="radio" name="sort" id="sort4" value="3" onclick="sortSwitch(this.value)">
-							<label class="form-check-label" for="sort4">上传时间</label>
-						</div>
-					</div>
-				</div>
-				<!-- 结果列表 -->
-				<div class="col-md-9 bg-white">
-					<ul id="file-list" class=""> </ul>
-					<!-- 分页器 -->
-					<nav>
-						<ul id='pagination' class="pagination justify-content-center"></ul>
-					</nav>
-				</div>
-			</div>
-		</div>	
-	</body>
-	<!-- 搜索结果-文件夹模板 -->
-	<script id="template-folder" type="text/template">
-		<li class="file-item-folder">
-			<div class="row">
-				<div class="file-name">{{name}}</div>
-				<div class="score ml-auto">{{score}}分</div>
-			</div>
-			<div class="file-description">
-				{{description}}
-			</div>
-			<div class="contents">
-				包含120个文件，内部目录<br>
-				第一章<br>
-				第二章<br>
-				第三章<br>
-				<a class="readmore">查看全部</a>
-			</div>
-			<div class="action">
-				<span>{{upload_time}}</span>
-				<span class="num-download">{{download}}次下载</span>
-				<span>贡献者：{{upload_uname}}</span>
-				<span>{{size}}</span>
-				<button type="button" class="download">下载</button>
-			</div>
-		</li>
-	</script>
-	<!-- 搜索结果-文件模板 -->
-	<script id="template-file" type="text/template">
-		<li class="file-item-file">
-			<div class="row">
-				<div class="file-name">{{name}}</div>
-				<div class="score ml-auto">{{score}}分</div>
-			</div>
-			<div class="file-description">
-				{{description}}
-			</div>
-			<div class="action">
-				<span>{{upload_time}}</span>
-				<span class="num-download">{{download}}次下载</span>
-				<span>贡献者：{{upload_uname}}</span>
-				<span>{{size}}</span>
-				<button type="button" class="download">预览</button>
-				<button type="button" class="download">下载</button>
-			</div>
-		</li>
-	</script>
-	<!-- 找不到模版 -->
-	<script id="template-nofound" type="text/template">
-		<div id="nofound" class="container text-center">
-			<img src="img/nofound.png" >
-			<div class="prompt">资料库暂时没有关于“{{keyword}}”的内容</div>
-			<a href="">去求资料</a>
 		</div>
-	</script>
-	<!-- 分页器模板-页 -->
-	<script id="template-page" type="text/template">
-		<li class="page-item">
-			<a id="page-{{num}}" class="page-link" href="#" onclick="toPage(this.text)">{{num}}</a>
-		</li>
-	</script>
 	<script src="../js/core/jquery-3.3.1.js" type="text/javascript"></script>
 	<script src="../js/core/popper.min.js" type="text/javascript"></script>
 	<script src="../js/core/bootstrap.js" type="text/javascript"></script>
 	
-	<script src="../js/template-web.js" type="text/javascript"></script>
 	<script src="../js/base.js" type="text/javascript" charset="utf-8"></script>
-	<script src="../js/waitMe.js" type="text/javascript"></script>
 	<script src="js/repository.js" type="text/javascript"></script>
 </html>
