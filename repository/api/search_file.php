@@ -1,7 +1,7 @@
 <?php
 /**************** 搜索文件 *********************/
 /**
- * 根据文件名、路径名、科目名称、文件描述进行搜索
+ * 根据文件名、资料名、路径名、科目名称、文件描述进行搜索
  * 搜索的结果包括单个文件，也包括文件夹。此后我将文件夹也视作一个文件对象，所以后面我所提到的所有文件都包含文件夹的含义
  *
  * 搜索过程分为两个步骤：
@@ -32,6 +32,7 @@ include_once("../../lib/Db.php");
 include_once("../../lib/PHPAnalysis/PHPAnalysis.class.php");
 include_once("../../entity/file.php");
 include_once("../../entity/user.php");
+session_start();
 
 $db = new Db();
 $analysis = new PhpAnalysis();
@@ -51,65 +52,106 @@ $sort = $_GET['sort'];		// 排序方式
 $data = array();
 
 /**
+ * 保存分页后的查询结果,以数组索引代表分页信息
+ */
+$json_data = array();
+
+/**
  * 关键字索引数组
  */
 $indexArray = array();
 
-$flag = $mode==0 ? true : false;
+// 是否重新对数据库进行查询
+$reselect = true;
+// 是否对查询到的数据进行重新排序
+$resort = true;
 
-// 1.1、完全匹配搜索
-search($key, $flag);
+// unset($_SESSION['search_key']);
+// unset($_SESSION['search_res']);
+// unset($_SESSION['mode']);
+// unset($_SESSION['sort']);
+// unset($_SESSION['search_index']);
+// unset($_SESSION['search_json_data']);
+// exit;
+// 如果上一次已经查询过,并且查询关键字和查询方式都没有发生变化(可能是换页操作),那么就不需要重新查询数据库,直接从session中读取即可
+if(isset($_SESSION['search_key']) && $key == $_SESSION['search_key'] && $mode == $_SESSION['mode']) {
+	$reselect = false;
+	$data = $_SESSION['search_res'];
 
-// 1.2、分词匹配搜索
-$keys = getToken($key);
-foreach ($keys as $key) {
-	if($key !== "") {
-		search($key, $flag);
+	// 如果连排序方式都没有发生变化,说明这仅仅只是换页操作
+	if($sort == $_SESSION['sort']) {
+		$json_data = $_SESSION['search_json_data'];
+		$resort = false;
+	} else {
+		$indexArray = $_SESSION['search_index'];
+		$resort = true;
+	}	
+} else {
+	$flag = $mode==0 ? true : false;
+
+	// 1.1、完全匹配搜索
+	search($key, $flag);
+
+	// 1.2、分词匹配搜索
+	$keys = getToken($key);
+	foreach ($keys as $key) {
+		if($key !== "") {
+			search($key, $flag);
+		}
 	}
+
+	// 2、删除重复
+	delAndNew();
+
+	$_SESSION['search_key']		= $key;
+	$_SESSION['search_res'] 	= $data;
+	$_SESSION['search_index'] 	= $indexArray;
+	$_SESSION['sort']			= $sort;
+	$_SESSION['mode']			= $mode;
 }
 
-// 2、删除重复
-delAndNew();
+// 当进行重新查询或重新排序后,需要进行重新分页
+if($reselect || $resort) {
+	// 3、排序
+	file_sort($sort);
 
-// 3、排序
-file_sort($sort);
+	// 4、分页
+	$json_data = page();
+	if($mode == 1) {
+		// 重构目录结构
+		for($i=0;$i<count($json_data);$i++) {
+			$files = $json_data[$i];
+			for($j=0;$j<count($files);$j++) {
+				$arr = $files[$j];
 
-// 4、分页
-$json_data = page();
-if($mode == 1) {
-	// 重构目录结构
-	for($i=0;$i<count($json_data);$i++) {
-		$files = $json_data[$i];
-		for($j=0;$j<count($files);$j++) {
-			$arr = $files[$j];
-
-			$dir = $root.$arr['url'];
-			if(is_dir($dir)) {
-				$obj = new dirctory($dir);
-				$arr['contents'] = $obj->getContents();
-				$json_data[$i][$j]['contents'] = $arr['contents'];
+				$dir = $root.$arr['url'];
+				if(is_dir($dir)) {
+					$obj = new dirctory($dir);
+					$arr['contents'] = $obj->getContents();
+					$json_data[$i][$j]['contents'] = $arr['contents'];
+				}
 			}
 		}
 	}
+
+	$_SESSION['search_json_data'] = $json_data;
 }
+
 
 if(count($json_data) === 0) {
 	echo json_encode(['code' => 0, 'msg' => '没有找到您需要的文件']);
-	// var_dump(['code' => 0, 'msg' => '没有找到您需要的文件']);
 } else {
 	if($page <= count($json_data)) {
 		echo json_encode(['code' => 1, "data" => $json_data[$page-1], "amount" => count($data)]);
-		// var_dump(['code' => 1, "data" => $json_data[$page-1]]);
 	} else {
 		echo json_encode(['code' => 0, 'msg' => '该页不存在']);
-		// var_dump(['code' => 0, 'msg' => '该页不存在']);
 	}
 }
 
 /************* 函数定义 ***************/
 
 /**
- * 保存文件对象和关键字的关系
+ * 搜索单个文件
  * @param $res 文件对象数组
  * @param $key 关键字
  */
@@ -117,15 +159,22 @@ function store0($res, $key) {
 	if($res !== NULL) {
 		global $data, $indexArray;
 		for($i=0;$i<count($res);$i++) {
-			$fileIndex = $res[$i]->getEmail(). $res[$i]->getFilename(). "$". $key;
-			if(!(in_array($fileIndex, $indexArray))) {
-				$data[$fileIndex] = $res[$i];
-				$indexArray[] = $fileIndex;
-			}
+			if(!is_dir($res[$i]->getFilename())) {
+				$fileIndex = $res[$i]->getEmail(). $res[$i]->getFilename(). $res[$i]->getPath() . "$". $key;
+				if(!(in_array($fileIndex, $indexArray))) {
+					$data[$fileIndex] = $res[$i];
+					$indexArray[] = $fileIndex;
+				}
+			}			
 		}
 	}
 }
 
+/**
+ * 搜索文件夹
+ * @param $res 文件对象数组
+ * @param $key 关键字
+ */
 function store1($res, $key) {
 	if($res !== NULL) {
 		global $data, $indexArray;
@@ -133,7 +182,7 @@ function store1($res, $key) {
 			// 判断是否为顶层文件或文件夹
 			$path = $res[$i]->getPath();
 			if(count(explode("/", $path)) === 4) {
-				$fileIndex = $res[$i]->getEmail(). $res[$i]->getFilename(). "$". $key;
+				$fileIndex = $res[$i]->getEmail(). $res[$i]->getFilename(). $res[$i]->getPath(). "$". $key;
 				if(!(in_array($fileIndex, $indexArray))) {
 					$data[$fileIndex] = $res[$i];
 					$indexArray[] = $fileIndex;
@@ -165,6 +214,13 @@ function search($key, $onlyFile=true) {
 	global $db;
 
 	$res = $db->findFile($key, "filename", $onlyFile);		// 根据文件名搜索
+	if($onlyFile === false) {
+		store1($res, $key);
+	} else {
+		store0($res, $key);
+	}
+
+	$res = $db->findFile($key, "name", $onlyFile);		// 根据资料名搜索
 	if($onlyFile === false) {
 		store1($res, $key);
 	} else {
@@ -405,11 +461,12 @@ function page() {
 		$time 			= $file->getTime();
 		$description 	= $file->getDescription();
 		$upload_time 	= $file->getUpload_time();
-		$upload_uid 	= $file->getEmail();											// 暂时先用学号代表上传人
+		$upload_uid 	= $file->getEmail();											
 		$upload_uname	= $db->select("user", ['email' => $upload_uid])->getUsername();	// 上传人名称
 		$score			= $file->getScore();
 		$download 		= $file->getDownload();
 		$path			= $file->getPath();
+		$is_dir			= $file->getIs_dir();
 		$size			= 0;
 
 		$len = count(explode("/", $path));
@@ -421,6 +478,15 @@ function page() {
 			$size = filesize(dirname(__FILE__)."/../../".$path."/".$upload_uid."_".$name);
 			$path .= "/{$upload_uid}_{$name}";
 		}
+
+		// 去除文件名中的随机数
+		if(strpos($name, "$") !== false) {
+			if($is_dir) {
+				$name = explode("$", $name)[0];
+			} else {
+				$name = explode("$", $name)[0].".".pathinfo($name)['extension'];
+			}
+		}		
 		
 		// 文件大小单位转换
 		$size = getSize($size);		// 转换为合适的单位

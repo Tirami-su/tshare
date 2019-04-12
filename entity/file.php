@@ -4,19 +4,20 @@ include_once("entity.php");
 /**
  * 对应于数据库中的file实体表
  *        字段        类型       主键    默认值    允许为空       描述
- * 1.|    email   |   int     |  是   |   无   |    否     |     学号
- * 2.|  filename  |  varchar  |  是   |   无   |    否     |     文件名
- * 3.|    path    |  varchar  |  否   |   无   |    否     |   文件路径(以网站根目录起点)
- * 4.|    type    |  varchar  |  否   |   无   |    是     |   文件分类
- * 5.|upload_time |  varchar  |  否   |   无   |    否     |   上传时间
- * 6.|   subject  |  varchar  |  否   |   无   |    否     |     科目
- * 7.|  category  |   int     |  否   |   无   |    否     | 0课内/1课外（资料）
- * 8.|description |  varchar  |  否   |   无   |    否     |    资料描述
- * 9.|    time    |   int     |  否   |   无   |    是     | 资料针对的时间（试卷的年份）
- *10.|   score    |   int     |  否   |   0    |    否     |     评分
- *11.|  download  |   int     |  否   |   0    |    否     |     下载量
- *12.|   is_dir   |   int     |  否   |   0    |    否     |  是否为文件夹
- *13.|  teacher   |  varchar  |  否   |   无   |    否     |  教师名字
+ * 1.|    email   |   int     |  是   |   无   |    否     |    学号
+ * 2.|  filename  |  varchar  |  是   |   无   |    否     |    文件名
+ * 3.|    name    |  varchar  |  后   |   无   |    是     |   资料名称
+ * 4.|    path    |  varchar  |  否   |   无   |    否     |   文件路径(以网站根目录起点)
+ * 5.|    type    |  varchar  |  否   |   无   |    是     |   文件分类
+ * 6.|upload_time |  varchar  |  否   |   无   |    否     |   上传时间
+ * 7.|   subject  |  varchar  |  否   |   无   |    否     |     科目
+ * 8.|  category  |   int     |  否   |   无   |    否     | 0课内/1课外（资料）
+ * 9.|description |  varchar  |  否   |   无   |    否     |    资料描述
+ *10.|    time    |   int     |  否   |   无   |    是     | 资料针对的时间（试卷的年份）
+ *11.|   score    |   int     |  否   |   0    |    否     |     评分
+ *12.|  download  |   int     |  否   |   0    |    否     |     下载量
+ *13.|   is_dir   |   int     |  否   |   0    |    否     |  是否为文件夹
+ *14.|  teacher   |  varchar  |  否   |   无   |    否     |   教师名字
  */
 class file implements entity {
 	/*上传文件信息*/
@@ -38,6 +39,10 @@ class file implements entity {
 
 	public function setFilename(String $filename) {
 		$this->info['filename'] = $filename;
+	}
+
+	public function setName(String $name) {
+		$this->info['name'] = $name;
 	}
 
 	public function setPath(String $path) {
@@ -90,6 +95,10 @@ class file implements entity {
 
 	public function getFilename() {
 		return $this->info['filename'];
+	}
+
+	public function getName() {
+		return $this->info['name'];
 	}
 
 	public function getPath() {
@@ -157,7 +166,7 @@ class file implements entity {
 	}
 
 	public function getOtherKey() {
-		return ['type', 'upload_time', 'subject', 'category', 'description', 'time', 'score', 'download', 'is_dir', 'teacher'];
+		return ['name', 'type', 'upload_time', 'subject', 'category', 'description', 'time', 'score', 'download', 'is_dir', 'teacher'];
 	}
 }
 

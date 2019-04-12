@@ -23,28 +23,22 @@ $user = $_SESSION['user'];			// 获取上传者信息
 
 // 获取文件的各种信息
 $category 	 = $_POST['category'];			// 0课内/1课外
-$subject	 = "";							// 资料对应科目
+$subject	 = $_POST['subject'];			// 资料对应科目
 $type		 = "";							// 资料分类
 $time	 	 = "";							// 资料针对时间
 $name		 = $_POST['name'];				// 资料名称
 $teacher	 = "";							// 教师
 $description = "";							// 资料描述信息
 if($category == 0) {
-	$subject 	 = $_POST['subject'];
-	$type 		 = $_POST['type'];				// 资料分类
-	$time 		 = $_POST['time'];				// 资料针对时间
-	$teacher 	 = $_POST['teacher'];				// 教师
+	$type 		 = $_POST['type'];
+	$time 		 = $_POST['time'];
+	$teacher 	 = $_POST['teacher'];
 } else {
-	$description = $_POST['description'];			// 资料描述信息
+	$description = $_POST['description'];
 }
 $upload_time = date("Y-m-d", time());				// 上传时间(年月日)
 $id 		 = $user->getEmail();					// 上传者学号
 
-/*********** 测试参数 ************
-$id = "160400423";
-$subject = "计算机";
-$filename = "six.txt";
-/*********** 测试参数 ************/
 
 /**
  * 保存上传的文件
@@ -73,14 +67,30 @@ if(!file_exists($dest_dir)) {
 	mkdir($dest_dir);
 }
 
-if(substr($filename, 0, -4) != $name) {
-	// 资料名称和真正上传的文件名称不相同
-	$filename = $name.".".pathinfo($filename)['extension'];
+// 对相同名字的文件进行重命名
+if(pathinfo($filename)['extension'] == 'zip') {
+	$temp = pathinfo($filename)['filename'];
+	if(file_exists($dest_dir. "/" . $id."_".$temp)) {
+		$temp = pathinfo($temp)['filename'] . "$" . mt_rand(0, 9);
+		while(file_exists($dest_dir . "/" . $id."_".$temp)) {
+			$temp = pathinfo($temp)['filename'] . "$" . mt_rand(0, 9);
+		}
+	}
+	$filename = $temp . "." . pathinfo($filename)['extension'];
+} else {
+	if(file_exists($dest_dir. "/" . $id."_".$filename)) {
+		$filename = pathinfo($filename)['filename'] . "$" . mt_rand(0, 9) . "." . pathinfo($filename)['extension'];
+		while(file_exists($dest_dir . "/" . $id."_".$filename)) {
+			$filename = pathinfo($filename)['filename'] . "$" . mt_rand(0, 9) . "." . pathinfo($filename)['extension'];
+		}
+	}
 }
-$name = $id."_".$filename;		// 文件重命名
+
+$filenameTemp = $id."_".$filename;
+
 $path = substr($dest_dir, 6);	// 文件路径(以网站根目录为起点)
 
-$flag = move_uploaded_file($file['tmp_name'], $dest_dir."/".$name);			// 保存文件
+$flag = move_uploaded_file($file['tmp_name'], $dest_dir. "/" .$filenameTemp);			// 保存文件
 
 if($flag === true) {
 	// 上传成功
@@ -100,23 +110,26 @@ $arr = [
 	"filename"		=> $filename,
 	"email"			=> $id,
 	"path"			=> $path,
-	"teacher"		=> $teacher
+	"teacher"		=> $teacher,
+	"name"			=> $name
 ];
 $db = new Db();
 
 // 如果上传的文件是zip压缩包，解压缩并且将其中的所有文件信息都存入数据库
 if($fourth_dir === "zip"){
 	$zip = new zip();
-	$zip->decompress($dest_dir."/".$name);
-	$dir = substr($name, 0, -4);
+	$zip->decompress($dest_dir."/".$filenameTemp);
+	$dir = substr($filenameTemp, 0, -4);
 
 	$file = new file();
 	$arr['filename'] = substr($filename, 0, -4);
+	$arr['is_dir'] = 1;
 	$file->set($arr);
 	$db->insert("file", $file);
 
+	$arr['is_dir'] = 0;
 	store($dest_dir."/".$dir, $arr, $db);
-	unlink($dest_dir."/".$name);
+	unlink($dest_dir."/".$filenameTemp);
 } else {
 	$newFile = new file();
 	$newFile->set($arr);
