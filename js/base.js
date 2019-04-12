@@ -5,7 +5,7 @@ $(document).ready(function() {
 	$('input').on('focus', function() {
 		$(this).removeClass('input-error');
 	});
-	$('.custom-file-input').on('focus',function(){
+	$('.custom-file-input').on('focus', function() {
 		$(this).next().removeClass('input-error');
 	})
 });
@@ -24,11 +24,17 @@ function globalSearch(e) {
  * 退出
  */
 function logout() {
-	$.get('/api/logout.php', res => {
-		if (res.code == 1) {
-			location.pathname = "index.html"
-		} else {
-			alert(res.msg)
-		}
-	}, "json")
+	$.ajax({
+		url: 'api/logout.php',
+		type: 'GET',
+		success: res => {
+			if (res.code == 1)
+				location.pathname = "index.html"
+			else
+				alert(res.msg)
+		},
+		error: (xhr, status, error) => console.log('[Status]', status, '\n[Error]', error),
+		dataType: 'json',
+		timeout: 5000
+	})
 }

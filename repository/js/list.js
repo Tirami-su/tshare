@@ -22,7 +22,7 @@ function inputSearch(key) {
 		// 阻止搜索空字符串
 		if (key == '')
 			event.preventDefault()
-		else 
+		else
 			searchFile(key)
 	}
 }
@@ -32,14 +32,26 @@ function inputSearch(key) {
  */
 function searchFile(key) {
 	// 请求服务器
-	$.get('api/search_file.php', {
-		key: key,
-		mode: globalMode,
-		sort: globalSort,
-		page: curPage
-	}, res => {
-		fileList(key, res)
-	}, "json")
+	$.ajax({
+		url: 'api/search_file.php',
+		type: 'GET',
+		data: {
+			key: key,
+			mode: globalMode,
+			sort: globalSort,
+			page: curPage
+		},
+		success: res => fileList(key, res),
+		error: (xhr, status, error) => {
+			console.log('[Status]', status, '\n[Error]', error)
+			// 隐藏等待动画，清除找不到的提示
+			$('.main').waitMe('hide')
+			$('#nofound').remove()
+			// 提示连接服务器超时
+		},
+		dataType: 'json',
+		timeout: 5000
+	})
 
 	// 等待动画
 	$('.main').waitMe({
@@ -80,8 +92,7 @@ function fileList(key, res) {
 		$('#file-list').empty().append(cellHtml)
 
 		//填分页器模板
-		pageHtml =
-			'<li id="page-prev" class="page-item disabled"><a class="page-link" href="#" onclick="prevPage()">上一页</a></li>'
+		pageHtml = '<li id="page-prev" class="page-item disabled"><a class="page-link" href="#" onclick="prevPage()">上一页</a></li>'
 		if (res.amount > 10) {
 			totalpages = Math.ceil(res.amount / 10)
 			// 如果页数太多，只显示当前页前后9页
@@ -101,8 +112,7 @@ function fileList(key, res) {
 			totalpages = 1
 			pageHtml += '<li id="page-1" class="page-item"><a class="page-link" href="#" onclick="toPage(this.text)">1</a></li>'
 		}
-		pageHtml +=
-			'<li id="page-next" class="page-item disabled"><a class="page-link" href="#" onclick="nextPage()">下一页</a></li>'
+		pageHtml += '<li id="page-next" class="page-item disabled"><a class="page-link" href="#" onclick="nextPage()">下一页</a></li>'
 		// 清空分页器，重新添加页项
 		$('#pagination').empty().append(pageHtml)
 		// 设置按钮状态

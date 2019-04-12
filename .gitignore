@@ -1,3 +1,6 @@
+#osx系统文件
 .DS_Store
+
+#临时测试用文件，包括所有以test开头的文件夹和文件
 test*
-/test
+

@@ -2,10 +2,17 @@
  * 自动登录
  */
 $(document).ready(function() {
-	$.post('api/login.php', res => {
-		if (res.code == 1)
-			location.pathname = "home/home.html"
-	}, "json")
+	$.ajax({
+		url: 'api/login.php',
+		type: 'POST',
+		success: res => {
+			if (res.code == 1)
+				location.pathname = "home/home.html"
+		},
+		error: (xhr, status, error) => console.log('[Status]', status, '\n[Error]', error),
+		dataType: 'json',
+		timeout: 5000
+	})
 })
 
 /**
@@ -176,16 +183,28 @@ function sendEmailCode() {
 		return
 	}
 	// 发送邮箱验证码
-	$.get('api/email_code.php', {
-		id: $("#input-id-register").val() + '@' + $('#input-addr-register').text()
-	}, res => {
-		if (res.code == 0){
-			alert(res.msg)
-			return
-		}
-	}, "json")
+	$.ajax({
+		url: 'api/email_code.php',
+		type: 'GET',
+		data: {
+			id: $("#input-id-register").val() + '@' + $('#input-addr-register').text()
+		},
+		success: res => {
+			if (res.code = 1)
+				countdown()
+			else
+				alert(res.msg)
+		},
+		error: (xhr, status, error) => console.log('[Status]', status, '\n[Error]', error),
+		dataType: 'json',
+		timeout: 5000
+	})
+}
 
-	// 发送验证码按钮的倒计时
+/**
+ * 发送验证码按钮的倒计时
+ */
+function countdown() {
 	$('#btn-send').attr('disabled', true)
 	$('#btn-send').text('60秒后可重发')
 	$('#btn-send').css({
@@ -221,19 +240,27 @@ function confirmEmailCode() {
 			$(this).addClass('input-error')
 		}
 	})
+	if (empty)
+		return
+
 	// 验证邮箱验证码
-	if (!empty) {
-		$.post('api/email_code_confirm.php', {
+	$.ajax({
+		url: 'api/email_code_confirm.php',
+		type: 'POST',
+		data: {
 			id: $("#input-id-register").val() + '@' + $('#input-addr-register').text(),
 			email_code: $("#input-email-code").val()
-		}, res => {
-			if (res.code == 1) {
+		},
+		success: res => {
+			if (res.code == 1)
 				modalSwitch('setting')
-			} else {
+			else
 				alert(res.msg)
-			}
-		}, "json")
-	}
+		},
+		error: (xhr, status, error) => console.log('[Status]', status, '\n[Error]', error),
+		dataType: 'json',
+		timeout: 5000
+	})
 }
 
 /**
@@ -248,20 +275,28 @@ function register() {
 			$(this).addClass('input-error')
 		}
 	})
+	if (empty) 
+		return
+		
 	// 注册
-	if (!empty) {
-		$.post('api/register.php', {
+	$.ajax({
+		url: 'api/register.php',
+		type: 'POST',
+		data: {
 			id: $('#input-id-register').val() + '@' + $('#input-addr-register').text(),
 			name: $('#input-name').val(),
 			pwd: $('#input-pwd-setting').val()
-		}, res => {
+		},
+		success: res => {
 			if (res.code == 1) {
 				modalSwitch('login')
-			} else {
+			else 
 				alert(res.msg)
-			}
-		}, "json")
-	}
+		},
+		error: (xhr, status, error) => console.log('[Status]', status, '\n[Error]', error),
+		dataType: 'json',
+		timeout: 5000
+	})
 }
 
 /**
@@ -276,20 +311,28 @@ function login() {
 			$(this).addClass('input-error')
 		}
 	})
+	if (empty)
+		return
+		
 	// 登录验证
-	if (!empty) {
-		$.post('api/login.php', {
+	$.ajax({
+		url: 'api/login.php',
+		type: 'POST',
+		data: {
 			id: $('#input-id-login').val() + '@' + $('#input-addr-login').text(),
 			pwd: $('#input-pwd-login').val(),
 			auto_login: $('#remember').prop('checked') ? 1 : 0
-		}, res => {
-			if (res.code == 1) {
+		},
+		success: res => {
+			if (res.code == 1) 
 				location.pathname = "home/home.html"
-			} else {
+			else
 				alert(res.msg)
-			}
-		}, "json")
-	}
+		},
+		error: (xhr, status, error) => console.log('[Status]', status, '\n[Error]', error),
+		dataType: 'json',
+		timeout: 5000
+	})
 }
 
 /**
