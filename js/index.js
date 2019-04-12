@@ -288,7 +288,7 @@ function register() {
 			pwd: $('#input-pwd-setting').val()
 		},
 		success: res => {
-			if (res.code == 1) {
+			if (res.code == 1) 
 				modalSwitch('login')
 			else 
 				alert(res.msg)
