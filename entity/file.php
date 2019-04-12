@@ -14,8 +14,9 @@ include_once("entity.php");
  * 8.|description |  varchar  |  否   |   无   |    否     |    资料描述
  * 9.|    time    |   int     |  否   |   无   |    是     | 资料针对的时间（试卷的年份）
  *10.|   score    |   int     |  否   |   0    |    否     |     评分
- *12.|  download  |   int     |  否   |   0    |    否     |     下载量
- *13.|   is_dir   |   int     |  否   |   0    |    否     |  是否为文件夹
+ *11.|  download  |   int     |  否   |   0    |    否     |     下载量
+ *12.|   is_dir   |   int     |  否   |   0    |    否     |  是否为文件夹
+ *13.|  teacher   |  varchar  |  否   |   无   |    否     |  教师名字
  */
 class file implements entity {
 	/*上传文件信息*/
@@ -79,6 +80,10 @@ class file implements entity {
 		$this->info['is_dir'] = $is_dir;
 	}
 
+	public function setTeacher(String $teacher) {
+		$this->info['teacher'] = $teacher;
+	}
+
 	public function getEmail() {
 		return $this->info['email'];
 	}
@@ -127,6 +132,10 @@ class file implements entity {
 		return $this->info['is_dir'];
 	}
 
+	public function getTeacher() {
+		return $this->info['teacher'];
+	}
+
 
 	/****************** Entity接口方法 ********************/
 
@@ -148,7 +157,7 @@ class file implements entity {
 	}
 
 	public function getOtherKey() {
-		return ['type', 'upload_time', 'subject', 'category', 'description', 'time', 'score', 'download', 'is_dir'];
+		return ['type', 'upload_time', 'subject', 'category', 'description', 'time', 'score', 'download', 'is_dir', 'teacher'];
 	}
 }
 

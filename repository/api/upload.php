@@ -1,6 +1,5 @@
 <?php
 /****************** 接收上传的文件 **********************/
-include_once("../../lib/isLogin.php");	
 include_once("../../entity/file.php");
 include_once("../../entity/user.php");
 include_once("../../lib/Db.php");
@@ -15,7 +14,7 @@ $filename = $file['name'];			// 获取上传文件的文件名
 $errno = $file['error'];
 if(!($errno == 0)) {
 	// 上传文件出错
-	echo ['code' => 0, 'msg' => '上传失败'];
+	echo json_encode(['code' => 0, 'msg' => '上传失败']);
 	exit();
 }
 
@@ -24,13 +23,22 @@ $user = $_SESSION['user'];			// 获取上传者信息
 
 // 获取文件的各种信息
 $category 	 = $_POST['category'];			// 0课内/1课外
-$subject 	 = $_POST['subject'];			// 资料对应科目
-$type 		 = $_POST['type'];				// 资料分类
-$time 		 = $_POST['time'];				// 资料针对时间
-$description = $_POST['description'];		// 资料描述信息
-$upload_time = date("Y-m-d", time());		// 上传时间(年月日)
-$name	 	 = $_POST['name'];				// 资料名称
-$id 		 = $user->getEmail();			// 上传者学号
+$subject	 = "";							// 资料对应科目
+$type		 = "";							// 资料分类
+$time	 	 = "";							// 资料针对时间
+$name		 = $_POST['name'];				// 资料名称
+$teacher	 = "";							// 教师
+$description = "";							// 资料描述信息
+if($category == 0) {
+	$subject 	 = $_POST['subject'];
+	$type 		 = $_POST['type'];				// 资料分类
+	$time 		 = $_POST['time'];				// 资料针对时间
+	$teacher 	 = $_POST['teacher'];				// 教师
+} else {
+	$description = $_POST['description'];			// 资料描述信息
+}
+$upload_time = date("Y-m-d", time());				// 上传时间(年月日)
+$id 		 = $user->getEmail();					// 上传者学号
 
 /*********** 测试参数 ************
 $id = "160400423";
@@ -77,6 +85,8 @@ $flag = move_uploaded_file($file['tmp_name'], $dest_dir."/".$name);			// 保存�
 if($flag === true) {
 	// 上传成功
 	$flag = ['code' => 1, 'msg' => '上传成功'];
+} else {
+	$flag = ['code' => 0, 'msg' => '上传失败'];
 }
 
 // 将上传的文件信息写入数据库
@@ -89,7 +99,8 @@ $arr = [
 	"upload_time"	=> $upload_time,
 	"filename"		=> $filename,
 	"email"			=> $id,
-	"path"			=> $path
+	"path"			=> $path,
+	"teacher"		=> $teacher
 ];
 $db = new Db();
 
@@ -130,9 +141,6 @@ function store($dir, $arr, $db) {
 				$db->insert('file', $file);
 				store($dir."/".$filename, $arr, $db);
 			} else {
-				// $code = mb_detect_encoding($filename);
-				// $newname = iconv($code, "GB2312//IGNORE", $filename);
-				// echo "{$newname}<br/>";
 				$arr['filename'] = $filename;
 				$arr['path'] = substr($dir, 6);
 				$file = new file();

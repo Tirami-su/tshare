@@ -143,3 +143,228 @@
 	background: #fd625e;
 	color: #fff;
 }
+/*添加第一部分渐变背景色及确定高度位置*/
+#gradient{
+    background: #000000;
+    background: -moz-linear-gradient(top,  #000000 0%, #515151 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#000000), color-stop(100%,#515151));
+    background: -webkit-linear-gradient(top,  #000000 0%,#515151 100%);
+    background: -o-linear-gradient(top,  #000000 0%,#515151 100%);
+    background: -ms-linear-gradient(top,  #000000 0%,#515151 100%);
+    background: linear-gradient(to bottom,  #000000 0%,#515151 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#515151',GradientType=0 );
+	width:100%;
+	height:500px;
+}
+:root .gradient{filter:none;}
+/*文本位置更改*/
+#part1_text_position{
+	padding-top:200px;
+	padding-left:150px;
+}
+/*#part2_row1_position{
+	position:absolute;
+	left:150px;
+}*/
+/*图标位置更改,层级更改*/
+#hat_position{
+	position:absolute;
+	top:200px;
+	left:-100px;
+	width:250px;
+	height:189.9px;
+	z-index:2;
+	size:auto;
+}
+#square_position_index{
+	position:absolute;
+	top:200px;
+	left:-60px;
+	height:180px;
+	width:180px;
+	transform: rotate(45deg);
+	size:auto;
+}
+
+/*图标改为响应式显示*/
+@media screen and (max-width:1236px){
+	#icon_sm{
+		max-height:50%;
+		max-width:50%;
+	}
+}
+/*各个部分高度和宽度*/
+#part2{
+	height:300px;
+}
+#part3_wh{
+	width:100%;
+	height:500px;
+}
+#part4{
+	height:400px;
+}
+#part5_wh{
+	width:100%;
+	height:400px;
+}
+#part6{
+	height:400px;
+}
+/*图片层叠显示,圆角化及屏幕宽度响应*/
+#search_z_index{
+	z-index:1;
+	border-radius:30px;
+	position:absolute;
+	top:-170px;
+}
+#dialogue_z_index{
+	border: 10px solid #ffffff;
+	border-radius:50px;
+	z-index:1;
+	position:absolute;
+	top:-200px;
+}
+#part4_function{
+	position:absolute;
+	top:100px;
+	right:150px;
+}
+#part6_function{
+	position:absolute;
+	top:100px;
+	right:100px;
+}
+@media only screen and (min-width:768px) and (max-width:1024px){
+	#dialogue_z_index{
+		border: 10px solid #ffffff;
+		border-radius:50px;
+		z-index:1;
+		position:absolute;
+		top:-50px;
+	}
+	#search_z_index{
+		z-index:1;
+		border-radius:30px;
+		position:absolute;
+		top:0px;
+	}
+	#part4_function{
+		max-height:50%;
+		max-width:50%;
+		position:absolute;
+		right:100px;
+	}
+	#part6_function{
+		max-height:50%;
+		max-width:50%;
+		position:absolute;
+		top:200px;
+	}
+}
+@media only screen and (min-width:320px) and (max-width:768px){
+	#dialogue_z_index{
+		border: 5px solid #ffffff;
+		border-radius:50px;
+		z-index:1;
+		position:absolute;
+		top:50px;
+	}
+	#search_z_index{
+		z-index:1;
+		border-radius:30px;
+		position:absolute;
+		top:0px;
+	}
+	#part4_function{
+		position:absolute;
+		left:50px;
+	}
+	#part6_function{
+		position:absolute;
+		top:150px;
+		left:25px;
+	}
+}
+
+/*选好宽高后才能设定背景颜色*/
+#part7{
+	height:450px;
+	width:100%;
+	background-color:#000000;
+}
+body>.container{
+	padding: 60px 15px 0;
+}
+/*字体*/
+#part1_Tshare_style{
+	font-family: '华文彩云';
+	font-weight: 400;
+    font-style: normal;
+	font-size:50px;
+	color: white;
+}
+#part1_text_style{
+	font-family: 'Arial Normal', 'Arial';
+	font-weight:400;
+	font-size:23px;
+	color:white;
+}
+#part2_row2_style{
+	font-family: '幼圆';
+	font-weight: 400;
+	color: #3399FF;
+	font-size:32px;
+	line-height:50px;
+}
+/*更改字体为响应式布局*/
+@media screen and (max-width:1200px) {
+	#part1_text_style{
+	font-family: 'Arial Normal', 'Arial';
+	font-weight:400;
+	font-size:20px;
+	color:white;
+	max-width:120px;
+	}
+	#part2_row2_style{
+	font-family: '幼圆';
+	font-weight: 400;
+	color: #3399FF;
+	font-size:22px;
+	line-height:50px;
+	}
+}
+/*字体和位置*/
+#part2_Tshare_style{
+	font-family: '华文彩云';
+	font-weight: 400;
+    font-style: normal;
+	font-size:35px;
+	line-height:50px;
+}
+.part2_row13_style{
+	font-family: 'Arial Normal', 'Arial';
+	font-weight: 400;
+	font-size: 23px;
+	line-height:50px;
+}
+.part46_text_style>h2{
+	font-family: '华文细黑';
+    font-weight: 400;
+    font-style: normal;
+    color: #000000;
+}
+.part46_text_style>p{
+	font-family: '华文细黑';
+    font-weight: 400;
+    font-style: normal;
+    color: #999999;
+}
+
+#footer_text_style{
+	color:#ffffff;
+	font-size:10px;
+	padding-top:200px;
+	position:absolute;
+	left:150px;
+}

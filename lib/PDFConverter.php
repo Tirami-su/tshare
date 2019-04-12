@@ -7,14 +7,14 @@ class PDFConverter {
 	 * @param $src 原文件相对于网站根目录的完整路径(所有路径均按php规则书写/)
 	 * @param $dest 目标文件相对于网站根目录的完整路径
 	 */
-	public static function Word2Pdf(String $src, String $dest) {
+	public static function Word2Pdf(String $src, String $dest, int $pages) {
 		require_once("java/Java.inc");
 		$PDFConverter = new Java("fuhao.PDFConverter");
 		// 将所有的"/"替换位"\\"
 		$src = str_replace("/", "\\\\", $src);
 		$dest = str_replace("/", "\\\\", $dest);
 
-		$PDFConverter->Word2Pdf(self::$root.$src, self::$root.$dest);
+		$PDFConverter->Word2Pdf((String)self::$root.$src, (String)self::$root.$dest, (int)$pages);
 	}
 }
 ?>
