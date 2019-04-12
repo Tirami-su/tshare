@@ -25,7 +25,7 @@ function globalSearch(e) {
  */
 function logout() {
 	$.ajax({
-		url: 'api/logout.php',
+		url: '/api/logout.php',
 		type: 'GET',
 		success: res => {
 			if (res.code == 1)
