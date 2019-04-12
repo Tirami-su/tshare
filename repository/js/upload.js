@@ -42,7 +42,7 @@ function upload() {
 		empty = true
 		$('#file').next().addClass('input-error')
 	}
-	$('#upload-form').find('input').add('#upload-form textarea').each(function() {
+	$('#upload-form').find('input').add('#upload-form textarea').not(':hidden').each(function() {
 		if ($(this).val() == "") {
 			empty = true
 			$(this).addClass('input-error');
@@ -52,11 +52,22 @@ function upload() {
 		return
 	// 上传
 	var formdata = new FormData($('#upload-form'))
-	$.post('api/upload.php', formdata, res => {
-		if (res.code == 1) {
-			alert('上传成功')
-		} else {
-			alert(res.msg)
-		}
-	},"json")
+	$.ajax({
+		url: 'api/upload.php',
+		type: 'POST',
+		data: formdata,
+		success: res => {
+			if (res.code == 1) {
+				alert('上传成功')
+			} else
+				alert(res.msg)
+		},
+		error:(xhr,status,error)=>{
+			console.log('[Status]',status,'\n[Error]',error)
+		},
+		processData: false, // 不处理数据
+		contentType: false, // 不设置内容类型
+		dataType: 'json',
+		timeout: 5000
+	})
 }
