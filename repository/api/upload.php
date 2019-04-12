@@ -99,7 +99,8 @@ $arr = [
 	"upload_time"	=> $upload_time,
 	"filename"		=> $filename,
 	"email"			=> $id,
-	"path"			=> $path
+	"path"			=> $path,
+	"teacher"		=> $teacher
 ];
 $db = new Db();
 
