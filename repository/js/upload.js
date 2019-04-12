@@ -57,6 +57,8 @@ function upload() {
 	var category = $('#tab-category').find('a.active').text() == '课外资料' ? 1 : 0
 	var formdata = new FormData($('#upload-form')[0])
 	formdata.append('category', category)
+	if (category==1)
+		formdata.set('subject', $('#ex-subject').val())
 	$.ajax({
 		url: 'api/upload.php',
 		type: 'POST',
