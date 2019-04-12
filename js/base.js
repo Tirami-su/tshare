@@ -1,5 +1,5 @@
 /**
- * 输入框获取焦点时去除错误提示
+ * 输入框获取焦点时去除错误提示 
  */
 $(document).ready(function() {
 	$('input').on('focus', function() {
@@ -25,7 +25,7 @@ function globalSearch(e) {
  */
 function logout() {
 	$.ajax({
-		url: 'api/logout.php',
+		url: '/api/logout.php',
 		type: 'GET',
 		success: res => {
 			if (res.code == 1)
