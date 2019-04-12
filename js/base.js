@@ -1,5 +1,5 @@
 /**
- * 输入框获取焦点时去除错误提示
+ * 输入框获取焦点时去除错误提示 
  */
 $(document).ready(function() {
 	$('input').on('focus', function() {
