@@ -1,3 +1,10 @@
-ErrorDocument 404 index.html
+#在没有默认文档的目录，隐藏文件列表
+<Files ~ "^.(htaccess|htpasswd)$">
+deny from all
+</Files>
+Options -Indexes
+order deny,allow
 
-indexIgnore *
+#去掉css js文件的时间戳
+RewriteEngine on
+RewriteRule ^(.*)\.[0-9]{10}\.(css)$ $1.$2 [L]

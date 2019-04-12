@@ -13,10 +13,13 @@
 		<link rel="shortcut icon" href="../img/favicon.ico">
 		
 		<!-- CSS Files -->
-		<link rel="stylesheet" href="../css/bootstrap.css">
-		<link rel="stylesheet" href="../css/common.css"/>
+		<link rel="stylesheet" href="../css/bootstrap.css"/>
 		<link rel="stylesheet" href="../css/waitMe.css"/>
-		<link rel="stylesheet" href="css/list.css"/>
+<!-- 		<link rel="stylesheet" href="../css/common.css"/>
+		<link rel="stylesheet" href="css/list.css"/> -->
+		<?php require '../api/reload_css_js.php'; ?>
+		<link rel="stylesheet" href="<?php echo auto_version('/css/common.css'); ?>"/>
+		<link rel="stylesheet" href="<?php echo auto_version('/repository/css/list.css'); ?>"/>
 	</head>
 	<body class="bg-light">
 		<!-- 导航条 -->
@@ -174,7 +177,10 @@
 	<script src="../js/core/bootstrap.js" type="text/javascript"></script>
 	
 	<script src="../js/template-web.js" type="text/javascript"></script>
-	<script src="../js/base.js" type="text/javascript" charset="utf-8"></script>
 	<script src="../js/waitMe.js" type="text/javascript"></script>
-	<script src="js/list.js" type="text/javascript"></script>
+	
+<!-- 	<script src="../js/base.js" type="text/javascript"></script>
+	<script src="js/list.js" type="text/javascript"></script> -->
+	<script src="<?php echo auto_version('/js/base.js'); ?>" type="text/javascript" ></script>
+	<script src="<?php echo auto_version('/repository/js/list.js'); ?>" type="text/javascript"></script>
 </html>
