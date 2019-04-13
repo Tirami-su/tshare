@@ -1,9 +1,8 @@
 #在没有默认文档的目录，隐藏文件列表
 <Files ~ "^.(htaccess|htpasswd)$">
-#Deny from all
+Deny from all
 </Files>
 Options -Indexes
-#Order Deny,Allow
 
 #去掉css js文件的时间戳
 RewriteEngine on

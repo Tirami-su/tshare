@@ -1,17 +1,31 @@
-/**
- * 获取url中的参数，搜索文件
- */
 $(document).ready(function() {
-	// 获取key，填到导航栏的搜索框
+	/**
+	 * 获取html的url中的参数，搜索文件
+	 */
 	var key = decodeURI(location.search.split('=')[1])
 	$('#navbar-search').val(key)
-
-	// 全局变量初始化
+	// 初始化全局变量
 	globalMode = $('#search-mode').prop('checked') ? 0 : 1
 	globalSort = $('input[name=sort]:checked').val()
 	curPage = 1
 
 	searchFile(key)
+	
+	/**
+	 * 查看详情
+	 */
+	$('.filename').click(function(){
+		var path=$(this).parent().parent().data('fpt')
+		
+	})
+	/**
+	 * 预览文件
+	 */
+	$('.preview').click(function() {
+		var path=$(this).parent().parent().data('fpt')
+		console.log(path)
+		PDFObject.embed("Recursive_data_mining_for_role_identification_in_e.pdf", document.body);
+	})
 });
 
 /**
