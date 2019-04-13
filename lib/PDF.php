@@ -1,5 +1,5 @@
 <?php
-
+/********** PDF处理类 ***********/
 class PDF {
 	/**
 	 * 将word(*.doc, *.docx, *ppt, *.pptx, *.excel)转为pdf

@@ -468,15 +468,13 @@ function page() {
 		$download 		= $file->getDownload();
 		$path			= $file->getPath();
 		$is_dir			= $file->getIs_dir();
-		$size			= 0;
+		$size			= $file->getSize();
 
 		$len = count(explode("/", $path));
 		if($len > 5) {
 			// 这是一个压缩包中的文件
-			$size = filesize(dirname(__FILE__)."/../../".$path."/".$name);
 			$path .= "/{$name}";
 		} else {
-			$size = filesize(dirname(__FILE__)."/../../".$path."/".$upload_uid."_".$name);
 			$path .= "/{$upload_uid}_{$name}";
 		}
 
@@ -487,10 +485,7 @@ function page() {
 			} else {
 				$name = explode("$", $name)[0].".".pathinfo($name)['extension'];
 			}
-		}		
-		
-		// 文件大小单位转换
-		$size = getSize($size);		// 转换为合适的单位
+		}
 
 		$json_data[$json_index][] = [
 				"name" 			=> $name,
@@ -515,28 +510,6 @@ function page() {
 	}
 
 	return $json_data;
-}
-
-/**
- * 文件单位转换
- */
-function getSize($size) {
-	$time = 0;
-	$unit = "b";
-	while($size > 1024) {
-		$time++;
-		$size /= 1024;
-	}
-
-	if($time === 1) {
-		$unit = "KB";
-	} else if($time === 2) {
-		$unit = "MB";
-	} else if($time === 3) {
-		$unit = "GB";
-	}
-
-    return number_format($size, $time-1).$unit;
 }
 
 /************ 类定义 **************/
