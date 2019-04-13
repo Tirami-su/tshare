@@ -66,6 +66,9 @@ $reselect = true;
 // 是否对查询到的数据进行重新排序
 $resort = true;
 
+// 获取file表中数据条数
+$count = $db->count("file");
+
 // unset($_SESSION['search_key']);
 // unset($_SESSION['search_res']);
 // unset($_SESSION['mode']);
@@ -73,8 +76,12 @@ $resort = true;
 // unset($_SESSION['search_index']);
 // unset($_SESSION['search_json_data']);
 // exit;
-// 如果上一次已经查询过,并且查询关键字和查询方式都没有发生变化(可能是换页操作),那么就不需要重新查询数据库,直接从session中读取即可
-if(isset($_SESSION['search_key']) && $key == $_SESSION['search_key'] && $mode == $_SESSION['mode']) {
+/**
+ * 1. 在上一次查询过后，file数据表没有变动
+ * 2. 并且查询关键字和查询方式都没有发生变化(可能是换页操作)
+ * 那么就不需要重新查询数据库,直接从session中读取即可
+ */
+if(isset($_SESSION['search_key']) && $key == $_SESSION['search_key'] && $mode == $_SESSION['mode'] && $count == $_SESSION['count']) {
 	$reselect = false;
 	$data = $_SESSION['search_res'];
 
@@ -108,6 +115,7 @@ if(isset($_SESSION['search_key']) && $key == $_SESSION['search_key'] && $mode ==
 	$_SESSION['search_index'] 	= $indexArray;
 	$_SESSION['sort']			= $sort;
 	$_SESSION['mode']			= $mode;
+	$_SESSION['count']			= $count;
 }
 
 // 当进行重新查询或重新排序后,需要进行重新分页
@@ -466,17 +474,15 @@ function page() {
 		$upload_uname	= $db->select("user", ['email' => $upload_uid])->getUsername();	// 上传人名称
 		$score			= $file->getScore();
 		$download 		= $file->getDownload();
-		$path			= $file->getPath();
+		$path			= str_replace("upload_file/", "", $file->getPath());
 		$is_dir			= $file->getIs_dir();
-		$size			= 0;
+		$size			= $file->getSize();
 
 		$len = count(explode("/", $path));
 		if($len > 5) {
 			// 这是一个压缩包中的文件
-			$size = filesize(dirname(__FILE__)."/../../".$path."/".$name);
 			$path .= "/{$name}";
 		} else {
-			$size = filesize(dirname(__FILE__)."/../../".$path."/".$upload_uid."_".$name);
 			$path .= "/{$upload_uid}_{$name}";
 		}
 
@@ -487,10 +493,7 @@ function page() {
 			} else {
 				$name = explode("$", $name)[0].".".pathinfo($name)['extension'];
 			}
-		}		
-		
-		// 文件大小单位转换
-		$size = getSize($size);		// 转换为合适的单位
+		}
 
 		$json_data[$json_index][] = [
 				"name" 			=> $name,
@@ -515,28 +518,6 @@ function page() {
 	}
 
 	return $json_data;
-}
-
-/**
- * 文件单位转换
- */
-function getSize($size) {
-	$time = 0;
-	$unit = "b";
-	while($size > 1024) {
-		$time++;
-		$size /= 1024;
-	}
-
-	if($time === 1) {
-		$unit = "KB";
-	} else if($time === 2) {
-		$unit = "MB";
-	} else if($time === 3) {
-		$unit = "GB";
-	}
-
-    return number_format($size, $time-1).$unit;
 }
 
 /************ 类定义 **************/

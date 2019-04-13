@@ -18,6 +18,7 @@ include_once("entity.php");
  *12.|  download  |   int     |  否   |   0    |    否     |     下载量
  *13.|   is_dir   |   int     |  否   |   0    |    否     |  是否为文件夹
  *14.|  teacher   |  varchar  |  否   |   无   |    否     |   教师名字
+ *15.|    size    |  varchar  |  否   |   无   |    否     |   文件大小
  */
 class file implements entity {
 	/*上传文件信息*/
@@ -89,6 +90,10 @@ class file implements entity {
 		$this->info['teacher'] = $teacher;
 	}
 
+	public function setSize(String $size) {
+		$this->info['size'] = $size;
+	}
+
 	public function getEmail() {
 		return $this->info['email'];
 	}
@@ -143,6 +148,10 @@ class file implements entity {
 
 	public function getTeacher() {
 		return $this->info['teacher'];
+	}
+
+	public function getSize() {
+		return $this->info['size'];
 	}
 
 

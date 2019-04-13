@@ -4,6 +4,8 @@ include_once("../../entity/file.php");
 include_once("../../entity/user.php");
 include_once("../../lib/Db.php");
 include_once("../../lib/zip.php");
+require_once("../../lib/FileProcess.php");
+error_log("开始上传\n", 3, "D:/Apache/logs/php.log");
 session_start();
 
 define("FIRST_DIR", "../../upload_file/");
@@ -124,6 +126,7 @@ if($fourth_dir === "zip"){
 	$file = new file();
 	$arr['filename'] = substr($filename, 0, -4);
 	$arr['is_dir'] = 1;
+	$arr['size'] = FileProcess::getSize(FileProcess::getFolderSize($dest_dir . "/" . pathinfo($filenameTemp)['filename']));
 	$file->set($arr);
 	$db->insert("file", $file);
 
@@ -132,6 +135,7 @@ if($fourth_dir === "zip"){
 	unlink($dest_dir."/".$filenameTemp);
 } else {
 	$newFile = new file();
+	$arr['size'] = FileProcess::getSize(filesize($dest. "/" . $filenameTemp));
 	$newFile->set($arr);
 	$db->insert("file", $newFile);
 }
@@ -148,6 +152,7 @@ function store($dir, $arr, $db) {
 			if(is_dir($dir."/".$filename)) {
 				$arr['filename'] = $filename;
 				$arr['path'] = substr($dir, 6);
+				$arr['size'] = FileProcess::getSize(FileProcess::getFolderSize($dir."/".$filename));
 				$file = new file();
 				$file->set($arr);
 				$file->setIs_dir(1);
@@ -156,6 +161,7 @@ function store($dir, $arr, $db) {
 			} else {
 				$arr['filename'] = $filename;
 				$arr['path'] = substr($dir, 6);
+				$arr['size'] = FileProcess::getSize(filesize($dir."/".$filename));
 				$file = new file();
 				$file->set($arr);
 				$db->insert("file", $file);
