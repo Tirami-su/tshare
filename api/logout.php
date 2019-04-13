@@ -19,7 +19,6 @@ session_destroy();
 // 销毁cookie
 cookie::destroy("email");
 cookie::destroy("pwd");
-cookie::destroy("encode");
 
 // 删除密钥
 $user->setCookie_encode("0");

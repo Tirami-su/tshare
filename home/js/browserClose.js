@@ -50,7 +50,7 @@ function onunload_handler() {
 	var second = time.getSeconds();
 	var millis = time.getMilliseconds();
 
-	var url = "../api/logout.php";
+	var url = "../api/session_clear.php";
 
 	if(newYear == year && newMonth == month && newDay == day
 		&& newHour == hour && newMinute == minute && newSecond == second
@@ -58,8 +58,8 @@ function onunload_handler() {
 		// 向服务器脚本发送浏览器关闭的消息
 		$.get(url, {
 				
-			}, (res) => {
-				
-			});
+		}, (res) => {
+			
+		});
 	}
 }

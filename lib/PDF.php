@@ -7,11 +7,11 @@ class PDF {
 	 * @param $dest 目标文件相对于网站根目录的完整路径
 	 */
 	public static function Word2Pdf(String $src, String $dest) {
-		// require_once("java/Java.inc");
+		require_once("java/Java.inc");
 		$root = dirname(__FILE__);
 		$root = str_replace("\\", "\\\\", $root);
 
-		// $PDFConverter = new Java("fuhao.PDFConverter");
+		$PDFConverter = new Java("fuhao.PDFConverter");
 		// 将所有的"/"替换位"\\"
 		$src = str_replace("/", "\\\\", $src);
 		$dest = str_replace("/", "\\\\", $dest);

@@ -19,17 +19,6 @@ $auto_login = 0;
 
 $id = cookie::get('email');
 if($id === NULL) {
-	// if(isset($_GET['id']) && isset($_GET['pwd']) && isset($_GET['auto_login'])) {
-	// 	// 正常输入账号密码登录
-	// 	$id = $_GET['id'];
-	// 	$pwd = $_GET['pwd'];
-	// 	$auto_login = $_GET['auto_login'];
-	// } else {
-	// 	// 没有账号密码，返回
-	// 	$flag = ['code' => 0, 'msg' => '没有设置自动登陆'];
-	// 	echo json_encode($flag);
-	// 	exit;
-	// }
 	if(isset($_POST['id']) && isset($_POST['pwd']) && isset($_POST['auto_login'])) {
 		// 正常输入账号密码登录
 		$id = $_POST['id'];
@@ -85,16 +74,14 @@ function login($email, $password, $auto_login) {
 				
 				// 设置密码的cookie
 				$encode = $user->getCookie_encode();
-				$key = array();
 				if($encode == '0') {
 					$key = cookie::set('pwd', $user->getPassword(), time()+3600*24*7, true, '', "/");
 					$user->setCookie_encode($key['origin_key']);
+					// 修改解密密钥
+					$user->setCookie_decode($key['target_key']);
 				} else {
-					$key = cookie::set('pwd', $user->getPassword(), time()+3600*24*7, true, $encode, "/");
+					cookie::set('pwd', $user->getPassword(), time()+3600*24*7, true, $encode, "/");
 				}
-				
-				// 修改解密密钥
-				$user->setCookie_decode($key['target_key']);
 			}
 			
 			// 并随即生成一个session_id
