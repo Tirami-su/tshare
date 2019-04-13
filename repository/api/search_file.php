@@ -134,6 +134,7 @@ if($reselect || $resort) {
 		}
 	}
 
+	$_SESSION['sort'] = $sort;
 	$_SESSION['search_json_data'] = $json_data;
 }
 
