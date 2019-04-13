@@ -1,9 +1,14 @@
-Apr 12 17:59:52 JavaBridge INFO : VM                  : 1.8.0_201@http://java.oracle.com/
-Apr 12 17:59:52 JavaBridge INFO : JavaBridge version             : 7.2.1    
-Apr 12 17:59:52 JavaBridge INFO : logFile             : JavaBridge.log
-Apr 12 17:59:52 JavaBridge INFO : default logLevel    : 3
-Apr 12 17:59:52 JavaBridge INFO : socket              : HTTP_LOCAL:8080
-Apr 12 17:59:52 JavaBridge INFO : java.ext.dirs       : C:\Program Files\Java\jre1.8.0_201\lib\ext;C:\WINDOWS\Sun\Java\lib\ext
-Apr 12 17:59:52 JavaBridge INFO : php.java.bridge.base: C:\Users\fuhao
-Apr 12 17:59:52 JavaBridge INFO : thread pool size    : 20
-Apr 12 17:59:52 JavaBridge INFO : JavaBridgeRunner started on port INET_LOCAL:8080
+Apr 13 16:41:15 JavaBridge INFO : VM                  : 1.8.0_201@http://java.oracle.com/
+Apr 13 16:41:15 JavaBridge INFO : JavaBridge version             : 7.2.1    
+Apr 13 16:41:15 JavaBridge INFO : logFile             : JavaBridge.log
+Apr 13 16:41:15 JavaBridge INFO : default logLevel    : 3
+Apr 13 16:41:15 JavaBridge INFO : socket              : HTTP_LOCAL:8080
+Apr 13 16:41:15 JavaBridge INFO : java.ext.dirs       : C:\Program Files\Java\jre1.8.0_201\lib\ext;C:\WINDOWS\Sun\Java\lib\ext
+Apr 13 16:41:15 JavaBridge INFO : php.java.bridge.base: C:\Users\fuhao
+Apr 13 16:41:15 JavaBridge INFO : thread pool size    : 20
+Apr 13 16:41:15 JavaBridge INFO : JavaBridgeRunner started on port INET_LOCAL:8080
+四月 13, 2019 4:41:27 下午 com.artofsolving.jodconverter.openoffice.connection.AbstractOpenOfficeConnection connect
+信息: connected
+四月 13, 2019 4:41:31 下午 com.artofsolving.jodconverter.openoffice.connection.AbstractOpenOfficeConnection disposing
+信息: disconnected
+转换完成！
