@@ -130,8 +130,8 @@ class zip {
 	 */
     private function addDirToZip($src_dir, $zip) {
     	// 递归压缩文件夹
- 		$hander = opendir($src_dir);
- 		while(($filename = readdir($hander)) !== false) {
+ 		$handle = opendir($src_dir);
+ 		while(($filename = readdir($handle)) !== false) {
  			if($filename != "." && $filename != "..") {
  				// 不是当前目录，也不是上级目录
  				if(is_dir($src_dir.$filename)) {
@@ -139,11 +139,11 @@ class zip {
  					$this->addDirToZip($src_dir.$filename."/", $zip);
  				} else {
  					// 如果是文件，直接压缩
- 					$zip->addFile($src_dir.$filename);
+ 					$zip->addFile($src_dir.$filename, $filename);
  				}
  			}
  		}
-		closedir($hander);
+		closedir($handle);
     }
 
     /**

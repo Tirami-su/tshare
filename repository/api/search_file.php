@@ -81,7 +81,8 @@ $count = $db->count("file");
  * 2. 并且查询关键字和查询方式都没有发生变化(可能是换页操作)
  * 那么就不需要重新查询数据库,直接从session中读取即可
  */
-if(isset($_SESSION['search_key']) && $key == $_SESSION['search_key'] && $mode == $_SESSION['mode'] && $count == $_SESSION['count']) {
+$use_session = isset($_SESSION['search_key']) && isset($_SESSION['mode']) && isset($_SESSION['count']);
+if($use_session && $key == $_SESSION['search_key'] && $mode == $_SESSION['mode'] && $count == $_SESSION['count']) {
 	$reselect = false;
 	$data = $_SESSION['search_res'];
 

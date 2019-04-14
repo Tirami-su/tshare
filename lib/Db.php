@@ -43,7 +43,7 @@ class Db extends mysqli{
 		$sql = "insert into $table($key) values($value)";
 		
 		$flag = $this->query($sql);
-		return $sql;
+		return $flag;
 	}
 
 	/**

@@ -36,5 +36,24 @@ class PDF {
 		$cmd = $pypath . " " . $src . " " . $dest . " " . $pages;
 		shell_exec($cmd);
 	}
+
+	/**
+	 * 将pdf图片转为png图片
+	 * @param String $src pdf文件相对于网站根目录的完整路径(按php规则编写路径，分隔符："/")
+	 * @param String $dest png图片相对于网站根目录的父目录
+	 */
+	public static function Pdf2Png(String $src, String $dest) {
+		require_once 'java/java.inc';
+		$root = dirname(__FILE__);
+		$root = str_replace("\\", "\\\\", $root);
+
+		$pdf = new Java("fuhao.PDF2IMG");
+
+		// 将所有的"/"替换位"\\"
+		$src = str_replace("/", "\\\\", $src);
+		$dest = str_replace("/", "\\\\", $dest);
+		$root .= "\\\\..\\\\";
+		$pdf->Pdf2Png((String)$root.$src, (String)$root.$dest);
+	}
 }
 ?>

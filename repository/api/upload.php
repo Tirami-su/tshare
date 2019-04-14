@@ -63,7 +63,12 @@ if(!file_exists($dest_dir)) {
 	mkdir($dest_dir);
 }
 
-$fourth_dir = pathinfo($filename)['extension'];
+$fourth_dir = "";
+if(isset(pathinfo($filename)['extension'])) {
+	$fourth_dir = pathinfo($filename)['extension'];
+} else {
+	$fourth_dir = "other";
+}
 $dest_dir .= "/{$fourth_dir}";
 if(!file_exists($dest_dir)) {
 	mkdir($dest_dir);
