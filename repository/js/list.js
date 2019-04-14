@@ -8,23 +8,81 @@ $(document).ready(function() {
 	globalMode = $('#search-mode').prop('checked') ? 0 : 1
 	globalSort = $('input[name=sort]:checked').val()
 	curPage = 1
-
+	// 立即搜索
 	searchFile(key)
-	
+
 	/**
 	 * 查看详情
 	 */
-	$('.filename').click(function(){
-		var path=$(this).parent().parent().data('fpt')
-		
+	$('.filename').click(function() {
+
 	})
 	/**
 	 * 预览文件
 	 */
-	$('.preview').click(function() {
-		var path=$(this).parent().parent().data('fpt')
-		console.log(path)
-		PDFObject.embed("Recursive_data_mining_for_role_identification_in_e.pdf", document.body);
+	$('.btn-preview').click(function() {
+		// 请求服务器生成预览
+		$.ajax({
+			url: 'api/preview.php',
+			type: 'GET',
+			data: {
+				url: $(this).data('url'),
+				name: $(this).data('name')
+			},
+			success: res => {
+				if (res.code == 1) {
+					$('preview-target').attr('src', 'temp/' + path + '.png')
+					$('#modal-preview').modal('show')
+				} else {
+					alert(res.msg)
+				}
+			},
+			error: (xhr, status, error) => {
+				console.log('[Status]', status, '\n[Error]', error)
+			},
+			dataType: 'json',
+			timeout: 5000
+		})
+	})
+
+	/**
+	 * 预览功能按钮(显示整页 适应窗口宽度 放大 缩小)
+	 */
+	$('#modal-previewFile .action button').click(function() {
+		switch ($(this).data('resize')) {
+			case 'w':
+				$('#modal-previewFile .target').css({
+					'width': '100%',
+					'height': 'auto'
+				})
+				$(this).children().attr('src', 'img/height.png')
+				$(this).data('resize', 'h')
+				break
+			case 'h':
+				$('#modal-previewFile .target').css({
+					'width': 'auto',
+					'height': '100%'
+				})
+				$(this).children().attr('src', 'img/width.png')
+				$(this).data('resize', 'w')
+				break
+			case 'l':
+				var width = $('#modal-previewFile .target').prop('width')
+				var height = $('#modal-previewFile .target').prop('height')
+				$('#modal-previewFile .target').css({
+					'width': width * 1.2,
+					'height': height * 1.2
+				})
+				break
+			case 's':
+				var width = $('#modal-previewFile .target').prop('width')
+				var height = $('#modal-previewFile .target').prop('height')
+				$('#modal-previewFile .target').css({
+					'width': width * 0.8,
+					'height': height * 0.8
+				})
+				break
+		}
 	})
 });
 
@@ -106,7 +164,8 @@ function fileList(key, res) {
 		$('#file-list').empty().append(cellHtml)
 
 		//填分页器模板
-		pageHtml = '<li id="page-prev" class="page-item disabled"><a class="page-link" href="#" onclick="prevPage()">上一页</a></li>'
+		pageHtml =
+			'<li id="page-prev" class="page-item disabled"><a class="page-link" href="#" onclick="prevPage()">上一页</a></li>'
 		if (res.amount > 10) {
 			totalpages = Math.ceil(res.amount / 10)
 			// 如果页数太多，只显示当前页前后9页
@@ -126,7 +185,8 @@ function fileList(key, res) {
 			totalpages = 1
 			pageHtml += '<li id="page-1" class="page-item"><a class="page-link" href="#" onclick="toPage(this.text)">1</a></li>'
 		}
-		pageHtml += '<li id="page-next" class="page-item disabled"><a class="page-link" href="#" onclick="nextPage()">下一页</a></li>'
+		pageHtml +=
+			'<li id="page-next" class="page-item disabled"><a class="page-link" href="#" onclick="nextPage()">下一页</a></li>'
 		// 清空分页器，重新添加页项
 		$('#pagination').empty().append(pageHtml)
 		// 设置按钮状态

@@ -49,6 +49,66 @@
 	margin-top: 10px;
 }
 
+/* 预览 */
+.modal-open .modal.modal-preview {
+    overflow: scroll;
+} 
+
+.modal-preview {
+	padding: 0 !important; 
+}
+
+.modal-preview .modal-dialog {
+	margin: 0 auto;
+}
+
+.modal-preview .target {
+	height: 100%;
+	width: auto;
+}
+
+.modal-preview .close {
+	position: fixed;
+	right: 40px;
+	top: 20px;
+	z-index: 1030;
+	
+	background-color: black;
+	border-radius: 25px;
+	overflow: hidden;
+	opacity: 0.6;
+}
+
+.modal-preview .close img {
+	width: 45px;
+	padding: 13px;
+}
+
+.modal-preview .action {
+	display: flex;
+	flex-direction: column;
+	
+	position: fixed;
+	right: 40px;
+	bottom: 100px;
+	z-index: 1030;
+}
+
+.modal-preview .action button {
+	border: 0;
+	padding: 0;
+	margin-bottom: 20px;
+	
+	background-color: black;
+	border-radius: 20px;
+	overflow: hidden;
+	opacity: 0.6;
+}
+
+.modal-preview .action img{
+	width: 40px;
+	padding: 7px;
+}
 
 /* 找不到提示 */
 #nofound {
