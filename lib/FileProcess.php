@@ -96,7 +96,7 @@ class FileProcess {
 	 * @param String $dir 待创建的文件夹路径(相对于网站根目录的路径，路径按php规则编写，分隔符:"/")
 	 */
 	public static function createFolder(String $dir) {
-		$path = dirname(__FILE__)."/../";
+		$path = "";
 		$list = explode("/", $dir);
 		for($i=0;$i<count($list);$i++) {
 			if(!file_exists($path.$list[$i])) {
@@ -104,6 +104,25 @@ class FileProcess {
 			}
 			$path .= $list[$i]."/";
 		}
+	}
+
+	/**
+	 * 删除文件夹
+	 * @param String $dir
+	 */
+	public static function delDirectory(String $dir) {
+		$handle = opendir($dir);
+		while(($filename = readdir($handle)) !== false) {
+			if($filename != "." & $filename != "..") {
+				if(is_dir($dir."/".$filename)) {
+					self::delDirectory($dir."/".$filename);
+				} else {
+					unlink($dir."/".$filename);
+				}
+			}
+		}
+		closedir($handle);
+		rmdir($dir);
 	}
 }
 

@@ -1,14 +1,117 @@
-Apr 14 19:36:43 JavaBridge INFO : VM                  : 1.8.0_201@http://java.oracle.com/
-Apr 14 19:36:43 JavaBridge INFO : JavaBridge version             : 7.2.1    
-Apr 14 19:36:43 JavaBridge INFO : logFile             : JavaBridge.log
-Apr 14 19:36:43 JavaBridge INFO : default logLevel    : 3
-Apr 14 19:36:43 JavaBridge INFO : socket              : HTTP_LOCAL:8080
-Apr 14 19:36:43 JavaBridge INFO : java.ext.dirs       : C:\Program Files\Java\jre1.8.0_201\lib\ext;C:\WINDOWS\Sun\Java\lib\ext
-Apr 14 19:36:43 JavaBridge INFO : php.java.bridge.base: C:\Users\fuhao
-Apr 14 19:36:43 JavaBridge INFO : thread pool size    : 20
-Apr 14 19:36:43 JavaBridge INFO : JavaBridgeRunner started on port INET_LOCAL:8080
-四月 14, 2019 7:36:59 下午 com.artofsolving.jodconverter.openoffice.connection.AbstractOpenOfficeConnection connect
-信息: connected
-四月 14, 2019 7:37:00 下午 com.artofsolving.jodconverter.openoffice.connection.AbstractOpenOfficeConnection disposing
-信息: disconnected
-转换完成！
+Apr 14 23:03:10 JavaBridge INFO : VM                  : 1.8.0_201@http://java.oracle.com/
+Apr 14 23:03:10 JavaBridge INFO : JavaBridge version             : 7.2.1    
+Apr 14 23:03:10 JavaBridge INFO : logFile             : JavaBridge.log
+Apr 14 23:03:10 JavaBridge INFO : default logLevel    : 3
+Apr 14 23:03:10 JavaBridge INFO : socket              : HTTP_LOCAL:8080
+Apr 14 23:03:10 JavaBridge INFO : java.ext.dirs       : C:\Program Files\Java\jre1.8.0_201\lib\ext;C:\WINDOWS\Sun\Java\lib\ext
+Apr 14 23:03:10 JavaBridge INFO : php.java.bridge.base: C:\Users\fuhao
+Apr 14 23:03:10 JavaBridge INFO : thread pool size    : 20
+Apr 14 23:03:10 JavaBridge INFO : JavaBridgeRunner started on port INET_LOCAL:8080
+四月 14, 2019 11:03:19 下午 org.apache.pdfbox.pdmodel.font.FileSystemFontProvider loadDiskCache
+警告: New fonts found, font cache will be re-built
+四月 14, 2019 11:03:19 下午 org.apache.pdfbox.pdmodel.font.FileSystemFontProvider <init>
+警告: Building on-disk font cache, this may take a while
+四月 14, 2019 11:03:19 下午 org.apache.pdfbox.pdmodel.font.FileSystemFontProvider addTrueTypeFont
+严重: Could not load font file: C:\WINDOWS\FONTS\mstmc.ttf
+java.io.EOFException
+	at org.apache.fontbox.ttf.TTFDataStream.readUnsignedInt(TTFDataStream.java:152)
+	at org.apache.fontbox.ttf.TTFParser.readTableDirectory(TTFParser.java:312)
+	at org.apache.fontbox.ttf.TTFParser.parse(TTFParser.java:139)
+	at org.apache.fontbox.ttf.TTFParser.parse(TTFParser.java:87)
+	at org.apache.pdfbox.pdmodel.font.FileSystemFontProvider.addTrueTypeFont(FileSystemFontProvider.java:539)
+	at org.apache.pdfbox.pdmodel.font.FileSystemFontProvider.scanFonts(FileSystemFontProvider.java:255)
+	at org.apache.pdfbox.pdmodel.font.FileSystemFontProvider.<init>(FileSystemFontProvider.java:234)
+	at org.apache.pdfbox.pdmodel.font.FontMapperImpl$DefaultFontProvider.<clinit>(FontMapperImpl.java:128)
+	at org.apache.pdfbox.pdmodel.font.FontMapperImpl.getProvider(FontMapperImpl.java:147)
+	at org.apache.pdfbox.pdmodel.font.FontMapperImpl.findFont(FontMapperImpl.java:411)
+	at org.apache.pdfbox.pdmodel.font.FontMapperImpl.getTrueTypeFont(FontMapperImpl.java:319)
+	at org.apache.pdfbox.pdmodel.font.PDTrueTypeFont.<init>(PDTrueTypeFont.java:219)
+	at org.apache.pdfbox.pdmodel.font.PDFontFactory.createFont(PDFontFactory.java:75)
+	at org.apache.pdfbox.pdmodel.PDResources.getFont(PDResources.java:146)
+	at org.apache.pdfbox.contentstream.operator.text.SetFontAndSize.process(SetFontAndSize.java:60)
+	at org.apache.pdfbox.contentstream.PDFStreamEngine.processOperator(PDFStreamEngine.java:869)
+	at org.apache.pdfbox.contentstream.PDFStreamEngine.processStreamOperators(PDFStreamEngine.java:505)
+	at org.apache.pdfbox.contentstream.PDFStreamEngine.processAnnotation(PDFStreamEngine.java:338)
+	at org.apache.pdfbox.contentstream.PDFStreamEngine.showAnnotation(PDFStreamEngine.java:421)
+	at org.apache.pdfbox.rendering.PageDrawer.showAnnotation(PageDrawer.java:1326)
+	at org.apache.pdfbox.rendering.PageDrawer.drawPage(PageDrawer.java:269)
+	at org.apache.pdfbox.rendering.PDFRenderer.renderImage(PDFRenderer.java:314)
+	at org.apache.pdfbox.rendering.PDFRenderer.renderImage(PDFRenderer.java:243)
+	at org.apache.pdfbox.rendering.PDFRenderer.renderImageWithDPI(PDFRenderer.java:215)
+	at fuhao.PDF2IMG.Pdf2Png(PDF2IMG.java:35)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at php.java.bridge.JavaBridge.Invoke(JavaBridge.java:1068)
+	at php.java.bridge.parser.Request.handleRequest(Request.java:426)
+	at php.java.bridge.parser.Request.handleRequests(Request.java:509)
+	at php.java.bridge.JavaBridge.handleRequests(JavaBridge.java:173)
+	at php.java.bridge.http.JavaBridgeRunner.doPut(JavaBridgeRunner.java:203)
+	at php.java.bridge.http.HttpServer.service(HttpServer.java:289)
+	at php.java.bridge.http.HttpServer$Runner.run(HttpServer.java:205)
+	at php.java.bridge.util.ThreadPool$Delegate.run(ThreadPool.java:60)
+	at php.java.bridge.util.AppThreadPool$Delegate.run(AppThreadPool.java:58)
+
+四月 14, 2019 11:03:20 下午 org.apache.pdfbox.pdmodel.font.FileSystemFontProvider <init>
+警告: Finished building on-disk font cache, found 421 fonts
+四月 14, 2019 11:03:24 下午 org.apache.pdfbox.pdmodel.font.PDSimpleFont toUnicode
+警告: No Unicode mapping for summationtext (80) in font MEVZQI+CMEX10
+四月 14, 2019 11:03:25 下午 org.apache.pdfbox.pdmodel.font.PDSimpleFont toUnicode
+警告: No Unicode mapping for productdisplay (89) in font MEVZQI+CMEX10
+四月 14, 2019 11:03:25 下午 org.apache.pdfbox.pdmodel.font.PDSimpleFont toUnicode
+警告: No Unicode mapping for parenleftBig (16) in font MEVZQI+CMEX10
+四月 14, 2019 11:03:25 下午 org.apache.pdfbox.pdmodel.font.PDSimpleFont toUnicode
+警告: No Unicode mapping for parenrightBig (17) in font MEVZQI+CMEX10
+四月 14, 2019 11:03:26 下午 org.apache.pdfbox.pdmodel.font.PDSimpleFont toUnicode
+警告: No Unicode mapping for summationdisplay (88) in font MEVZQI+CMEX10
+四月 14, 2019 11:04:50 下午 org.apache.pdfbox.pdmodel.font.PDSimpleFont toUnicode
+警告: No Unicode mapping for summationtext (80) in font MEVZQI+CMEX10
+四月 14, 2019 11:04:50 下午 org.apache.pdfbox.pdmodel.font.PDSimpleFont toUnicode
+警告: No Unicode mapping for productdisplay (89) in font MEVZQI+CMEX10
+四月 14, 2019 11:04:50 下午 org.apache.pdfbox.pdmodel.font.PDSimpleFont toUnicode
+警告: No Unicode mapping for parenleftBig (16) in font MEVZQI+CMEX10
+四月 14, 2019 11:04:50 下午 org.apache.pdfbox.pdmodel.font.PDSimpleFont toUnicode
+警告: No Unicode mapping for parenrightBig (17) in font MEVZQI+CMEX10
+四月 14, 2019 11:04:51 下午 org.apache.pdfbox.pdmodel.font.PDSimpleFont toUnicode
+警告: No Unicode mapping for summationdisplay (88) in font MEVZQI+CMEX10
+四月 14, 2019 11:05:27 下午 org.apache.pdfbox.pdmodel.font.PDSimpleFont toUnicode
+警告: No Unicode mapping for summationtext (80) in font MEVZQI+CMEX10
+四月 14, 2019 11:05:28 下午 org.apache.pdfbox.pdmodel.font.PDSimpleFont toUnicode
+警告: No Unicode mapping for productdisplay (89) in font MEVZQI+CMEX10
+四月 14, 2019 11:05:28 下午 org.apache.pdfbox.pdmodel.font.PDSimpleFont toUnicode
+警告: No Unicode mapping for parenleftBig (16) in font MEVZQI+CMEX10
+四月 14, 2019 11:05:28 下午 org.apache.pdfbox.pdmodel.font.PDSimpleFont toUnicode
+警告: No Unicode mapping for parenrightBig (17) in font MEVZQI+CMEX10
+四月 14, 2019 11:05:29 下午 org.apache.pdfbox.pdmodel.font.PDSimpleFont toUnicode
+警告: No Unicode mapping for summationdisplay (88) in font MEVZQI+CMEX10
+四月 14, 2019 11:12:00 下午 org.apache.pdfbox.pdmodel.font.PDSimpleFont toUnicode
+警告: No Unicode mapping for summationtext (80) in font MEVZQI+CMEX10
+四月 14, 2019 11:12:01 下午 org.apache.pdfbox.pdmodel.font.PDSimpleFont toUnicode
+警告: No Unicode mapping for productdisplay (89) in font MEVZQI+CMEX10
+四月 14, 2019 11:12:01 下午 org.apache.pdfbox.pdmodel.font.PDSimpleFont toUnicode
+警告: No Unicode mapping for parenleftBig (16) in font MEVZQI+CMEX10
+四月 14, 2019 11:12:01 下午 org.apache.pdfbox.pdmodel.font.PDSimpleFont toUnicode
+警告: No Unicode mapping for parenrightBig (17) in font MEVZQI+CMEX10
+四月 14, 2019 11:12:02 下午 org.apache.pdfbox.pdmodel.font.PDSimpleFont toUnicode
+警告: No Unicode mapping for summationdisplay (88) in font MEVZQI+CMEX10
+四月 14, 2019 11:12:15 下午 org.apache.pdfbox.pdmodel.font.PDSimpleFont toUnicode
+警告: No Unicode mapping for summationtext (80) in font MEVZQI+CMEX10
+四月 14, 2019 11:12:16 下午 org.apache.pdfbox.pdmodel.font.PDSimpleFont toUnicode
+警告: No Unicode mapping for productdisplay (89) in font MEVZQI+CMEX10
+四月 14, 2019 11:12:16 下午 org.apache.pdfbox.pdmodel.font.PDSimpleFont toUnicode
+警告: No Unicode mapping for parenleftBig (16) in font MEVZQI+CMEX10
+四月 14, 2019 11:12:16 下午 org.apache.pdfbox.pdmodel.font.PDSimpleFont toUnicode
+警告: No Unicode mapping for parenrightBig (17) in font MEVZQI+CMEX10
+四月 14, 2019 11:12:17 下午 org.apache.pdfbox.pdmodel.font.PDSimpleFont toUnicode
+警告: No Unicode mapping for summationdisplay (88) in font MEVZQI+CMEX10
+四月 14, 2019 11:13:39 下午 org.apache.pdfbox.pdmodel.font.PDSimpleFont toUnicode
+警告: No Unicode mapping for summationtext (80) in font MEVZQI+CMEX10
+四月 14, 2019 11:13:40 下午 org.apache.pdfbox.pdmodel.font.PDSimpleFont toUnicode
+警告: No Unicode mapping for productdisplay (89) in font MEVZQI+CMEX10
+四月 14, 2019 11:13:40 下午 org.apache.pdfbox.pdmodel.font.PDSimpleFont toUnicode
+警告: No Unicode mapping for parenleftBig (16) in font MEVZQI+CMEX10
+四月 14, 2019 11:13:40 下午 org.apache.pdfbox.pdmodel.font.PDSimpleFont toUnicode
+警告: No Unicode mapping for parenrightBig (17) in font MEVZQI+CMEX10
+四月 14, 2019 11:13:41 下午 org.apache.pdfbox.pdmodel.font.PDSimpleFont toUnicode
+警告: No Unicode mapping for summationdisplay (88) in font MEVZQI+CMEX10
