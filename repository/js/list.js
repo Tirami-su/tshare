@@ -12,12 +12,6 @@ $(document).ready(function() {
 	searchFile(key)
 
 	/**
-	 * 查看详情
-	 */
-	$('.filename').click(function() {
-
-	})
-	/**
 	 * 预览功能按钮(显示整页 适应窗口宽度 放大 缩小)
 	 */
 	$('#modal-previewFile .action button').click(function() {
@@ -226,7 +220,7 @@ function preview(){
 		success: res => {
 			if (res.code == 1) {
 				$('preview-target').attr('src', 'temp/' + path + '.png')
-				$('#modal-preview').modal('show')
+				$('##modal-previewFile').modal('show')
 			} else {
 				alert(res.msg)
 			}
