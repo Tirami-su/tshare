@@ -103,7 +103,7 @@
 				</div>
 				<!-- 结果列表 -->
 				<div class="col-md-9 bg-white">
-					<ul id="file-list" class=""> </ul>
+					<ul id="file-list" class=""></ul>
 					<!-- 分页器 -->
 					<nav>
 						<ul id='pagination' class="pagination justify-content-center"></ul>
@@ -114,20 +114,23 @@
 	</body>
 	<!-- 搜索结果-文件夹模板 -->
 	<script id="template-folder" type="text/template">
-		<li class="file-item-folder">
+		<li class="file-item-folder" data-fpt = "{{url}}">
 			<div class="row">
-				<div class="file-name">{{name}}</div>
-				<div class="score ml-auto">{{score}}分</div>
-			</div>
-			<div class="file-description">
-				{{description}}
-			</div>
-			<div class="contents">
-				包含120个文件，内部目录<br>
-				第一章<br>
-				第二章<br>
-				第三章<br>
-				<a class="readmore">查看全部</a>
+				<div><img src="img/folder.png" class="file-icon"></div>
+				<div class="col">
+					<div class="row item-title">
+						<div class="file-name">{{name}}</div>
+						<div class="score ml-auto">{{score}}分</div>
+					</div>
+					<div class="file-description">{{description}}</div>
+					<div class="contents">
+						包含120个文件，内部目录<br>
+						第一章<br>
+						第二章<br>
+						第三章<br>
+						<a class="readmore">查看全部</a>
+					</div>
+				</div>
 			</div>
 			<div class="action">
 				<span>{{upload_time}}</span>
@@ -140,20 +143,23 @@
 	</script>
 	<!-- 搜索结果-文件模板 -->
 	<script id="template-file" type="text/template">
-		<li class="file-item-file">
+		<li class="file-item-file" data-fpt = "{{url}}">
 			<div class="row">
-				<div class="file-name">{{name}}</div>
-				<div class="score ml-auto">{{score}}分</div>
-			</div>
-			<div class="file-description">
-				{{description}}
+				<div><img src="img/file.png" class="file-icon"></div>
+				<div class="col">
+					<div class="row item-title">
+						<div class="file-name">{{name}}</div>
+						<div class="score ml-auto">{{score}}分</div>
+					</div>
+					<div class="file-description">{{description}}</div>
+				</div>
 			</div>
 			<div class="action">
 				<span>{{upload_time}}</span>
 				<span class="num-download">{{download}}次下载</span>
 				<span>贡献者:{{upload_uname}}</span>
 				<span>大小:{{size}}</span>
-				<button type="button" class="download">预览</button>
+				<button type="button" class="preview">预览</button>
 				<button type="button" class="download">下载</button>
 			</div>
 		</li>
@@ -178,6 +184,7 @@
 	
 	<script src="../js/template-web.js" type="text/javascript"></script>
 	<script src="../js/waitMe.js" type="text/javascript"></script>
+	<script src="js/pdfobject.js" type="text/javascript"></script>
 	
 <!-- 	<script src="../js/base.js" type="text/javascript"></script>
 	<script src="js/list.js" type="text/javascript"></script> -->

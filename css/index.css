@@ -160,13 +160,13 @@
 /*文本位置更改*/
 #part1_text_position{
 	padding-top:200px;
-	padding-left:150px;
+	padding-left:300px;
 }
 /*#part2_row1_position{
 	position:absolute;
 	left:150px;
 }*/
-/*图标位置更改,层级更改*/
+/*第一部分图标位置更改,层级更改*/
 #hat_position{
 	position:absolute;
 	top:200px;
@@ -186,57 +186,66 @@
 	size:auto;
 }
 
-/*图标改为响应式显示*/
+/*其余部分图标改为响应式显示
 @media screen and (max-width:1236px){
 	#icon_sm{
 		max-height:50%;
 		max-width:50%;
 	}
-}
-/*各个部分高度和宽度*/
+}*/
+/*各段高度和宽度*/
 #part2{
 	height:300px;
 }
-#part3_wh{
-	width:100%;
-	height:500px;
-}
-#part4{
-	height:400px;
-}
-#part5_wh{
+.parallax_wh{
 	width:100%;
 	height:400px;
 }
-#part6{
+.function_introduce{
 	height:400px;
 }
 /*图片层叠显示,圆角化及屏幕宽度响应*/
 #search_z_index{
-	z-index:1;
+	width:80%;
+	z-index:110%;
 	border-radius:30px;
 	position:absolute;
 	top:-170px;
 }
-#dialogue_z_index{
-	border: 10px solid #ffffff;
+.set_z_index{
+	width:70%;
+	height:120%;
+	border: 15px solid #ffffff;
 	border-radius:50px;
 	z-index:1;
 	position:absolute;
-	top:-200px;
+	top:-175px;
 }
-#part4_function{
+/*各段功能介绍中功能图标缩放比和位置*/
+#icon_position{
+	width:54%;
+	height:37%;
 	position:absolute;
-	top:100px;
-	right:150px;
+	top:150px;
+	right:200px;
 }
-#part6_function{
+#questionicon_position{
+	width:8.5%;
+	height:40%;
 	position:absolute;
-	top:100px;
-	right:100px;
+	top:150px;
+	right:300px;
 }
+.icon_position{
+	width:14%;
+	height:37%;
+	position:absolute;
+	top:150px;
+	right:300px;
+}
+/*各段图片的屏幕尺寸适配*/
 @media only screen and (min-width:768px) and (max-width:1024px){
-	#dialogue_z_index{
+	.dialogue_z_index{
 		border: 10px solid #ffffff;
 		border-radius:50px;
 		z-index:1;
@@ -249,21 +258,9 @@
 		position:absolute;
 		top:0px;
 	}
-	#part4_function{
-		max-height:50%;
-		max-width:50%;
-		position:absolute;
-		right:100px;
-	}
-	#part6_function{
-		max-height:50%;
-		max-width:50%;
-		position:absolute;
-		top:200px;
-	}
 }
 @media only screen and (min-width:320px) and (max-width:768px){
-	#dialogue_z_index{
+	.dialogue_z_index{
 		border: 5px solid #ffffff;
 		border-radius:50px;
 		z-index:1;
@@ -276,22 +273,11 @@
 		position:absolute;
 		top:0px;
 	}
-	#part4_function{
-		position:absolute;
-		left:50px;
-	}
-	#part6_function{
-		position:absolute;
-		top:150px;
-		left:25px;
-	}
 }
-
-/*选好宽高后才能设定背景颜色*/
-#part7{
-	height:450px;
+#footer{
+	height:200px;
 	width:100%;
-	background-color:#000000;
+	background-color:#333333;
 }
 body>.container{
 	padding: 60px 15px 0;
@@ -362,9 +348,12 @@ body>.container{
 }
 
 #footer_text_style{
-	color:#ffffff;
-	font-size:10px;
-	padding-top:200px;
+	color:#999999;
+	font-family:"华文细黑";
+	font-size:12px;
+	font-style:normal;
+	font-weight:400;
+	padding-top:50px;
 	position:absolute;
 	left:150px;
 }
