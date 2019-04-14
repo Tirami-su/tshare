@@ -18,34 +18,6 @@ $(document).ready(function() {
 
 	})
 	/**
-	 * 预览文件
-	 */
-	$('.btn-preview').click(function() {
-		// 请求服务器生成预览
-		$.ajax({
-			url: 'api/preview.php',
-			type: 'GET',
-			data: {
-				url: $(this).data('url'),
-				name: $(this).data('name')
-			},
-			success: res => {
-				if (res.code == 1) {
-					$('preview-target').attr('src', 'temp/' + path + '.png')
-					$('#modal-preview').modal('show')
-				} else {
-					alert(res.msg)
-				}
-			},
-			error: (xhr, status, error) => {
-				console.log('[Status]', status, '\n[Error]', error)
-			},
-			dataType: 'json',
-			timeout: 5000
-		})
-	})
-
-	/**
 	 * 预览功能按钮(显示整页 适应窗口宽度 放大 缩小)
 	 */
 	$('#modal-previewFile .action button').click(function() {
@@ -238,4 +210,31 @@ function nextPage() {
 function toPage(page) {
 	curPage = page
 	searchFile($('#navbar-search').val())
+}
+
+/**
+ * 预览文件
+ */
+function preview(){
+	// 请求服务器生成预览
+	$.ajax({
+		url: 'api/preview.php',
+		type: 'GET',
+		data: {
+			url: event.target.dataset.url
+		},
+		success: res => {
+			if (res.code == 1) {
+				$('preview-target').attr('src', 'temp/' + path + '.png')
+				$('#modal-preview').modal('show')
+			} else {
+				alert(res.msg)
+			}
+		},
+		error: (xhr, status, error) => {
+			console.log('[Status]', status, '\n[Error]', error)
+		},
+		dataType: 'json',
+		timeout: 5000
+	})
 }

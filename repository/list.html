@@ -160,7 +160,7 @@
 				<div><img src="img/file.png" class="file-icon"></div>
 				<div class="col">
 					<div class="row item-title">
-						<div class="file-name" data-url = "{{url}}">{{name}}</div>
+						<div class="file-name" data-url="{{url}}">{{name}}</div>
 						<div class="score ml-auto">{{score}}分</div>
 					</div>
 					<div class="file-description">{{description}}</div>
@@ -171,7 +171,7 @@
 				<span class="num-download">{{download}}次下载</span>
 				<span>贡献者:{{upload_uname}}</span>
 				<span>大小:{{size}}</span>
-				<button type="button" class="btn-preview" data-url = "{{url}}" data-name="{{name}}">预览</button>
+				<button type="button" class="btn-preview" data-url="{{url}}" onclick="preview()">预览</button>
 				<button type="button" class="download">下载</button>
 			</div>
 		</li>
