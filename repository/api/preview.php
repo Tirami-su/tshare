@@ -6,7 +6,7 @@ include_once("../../lib/Image.php");
 
 $valid = ["docx", "doc", "ppt", "pptx", "pdf", "pdf"];
 
-$objFile = $_POST['file'];
+$objFile = $_GET['url'];
 
 $list = explode(".", $objFile);
 $ext = $list[count($list)-1];

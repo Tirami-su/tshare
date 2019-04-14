@@ -115,3 +115,103 @@ java.io.EOFException
 警告: No Unicode mapping for parenrightBig (17) in font MEVZQI+CMEX10
 四月 14, 2019 11:13:41 下午 org.apache.pdfbox.pdmodel.font.PDSimpleFont toUnicode
 警告: No Unicode mapping for summationdisplay (88) in font MEVZQI+CMEX10
+源文件不存在
+Apr 14 23:24:02 JavaBridge ERROR: An exception occured: java.net.SocketException: Connection reset
+java.net.SocketException: Connection reset
+	at java.net.SocketInputStream.read(Unknown Source)
+	at java.net.SocketInputStream.read(Unknown Source)
+	at java.io.BufferedInputStream.read1(Unknown Source)
+	at java.io.BufferedInputStream.read(Unknown Source)
+	at php.java.bridge.http.HttpRequest$HttpInputStream.read(HttpRequest.java:131)
+	at java.io.BufferedInputStream.fill(Unknown Source)
+	at java.io.BufferedInputStream.read(Unknown Source)
+	at php.java.bridge.http.ChunkedInputStream.readPacketLength(ChunkedInputStream.java:126)
+	at php.java.bridge.http.ChunkedInputStream.read(ChunkedInputStream.java:95)
+	at php.java.bridge.http.ChunkedInputStream.eof(ChunkedInputStream.java:144)
+	at php.java.bridge.http.JavaBridgeRunner.doPut(JavaBridgeRunner.java:204)
+	at php.java.bridge.http.HttpServer.service(HttpServer.java:289)
+	at php.java.bridge.http.HttpServer$Runner.run(HttpServer.java:205)
+	at php.java.bridge.util.ThreadPool$Delegate.run(ThreadPool.java:60)
+	at php.java.bridge.util.AppThreadPool$Delegate.run(AppThreadPool.java:58)
+源文件不存在
+Apr 14 23:24:41 JavaBridge ERROR: An exception occured: java.net.SocketException: Connection reset
+java.net.SocketException: Connection reset
+	at java.net.SocketInputStream.read(Unknown Source)
+	at java.net.SocketInputStream.read(Unknown Source)
+	at java.io.BufferedInputStream.read1(Unknown Source)
+	at java.io.BufferedInputStream.read(Unknown Source)
+	at php.java.bridge.http.HttpRequest$HttpInputStream.read(HttpRequest.java:131)
+	at java.io.BufferedInputStream.fill(Unknown Source)
+	at java.io.BufferedInputStream.read(Unknown Source)
+	at php.java.bridge.http.ChunkedInputStream.readPacketLength(ChunkedInputStream.java:126)
+	at php.java.bridge.http.ChunkedInputStream.read(ChunkedInputStream.java:95)
+	at php.java.bridge.http.ChunkedInputStream.eof(ChunkedInputStream.java:144)
+	at php.java.bridge.http.JavaBridgeRunner.doPut(JavaBridgeRunner.java:204)
+	at php.java.bridge.http.HttpServer.service(HttpServer.java:289)
+	at php.java.bridge.http.HttpServer$Runner.run(HttpServer.java:205)
+	at php.java.bridge.util.ThreadPool$Delegate.run(ThreadPool.java:60)
+	at php.java.bridge.util.AppThreadPool$Delegate.run(AppThreadPool.java:58)
+源文件不存在
+Apr 14 23:26:42 JavaBridge ERROR: An exception occured: java.net.SocketException: Connection reset
+java.net.SocketException: Connection reset
+	at java.net.SocketInputStream.read(Unknown Source)
+	at java.net.SocketInputStream.read(Unknown Source)
+	at java.io.BufferedInputStream.read1(Unknown Source)
+	at java.io.BufferedInputStream.read(Unknown Source)
+	at php.java.bridge.http.HttpRequest$HttpInputStream.read(HttpRequest.java:131)
+	at java.io.BufferedInputStream.fill(Unknown Source)
+	at java.io.BufferedInputStream.read(Unknown Source)
+	at php.java.bridge.http.ChunkedInputStream.readPacketLength(ChunkedInputStream.java:126)
+	at php.java.bridge.http.ChunkedInputStream.read(ChunkedInputStream.java:95)
+	at php.java.bridge.http.ChunkedInputStream.eof(ChunkedInputStream.java:144)
+	at php.java.bridge.http.JavaBridgeRunner.doPut(JavaBridgeRunner.java:204)
+	at php.java.bridge.http.HttpServer.service(HttpServer.java:289)
+	at php.java.bridge.http.HttpServer$Runner.run(HttpServer.java:205)
+	at php.java.bridge.util.ThreadPool$Delegate.run(ThreadPool.java:60)
+	at php.java.bridge.util.AppThreadPool$Delegate.run(AppThreadPool.java:58)
+源文件不存在
+四月 14, 2019 11:30:38 下午 org.apache.pdfbox.pdmodel.font.PDSimpleFont toUnicode
+警告: No Unicode mapping for summationtext (80) in font MEVZQI+CMEX10
+四月 14, 2019 11:30:39 下午 org.apache.pdfbox.pdmodel.font.PDSimpleFont toUnicode
+警告: No Unicode mapping for productdisplay (89) in font MEVZQI+CMEX10
+四月 14, 2019 11:30:39 下午 org.apache.pdfbox.pdmodel.font.PDSimpleFont toUnicode
+警告: No Unicode mapping for parenleftBig (16) in font MEVZQI+CMEX10
+四月 14, 2019 11:30:39 下午 org.apache.pdfbox.pdmodel.font.PDSimpleFont toUnicode
+警告: No Unicode mapping for parenrightBig (17) in font MEVZQI+CMEX10
+四月 14, 2019 11:30:39 下午 org.apache.pdfbox.pdmodel.font.PDSimpleFont toUnicode
+警告: No Unicode mapping for summationdisplay (88) in font MEVZQI+CMEX10
+四月 14, 2019 11:31:04 下午 org.apache.pdfbox.pdmodel.font.PDSimpleFont toUnicode
+警告: No Unicode mapping for summationtext (80) in font MEVZQI+CMEX10
+四月 14, 2019 11:31:05 下午 org.apache.pdfbox.pdmodel.font.PDSimpleFont toUnicode
+警告: No Unicode mapping for productdisplay (89) in font MEVZQI+CMEX10
+四月 14, 2019 11:31:05 下午 org.apache.pdfbox.pdmodel.font.PDSimpleFont toUnicode
+警告: No Unicode mapping for parenleftBig (16) in font MEVZQI+CMEX10
+四月 14, 2019 11:31:05 下午 org.apache.pdfbox.pdmodel.font.PDSimpleFont toUnicode
+警告: No Unicode mapping for parenrightBig (17) in font MEVZQI+CMEX10
+四月 14, 2019 11:31:06 下午 org.apache.pdfbox.pdmodel.font.PDSimpleFont toUnicode
+警告: No Unicode mapping for summationdisplay (88) in font MEVZQI+CMEX10
+四月 14, 2019 11:32:58 下午 org.apache.pdfbox.pdmodel.font.PDSimpleFont toUnicode
+警告: No Unicode mapping for summationtext (80) in font MEVZQI+CMEX10
+四月 14, 2019 11:32:58 下午 org.apache.pdfbox.pdmodel.font.PDSimpleFont toUnicode
+警告: No Unicode mapping for productdisplay (89) in font MEVZQI+CMEX10
+四月 14, 2019 11:32:58 下午 org.apache.pdfbox.pdmodel.font.PDSimpleFont toUnicode
+警告: No Unicode mapping for parenleftBig (16) in font MEVZQI+CMEX10
+四月 14, 2019 11:32:58 下午 org.apache.pdfbox.pdmodel.font.PDSimpleFont toUnicode
+警告: No Unicode mapping for parenrightBig (17) in font MEVZQI+CMEX10
+四月 14, 2019 11:32:59 下午 org.apache.pdfbox.pdmodel.font.PDSimpleFont toUnicode
+警告: No Unicode mapping for summationdisplay (88) in font MEVZQI+CMEX10
+四月 14, 2019 11:33:30 下午 org.apache.pdfbox.pdmodel.font.PDSimpleFont toUnicode
+警告: No Unicode mapping for summationtext (80) in font MEVZQI+CMEX10
+四月 14, 2019 11:33:31 下午 org.apache.pdfbox.pdmodel.font.PDSimpleFont toUnicode
+警告: No Unicode mapping for productdisplay (89) in font MEVZQI+CMEX10
+四月 14, 2019 11:33:31 下午 org.apache.pdfbox.pdmodel.font.PDSimpleFont toUnicode
+警告: No Unicode mapping for parenleftBig (16) in font MEVZQI+CMEX10
+四月 14, 2019 11:33:31 下午 org.apache.pdfbox.pdmodel.font.PDSimpleFont toUnicode
+警告: No Unicode mapping for parenrightBig (17) in font MEVZQI+CMEX10
+四月 14, 2019 11:33:32 下午 org.apache.pdfbox.pdmodel.font.PDSimpleFont toUnicode
+警告: No Unicode mapping for summationdisplay (88) in font MEVZQI+CMEX10
+四月 14, 2019 11:35:30 下午 com.artofsolving.jodconverter.openoffice.connection.AbstractOpenOfficeConnection connect
+信息: connected
+四月 14, 2019 11:35:36 下午 com.artofsolving.jodconverter.openoffice.connection.AbstractOpenOfficeConnection disposing
+信息: disconnected
+转换完成！
