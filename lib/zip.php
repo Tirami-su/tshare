@@ -139,7 +139,7 @@ class zip {
  					$this->addDirToZip($src_dir.$filename."/", $zip);
  				} else {
  					// 如果是文件，直接压缩
- 					$zip->addFile($src_dir.$filename);
+ 					$zip->addFile($src_dir.$filename, $filename);
  				}
  			}
  		}
