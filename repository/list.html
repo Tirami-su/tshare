@@ -131,7 +131,7 @@
 				<div><img src="img/folder.png" class="file-icon"></div>
 				<div class="col">
 					<div class="row item-title">
-						<div class="file-name">{{name}}</div>
+						<div class="file-name" data-index="{{index}}" onclick="getDetails()">{{name}}</div>
 						<div class="score ml-auto">{{score}}分</div>
 					</div>
 					<div class="file-description">{{description}}</div>
@@ -157,7 +157,7 @@
 	<script id="template-file" type="text/template">
 		<li class="file-item-file">
 			<div class="row">
-				<div><img src="img/{{type}}.png" class="file-icon"></div>
+				<div><img src="img/{{ext}}.png" class="file-icon"></div>
 				<div class="col">
 					<div class="row item-title">
 						<div class="file-name" data-index="{{index}}" onclick="getDetails()">{{name}}</div>

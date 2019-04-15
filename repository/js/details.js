@@ -1,3 +1,5 @@
 $(document).ready(function() {
-	console.log(sessionStorage.getItem('file'))
-}
+	var index=sessionStorage.getItem('index')
+	var data==JSON.parse(sessionStorage.getItem('res')).data[index]
+	console.log(data)
+})

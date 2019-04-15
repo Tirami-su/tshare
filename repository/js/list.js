@@ -9,8 +9,11 @@ $(document).ready(function() {
 	globalSort = $('input[name=sort]:checked').val()
 	curPage = 1
 	// 立即搜索
-	searchFile(key)
-
+	if (sessionStorage.getItem('res')==null)
+		searchFile(key)
+	else
+		fileList(key, JSON.parse(sessionStorage.getItem('res')))
+		
 	/**
 	 * 预览功能按钮(显示整页 适应窗口宽度 放大 缩小)
 	 */
@@ -78,7 +81,11 @@ function searchFile(key) {
 			sort: globalSort,
 			page: curPage
 		},
-		success: res => fileList(key, res),
+		success: res => {
+			sessionStorage.setItem('res',res)
+			res=JSON.parse(res)
+			fileList(key, res)
+		},
 		error: (xhr, status, error) => {
 			console.log('[Status]', status, '\n[Error]', error)
 			// 隐藏等待动画，清除找不到的提示
@@ -86,7 +93,6 @@ function searchFile(key) {
 			$('#nofound').remove()
 			// 提示连接服务器超时
 		},
-		dataType: 'json',
 		timeout: 5000
 	})
 
@@ -117,7 +123,6 @@ function fileList(key, res) {
 		$('.main').append(cellHtml)
 	} else {
 		$('#result').removeClass('d-none')
-		// 填cell模版
 		data = res.data
 		for (var i = 0; i < data.length; i++) {
 			// 添加序号
@@ -125,36 +130,36 @@ function fileList(key, res) {
 			if (data[i].contents == '') {
 				// 判断文件类型，根据类型设置图标
 				var nameArray = data[i].name.split('.')
-				if (nameArray.length > 1) {
+				if (nameArray.length > 1) 
 					switch (nameArray[nameArray.length - 1]) {
 						case 'doc':
 						case 'docx':
 						case 'odt':
 						case 'pages':
-							data[i].type = 'word'
+							data[i].ext = 'word'
 							break
 						case 'ppt':
 						case 'pptx':
 						case 'odp':
 						case 'key':
-							data[i].type = 'ppt'
+							data[i].ext = 'ppt'
 							break
 						case 'xls':
 						case 'xlsx':
 						case 'csv':
 						case 'ods':
 						case 'numbers':
-							data[i].type = 'excel'
+							data[i].ext = 'excel'
 							break
 						case 'pdf':
-							data[i].type = 'pdf'
+							data[i].ext = 'pdf'
 							break
 						case 'jpg':
 						case 'png':
 						case 'bmp':
 						case 'gif':
 						case 'svg':
-							data[i].type = 'picture'
+							data[i].ext = 'picture'
 							break
 						case 'c':
 						case 'h':
@@ -174,22 +179,25 @@ function fileList(key, res) {
 						case 'v':
 						case 'md':
 						case 'ipynb':
-							data[i].type = 'code'
+							data[i].ext = 'code'
 							break
 						case 'mp3':
-							data[i].type = 'audio'
+							data[i].ext = 'audio'
 							break
 						case 'avi':
-							data[i].type = 'video'
+							data[i].ext = 'video'
 							break
 						case 'txt':
 						case 'rtf':
 						case 'rtfd':
-							data[i].type = 'text'
+							data[i].ext = 'text'
 							break
+						default:
+							data[i].ext = 'other'
 					}
-					cellHtml += template('template-file', data[i])
-				}
+				else
+					data[i].ext='other'
+				cellHtml += template('template-file', data[i])
 			} else
 				cellHtml += template('template-folder', data[i])
 		}
@@ -286,6 +294,7 @@ function preview() {
 		},
 		success: res => {
 			if (res.code == 1) {
+				var path=event.target.dataset.url
 				$('preview-target').attr('src', 'temp/' + path + '.png')
 				$('#modal-previewFile').modal('show')
 			} else {
@@ -306,6 +315,6 @@ function preview() {
 function getDetails(){
 	// 通过session把文件数据传到details页面
 	var index=event.target.dataset.index
-	sessionStorage.setItem('file',data[index])
-	location.pathname = "details.html"
+	sessionStorage.setItem('index',index)
+	location = "repository/details.html"
 }
