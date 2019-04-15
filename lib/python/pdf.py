@@ -1,6 +1,8 @@
 from PyPDF2 import PdfFileReader, PdfFileWriter
+import logging
 import sys
 def split_pdf(infn, outfn):
+    logging.info("开始拆分PDF")
     pdf_output = PdfFileWriter()
     pdf_input = PdfFileReader(open(infn, 'rb'))
     # 获取 pdf 共用多少页
@@ -13,7 +15,7 @@ def split_pdf(infn, outfn):
     for i in range(0, pages):
         pdf_output.addPage(pdf_input.getPage(i))
     pdf_output.write(open(outfn, 'wb'))
-
+    logging.info("结束PDF拆分")
 def merge_pdf(infnList, outfn):
     pdf_output = PdfFileWriter()
     for infn in infnList:
@@ -24,6 +26,8 @@ def merge_pdf(infnList, outfn):
         for i in range(page_count):
             pdf_output.addPage(pdf_input.getPage(i))
     pdf_output.write(open(outfn, 'wb'))
+
+logging.basicConfig(filename='C:\\users\\fuhao\\desktop\\logger.log', level=logging.INFO)
 
 if __name__ == '__main__':   
     infn = sys.argv[1]

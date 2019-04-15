@@ -480,7 +480,7 @@ function page() {
 		$size			= $file->getSize();
 
 		$len = count(explode("/", $path));
-		if($len > 5) {
+		if($len > 4) {
 			// 这是一个压缩包中的文件
 			$path .= "/{$name}";
 		} else {
