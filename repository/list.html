@@ -11,15 +11,15 @@
 
 		<link rel="alternate" type="application/rss+xml" title="RSS" href="/rss.xml" />
 		<link rel="shortcut icon" href="../img/favicon.ico">
-		
+
 		<!-- CSS Files -->
-		<link rel="stylesheet" href="../css/bootstrap.css"/>
-		<link rel="stylesheet" href="../css/waitMe.css"/>
-<!-- 		<link rel="stylesheet" href="../css/common.css"/>
+		<link rel="stylesheet" href="../css/bootstrap.css" />
+		<link rel="stylesheet" href="../css/waitMe.css" />
+		<!-- 		<link rel="stylesheet" href="../css/common.css"/>
 		<link rel="stylesheet" href="css/list.css"/> -->
 		<?php require '../api/reload_css_js.php'; ?>
-		<link rel="stylesheet" href="<?php echo auto_version('/css/common.css'); ?>"/>
-		<link rel="stylesheet" href="<?php echo auto_version('/repository/css/list.css'); ?>"/>
+		<link rel="stylesheet" href="<?php echo auto_version('/css/common.css'); ?>" />
+		<link rel="stylesheet" href="<?php echo auto_version('/repository/css/list.css'); ?>" />
 	</head>
 	<body class="bg-light">
 		<!-- 导航条 -->
@@ -46,7 +46,7 @@
 					</div>
 					<div class="nav-space"></div>
 					<div class="dropdown">
-						<img id="msg-icon" class="dropdown-toggle" data-toggle="dropdown" src="../home/img/xinfeng.png">	
+						<img id="msg-icon" class="dropdown-toggle" data-toggle="dropdown" src="../home/img/xinfeng.png">
 						<div class="dropdown-menu dropdown-menu-right">
 							<a class="dropdown-item" href="#">系统通知</a>
 							<a class="dropdown-item" href="#">问答</a>
@@ -57,7 +57,7 @@
 					</div>
 					<div class="nav-space"></div>
 					<div class="dropdown">
-						<img id="user-icon" class="dropdown-toggle" data-toggle="dropdown" src="../home/img/user.jpg">	
+						<img id="user-icon" class="dropdown-toggle" data-toggle="dropdown" src="../home/img/user.jpg">
 						<div class="dropdown-menu dropdown-menu-right">
 							<a class="dropdown-item" href="#">个人中心</a>
 							<a class="dropdown-item" href="upload.html">上传资料</a>
@@ -73,13 +73,13 @@
 		</nav>
 		<div class="container main">
 			<!-- 搜索结果 -->
-			<div id="result" class="row">				
+			<div id="result" class="row">
 				<!-- 选项 -->
 				<div id="options-col" class="col-md-3">
 					<div id="options" class="bg-white shadow-sm">
 						<div class="option-title">选项</div>
 						<div class="form-check">
-							<input type="checkbox" id="search-mode" class="form-check-input" checked onclick="modeSwitch()"/>
+							<input type="checkbox" id="search-mode" class="form-check-input" checked onclick="modeSwitch()" />
 							<label class="form-check-label" for="search-mode">列出资料包内的文件</label>
 						</div>
 						<div class="option-title">排序</div>
@@ -92,11 +92,11 @@
 							<label class="form-check-label" for="sort2">下载量</label>
 						</div>
 						<div class="form-check">
-							<input class="form-check-input" type="radio" name="sort" id="sort3" value="2" onclick="sortSwitch(this.value)">
+							<input class="form-check-input" type="radio" name="sort" id="sort3" value="3" onclick="sortSwitch(this.value)">
 							<label class="form-check-label" for="sort3">评分</label>
 						</div>
 						<div class="form-check">
-							<input class="form-check-input" type="radio" name="sort" id="sort4" value="3" onclick="sortSwitch(this.value)">
+							<input class="form-check-input" type="radio" name="sort" id="sort4" value="2" onclick="sortSwitch(this.value)">
 							<label class="form-check-label" for="sort4">上传时间</label>
 						</div>
 					</div>
@@ -110,19 +110,19 @@
 					</nav>
 				</div>
 			</div>
-		</div>	
+		</div>
 		<!-- 用模态对话框实现预览 -->
 		<div id="modal-previewFile" class="modal modal-preview fade" tabindex="-1" role="dialog" data-backdrop="static">
 			<!-- 弃用dialog和content，东西都放在外面 -->
 			<div class="modal-dialog"></div>
-			<img class="target" src="../home/img/carousel-2.jpg" >
-			<button type="button" class="close" data-dismiss="modal"><img src="img/guanbi.png" ></button>
+			<img class="target" src="../home/img/carousel-2.jpg">
+			<button type="button" class="close" data-dismiss="modal"><img src="img/guanbi.png"></button>
 			<div class="action">
-				<button type="button" data-resize='w' onclick="resize()"><img src="img/width.png" ></button>
-				<button type="button" data-resize='l' onclick="resize()"><img src="img/fangda.png" ></button>
-				<button type="button" data-resize='s' onclick="resize()"><img src="img/suoxiao.png" ></button>
+				<button type="button" data-resize='w' onclick="resize()"><img src="img/width.png"></button>
+				<button type="button" data-resize='l' onclick="resize()"><img src="img/fangda.png"></button>
+				<button type="button" data-resize='s' onclick="resize()"><img src="img/suoxiao.png"></button>
 			</div>
-		</div> 
+		</div>
 	</body>
 	<!-- 搜索结果-文件夹模板 -->
 	<script id="template-folder" type="text/template">
@@ -157,10 +157,10 @@
 	<script id="template-file" type="text/template">
 		<li class="file-item-file">
 			<div class="row">
-				<div><img src="img/file.png" class="file-icon"></div>
+				<div><img src="img/{{type}}.png" class="file-icon"></div>
 				<div class="col">
 					<div class="row item-title">
-						<div class="file-name" data-url="{{url}}">{{name}}</div>
+						<div class="file-name" data-index="{{index}}" onclick="getDetails()">{{name}}</div>
 						<div class="score ml-auto">{{score}}分</div>
 					</div>
 					<div class="file-description">{{description}}</div>
@@ -193,12 +193,12 @@
 	<script src="../js/core/jquery-3.3.1.js" type="text/javascript"></script>
 	<script src="../js/core/popper.min.js" type="text/javascript"></script>
 	<script src="../js/core/bootstrap.js" type="text/javascript"></script>
-	
+
 	<script src="../js/template-web.js" type="text/javascript"></script>
 	<script src="../js/waitMe.js" type="text/javascript"></script>
-	
-<!-- 	<script src="../js/base.js" type="text/javascript"></script>
+
+	<!-- 	<script src="../js/base.js" type="text/javascript"></script>
 	<script src="js/list.js" type="text/javascript"></script> -->
-	<script src="<?php echo auto_version('/js/base.js'); ?>" type="text/javascript" ></script>
+	<script src="<?php echo auto_version('/js/base.js'); ?>" type="text/javascript"></script>
 	<script src="<?php echo auto_version('/repository/js/list.js'); ?>" type="text/javascript"></script>
 </html>

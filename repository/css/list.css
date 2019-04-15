@@ -35,6 +35,7 @@
 
 .file-name {
 	font-size: 1.2em;
+	cursor: pointer;
 }
 
 .file-description,

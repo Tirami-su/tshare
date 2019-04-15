@@ -1,4 +1,4 @@
-<!--?php
+<?php
 session_start();
 if(array_key_exists("seize", $_SESSION)) {
 	if($_SESSION['seize']) {
@@ -6,325 +6,303 @@ if(array_key_exists("seize", $_SESSION)) {
 		echo '<script type="text/javascript">alert("您的账号被别人登录了")</script>';
 	}
 }
-?-->
+?>
 
 <!DOCTYPE html>
 <html lang="zh-cmn-Hans">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Tshare校园资源共享平台</title>
-    <meta name="description" content="Tshare校园资源共享平台，高质量资料分享和问答，闲置交易，失物招领，快来找到你的组织！">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<title>Tshare校园资源共享平台</title>
+		<meta name="description" content="Tshare校园资源共享平台，高质量资料分享和问答，闲置交易，失物招领，快来找到你的组织！">
 
-    <!-- 为移动设备添加 viewport -->
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<!-- 为移动设备添加 viewport -->
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <link rel="alternate" type="application/rss+xml" title="RSS" href="/rss.xml" />
-    <link rel="shortcut icon" href="img/favicon.ico">
-	
-	<!-- CSS Files -->
-	<link rel="stylesheet" type="text/css" href="css/bootstrap.css"/>
-<!-- 	<link rel="stylesheet" type="text/css" href="css/now-ui-kit.css"/>
-	<link rel="stylesheet" type="text/css" href="css/common.css"/>
-	<link rel="stylesheet" type="text/css" href="css/index.css"/> -->
-	<link rel="stylesheet" type="text/css" href="css/index.css"/>
-	<?php require 'api/reload_css_js.php'; ?>
-	<link rel="stylesheet" type="text/css" href="<?php echo auto_version('/css/now-ui-kit.css'); ?>"/>
-	<link rel="stylesheet" type="text/css" href="<?php echo auto_version('/css/common.css'); ?>"/>
-	<link rel="stylesheet" type="text/css" href="<?php echo auto_version('/css/index.css'); ?>"/>
-</head>
-<body>
-    <!-- 导航条 -->
-    <nav class="navbar navbar-expand-lg bg-white fixed-top navbar-transparent" color-on-scroll="400">
-        <div class="container">
-			<!-- 网站标志 -->
-			<img class="logo" src="img/logo.png">
-			<!-- 登录、注册按钮 -->
-            <div class="collapse navbar-collapse justify-content-end" data-nav-image="img/blurred-image-1.jpg">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-						<a class="nav-link" onclick="showLogin()">登录</a>
-                    </li>
-                    <li class="nav-item">
-						<a class="nav-link" onclick="showRegister()">注册</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-	
-	
-	<!-- 页面主体 -->
-	<div id="gradient">
-		<div class="row">
-			<div class="col-sm-8 col-md-8" id="part1_text_position">
-			<div>
-				<p id="part1_Tshare_style">
-				Tshare</p>
+		<link rel="alternate" type="application/rss+xml" title="RSS" href="/rss.xml" />
+		<link rel="shortcut icon" href="img/favicon.ico">
 
+		<!-- CSS Files -->
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+<!-- 		<link rel="stylesheet" type="text/css" href="css/now-ui-kit.css"/>
+		<link rel="stylesheet" type="text/css" href="css/common.css"/>
+		<link rel="stylesheet" type="text/css" href="css/index.css"/> -->
+		<?php require 'api/reload_css_js.php'; ?>
+		<link rel="stylesheet" type="text/css" href="<?php echo auto_version('/css/now-ui-kit.css'); ?>" />
+		<link rel="stylesheet" type="text/css" href="<?php echo auto_version('/css/common.css'); ?>" />
+		<link rel="stylesheet" type="text/css" href="<?php echo auto_version('/css/index.css'); ?>" />
+	</head>
+	<body>
+		<!-- 导航条 -->
+		<nav class="navbar navbar-expand-lg bg-white fixed-top navbar-transparent" color-on-scroll="400">
+			<div class="container">
+				<!-- 网站标志 -->
+				<img class="logo" src="img/logo.png">
+				<!-- 登录、注册按钮 -->
+				<div class="collapse navbar-collapse justify-content-end" data-nav-image="img/blurred-image-1.jpg">
+					<ul class="navbar-nav">
+						<li class="nav-item">
+							<a class="nav-link" onclick="showLogin()">登录</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" onclick="showRegister()">注册</a>
+						</li>
+					</ul>
+				</div>
 			</div>
-			<div>
-				<p class="lead" id="part1_text_style">
-                高效率的问答，高质量的资源分享，出类拔萃的校园助手</p></div>
-			</div>
-			<div class="col-sm-4 col-md-4" class="icon_sm">
-				<figure><img src="img/1_hat.png" class="img-responsive" id="hat_position"></figure>
-				<figure><img src="img/1_square.png" class="img-responsive" id="square_position_index"></figure>
-			</div>
-		</div>
-	</div>
-	<div class="container" id="part2">
-		<div class="container ">
-			<div class="row ">
-				<div class="col-md-4"></div>
-				<div class="col-md-4">
-					<div class="col-md-12 text-center">
-						<nobr id="part2_Tshare_style">
-						  Tshare</nobr>
-					<!--/div-->
-					<!--div class="col-md-6"-->
-						<nobr class="part2_row13_style">
-						  致力于为师生提供</nobr>
-					</div></div>	
-				<div class="col-md-4"></div>
-			</div>
-		</div>
-
-		<div class="container">
+		</nav>
+		<!-- 页面主体 -->
+		<div id="gradient">
 			<div class="row">
-				<div class="col-md-2"></div>
-				<div class="col-md-8">
-					<p class="text-center" id="part2_row2_style">方便 | 快捷 | 高效 | 高质量</p></div>
-				<div class="col-md-2"></div>
-			</div>
-		</div>
-			
-		<div class="container">
-			<div class="row">
-				<div class="col-md-4"></div>
-				<div class="col-md-4">
-					<p class="text-center lead part2_row13_style">的校园服务网站</p></div>
-				<div class="col-md-4"></div>
-			</div>	
-		</div>	
-	</div>
-	<div class="parallax-window parallax_wh" data-parallax="scroll" data-image-src="img/3_learn.jpg"></div>
-	<div class="container function_introduce">
-		<div class="row">
-			<div class="col-md-6 col-sm-8 px-0 part46_text_style">
-			<h2>一键搜索，乐享资源</h2>
-				<p>简单方便地资源搜索，为你提供最直观的资源视图，让你用最少的时间获得你最需要的资源</p>
-				<p>Tshare的资源源自于每位HIT的老师和同学的分享，再经过我们平台的资源审核，
-				   建立属于我们哈尔滨工业大学的专属资料库</p></div>
-			<div class="col-md-6 col-sm-4 icon_sm">
-			<img src="./img/4_search.png" class="img-responsive center-block" id="search_z_index">
-			<img src="img/share.png" class="img-responsive center-block icon_position"></div>
-		</div>	
-	</div>
-	<div class="parallax-window  parallax_wh" data-parallax="scroll" data-image-src="./img/5_learn.jpg"></div>	
-	<div class="container function_introduce">
-		<div class="row">
-			<div class="col-md-6 col-sm-8 part46_text_style">
-				<h2>轻松提问，高效回答</h2>
-				<p>只需要简单的提问就可以获得其他同学的高效高质量回答</p>
-				<p>我们尽最大能力邀请更多的老师和同学入驻本站，用最快的速度为问题提供高质量解答</p></div>
-			<div class="col-md-6 col-sm-4 icon_sm">
-				<img src="./img/zhihu.png" class="img-responsive center-block set_z_index">
-				<div><img src="img/question.png" class="img-responsive center-block" id="questionicon_position"></div></div>
-			</div>
-	</div>
-	<div class="parallax-window  parallax_wh" data-parallax="scroll" data-image-src="./img/7_learn.jpg"></div>
-	<div class="container function_introduce">
-		<div class="row">
-			<div class="col-md-6 col-sm-8 part46_text_style">
-				<h2>收购上架，安全交易</h2>
-				<p>现在已经用不上的资料书籍，宿舍神器还有电子设备。
-				   上架Tshare，用双方都满意的价格转让给更需要TA的人</p>
-				<p>Tshare的身份认证注册方式让您的交易安全领先在起跑线</p></div>
-			<div class="col-md-6 col-sm-4 icon_sm">
-				<img src="./img/unused_trade.png" class="img-responsive center-block set_z_index">
-				<div><img src="img/trade.png" class="img-responsive center-block icon_position"></div></div>
-			</div>
-	</div>
-	<div class="parallax-window parallax_wh" data-parallax="scroll" data-image-src="./img/9_learn.jpg"></div>
-	<div class="container function_introduce">
-		<div class="row">
-			<div class="col-md-6 col-sm-8 part46_text_style">
-				<h2>加入Tshare，发现更多</h2>
-				<p>你可以关注你所感兴趣的TA，看到他的高质量回答和分享的文件</p>
-				<p>你可以利用更有效率的Tshare帮助你告白、拼单和找寻失物</p></div>
-			<div class="col-md-6 col-sm-4 icon_sm">
-				<img src="./img/6_dialogue.png" class="img-responsive center-block set_z_index">
-				<div><img src="img/10_function.png" class="img-responsive center-block" id="icon_position"></div></div>
-			</div>
-	</div>
-	<!-- 页脚 -->
-	<div id="footer">
-		<div class="row">
-			<div class="col-md-3"></div>
-			<div class="col-md-6 col-md-offset-4">
-				<p class="text-center" id="footer_text_style">
-				互联网备案号：3215643215641345613号<br>
-				xxxxx业务经营许可证：12345345-575643123<br>
-				互联网违法和不良信息举报电话：0571-81683755 blxxjb@alibaba-inc.com<br>
-				联系我们：54651324534534567@qq.com<br><br>
-				版权所有</p></div>
-			<div class="col-md-3"></div></div></div>	
-	
-	
-	
-	<!-- 注册模态对话框 -->
-	<div id="modal-register" class="modal fade"  tabindex="-1" role="dialog">
-		<div class="modal-dialog" role="document">
-			<div id="content-register" class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" >注册Tshare</h5>
-					<button type="button" class="close" data-dismiss="modal">
-					  <span>&times;</span>
-					</button>
-				</div>
-				<div class="modal-body col-md-10 offset-md-1">
-	                <form>
-						<div class="form-group">
-							<input id="input-id-register" type="text" placeholder="教育邮箱" class="form-control" maxlength="20">
-						</div>
-						<div class="input-group">
-							<div class="input-group-prepend">
-								<div class="input-group-text">@</div>
-							</div>
-							<button class="dropdown-toggle email-addr" type="button" id="input-addr-register" data-toggle="dropdown">stu.hit.edu.cn</button>
-							<div class="dropdown-menu">
-								<a class="dropdown-item" >stu.hit.edu.cn</a>
-								<a class="dropdown-item" >hit.edu.cn</a>
-								<a class="dropdown-item" >hitwh.edu.cn</a>
-								<a class="dropdown-item" >alu.hit.edu.cn</a>
-								<a class="dropdown-item" >2004.hit.edu.cn</a>
-								<a class="dropdown-item" >ftcl.hit.edu.cn</a>
-								<a class="dropdown-item" >ir.hit.edu.cn</a>
-							</div>
-						</div>
-						<div class="form-group d-flex">
-							<input id="input-graph-code" type="text" placeholder="图形验证码" class="form-control" maxlength="4" autocomplete="off">
-							<div id="img-graph-code"></div>
-						</div>
-						<div class="form-group d-flex">
-							<input id="input-email-code" type="text" placeholder="邮箱验证码" class="form-control" maxlength="6" autocomplete="off">
-							<button id="btn-send" type="button" class="btn" onclick="sendEmailCode()">发送邮箱验证码</button>
-	                    </div>
-						<button type="button" class="btn" onclick="confirmEmailCode()">注册</button>
-	                </form>
-				</div>
-				<div class="modal-footer bg-light d-flex justify-content-center">已有账号？<a onclick="modalSwitch('login')">登录</a>
-				</div>
-			</div>
-			<div id="content-setting" class="modal-content d-none">
-				<div class="modal-header">
-					<h5 class="modal-title">设置用户名和密码</h5>
-					<button type="button" class="close" data-dismiss="modal">
-					  <span>&times;</span>
-					</button>
-				</div>			
-				<div class="modal-body col-md-10 offset-md-1">					
-	                <form>
-	                	<div class="form-group">
-	                    	<input id="input-name" type="text" placeholder="用户名" class="form-control" maxlength="20">
-	                    </div>
-	                    <div class="form-group">
-	                    	<input id="input-pwd-setting" type="password" placeholder="密码" class="form-control" maxlength="20">
-	                    </div>
-						<button type="button" class="btn" onclick="register()">加入Tshare</button>
-	                </form>
-				</div>
-				<div class="modal-footer bg-light d-flex justify-content-center">已有账号？<a onclick="modalSwitch('#modal-setting','#modal-login')">登录</a>
-				</div>
-			</div>
-			<div id="content-login" class="modal-content d-none">
-				<div class="modal-header">
-					<h5 class="modal-title" >登录Tshare</h5>
-					<button type="button" class="close" data-dismiss="modal">
-					  <span>&times;</span>
-					</button>
-				</div>			
-				<div class="modal-body col-md-10 offset-md-1">
-	                <form>
-						<div class="form-group">
-							<input id="input-id-login" type="text" placeholder="教育邮箱" class="form-control" maxlength="20">
-						</div>
-						<div class="input-group">
-							<div class="input-group-prepend">
-								<div class="input-group-text">@</div>
-							</div>
-							<button class="dropdown-toggle email-addr" type="button" id="input-addr-login" data-toggle="dropdown">stu.hit.edu.cn</button>
-							<div class="dropdown-menu">
-								<a class="dropdown-item" >stu.hit.edu.cn</a>
-								<a class="dropdown-item" >hit.edu.cn</a>
-								<a class="dropdown-item" >hitwh.edu.cn</a>
-								<a class="dropdown-item" >alu.hit.edu.cn</a>
-								<a class="dropdown-item" >2004.hit.edu.cn</a>
-								<a class="dropdown-item" >ftcl.hit.edu.cn</a>
-								<a class="dropdown-item" >ir.hit.edu.cn</a>
-							</div>
-						</div>
-	                    <div class="form-group">
-	                    	<input id="input-pwd-login" type="password" placeholder="密码" class="form-control" maxlength="20">
-	                    </div>
-						<div id="forget-pwd" class="d-flex justify-content-between">
-							<div class="form-check">
-								<input type="checkbox" id="remember" class="form-check-input" />
-								<label class="form-check-label" for="remember">一周内自动登录</label>
-							</div>
-							<a href="">忘记密码</a>
-						</div>
-						<button type="button" class="btn" onclick="login()">登录</button>
-	                </form>
-				</div>
-				<div class="modal-footer bg-light d-flex justify-content-center">没有账号？<a onclick="modalSwitch('register')">注册</a>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- 登录模态对话框 -->
-<!-- 	<div id="modal-login" class="modal fade" tabindex="-1" role="dialog">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" >登录Tshare</h5>
-					<button type="button" class="close" data-dismiss="modal">
-					  <span>&times;</span>
-					</button>
-				</div>			
-				<div class="modal-body col-md-10 offset-md-1">					
-	                <form>
-	                	<div class="form-group">
-	                    	<input id="input-id-login" type="text" placeholder="学号" class="form-control">
-	                    </div>
-	                    <div class="form-group">
-	                    	<input id="input-pwd-login" type="password" placeholder="密码" class="form-control">
-	                    </div>
-						<div id="forget-pwd" class="d-flex justify-content-end">
-							<a href="">忘记密码</a>
-						</div>
-						<button type="button" class="btn" onclick="login()">登录</button>
-	                </form>
-				</div>
-				<div class="modal-footer bg-light d-flex justify-content-center">没有账号？<a onclick="modalSwitch('#modal-login','#modal-register')">注册</a>
-				</div>
-			</div>
-		</div>
-	</div> -->
-</body>
-<script src="js/core/jquery-3.3.1.js" type="text/javascript"></script>
-<script src="js/core/popper.min.js" type="text/javascript"></script>
-<script src="js/core/bootstrap.js" type="text/javascript"></script>
+				<div class="col-sm-8 col-md-8" id="part1_text_position">
+					<div>
+						<p id="part1_Tshare_style">
+							Tshare</p>
 
-<script src="js/now-ui-kit.js" type="text/javascript"></script>
-<!--添加字体和图片响应式缩放插件-->
-<script src="js/jQuery.fontFlex.js" type="text/javascript"></script>
-<!--视差js，yfr-->
-<script src="./js/parallax.min.js" type="text/javascript"></script>
-<script src="./js/fontflex.js" type="text/javascript"></script>
-<!-- <script src="js/base.js" type="text/javascript"></script>
-<script src="js/index.js" type="text/javascript"></script> -->
-<script src="<?php echo auto_version('/js/base.js'); ?>" type="text/javascript"></script>
-<script src="<?php echo auto_version('/js/index.js'); ?>" type="text/javascript"></script>
+					</div>
+					<div>
+						<p class="lead" id="part1_text_style">
+							高效率的问答，高质量的资源分享，出类拔萃的校园助手</p>
+					</div>
+				</div>
+				<div class="col-sm-4 col-md-4" class="icon_sm">
+					<figure><img src="img/1_hat.png" class="img-responsive" id="hat_position"></figure>
+					<figure><img src="img/1_square.png" class="img-responsive" id="square_position_index"></figure>
+				</div>
+			</div>
+		</div>
+		<div class="container" id="part2">
+			<div class="container ">
+				<div class="row ">
+					<div class="col-md-4"></div>
+					<div class="col-md-4">
+						<div class="col-md-12 text-center">
+							<nobr id="part2_Tshare_style">
+								Tshare</nobr>
+							<!--/div-->
+							<!--div class="col-md-6"-->
+							<nobr class="part2_row13_style">
+								致力于为师生提供</nobr>
+						</div>
+					</div>
+					<div class="col-md-4"></div>
+				</div>
+			</div>
+
+			<div class="container">
+				<div class="row">
+					<div class="col-md-2"></div>
+					<div class="col-md-8">
+						<p class="text-center" id="part2_row2_style">方便 | 快捷 | 高效 | 高质量</p>
+					</div>
+					<div class="col-md-2"></div>
+				</div>
+			</div>
+
+			<div class="container">
+				<div class="row">
+					<div class="col-md-4"></div>
+					<div class="col-md-4">
+						<p class="text-center lead part2_row13_style">的校园服务网站</p>
+					</div>
+					<div class="col-md-4"></div>
+				</div>
+			</div>
+		</div>
+		<div class="parallax-window parallax_wh" data-parallax="scroll" data-image-src="img/3_learn.jpg"></div>
+		<div class="container function_introduce">
+			<div class="row">
+				<div class="col-md-6 col-sm-8 px-0 part46_text_style">
+					<h2>一键搜索，乐享资源</h2>
+					<p>简单方便地资源搜索，为你提供最直观的资源视图，让你用最少的时间获得你最需要的资源</p>
+					<p>Tshare的资源源自于每位HIT的老师和同学的分享，再经过我们平台的资源审核，
+						建立属于我们哈尔滨工业大学的专属资料库</p>
+				</div>
+				<div class="col-md-6 col-sm-4 icon_sm">
+					<img src="./img/4_search.png" class="img-responsive center-block" id="search_z_index">
+					<img src="img/share.png" class="img-responsive center-block icon_position"></div>
+			</div>
+		</div>
+		<div class="parallax-window  parallax_wh" data-parallax="scroll" data-image-src="./img/5_learn.jpg"></div>
+		<div class="container function_introduce">
+			<div class="row">
+				<div class="col-md-6 col-sm-8 part46_text_style">
+					<h2>轻松提问，高效回答</h2>
+					<p>只需要简单的提问就可以获得其他同学的高效高质量回答</p>
+					<p>我们尽最大能力邀请更多的老师和同学入驻本站，用最快的速度为问题提供高质量解答</p>
+				</div>
+				<div class="col-md-6 col-sm-4 icon_sm">
+					<img src="./img/zhihu.png" class="img-responsive center-block set_z_index">
+					<div><img src="img/question.png" class="img-responsive center-block" id="questionicon_position"></div>
+				</div>
+			</div>
+		</div>
+		<div class="parallax-window  parallax_wh" data-parallax="scroll" data-image-src="./img/7_learn.jpg"></div>
+		<div class="container function_introduce">
+			<div class="row">
+				<div class="col-md-6 col-sm-8 part46_text_style">
+					<h2>收购上架，安全交易</h2>
+					<p>现在已经用不上的资料书籍，宿舍神器还有电子设备。
+						上架Tshare，用双方都满意的价格转让给更需要TA的人</p>
+					<p>Tshare的身份认证注册方式让您的交易安全领先在起跑线</p>
+				</div>
+				<div class="col-md-6 col-sm-4 icon_sm">
+					<img src="./img/unused_trade.png" class="img-responsive center-block set_z_index">
+					<div><img src="img/trade.png" class="img-responsive center-block icon_position"></div>
+				</div>
+			</div>
+		</div>
+		<div class="parallax-window parallax_wh" data-parallax="scroll" data-image-src="./img/9_learn.jpg"></div>
+		<div class="container function_introduce">
+			<div class="row">
+				<div class="col-md-6 col-sm-8 part46_text_style">
+					<h2>加入Tshare，发现更多</h2>
+					<p>你可以关注你所感兴趣的TA，看到他的高质量回答和分享的文件</p>
+					<p>你可以利用更有效率的Tshare帮助你告白、拼单和找寻失物</p>
+				</div>
+				<div class="col-md-6 col-sm-4 icon_sm">
+					<img src="./img/6_dialogue.png" class="img-responsive center-block set_z_index">
+					<div><img src="img/10_function.png" class="img-responsive center-block" id="icon_position"></div>
+				</div>
+			</div>
+		</div>
+		<!-- 页脚 -->
+		<div id="footer">
+			<div class="row">
+				<div class="col-md-6 col-md-offset-4">
+					<p class="text-center" id="footer_text_style">
+						互联网备案号：3215643215641345613号<br>
+						xxxxx业务经营许可证：12345345-575643123<br>
+						互联网违法和不良信息举报电话：0571-81683755 blxxjb@alibaba-inc.com<br>
+						联系我们：54651324534534567@qq.com<br><br>
+						版权所有
+					</p>
+				</div>
+			</div>
+		</div>
+		<!-- 注册登录模态对话框 -->
+		<div id="modal-register" class="modal fade" tabindex="-1" role="dialog">
+			<div class="modal-dialog" role="document">
+				<div id="content-register" class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title">注册Tshare</h5>
+						<button type="button" class="close" data-dismiss="modal">
+							<span>&times;</span>
+						</button>
+					</div>
+					<div class="modal-body col-md-10 offset-md-1">
+						<form>
+							<div class="form-group">
+								<input id="input-id-register" type="text" placeholder="教育邮箱" class="form-control" maxlength="20">
+							</div>
+							<div class="input-group">
+								<div class="input-group-prepend">
+									<div class="input-group-text">@</div>
+								</div>
+								<button class="dropdown-toggle email-addr" type="button" id="input-addr-register" data-toggle="dropdown">stu.hit.edu.cn</button>
+								<div class="dropdown-menu">
+									<a class="dropdown-item">stu.hit.edu.cn</a>
+									<a class="dropdown-item">hit.edu.cn</a>
+									<a class="dropdown-item">hitwh.edu.cn</a>
+									<a class="dropdown-item">alu.hit.edu.cn</a>
+									<a class="dropdown-item">2004.hit.edu.cn</a>
+									<a class="dropdown-item">ftcl.hit.edu.cn</a>
+									<a class="dropdown-item">ir.hit.edu.cn</a>
+								</div>
+							</div>
+							<div class="form-group d-flex">
+								<input id="input-graph-code" type="text" placeholder="图形验证码" class="form-control" maxlength="4" autocomplete="off">
+								<div id="img-graph-code"></div>
+							</div>
+							<div class="form-group d-flex">
+								<input id="input-email-code" type="text" placeholder="邮箱验证码" class="form-control" maxlength="6" autocomplete="off">
+								<button id="btn-send" type="button" class="btn" onclick="sendEmailCode()">发送邮箱验证码</button>
+							</div>
+							<button type="button" class="btn" onclick="confirmEmailCode()">注册</button>
+						</form>
+					</div>
+					<div class="modal-footer bg-light d-flex justify-content-center">已有账号？<a onclick="modalSwitch('login')">登录</a>
+					</div>
+				</div>
+				<div id="content-setting" class="modal-content d-none">
+					<div class="modal-header">
+						<h5 class="modal-title">设置用户名和密码</h5>
+						<button type="button" class="close" data-dismiss="modal">
+							<span>&times;</span>
+						</button>
+					</div>
+					<div class="modal-body col-md-10 offset-md-1">
+						<form>
+							<div class="form-group">
+								<input id="input-name" type="text" placeholder="用户名" class="form-control" maxlength="20">
+							</div>
+							<div class="form-group">
+								<input id="input-pwd-setting" type="password" placeholder="密码" class="form-control" maxlength="20">
+							</div>
+							<button type="button" class="btn" onclick="register()">加入Tshare</button>
+						</form>
+					</div>
+					<div class="modal-footer bg-light d-flex justify-content-center">已有账号？<a onclick="modalSwitch('#modal-setting','#modal-login')">登录</a>
+					</div>
+				</div>
+				<div id="content-login" class="modal-content d-none">
+					<div class="modal-header">
+						<h5 class="modal-title">登录Tshare</h5>
+						<button type="button" class="close" data-dismiss="modal">
+							<span>&times;</span>
+						</button>
+					</div>
+					<div class="modal-body col-md-10 offset-md-1">
+						<form>
+							<div class="form-group">
+								<input id="input-id-login" type="text" placeholder="教育邮箱" class="form-control" maxlength="20">
+							</div>
+							<div class="input-group">
+								<div class="input-group-prepend">
+									<div class="input-group-text">@</div>
+								</div>
+								<button class="dropdown-toggle email-addr" type="button" id="input-addr-login" data-toggle="dropdown">stu.hit.edu.cn</button>
+								<div class="dropdown-menu">
+									<a class="dropdown-item">stu.hit.edu.cn</a>
+									<a class="dropdown-item">hit.edu.cn</a>
+									<a class="dropdown-item">hitwh.edu.cn</a>
+									<a class="dropdown-item">alu.hit.edu.cn</a>
+									<a class="dropdown-item">2004.hit.edu.cn</a>
+									<a class="dropdown-item">ftcl.hit.edu.cn</a>
+									<a class="dropdown-item">ir.hit.edu.cn</a>
+								</div>
+							</div>
+							<div class="form-group">
+								<input id="input-pwd-login" type="password" placeholder="密码" class="form-control" maxlength="20">
+							</div>
+							<div id="forget-pwd" class="d-flex justify-content-between">
+								<div class="form-check">
+									<input type="checkbox" id="remember" class="form-check-input" />
+									<label class="form-check-label" for="remember">一周内自动登录</label>
+								</div>
+								<a href="">忘记密码</a>
+							</div>
+							<button type="button" class="btn" onclick="login()">登录</button>
+						</form>
+					</div>
+					<div class="modal-footer bg-light d-flex justify-content-center">没有账号？<a onclick="modalSwitch('register')">注册</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script src="js/core/jquery-3.3.1.js" type="text/javascript"></script>
+	<script src="js/core/popper.min.js" type="text/javascript"></script>
+	<script src="js/core/bootstrap.js" type="text/javascript"></script>
+
+	<script src="js/now-ui-kit.js" type="text/javascript"></script>
+	<!--添加字体和图片响应式缩放插件-->
+	<script src="js/jQuery.fontFlex.js" type="text/javascript"></script>
+	<!--视差js，yfr-->
+	<script src="./js/parallax.min.js" type="text/javascript"></script>
+	<script src="./js/fontflex.js" type="text/javascript"></script>
+<!-- 	<script src="js/base.js" type="text/javascript"></script>
+	<script src="js/index.js" type="text/javascript"></script> -->
+	<script src="<?php echo auto_version('/js/base.js'); ?>" type="text/javascript"></script>
+	<script src="<?php echo auto_version('/js/index.js'); ?>" type="text/javascript"></script>
 </html>

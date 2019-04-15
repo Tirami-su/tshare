@@ -47,7 +47,6 @@ $(document).ready(function() {
 					'width': width * 0.8,
 					'height': height * 0.8
 				})
-				break
 		}
 	})
 });
@@ -119,18 +118,86 @@ function fileList(key, res) {
 	} else {
 		$('#result').removeClass('d-none')
 		// 填cell模版
-		var data = res.data
+		data = res.data
 		for (var i = 0; i < data.length; i++) {
-			if (data[i].contents == '')
-				cellHtml += template('template-file', data[i])
-			else
+			// 添加序号
+			data[i].index=i
+			if (data[i].contents == '') {
+				// 判断文件类型，根据类型设置图标
+				var nameArray = data[i].name.split('.')
+				if (nameArray.length > 1) {
+					switch (nameArray[nameArray.length - 1]) {
+						case 'doc':
+						case 'docx':
+						case 'odt':
+						case 'pages':
+							data[i].type = 'word'
+							break
+						case 'ppt':
+						case 'pptx':
+						case 'odp':
+						case 'key':
+							data[i].type = 'ppt'
+							break
+						case 'xls':
+						case 'xlsx':
+						case 'csv':
+						case 'ods':
+						case 'numbers':
+							data[i].type = 'excel'
+							break
+						case 'pdf':
+							data[i].type = 'pdf'
+							break
+						case 'jpg':
+						case 'png':
+						case 'bmp':
+						case 'gif':
+						case 'svg':
+							data[i].type = 'picture'
+							break
+						case 'c':
+						case 'h':
+						case 'cpp':
+						case 'hpp':
+						case 'py':
+						case 'java':
+						case 'html':
+						case 'htm':
+						case 'js':
+						case 'json':
+						case 'css':
+						case 'scss':
+						case 'php':
+						case 'm':
+						case 'matlab':
+						case 'v':
+						case 'md':
+						case 'ipynb':
+							data[i].type = 'code'
+							break
+						case 'mp3':
+							data[i].type = 'audio'
+							break
+						case 'avi':
+							data[i].type = 'video'
+							break
+						case 'txt':
+						case 'rtf':
+						case 'rtfd':
+							data[i].type = 'text'
+							break
+					}
+					cellHtml += template('template-file', data[i])
+				}
+			} else
 				cellHtml += template('template-folder', data[i])
 		}
 		// 清空列表，重新添加cell
 		$('#file-list').empty().append(cellHtml)
 
 		//填分页器模板
-		pageHtml =
+		var pageHtml =
 			'<li id="page-prev" class="page-item disabled"><a class="page-link" href="#" onclick="prevPage()">上一页</a></li>'
 		if (res.amount > 10) {
 			totalpages = Math.ceil(res.amount / 10)
@@ -209,7 +276,7 @@ function toPage(page) {
 /**
  * 预览文件
  */
-function preview(){
+function preview() {
 	// 请求服务器生成预览
 	$.ajax({
 		url: 'api/preview.php',
@@ -220,7 +287,7 @@ function preview(){
 		success: res => {
 			if (res.code == 1) {
 				$('preview-target').attr('src', 'temp/' + path + '.png')
-				$('##modal-previewFile').modal('show')
+				$('#modal-previewFile').modal('show')
 			} else {
 				alert(res.msg)
 			}
@@ -231,4 +298,14 @@ function preview(){
 		dataType: 'json',
 		timeout: 5000
 	})
+}
+
+/**
+ * 查看文件详情
+ */
+function getDetails(){
+	// 通过session把文件数据传到details页面
+	var index=event.target.dataset.index
+	sessionStorage.setItem('file',data[index])
+	location.pathname = "details.html"
 }
