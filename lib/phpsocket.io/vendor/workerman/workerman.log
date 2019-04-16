@@ -20,3 +20,83 @@ Stack trace:
 #6 D:\desktop\software_engineering\tshare\lib\socket\server.php(170): Workerman\Worker::runAll()
 #7 {main}
 2019-04-16 17:16:47 pid:1 Worker process terminated
+2019-04-16 18:13:54 pid:1 Worker process terminated with ERROR: E_ERROR "Uncaught Error: Call to a member function fetch_array() on bool in D:\desktop\software_engineering\tshare\lib\Db.php:188
+Stack trace:
+#0 D:\desktop\software_engineering\tshare\lib\socket\server.php(32): Db->selects('notice', Array)
+#1 [internal function]: {closure}('160400423@stu.h...')
+#2 D:\desktop\software_engineering\tshare\lib\phpsocket.io\vendor\workerman\phpsocket.io\src\Event\Emitter.php(93): call_user_func_array(Object(Closure), Array)
+#3 [internal function]: PHPSocketIO\Event\Emitter->emit('login', '160400423@stu.h...')
+#4 D:\desktop\software_engineering\tshare\lib\phpsocket.io\vendor\workerman\phpsocket.io\src\Socket.php(307): call_user_func_array(Array, Array)
+#5 D:\desktop\software_engineering\tshare\lib\phpsocket.io\vendor\workerman\phpsocket.io\src\Socket.php(269): PHPSocketIO\Socket->onevent(Array)
+#6 D:\desktop\software_engineering\tshare\lib\phpsocket.io\vendor\workerman\phpsocket.io\src\Client.php(202): PHPSocketIO\Socket->onpacket(Array)
+#7 [internal function]: PHPSocketIO\Client->ondecode in D:\desktop\software_engineering\tshare\lib\Db.php on line 188"
+2019-04-16 18:14:29 pid:1 Worker process terminated with ERROR: E_ERROR "Uncaught Error: Call to a member function fetch_array() on bool in D:\desktop\software_engineering\tshare\lib\Db.php:188
+Stack trace:
+#0 D:\desktop\software_engineering\tshare\lib\socket\server.php(32): Db->selects('notice', Array)
+#1 [internal function]: {closure}('160400423@stu.h...')
+#2 D:\desktop\software_engineering\tshare\lib\phpsocket.io\vendor\workerman\phpsocket.io\src\Event\Emitter.php(93): call_user_func_array(Object(Closure), Array)
+#3 [internal function]: PHPSocketIO\Event\Emitter->emit('login', '160400423@stu.h...')
+#4 D:\desktop\software_engineering\tshare\lib\phpsocket.io\vendor\workerman\phpsocket.io\src\Socket.php(307): call_user_func_array(Array, Array)
+#5 D:\desktop\software_engineering\tshare\lib\phpsocket.io\vendor\workerman\phpsocket.io\src\Socket.php(269): PHPSocketIO\Socket->onevent(Array)
+#6 D:\desktop\software_engineering\tshare\lib\phpsocket.io\vendor\workerman\phpsocket.io\src\Client.php(202): PHPSocketIO\Socket->onpacket(Array)
+#7 [internal function]: PHPSocketIO\Client->ondecode in D:\desktop\software_engineering\tshare\lib\Db.php on line 188"
+2019-04-16 18:15:51 pid:1 Worker process terminated with ERROR: E_ERROR "Uncaught Error: Call to a member function fetch_array() on bool in D:\desktop\software_engineering\tshare\lib\Db.php:188
+Stack trace:
+#0 D:\desktop\software_engineering\tshare\lib\socket\server.php(32): Db->selects('notice', Array)
+#1 [internal function]: {closure}('160400423@stu.h...')
+#2 D:\desktop\software_engineering\tshare\lib\phpsocket.io\vendor\workerman\phpsocket.io\src\Event\Emitter.php(93): call_user_func_array(Object(Closure), Array)
+#3 [internal function]: PHPSocketIO\Event\Emitter->emit('login', '160400423@stu.h...')
+#4 D:\desktop\software_engineering\tshare\lib\phpsocket.io\vendor\workerman\phpsocket.io\src\Socket.php(307): call_user_func_array(Array, Array)
+#5 D:\desktop\software_engineering\tshare\lib\phpsocket.io\vendor\workerman\phpsocket.io\src\Socket.php(269): PHPSocketIO\Socket->onevent(Array)
+#6 D:\desktop\software_engineering\tshare\lib\phpsocket.io\vendor\workerman\phpsocket.io\src\Client.php(202): PHPSocketIO\Socket->onpacket(Array)
+#7 [internal function]: PHPSocketIO\Client->ondecode in D:\desktop\software_engineering\tshare\lib\Db.php on line 188"
+2019-04-16 18:18:02 pid:1 Worker process terminated with ERROR: E_ERROR "Uncaught Error: Call to a member function fetch_array() on bool in D:\desktop\software_engineering\tshare\lib\Db.php:188
+Stack trace:
+#0 D:\desktop\software_engineering\tshare\lib\socket\server.php(33): Db->selects('notice', Array)
+#1 [internal function]: {closure}('160400423@stu.h...')
+#2 D:\desktop\software_engineering\tshare\lib\phpsocket.io\vendor\workerman\phpsocket.io\src\Event\Emitter.php(93): call_user_func_array(Object(Closure), Array)
+#3 [internal function]: PHPSocketIO\Event\Emitter->emit('login', '160400423@stu.h...')
+#4 D:\desktop\software_engineering\tshare\lib\phpsocket.io\vendor\workerman\phpsocket.io\src\Socket.php(307): call_user_func_array(Array, Array)
+#5 D:\desktop\software_engineering\tshare\lib\phpsocket.io\vendor\workerman\phpsocket.io\src\Socket.php(269): PHPSocketIO\Socket->onevent(Array)
+#6 D:\desktop\software_engineering\tshare\lib\phpsocket.io\vendor\workerman\phpsocket.io\src\Client.php(202): PHPSocketIO\Socket->onpacket(Array)
+#7 [internal function]: PHPSocketIO\Client->ondecode in D:\desktop\software_engineering\tshare\lib\Db.php on line 188"
+2019-04-16 18:20:34 pid:1 Worker process terminated with ERROR: E_ERROR "Uncaught Error: Call to a member function fetch_array() on bool in D:\desktop\software_engineering\tshare\lib\Db.php:188
+Stack trace:
+#0 D:\desktop\software_engineering\tshare\lib\socket\server.php(32): Db->selects('notice', Array)
+#1 [internal function]: {closure}('160400423@stu.h...')
+#2 D:\desktop\software_engineering\tshare\lib\phpsocket.io\vendor\workerman\phpsocket.io\src\Event\Emitter.php(93): call_user_func_array(Object(Closure), Array)
+#3 [internal function]: PHPSocketIO\Event\Emitter->emit('login', '160400423@stu.h...')
+#4 D:\desktop\software_engineering\tshare\lib\phpsocket.io\vendor\workerman\phpsocket.io\src\Socket.php(307): call_user_func_array(Array, Array)
+#5 D:\desktop\software_engineering\tshare\lib\phpsocket.io\vendor\workerman\phpsocket.io\src\Socket.php(269): PHPSocketIO\Socket->onevent(Array)
+#6 D:\desktop\software_engineering\tshare\lib\phpsocket.io\vendor\workerman\phpsocket.io\src\Client.php(202): PHPSocketIO\Socket->onpacket(Array)
+#7 [internal function]: PHPSocketIO\Client->ondecode in D:\desktop\software_engineering\tshare\lib\Db.php on line 188"
+2019-04-16 18:21:44 pid:1 Worker process terminated with ERROR: E_ERROR "Uncaught Error: Call to a member function fetch_array() on bool in D:\desktop\software_engineering\tshare\lib\Db.php:188
+Stack trace:
+#0 D:\desktop\software_engineering\tshare\lib\socket\server.php(33): Db->selects('notice', Array)
+#1 [internal function]: {closure}('160400423@stu.h...')
+#2 D:\desktop\software_engineering\tshare\lib\phpsocket.io\vendor\workerman\phpsocket.io\src\Event\Emitter.php(93): call_user_func_array(Object(Closure), Array)
+#3 [internal function]: PHPSocketIO\Event\Emitter->emit('login', '160400423@stu.h...')
+#4 D:\desktop\software_engineering\tshare\lib\phpsocket.io\vendor\workerman\phpsocket.io\src\Socket.php(307): call_user_func_array(Array, Array)
+#5 D:\desktop\software_engineering\tshare\lib\phpsocket.io\vendor\workerman\phpsocket.io\src\Socket.php(269): PHPSocketIO\Socket->onevent(Array)
+#6 D:\desktop\software_engineering\tshare\lib\phpsocket.io\vendor\workerman\phpsocket.io\src\Client.php(202): PHPSocketIO\Socket->onpacket(Array)
+#7 [internal function]: PHPSocketIO\Client->ondecode in D:\desktop\software_engineering\tshare\lib\Db.php on line 188"
+2019-04-16 18:22:15 pid:1 Error: Call to undefined method stdClass::listen() in D:\desktop\software_engineering\tshare\lib\socket\server.php:169
+Stack trace:
+#0 [internal function]: {closure}(Object(Workerman\Worker))
+#1 D:\desktop\software_engineering\tshare\lib\phpsocket.io\vendor\workerman\workerman\Worker.php(2306): call_user_func(Object(Closure), Object(Workerman\Worker))
+#2 D:\desktop\software_engineering\tshare\lib\phpsocket.io\vendor\workerman\workerman\Worker.php(1315): Workerman\Worker->run()
+#3 D:\desktop\software_engineering\tshare\lib\phpsocket.io\vendor\workerman\workerman\Worker.php(1258): Workerman\Worker::forkWorkersForWindows()
+#4 D:\desktop\software_engineering\tshare\lib\phpsocket.io\vendor\workerman\workerman\Worker.php(507): Workerman\Worker::forkWorkers()
+#5 D:\desktop\software_engineering\tshare\lib\socket\server.php(172): Workerman\Worker::runAll()
+#6 {main}
+2019-04-16 18:22:16 pid:1 Worker process terminated
+2019-04-16 18:30:25 pid:1 Worker process terminated with ERROR: E_ERROR "Uncaught Error: Call to a member function fetch_array() on bool in D:\desktop\software_engineering\tshare\lib\Db.php:188
+Stack trace:
+#0 D:\desktop\software_engineering\tshare\lib\socket\server.php(28): Db->selects('notice', Array)
+#1 [internal function]: {closure}('160400423@stu.h...')
+#2 D:\desktop\software_engineering\tshare\lib\phpsocket.io\vendor\workerman\phpsocket.io\src\Event\Emitter.php(93): call_user_func_array(Object(Closure), Array)
+#3 [internal function]: PHPSocketIO\Event\Emitter->emit('login', '160400423@stu.h...')
+#4 D:\desktop\software_engineering\tshare\lib\phpsocket.io\vendor\workerman\phpsocket.io\src\Socket.php(307): call_user_func_array(Array, Array)
+#5 D:\desktop\software_engineering\tshare\lib\phpsocket.io\vendor\workerman\phpsocket.io\src\Socket.php(269): PHPSocketIO\Socket->onevent(Array)
+#6 D:\desktop\software_engineering\tshare\lib\phpsocket.io\vendor\workerman\phpsocket.io\src\Client.php(202): PHPSocketIO\Socket->onpacket(Array)
+#7 [internal function]: PHPSocketIO\Client->ondecode in D:\desktop\software_engineering\tshare\lib\Db.php on line 188"
