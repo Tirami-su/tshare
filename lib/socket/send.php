@@ -1,8 +1,8 @@
 <?php
 /***************** 发送消息给指定的客户端套接字 ******************/
-
-include_once("/../../entity/notice.php");
-$config = require_once("/../../config.php");
+include_once("../../entity/notice.php");
+include_once("../request.php");
+$config = require_once("../../config.php");
 $domain = $config['domain'];
 
 $from = $_GET['from'];			// 发件人
@@ -21,21 +21,13 @@ if($to == '') {
 
 $notice = ['sender' => $from, 'address' => $to, 'content' => $content, 'time' => time()];
 
-$url = $domain.":3121";
+$url = "http://".$domain.":3121";
 $data = [
 	'type' => 'notice',
 	'data' => json_encode($notice)
 ];
 
-$ch = curl_init ();
-curl_setopt($ch, CURLOPT_URL, $url);
-curl_setopt($ch, CURLOPT_POST, 1);
-curl_setopt($ch, CURLOPT_HEADER, 0);
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-curl_setopt($ch, CURLOPT_HTTPHEADER, array("Expect:"));
-$return = curl_exec($ch);
-curl_close($ch);
+$return = request::sendPostRequest($url, $data, 5);
 
 if($return == 'success') {
 	echo json_encode(['code' => 1, 'msg' => '发送成功']);

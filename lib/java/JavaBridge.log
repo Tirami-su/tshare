@@ -1,0 +1,9 @@
+Apr 16 16:41:41 JavaBridge INFO : VM                  : 1.8.0_201@http://java.oracle.com/
+Apr 16 16:41:41 JavaBridge INFO : JavaBridge version             : 7.2.1    
+Apr 16 16:41:41 JavaBridge INFO : logFile             : JavaBridge.log
+Apr 16 16:41:41 JavaBridge INFO : default logLevel    : 3
+Apr 16 16:41:41 JavaBridge INFO : socket              : HTTP_LOCAL:8080
+Apr 16 16:41:41 JavaBridge INFO : java.ext.dirs       : C:\Program Files\Java\jre1.8.0_201\lib\ext;C:\WINDOWS\Sun\Java\lib\ext
+Apr 16 16:41:41 JavaBridge INFO : php.java.bridge.base: C:\Users\fuhao
+Apr 16 16:41:41 JavaBridge INFO : thread pool size    : 20
+Apr 16 16:41:41 JavaBridge INFO : JavaBridgeRunner started on port INET_LOCAL:8080
