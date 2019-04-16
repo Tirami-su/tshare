@@ -9,14 +9,11 @@ $(document).ready(function() {
 	globalSort = $('input[name=sort]:checked').val()
 	curPage = 1
 	// 立即搜索
-	searchFile(key)
-
-	/**
-	 * 查看详情
-	 */
-	$('.filename').click(function() {
-
-	})
+	if (sessionStorage.getItem('res')==null)
+		searchFile(key)
+	else
+		fileList(key, JSON.parse(sessionStorage.getItem('res')))
+		
 	/**
 	 * 预览功能按钮(显示整页 适应窗口宽度 放大 缩小)
 	 */
@@ -53,7 +50,6 @@ $(document).ready(function() {
 					'width': width * 0.8,
 					'height': height * 0.8
 				})
-				break
 		}
 	})
 });
@@ -85,7 +81,11 @@ function searchFile(key) {
 			sort: globalSort,
 			page: curPage
 		},
-		success: res => fileList(key, res),
+		success: res => {
+			sessionStorage.setItem('res',res)
+			res=JSON.parse(res)
+			fileList(key, res)
+		},
 		error: (xhr, status, error) => {
 			console.log('[Status]', status, '\n[Error]', error)
 			// 隐藏等待动画，清除找不到的提示
@@ -93,7 +93,6 @@ function searchFile(key) {
 			$('#nofound').remove()
 			// 提示连接服务器超时
 		},
-		dataType: 'json',
 		timeout: 5000
 	})
 
@@ -124,19 +123,89 @@ function fileList(key, res) {
 		$('.main').append(cellHtml)
 	} else {
 		$('#result').removeClass('d-none')
-		// 填cell模版
-		var data = res.data
+		data = res.data
 		for (var i = 0; i < data.length; i++) {
-			if (data[i].contents == '')
+			// 添加序号
+			data[i].index=i
+			if (data[i].contents == '') {
+				// 判断文件类型，根据类型设置图标
+				var nameArray = data[i].name.split('.')
+				if (nameArray.length > 1) 
+					switch (nameArray[nameArray.length - 1]) {
+						case 'doc':
+						case 'docx':
+						case 'odt':
+						case 'pages':
+							data[i].ext = 'word'
+							break
+						case 'ppt':
+						case 'pptx':
+						case 'odp':
+						case 'key':
+							data[i].ext = 'ppt'
+							break
+						case 'xls':
+						case 'xlsx':
+						case 'csv':
+						case 'ods':
+						case 'numbers':
+							data[i].ext = 'excel'
+							break
+						case 'pdf':
+							data[i].ext = 'pdf'
+							break
+						case 'jpg':
+						case 'png':
+						case 'bmp':
+						case 'gif':
+						case 'svg':
+							data[i].ext = 'picture'
+							break
+						case 'c':
+						case 'h':
+						case 'cpp':
+						case 'hpp':
+						case 'py':
+						case 'java':
+						case 'html':
+						case 'htm':
+						case 'js':
+						case 'json':
+						case 'css':
+						case 'scss':
+						case 'php':
+						case 'm':
+						case 'matlab':
+						case 'v':
+						case 'md':
+						case 'ipynb':
+							data[i].ext = 'code'
+							break
+						case 'mp3':
+							data[i].ext = 'audio'
+							break
+						case 'avi':
+							data[i].ext = 'video'
+							break
+						case 'txt':
+						case 'rtf':
+						case 'rtfd':
+							data[i].ext = 'text'
+							break
+						default:
+							data[i].ext = 'other'
+					}
+				else
+					data[i].ext='other'
 				cellHtml += template('template-file', data[i])
-			else
+			} else
 				cellHtml += template('template-folder', data[i])
 		}
 		// 清空列表，重新添加cell
 		$('#file-list').empty().append(cellHtml)
 
 		//填分页器模板
-		pageHtml =
+		var pageHtml =
 			'<li id="page-prev" class="page-item disabled"><a class="page-link" href="#" onclick="prevPage()">上一页</a></li>'
 		if (res.amount > 10) {
 			totalpages = Math.ceil(res.amount / 10)
@@ -215,7 +284,7 @@ function toPage(page) {
 /**
  * 预览文件
  */
-function preview(){
+function preview() {
 	// 请求服务器生成预览
 	$.ajax({
 		url: 'api/preview.php',
@@ -225,8 +294,9 @@ function preview(){
 		},
 		success: res => {
 			if (res.code == 1) {
+				var path=event.target.dataset.url
 				$('preview-target').attr('src', 'temp/' + path + '.png')
-				$('#modal-preview').modal('show')
+				$('#modal-previewFile').modal('show')
 			} else {
 				alert(res.msg)
 			}
@@ -237,4 +307,14 @@ function preview(){
 		dataType: 'json',
 		timeout: 5000
 	})
+}
+
+/**
+ * 查看文件详情
+ */
+function getDetails(){
+	// 通过session把文件数据传到details页面
+	var index=event.target.dataset.index
+	sessionStorage.setItem('index',index)
+	location = "repository/details.html"
 }
