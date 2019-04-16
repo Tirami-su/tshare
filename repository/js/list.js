@@ -9,20 +9,22 @@ $(document).ready(function() {
 	globalSort = $('input[name=sort]:checked').val()
 	curPage = 1
 	// 立即搜索
-	if (sessionStorage.getItem('res')==null)
+	if (sessionStorage.getItem('res') == null)
 		searchFile(key)
 	else
 		fileList(key, JSON.parse(sessionStorage.getItem('res')))
-		
 	/**
 	 * 预览功能按钮(显示整页 适应窗口宽度 放大 缩小)
+	 * 关键是调整宽度，高度和左边距
 	 */
+	rszTimes = 70 //缩放比例 21%～140%
 	$('#modal-previewFile .action button').click(function() {
 		switch ($(this).data('resize')) {
 			case 'w':
 				$('#modal-previewFile .target').css({
 					'width': '100%',
-					'height': 'auto'
+					'height': 'auto',
+					'margin-left': 0
 				})
 				$(this).children().attr('src', 'img/height.png')
 				$(this).data('resize', 'h')
@@ -30,29 +32,52 @@ $(document).ready(function() {
 			case 'h':
 				$('#modal-previewFile .target').css({
 					'width': 'auto',
-					'height': '100%'
+					'height': height,
 				})
+				// 计算边距
+				var width = $('#modal-previewFile .target').prop('width')
+				var viewport = document.body.clientWidth
+				var rate = width / viewport * 100
+				var margin = rate < 100 ? (100 - rate) / 2 : 0
+				$('#modal-previewFile .target').css('margin-left', String(margin) + '%')
+
 				$(this).children().attr('src', 'img/width.png')
 				$(this).data('resize', 'w')
 				break
 			case 'l':
-				var width = $('#modal-previewFile .target').prop('width')
-				var height = $('#modal-previewFile .target').prop('height')
-				$('#modal-previewFile .target').css({
-					'width': width * 1.2,
-					'height': height * 1.2
-				})
+				// 检查是否可继续放大
+				if (rszTimes < 140)
+					$('#modal-previewFile .target').css(widthRate('+'))
 				break
 			case 's':
-				var width = $('#modal-previewFile .target').prop('width')
-				var height = $('#modal-previewFile .target').prop('height')
-				$('#modal-previewFile .target').css({
-					'width': width * 0.8,
-					'height': height * 0.8
-				})
+				// 检查是否可继续缩小
+				if (rszTimes > 21)
+					$('#modal-previewFile .target').css(widthRate('-'))
 		}
 	})
 });
+
+/**
+ * 计算新比例和边距
+ */
+function widthRate(value, delta = 10) {
+	var width = $('#modal-previewFile .target').prop('width')
+	var viewport = document.body.clientWidth
+	var rate = width / viewport * 100
+
+	rate = value == '+' ? rate + delta : rate - delta
+	if (rate > 140)
+			rate = 140
+	else if (rate < 21)
+		rate = 21
+	var margin = rate < 100 ? (100 - rate) / 2 : 0
+
+	return {
+		'width': String(rate) + '%',
+		'height': 'auto',
+		'margin-left': String(margin) + '%'
+	}
+}
 
 /**
  * 导航栏搜索框回车事件
@@ -82,8 +107,8 @@ function searchFile(key) {
 			page: curPage
 		},
 		success: res => {
-			sessionStorage.setItem('res',res)
-			res=JSON.parse(res)
+			sessionStorage.setItem('res', res)
+			res = JSON.parse(res)
 			fileList(key, res)
 		},
 		error: (xhr, status, error) => {
@@ -126,11 +151,11 @@ function fileList(key, res) {
 		data = res.data
 		for (var i = 0; i < data.length; i++) {
 			// 添加序号
-			data[i].index=i
+			data[i].index = i
 			if (data[i].contents == '') {
 				// 判断文件类型，根据类型设置图标
 				var nameArray = data[i].name.split('.')
-				if (nameArray.length > 1) 
+				if (nameArray.length > 1)
 					switch (nameArray[nameArray.length - 1]) {
 						case 'doc':
 						case 'docx':
@@ -196,7 +221,7 @@ function fileList(key, res) {
 							data[i].ext = 'other'
 					}
 				else
-					data[i].ext='other'
+					data[i].ext = 'other'
 				cellHtml += template('template-file', data[i])
 			} else
 				cellHtml += template('template-folder', data[i])
@@ -285,18 +310,22 @@ function toPage(page) {
  * 预览文件
  */
 function preview() {
+	var path = event.target.dataset.url
 	// 请求服务器生成预览
 	$.ajax({
 		url: 'api/preview.php',
 		type: 'GET',
 		data: {
-			url: event.target.dataset.url
+			url: path
 		},
 		success: res => {
 			if (res.code == 1) {
-				var path=event.target.dataset.url
-				$('preview-target').attr('src', 'temp/' + path + '.png')
+				// 显示预览
+				$('#modal-previewFile .target').attr('src', 'temp/' + path + '.png')
 				$('#modal-previewFile').modal('show')
+				// 记录初始大小
+				width = $('#modal-previewFile .target').prop('width')
+				height = $('#modal-previewFile .target').prop('height')
 			} else {
 				alert(res.msg)
 			}

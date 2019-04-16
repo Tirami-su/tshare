@@ -64,8 +64,9 @@
 }
 
 .modal-preview .target {
-	height: 100%;
-	width: auto;
+	height: auto;
+	width: 70%;
+	margin-left: 15%;
 }
 
 .modal-preview .close {
