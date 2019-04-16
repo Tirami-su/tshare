@@ -1,11 +1,11 @@
 <?php
-define("DOMAIN", "http://www.haoye.com");
-
 require_once '../phpsocket.io/vendor/autoload.php';
 require_once "../../entity/notice.php";
 require_once "../../entity/noticeTemp.php";
 require_once "../../entity/user.php";
 require_once "../Db.php";
+$config = require_once('../../config.php');
+$domain = $config['domain'];
 
 use Workerman\Worker;
 use PHPSocketIO\SocketIO;
@@ -78,7 +78,7 @@ $server->on('connection', function($socket)use($server) {
 		}
 
 		/******* 调试 ********/
-		// echo "登录：" . $email . "\n";
+		echo "登录：" . $email . "\n";
 		/******* 调试 ********/
 	});
 
@@ -92,15 +92,17 @@ $server->on('connection', function($socket)use($server) {
 		unset($onlineUsers[$socket->uid]);
 
 		/******* 调试 ********/
-		// echo "退出：" . $socket->uid . "\n";
+		echo "退出：" . $socket->uid . "\n";
 		/******* 调试 ********/
 	});
 });
 
 // 开启一个http监听端口，通过这个端口可以向指定用户发送消息
 $server->on("workerStart", function()use($server) {
-	$http_worker = new Worker(DOMAIN.":3121");		// 使用3121端口进行消息监听
+	global $domain;
+	$http_worker = new Worker("http://".$domain.":3121");		// 使用3121端口进行消息监听
 	$http_worker->onMessage = function($http_connection, $data) {
+		echo "http://".$domain.":3121\n";
 		global $onlineUsers;
 		$_POST = $_POST ? $_POST : $_GET;
 
@@ -111,6 +113,7 @@ $server->on("workerStart", function()use($server) {
 		 */
 		$type = $_POST['type'];
 		if($type === "notice") {
+
 			// 发送消息
 			$notice = json_decode($_POST['data']);
 			$arr = array();
