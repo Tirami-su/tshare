@@ -13,6 +13,7 @@ $(document).ready(function() {
 		searchFile(key)
 	else
 		fileList(key, JSON.parse(sessionStorage.getItem('res')))
+	
 	/**
 	 * 预览功能按钮(显示整页 适应窗口宽度 放大 缩小)
 	 * 关键是调整宽度，高度和左边距
@@ -346,4 +347,15 @@ function getDetails(){
 	var index=event.target.dataset.index
 	sessionStorage.setItem('index',index)
 	location = "repository/details.html"
+}
+
+/**
+ * 重置预览modal的css
+ */
+function resetCss(){
+	$('#modal-previewFile .target').css({
+		'width': '70%',
+		'height': 'auto',
+		'margin-left': '15%'
+	})
 }
