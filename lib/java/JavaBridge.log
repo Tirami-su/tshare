@@ -1,29 +1,29 @@
-Apr 16 18:32:25 JavaBridge INFO : VM                  : 1.8.0_201@http://java.oracle.com/
-Apr 16 18:32:25 JavaBridge INFO : JavaBridge version             : 7.2.1    
-Apr 16 18:32:25 JavaBridge INFO : logFile             : JavaBridge.log
-Apr 16 18:32:25 JavaBridge INFO : default logLevel    : 3
-Apr 16 18:32:25 JavaBridge INFO : socket              : HTTP_LOCAL:8080
-Apr 16 18:32:25 JavaBridge INFO : java.ext.dirs       : C:\Program Files\Java\jre1.8.0_201\lib\ext;C:\WINDOWS\Sun\Java\lib\ext
-Apr 16 18:32:25 JavaBridge INFO : php.java.bridge.base: C:\Users\fuhao
-Apr 16 18:32:25 JavaBridge INFO : thread pool size    : 20
-Apr 16 18:32:25 JavaBridge INFO : JavaBridgeRunner started on port INET_LOCAL:8080
-四月 16, 2019 6:32:33 下午 com.artofsolving.jodconverter.openoffice.connection.AbstractOpenOfficeConnection connect
+Apr 16 22:08:42 JavaBridge INFO : VM                  : 1.8.0_201@http://java.oracle.com/
+Apr 16 22:08:42 JavaBridge INFO : JavaBridge version             : 7.2.1    
+Apr 16 22:08:42 JavaBridge INFO : logFile             : JavaBridge.log
+Apr 16 22:08:42 JavaBridge INFO : default logLevel    : 3
+Apr 16 22:08:42 JavaBridge INFO : socket              : HTTP_LOCAL:8080
+Apr 16 22:08:42 JavaBridge INFO : java.ext.dirs       : C:\Program Files\Java\jre1.8.0_201\lib\ext;C:\WINDOWS\Sun\Java\lib\ext
+Apr 16 22:08:42 JavaBridge INFO : php.java.bridge.base: C:\Users\fuhao
+Apr 16 22:08:42 JavaBridge INFO : thread pool size    : 20
+Apr 16 22:08:42 JavaBridge INFO : JavaBridgeRunner started on port INET_LOCAL:8080
+四月 16, 2019 10:09:33 下午 com.artofsolving.jodconverter.openoffice.connection.AbstractOpenOfficeConnection connect
 信息: connected
-四月 16, 2019 6:32:38 下午 com.artofsolving.jodconverter.openoffice.connection.AbstractOpenOfficeConnection disposing
+四月 16, 2019 10:09:37 下午 com.artofsolving.jodconverter.openoffice.connection.AbstractOpenOfficeConnection disposing
 信息: disconnected
 转换完成！
 开始拆分
 拆分结束
-四月 16, 2019 6:33:19 下午 com.artofsolving.jodconverter.openoffice.connection.AbstractOpenOfficeConnection connect
+四月 16, 2019 10:10:28 下午 com.artofsolving.jodconverter.openoffice.connection.AbstractOpenOfficeConnection connect
 信息: connected
-四月 16, 2019 6:33:23 下午 com.artofsolving.jodconverter.openoffice.connection.AbstractOpenOfficeConnection disposing
+四月 16, 2019 10:10:31 下午 com.artofsolving.jodconverter.openoffice.connection.AbstractOpenOfficeConnection disposing
 信息: disconnected
 转换完成！
 开始拆分
 拆分结束
-四月 16, 2019 6:34:19 下午 com.artofsolving.jodconverter.openoffice.connection.AbstractOpenOfficeConnection connect
+四月 16, 2019 10:10:57 下午 com.artofsolving.jodconverter.openoffice.connection.AbstractOpenOfficeConnection connect
 信息: connected
-四月 16, 2019 6:34:21 下午 com.artofsolving.jodconverter.openoffice.connection.AbstractOpenOfficeConnection disposing
+四月 16, 2019 10:11:01 下午 com.artofsolving.jodconverter.openoffice.connection.AbstractOpenOfficeConnection disposing
 信息: disconnected
 转换完成！
 开始拆分
