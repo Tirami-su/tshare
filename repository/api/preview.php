@@ -7,8 +7,11 @@
 include_once("../../lib/PDF.php");
 include_once("../../lib/FileProcess.php");
 include_once("../../lib/Image.php");
+include_once("../../lib/Db.php");
+include_once("../../entity/FileHeight.php");
+$db = new Db();
 
-$valid = ["docx", "doc", "ppt", "pptx", "pdf", "pdf"];
+$valid = ["docx", "doc", "ppt", "pptx", "pdf"];
 
 $objFile = $_GET['url'];
 
@@ -29,7 +32,8 @@ if(!file_exists("../../".$srcFile)) {
 $destFile = "repository/temp/".$objFile;	// 预览文件的保存路径（相对于网站根目录的路径）
 
 if(in_array($ext, $valid)) {
-	if(!file_exists("../temp/".$objFile.".png")) {
+	$fh = $db->select("FileHeight", ['url' => $objFile]);
+	if($fh === NULL) {
 		// 如果没有预览文件，则需要新建预览文件
 		if(!file_exists("../../".$destFile)) {
 			// 逐级创建目录
@@ -54,14 +58,19 @@ if(in_array($ext, $valid)) {
 		}
 
 		// 将多张png图片合并
-		merge("../../".$destFile);
+		$height = merge("../../".$destFile);
+		$fh = new FileHeight();
+		$fh->setUrl($objFile);
+		$fh->setHeight($height);
+		$db->insert("FileHeight", $fh);
+
 		FileProcess::delDirectory("../../".$destFile);
 		sleep(5);
-	}	
-	echo json_encode(['code' => 1, 'msg' => '预览PDF生成成功']);
+	}
+	echo json_encode(['code' => 1, 'height' => $fh->getHeight()]);
 } else {
 	// 不能预览
-	echo json_encode(['code' => 0, 'msg' => "文件格式不支持预览"]);
+	echo json_encode(['code' => 0, 'msg' => "文件格式暂时不支持预览"]);
 }
 
 function merge(String $dir) {
@@ -74,5 +83,7 @@ function merge(String $dir) {
 	}
 	closedir($handle);
 	Image::merge($arr, $dir.".png");
+	$info = getimagesize($arr[0]);
+	return $info[1];
 }
 ?>

@@ -27,7 +27,7 @@ class PDF {
 	 * @param int pages 拆分页数
 	 */
 	public static function PDFSplit(String $src, String $dest, int $pages) {
-		require_once 'java/java.inc';
+		require_once 'java/Java.inc';
 		$root = dirname(__FILE__);
 		$root .= "\\..\\";
 		$root = str_replace("\\", DIRECTORY_SEPARATOR, $root);
@@ -46,7 +46,7 @@ class PDF {
 	 * @param String $dest png图片父目录（相对于网站根目录，采用php规则书写路径，分隔符:"/"）
 	 */
 	public static function PDF2PNG(String $src, String $dest) {
-		require_once 'java/java.inc';
+		require_once 'java/Java.inc';
 		$root = dirname(__FILE__);
 		$root .= "\\..\\";
 		$root = str_replace("\\", DIRECTORY_SEPARATOR, $root);

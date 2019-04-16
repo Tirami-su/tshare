@@ -27,12 +27,14 @@ class Image {
 			$height += $arr[$i]['size'][1];
 		}
 
-		$merge = imagecreate($width, $height);
+		$merge = imagecreate($width, $height+10*count($source));
+		$space = imagecreate($width, 10);
 
 		$dst_x = 0;
 		$dst_y = 0;
 		for($i=0;$i<count($source);$i++) {
 			imagecopy($merge, $arr[$i]['source'], $dst_x, $dst_y, 0, 0, $arr[$i]['size'][0], $arr[$i]['size'][0]);
+			imagecopy($merge, $space, $dst_x, $dst_y, 0, 0, $width, 10);
 			$dst_y += $arr[$i]['size'][1];
 		}
 
