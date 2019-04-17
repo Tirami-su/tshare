@@ -101,6 +101,7 @@ class FileProcess {
 		for($i=0;$i<count($list);$i++) {
 			if(!file_exists($path.$list[$i])) {
 				mkdir($path.$list[$i], $pro);
+				chmod($path.$list[$i], $pro);
 			}
 			$path .= $list[$i]."/";
 		}

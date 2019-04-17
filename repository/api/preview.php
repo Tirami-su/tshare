@@ -13,8 +13,7 @@ $db = new Db();
 
 $valid = ["docx", "doc", "ppt", "pptx", "pdf"];
 
-// $objFile = $_GET['url'];
-$objFile = "2019/1.pdf";
+$objFile = $_GET['url'];
 
 $list = explode(".", $objFile);
 $ext = $list[count($list)-1];
