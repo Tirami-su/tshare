@@ -17,7 +17,8 @@ class PDF {
 		$src = str_replace("/", DIRECTORY_SEPARATOR, $src);
 		$dest = str_replace("/", DIRECTORY_SEPARATOR, $dest);
 
-		$PDFConverter->Word2Pdf((String)dirname(__FILE)."/java/soffice.sh" ,(String)$root.$src, (String)$root.$dest);
+		// $PDFConverter->Word2Pdf((String)dirname(__FILE__)."/java/soffice.sh" ,(String)$root.$src, (String)$root.$dest);
+		$PDFConverter->Word2Pdf((String)$root.$src, (String)$root.$dest);
 	}
 
 	/**
