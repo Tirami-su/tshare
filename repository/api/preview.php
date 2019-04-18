@@ -33,7 +33,7 @@ $destFile = "repository/temp/".$objFile;	// 预览文件的保存路径（相对
 
 if(in_array($ext, $valid)) {
 	$fh = $db->select("FileHeight", ['url' => $objFile]);
-	if($fh === NULL || !file_exists("../../".$destFile.".png")) {
+	if(!file_exists("../../".$destFile.".png")) {
 		// 如果没有预览文件，则需要新建预览文件
 		if(!file_exists("../../".$destFile)) {
 			// 逐级创建目录
