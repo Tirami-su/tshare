@@ -41,18 +41,13 @@ if($flag !== true) {
 
 // 如果文件存在并且下载成功，则需要更新数据库
 $db = new Db();
-// 拆分文件名和路径名
-$list = FileProcess::splitPathAndFilename($url);
-$file = $db->select("file", ['filename' => $filename, 'path' => $list['path']]);
-if($file !== NULL) {
-	$file->setDownload($file->getDownload() + 1);
-	$db->update("file", $file);
-}
 
 // 建立一条下载记录
 $user = $_SESSION['user'];
 $dlFile = $db->select("download_file", ['email' => $uesr->getEmail(), 'filename' => $filename, 'path' => $list['path']]);
 if($dlFile === NULL) {
+	// 只有第一次下载资料才能对下载量造成影响
+
 	// 之前没有这样的记录，那么创建新的下载记录
 	$dlFile = new download_file();
 	$dlFile->setEmail($user->getEmail());
@@ -60,8 +55,16 @@ if($dlFile === NULL) {
 	$dlFile->setPath($list['path']);
 	$dlFile->setTime(time());
 	$db->insert("download_file", $dlFile);
+
+	// 拆分文件名和路径名
+	$list = FileProcess::splitPathAndFilename($url);
+	$file = $db->select("file", ['filename' => $filename, 'path' => $list['path']]);
+	if($file !== NULL) {
+		$file->setDownload($file->getDownload() + 1);
+		$db->update("file", $file);
+	}
 } else {
-	// 以前下载过这个文件，更新以下最近下载时间
+	// 以前下载过这个文件，更新最近下载时间，并要求重新评价
 	$dlFile->setTime(time());
 	$dlFile->setIsmark(0);
 	$db->update("download_file", $dlFile);
