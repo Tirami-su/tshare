@@ -100,3 +100,17 @@ Stack trace:
 #5 D:\desktop\software_engineering\tshare\lib\phpsocket.io\vendor\workerman\phpsocket.io\src\Socket.php(269): PHPSocketIO\Socket->onevent(Array)
 #6 D:\desktop\software_engineering\tshare\lib\phpsocket.io\vendor\workerman\phpsocket.io\src\Client.php(202): PHPSocketIO\Socket->onpacket(Array)
 #7 [internal function]: PHPSocketIO\Client->ondecode in D:\desktop\software_engineering\tshare\lib\Db.php on line 188"
+2019-04-27 17:41:10 pid:1 Error: Call to a member function fetch_array() on bool in D:\desktop\software_engineering\tshare\lib\Db.php:233
+Stack trace:
+#0 D:\desktop\software_engineering\tshare\lib\socket\server.php(125): Db->count('notice')
+#1 [internal function]: {closure}(Object(Workerman\Connection\TcpConnection), Array)
+#2 D:\desktop\software_engineering\tshare\lib\phpsocket.io\vendor\workerman\workerman\Connection\TcpConnection.php(658): call_user_func(Object(Closure), Object(Workerman\Connection\TcpConnection), Array)
+#3 [internal function]: Workerman\Connection\TcpConnection->baseRead(Resource id #63)
+#4 D:\desktop\software_engineering\tshare\lib\phpsocket.io\vendor\workerman\workerman\Events\Select.php(294): call_user_func_array(Array, Array)
+#5 D:\desktop\software_engineering\tshare\lib\phpsocket.io\vendor\workerman\workerman\Worker.php(2321): Workerman\Events\Select->loop()
+#6 D:\desktop\software_engineering\tshare\lib\phpsocket.io\vendor\workerman\workerman\Worker.php(1315): Workerman\Worker->run()
+#7 D:\desktop\software_engineering\tshare\lib\phpsocket.io\vendor\workerman\workerman\Worker.php(1258): Workerman\Worker::forkWorkersForWindows()
+#8 D:\desktop\software_engineering\tshare\lib\phpsocket.io\vendor\workerman\workerman\Worker.php(507): Workerman\Worker::forkWorkers()
+#9 D:\desktop\software_engineering\tshare\lib\socket\server.php(168): Workerman\Worker::runAll()
+#10 {main}
+2019-04-27 17:41:10 pid:1 Worker process terminated
