@@ -69,26 +69,22 @@ class FileProcess {
 	public static function download(String $url) {
 		$list = explode("/", $url);
 		$filename = $list[count($list)-1];
-		if(!file_exists($url)) {
-			return ['code' => 0, 'msg' => '文件不存在'];
-		} else {
-			$filesize = filesize($url);
-			Header("Content-type: application/octet-stream");
-			Header("Accept-Ranges: bytes");
-			Header("Accept-Length: " . $filesize);
-			Header("Content-Disposition: attachment; filename=" . $filename);
+		$filesize = filesize($url);
+		
+		Header("Content-type: application/octet-stream");
+		Header("Accept-Ranges: bytes");
+		Header("Accept-Length: " . $filesize);
+		Header("Content-Disposition: attachment; filename=" . $filename);
 
-			$file = fopen($url, "r");
-			$buf = 1024;
-			$size = 0;
-			while(!feof($file) && ($filesize - $size) > 0) {
-				$data = fread($file, $buf);
-				$size += $buf;
-				echo $data;
-			}
-			fclose($file);
+		$file = fopen($url, "r");
+		$buf = 1024;
+		$size = 0;
+		while(!feof($file) && ($filesize - $size) > 0) {
+			$data = fread($file, $buf);
+			$size += $buf;
+			echo $data;
 		}
-		return true;
+		fclose($file);
 	}
 
 	/**

@@ -13,7 +13,7 @@ include_once("entity.php");
 class download_file implements entity {
 	private $info;
 
-	public function __construct (){}
+	public function __construct() {}
 
 	public function set($info) {
 		$this->info = $info;
