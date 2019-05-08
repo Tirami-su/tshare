@@ -33,11 +33,11 @@ $destFile = "repository/temp/".$objFile;	// 预览文件的保存路径（相对
 
 if(in_array($ext, $valid)) {
 	$fh = $db->select("FileHeight", ['url' => $objFile]);
-	if($fh === NULL) {
+	if(!file_exists("../../".$destFile.".png")) {
 		// 如果没有预览文件，则需要新建预览文件
 		if(!file_exists("../../".$destFile)) {
 			// 逐级创建目录
-			FileProcess::createFolder("../../".$destFile);
+			FileProcess::createFolder("../../".$destFile, 0777);
 		}
 		
 		if($ext == "pdf") {
@@ -59,12 +59,16 @@ if(in_array($ext, $valid)) {
 
 		// 将多张png图片合并
 		$height = merge("../../".$destFile);
-		$fh = new FileHeight();
-		$fh->setUrl($objFile);
-		$fh->setHeight($height);
-		$db->insert("FileHeight", $fh);
-
-		FileProcess::delDirectory("../../".$destFile);
+		if($fh === NULL) {
+			$fh = new FileHeight();
+			$fh->setUrl($objFile);
+			$fh->setHeight($height);
+			$db->insert("FileHeight", $fh);
+		} else {
+			$fh->setHeight($height);
+			$db->update("FileHeight", $fh);
+		}
+		FileProcess::delDirectory("../../".$destFile);		// 删除临时文件夹
 		sleep(5);
 	}
 	echo json_encode(['code' => 1, 'height' => $fh->getHeight()]);

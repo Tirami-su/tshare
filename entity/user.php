@@ -4,7 +4,7 @@ include_once("entity.php");
 
 /**
  * 对应于数据库中的user实体表
- *     字段           类型      主键     默认值    允许为空     描述
+ *      字段          类型      主键     默认值    允许为空     描述
  * |    email    |  varchar  |  是   |    无   |    否     |   学号
  * |   username  |  varchar  |  否   |    无   |    否     |   昵称
  * |   password  |  varchar  |  否   |    无   |    否     |   密码

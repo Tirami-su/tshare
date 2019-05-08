@@ -195,26 +195,27 @@ class Db extends mysqli{
 	}
 
 	/**
-	 * 根据类别和关键字查询文件
+	 * 根据类别和关键字查询
+	 * @param String table 表名称
 	 * @param String $key 关键字
 	 * @param String $field 字段名称
 	 * @param bool $onlyFile 是否只查询文件而不查询文件夹
 	 */
-	public function findFile(String $key, String $field, bool $onlyFile=true) {
+	public function find(String $table, String $key, String $field, bool $onlyFile=true) {
 		$arr = array();
 
-		$sql = "select * from file where {$field} like '%{$key}%'";
+		$sql = "select * from ". $table ." where {$field} like '%{$key}%'";
 		if($onlyFile === true) {
 			$sql .= " and is_dir=0";
 		}
-		
+
 		$res = $this->query($sql);
 
 		if($res->num_rows === 0){
 			return NULL;
 		} else {
 			while($row = $res->fetch_array(MYSQLI_ASSOC)) {
-				$instance = EntityFactory::getInstance("file");
+				$instance = EntityFactory::getInstance($table);
 				$instance->set($row);
 				$arr[] = $instance;
 			}

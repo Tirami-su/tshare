@@ -33,18 +33,17 @@ class request {
 	 * @param int $timeout 超时时间
 	 */
 	public static function sendPostRequest(String $url, $data, int $timeout = 5) {
-		error_log($url."\n", 3, "D:/Apache/logs/php.log");
 		if($url == "" || $data == "" || $timeout < 0) {
 			return false;
 		}
 
 		$ch = curl_init();
-		curl_setopt ( $ch, CURLOPT_URL, $url );
-		curl_setopt ( $ch, CURLOPT_POST, 1 );
-		curl_setopt ( $ch, CURLOPT_HEADER, 0 );
-		curl_setopt ( $ch, CURLOPT_RETURNTRANSFER, 1 );
-		curl_setopt ( $ch, CURLOPT_POSTFIELDS, $data );
-		curl_setopt ($ch, CURLOPT_HTTPHEADER, array("Expect:"));
+		curl_setopt($ch, CURLOPT_URL, $url);
+		curl_setopt($ch, CURLOPT_POST, 1);
+		curl_setopt($ch, CURLOPT_HEADER, 0);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+		curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+		curl_setopt($ch, CURLOPT_HTTPHEADER, array("Expect:"));
 		curl_setopt($ch, CURLOPT_TIMEOUT, $timeout);
 		$flag = curl_exec($ch);
  		curl_close($ch);

@@ -25,6 +25,7 @@ $server->on('connection', function($socket)use($server) {
 		$socket->uid = $email;
 
 		// 查询是否有发送给自己的消息
+		// 将来需要修改：只有当用户查看过该消息后才修改标志位
 		$notices = $db->selects("notice", ['address' => $email]);
 		if($notices !== NULL) {
 			$arr = array();
@@ -45,6 +46,7 @@ $server->on('connection', function($socket)use($server) {
 		}
 
 		// 查询是否有发送给全体用户的消息
+		// 将来需要修改：只有用户查看消息后才从noticeTemp表中删除记录
 		$notices = $db->selects("notice", ['address' => NULL]);
 		if($notices !== NULL) {
 			$arr = array();
