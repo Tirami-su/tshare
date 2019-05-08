@@ -82,6 +82,7 @@ function merge(String $dir) {
 		}
 	}
 	closedir($handle);
+	
 	Image::merge($arr, $dir.".png");
 	$info = getimagesize($arr[0]);
 	return $info[1];

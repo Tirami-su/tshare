@@ -13,7 +13,7 @@ $(document).ready(function() {
 		searchFile(key)
 	else
 		fileList(key, JSON.parse(sessionStorage.getItem('res')))
-	
+
 	/**
 	 * 预览功能按钮(显示整页 适应窗口宽度 放大 缩小)
 	 * 关键是调整宽度，高度和左边距
@@ -68,7 +68,7 @@ function widthRate(value, delta = 10) {
 
 	rate = value == '+' ? rate + delta : rate - delta
 	if (rate > 140)
-			rate = 140
+		rate = 140
 	else if (rate < 21)
 		rate = 21
 	var margin = rate < 100 ? (100 - rate) / 2 : 0
@@ -108,7 +108,7 @@ function searchFile(key) {
 			page: curPage
 		},
 		success: res => {
-			sessionStorage.setItem('res', res)
+			sessionStorage.setItem('res', res) //sessionStorage只能存字符串
 			res = JSON.parse(res)
 			fileList(key, res)
 		},
@@ -311,13 +311,12 @@ function toPage(page) {
  * 预览文件
  */
 function preview() {
-	var path = event.target.dataset.url
 	// 请求服务器生成预览
 	$.ajax({
 		url: 'api/preview.php',
 		type: 'GET',
 		data: {
-			url: path
+			url: event.target.parentNode.dataset.url
 		},
 		success: res => {
 			if (res.code == 1) {
@@ -342,20 +341,35 @@ function preview() {
 /**
  * 查看文件详情
  */
-function getDetails(){
+function getDetails() {
 	// 通过session把文件数据传到details页面
-	var index=event.target.dataset.index
-	sessionStorage.setItem('index',index)
+	var index = event.target.dataset.index
+	sessionStorage.setItem('index', index)
 	location = "repository/details.html"
 }
 
 /**
  * 重置预览modal的css
  */
-function resetCss(){
+function resetCss() {
 	$('#modal-previewFile .target').css({
 		'width': '70%',
 		'height': 'auto',
 		'margin-left': '15%'
 	})
+}
+
+/**
+ * 下载文件
+ */
+function download_file() {
+	var elem=event.target.parentNode
+	var xhr = new XMLHttpRequest()
+	xhr.open("GET", "api/download.php?url="+elem.dataset.url+"&filename="+elem.dataset.name, true)
+	xhr.responseType = "blob"
+	xhr.onreadystatechange=()=>{
+		if (xhr.readyState==4 && xhr.status==200)
+			download(xhr.response, elem.dataset.name)
+	}
+	xhr.send()
 }

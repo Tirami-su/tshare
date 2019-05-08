@@ -10,8 +10,8 @@ include_once("../../lib/Db.php");
 include_once("../../lib/FileProcess.php");
 include_once("../../entity/file.php");
 
-$url = "upload_file/".$_POST['url'];
-$filename = $_POST['filename'];
+$url = "upload_file/".$_GET['url'];
+$filename = $_GET['filename'];
 $srcFile = "../../" . $url;		// 需要下载的文件的真正路径
 $flag = false;
 

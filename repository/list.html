@@ -15,7 +15,7 @@
 		<!-- CSS Files -->
 		<link rel="stylesheet" href="../css/bootstrap.css" />
 		<link rel="stylesheet" href="../css/waitMe.css" />
-		<!-- 		<link rel="stylesheet" href="../css/common.css"/>
+<!-- 		<link rel="stylesheet" href="../css/common.css"/>
 		<link rel="stylesheet" href="css/list.css"/> -->
 		<?php require '../api/reload_css_js.php'; ?>
 		<link rel="stylesheet" href="<?php echo auto_version('/css/common.css'); ?>" />
@@ -166,13 +166,13 @@
 					<div class="file-description">{{description}}</div>
 				</div>
 			</div>
-			<div class="action">
+			<div class="action" data-url="{{url}}" data-name="{{name}}">
 				<span>{{upload_time}}</span>
 				<span class="num-download">{{download}}次下载</span>
 				<span>贡献者:{{upload_uname}}</span>
 				<span>大小:{{size}}</span>
-				<button type="button" class="btn-preview" data-url="{{url}}" onclick="preview()">预览</button>
-				<button type="button" class="download">下载</button>
+				<button type="button" class="btn-preview" onclick="preview()">预览</button>
+				<button type="button" class="download" onclick="download()">下载</button>
 			</div>
 		</li>
 	</script>
