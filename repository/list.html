@@ -172,7 +172,7 @@
 				<span>贡献者:{{upload_uname}}</span>
 				<span>大小:{{size}}</span>
 				<button type="button" class="btn-preview" onclick="preview()">预览</button>
-				<button type="button" class="download" onclick="download()">下载</button>
+				<button type="button" class="download" onclick="download_file()">下载</button>
 			</div>
 		</li>
 	</script>
@@ -196,7 +196,8 @@
 
 	<script src="../js/template-web.js" type="text/javascript"></script>
 	<script src="../js/waitMe.js" type="text/javascript"></script>
-
+	<script src="/repository/js/download.js" type="text/javascript"></script>
+	
 	<!-- 	<script src="../js/base.js" type="text/javascript"></script>
 	<script src="js/list.js" type="text/javascript"></script> -->
 	<script src="<?php echo auto_version('/js/base.js'); ?>" type="text/javascript"></script>
