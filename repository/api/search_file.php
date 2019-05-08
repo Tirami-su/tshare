@@ -108,7 +108,7 @@ if($use_session && $key == $_SESSION['search_key'] && $mode == $_SESSION['mode']
 		}
 	}
 
-	// 2、删除重复
+	// 2、删除重复合并不同
 	delAndNew();
 
 	$_SESSION['search_key']		= $key;
@@ -223,35 +223,35 @@ function getToken($key) {
 function search($key, $onlyFile=true) {
 	global $db;
 
-	$res = $db->findFile($key, "filename", $onlyFile);		// 根据文件名搜索
+	$res = $db->find("file", $key, "filename", $onlyFile);		// 根据文件名搜索
 	if($onlyFile === false) {
 		store1($res, $key);
 	} else {
 		store0($res, $key);
 	}
 
-	$res = $db->findFile($key, "name", $onlyFile);		// 根据资料名搜索
+	$res = $db->find("file", $key, "name", $onlyFile);		// 根据资料名搜索
 	if($onlyFile === false) {
 		store1($res, $key);
 	} else {
 		store0($res, $key);
 	}
 
-	$res = $db->findFile($key, "path", $onlyFile);		// 根据路径名搜索
+	$res = $db->find("file", $key, "path", $onlyFile);		// 根据路径名搜索
 	if($onlyFile === false) {
 		store1($res, $key);
 	} else {
 		store0($res, $key);
 	}
 
-	$res = $db->findFile($key, "subject", $onlyFile);	// 根据科目搜索
+	$res = $db->find("file", $key, "subject", $onlyFile);	// 根据科目搜索
 	if($onlyFile === false) {
 		store1($res, $key);
 	} else {
 		store0($res, $key);
 	}
 
-	$res = $db->findFile($key, "description", $onlyFile);	// 根据文件描述进行搜索
+	$res = $db->find("file", $key, "description", $onlyFile);	// 根据文件描述进行搜索
 	if($onlyFile === false) {
 		store1($res, $key);
 	} else {

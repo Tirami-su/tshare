@@ -25,6 +25,8 @@ include_once("entity.php");
 class sale implements entity {
 	private $info;
 
+	public function __construct() {}
+
 	public function set($info) {
 		$this->info = $info;
 	}
