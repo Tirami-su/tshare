@@ -412,13 +412,14 @@ body>.container{
 #bubble{
 	transform:scale(0.7);
 	position:absolute;
-	top:-100px;
+	top:-250px;
+	left:-50px;
 }
 #coin{
-	transform:scale(0.8);
+	transform:scale(0.7);
 	position:absolute;
-	top:-50px;
-	left:-150px;
+	top:-275px;
+	left:-225px;
 }
 /*more_function高度*/
 #more_function_introduce{
@@ -461,7 +462,7 @@ body>.container{
 	transform:scale(0.8);
 	position:absolute;
 	left:75px;
-	top:-350px;
+	top:-375px;
 }
 /*search_img*/
 #search_img{
