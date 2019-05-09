@@ -1,0 +1,14 @@
+/* 轮播器 */
+#carousel-market {
+	margin-bottom: 20px;
+}
+
+.carousel-inner {
+	border-radius: 20px;
+	height: 300px;
+	overflow: hidden;
+}
+
+.carousel-inner {
+    box-shadow: 0 3px 5px 0px gray;
+}

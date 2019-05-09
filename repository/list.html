@@ -37,7 +37,7 @@
 						<a class="nav-link" href="">问答</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="">闲置交易</a>
+						<a class="nav-link" href="../market/market.html">闲置交易</a>
 					</li>
 				</ul>
 				<div class="collapse navbar-collapse justify-content-end">
@@ -144,12 +144,12 @@
 					</div>
 				</div>
 			</div>
-			<div class="action">
+			<div class="action" data-url="{{url}}" data-name="{{name}}">
 				<span>{{upload_time}}</span>
 				<span class="num-download">{{download}}次下载</span>
 				<span>贡献者：{{upload_uname}}</span>
 				<span>{{size}}</span>
-				<button type="button" class="download">下载</button>
+				<button type="button" class="download" onclick="download_file()">下载</button>
 			</div>
 		</li>
 	</script>
