@@ -18,15 +18,15 @@ $filename = $_GET['filename'];
 $srcFile = "../../" . $url;		// 需要下载的文件的真正路径
 
 if(!file_exists($srcFile)) {
-	echo json_encode(['code' => 0, 'msg' => '文件不存在']);
+	// echo json_encode(['code' => 0, 'msg' => '文件不存在']);
 	exit;
 } else {
 	if(is_dir($srcFile)) {
 		// 打包下载文件夹
 		$zip = new zip();
 
-		$list = explode("/", $url);
-		$destFile = $srcFile . ".zip";
+		$list = FileProcess::splitPathAndFilename($url);		// 拆分文件名和路径名
+		$destFile = "../../". $list['path']. "/". $filename . ".zip";
 		$zip->compress_dir($srcFile, $destFile);
 		FileProcess::download($destFile);
 		// 下载完成后删除zip包
@@ -67,5 +67,5 @@ if($dlFile === NULL) {
 	$dlFile->setIsmark(0);
 	$db->update("download_file", $dlFile);
 }
-echo json_encode(['code' => 1, 'msg' => '下载成功，请稍后对资料文件进行评价']);
+// echo json_encode(['code' => 1, 'msg' => '下载成功，请稍后对资料文件进行评价']);
 ?>

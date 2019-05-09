@@ -133,7 +133,7 @@ if($reselect || $resort) {
 			for($j=0;$j<count($files);$j++) {
 				$arr = $files[$j];
 
-				$dir = $root.$arr['url'];
+				$dir = $root."upload_file/".$arr['url'];
 				if(is_dir($dir)) {
 					$obj = new dirctory($dir);
 					$arr['contents'] = $obj->getContents();

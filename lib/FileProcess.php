@@ -71,11 +71,15 @@ class FileProcess {
 		$filename = $list[count($list)-1];
 		$filesize = filesize($url);
 		
-		Header("Content-type: application/octet-stream");
+		if(pathinfo($filename)['extension'] == "zip") {
+			Header("Content-type: application/zip");
+		} else {
+			Header("Content-type: application/octet-stream");
+		}
+		
 		Header("Accept-Ranges: bytes");
 		Header("Accept-Length: " . $filesize);
 		Header("Content-Disposition: attachment; filename=" . $filename);
-
 		$file = fopen($url, "r");
 		$buf = 1024;
 		$size = 0;
