@@ -39,14 +39,10 @@ $analysis = new PhpAnalysis();
 
 $root = dirname(__FILE__) . "/../../";
 
-// $key = $_GET['key'];		// 获取关键字
-// $page = $_GET['page'];		// 获取查询页码
-// $mode = $_GET['mode'];		// 搜索模式
-// $sort = $_GET['sort'];		// 排序方式
-$key = "系统";
-$page = 1;
-$mode = 1;
-$sort = 0;
+$key = $_GET['key'];		// 获取关键字
+$page = $_GET['page'];		// 获取查询页码
+$mode = $_GET['mode'];		// 搜索模式
+$sort = $_GET['sort'];		// 排序方式
 
 /**
  * 保存所有的查询结果，按相似度排序
@@ -73,12 +69,12 @@ $resort = true;
 // 获取file表中数据条数
 $count = $db->count("file");
 
-unset($_SESSION['search_key']);
-unset($_SESSION['search_res']);
-unset($_SESSION['mode']);
-unset($_SESSION['sort']);
-unset($_SESSION['search_index']);
-unset($_SESSION['search_json_data']);
+// unset($_SESSION['search_key']);
+// unset($_SESSION['search_res']);
+// unset($_SESSION['mode']);
+// unset($_SESSION['sort']);
+// unset($_SESSION['search_index']);
+// unset($_SESSION['search_json_data']);
 // exit;
 /**
  * 1. 在上一次查询过后，file数据表没有变动
