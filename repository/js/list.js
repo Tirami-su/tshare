@@ -311,17 +311,18 @@ function toPage(page) {
  * 预览文件
  */
 function preview() {
+	var fileUrl = event.target.parentNode.dataset.url
 	// 请求服务器生成预览
 	$.ajax({
 		url: 'api/preview.php',
 		type: 'GET',
 		data: {
-			url: event.target.parentNode.dataset.url
+			url: fileUrl
 		},
 		success: res => {
 			if (res.code == 1) {
 				// 显示预览
-				$('#modal-previewFile .target').attr('src', 'temp/' + path + '.png')
+				$('#modal-previewFile .target').attr('src', 'temp/' + fileUrl + '.png')
 				$('#modal-previewFile').modal('show')
 				// 记录初始大小
 				width = $('#modal-previewFile .target').prop('width')
