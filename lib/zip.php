@@ -128,7 +128,7 @@ class zip {
 	 * @param String $src_dir 待压缩的文件夹
 	 * @param ZipArchive $zip ZipArchive资源对象
 	 */
-    private function addDirToZip($src_dir, $zip) {
+    private function addDirToZip($src_dir, $zip, $subFolder='') {
     	// 递归压缩文件夹
  		$handle = opendir($src_dir);
  		while(($filename = readdir($handle)) !== false) {
@@ -136,10 +136,12 @@ class zip {
  				// 不是当前目录，也不是上级目录
  				if(is_dir($src_dir.$filename)) {
  					// 如果这是个文件夹，那么递归进行压缩
- 					$this->addDirToZip($src_dir.$filename."/", $zip);
+ 					$zip->addEmptyDir($subFolder.$filename);
+ 					$this->addDirToZip($src_dir.$filename."/", $zip, $subFolder.$filename."/");
  				} else {
  					// 如果是文件，直接压缩
- 					$zip->addFile($src_dir.$filename, $filename);
+ 					$zip->addFile($src_dir.$filename, $subFolder.$filename);
+ 					
  				}
  			}
  		}

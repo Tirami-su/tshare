@@ -75,7 +75,6 @@ class FileProcess {
 		Header("Accept-Ranges: bytes");
 		Header("Accept-Length: " . $filesize);
 		Header("Content-Disposition: attachment; filename=" . $filename);
-
 		$file = fopen($url, "r");
 		$buf = 1024;
 		$size = 0;
