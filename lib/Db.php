@@ -217,7 +217,7 @@ class Db extends mysqli{
 			return NULL;
 		} else {
 			while($row = $res->fetch_array(MYSQLI_ASSOC)) {
-				$instance = EntityFactory::getInstance($table);
+				$instance = EntityFactory::getInstance("file");
 				$instance->set($row);
 				$arr[] = $instance;
 			}
@@ -230,7 +230,23 @@ class Db extends mysqli{
 	 * @param $key 关键字
 	 * @param $field 查找字段
 	 */
-	public function find_goods(String $key, String $field)
+	public function find_goods(String $key, String $field) {
+		$arr = array();
+
+		$sql = "select * from sale where {$field} like '%{$key}%'";
+		$res = $this->query($sql);
+
+		if($res->num_rows === 0){
+			return NULL;
+		} else {
+			while($row = $res->fetch_array(MYSQLI_ASSOC)) {
+				$instance = EntityFactory::getInstance("sale");
+				$instance->set($row);
+				$arr[] = $instance;
+			}
+			return $arr;
+		}
+	}
 
 	/**
 	 * 获取某张数据表中数据的条数

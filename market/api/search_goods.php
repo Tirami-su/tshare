@@ -17,21 +17,14 @@ include_once("../../entity/sale.php");
  * 排序条件包括：
  */
 
-// $key = $_GET['key'];
-// $page = $_GET['page'];
-// $filter = $_GET['filter'];
-// $sort = $_GET['sort'];
-
-$key = "手机";
-$page = 1;
+$key = $_GET['key'];
+$page = $_GET['page'];
+$filter = $_GET['filter'];
+$sort = $_GET['sort'];
 
 $db = new Db();
-$analysis = new PhpAnalysis();
-
-
-$data = array();
-$json_data = array();
-$indexArray = array();
+$keywords = array();
+$goods = array();
 
 // 1.1 完全匹配搜索
 search($key);
@@ -44,9 +37,6 @@ foreach ($keys as $key) {
 	}
 }
 
-// 2. 删除重复合并不同
-delAndNew();
-
 // 3. 排序
 
 // 4. 分页
@@ -55,7 +45,7 @@ if(count($json_data) === 0) {
 	echo json_encode(['code' => 0, 'msg' => '没有找到您需要的商品']);
 } else {
 	if($page <= count($json_data)) {
-		echo json_encode(['code' => 1, "data" => $json_data[$page-1], "amount" => count($data)]);
+		echo json_encode(['code' => 1, "data" => $json_data[$page-1], "amount" => count($goods)]);
 	} else {
 		echo json_encode(['code' => 0, 'msg' => '该页不存在']);
 	}
@@ -68,31 +58,41 @@ if(count($json_data) === 0) {
  * 关键字搜索
  */
 function search($key) {
-	global $db, $data, $indexArray;
-	// title
-	$res = $db->find("sale", $key, "title", false);
-	if($res !== NULL) {
-		for($i=0;$i<count($res);$i++) {
-			$saleIndex = $res[$i]->getId() . "$" . $key;
-			if(!in_array($saleIndex, $indexArray)) {
-				$data[$saleIndex] = $res[$i];
-				$indexArray[] = $saleIndex;
-			}
+	global $db;
+	$search = ["title", "description"];
+	for($i=0;$i<count($search);$i++) {
+		$res = $db->find_goods($key, $search[$i]);
+		if($res === NULL) continue;
+		for($j=0;$j<count($res);$j++) {
+			store($key, $res[$j]);
 		}
 	}
-	
+}
 
-	// description
-	$res = $db->find("sale", $key, "description", false);
-	if($res !== NULL) {
-		for($i=0;$i<count($res);$i++) {
-			$saleIndex = $res[$i]->getId() . "$" . $key;
-			if(!in_array($saleIndex, $indexArray)) {
-				$data[$saleIndex] = $res[$i];
-				$indexArray[] = $saleIndex;
-			}
+/**
+ * 保存商品信息
+ * @param $key 商品关键字
+ * @param $good 商品信息
+ */
+function store($key, $good) {
+	global $keywords, $goods;
+	$index = array_search($good, $goods);
+	if($index === false) {
+		// 之前没有保存过这个商品信息
+		$keywords[] = $key;
+		$goods[] = $good;
+	} else {
+		// 对于关键字互相包含的取长舍短，对于不包含的则进行合并
+		$oldKey = $keywords[$index];
+		if(strstr($key, $oldKey) !== false) {
+			// 新关键字包含旧的关键字，进行替换
+			$keywords[$index] = $key;
+		} else if(strstr($oldKey, $key) === false) {
+			// 关键字不互相包含，则进行合并
+			$newKey = $oldKey.$key;
+			$keywords[$index] = $newKey;
 		}
-	}	
+	}
 }
 
 /**
@@ -101,7 +101,7 @@ function search($key) {
  * @param 分词后的字符串数组
  */
 function getToken($key) {
-	global $analysis;
+	$analysis = new PhpAnalysis();
 	$analysis->setSource($key);
 	$analysis->startAnalysis();
 	$words = $analysis->getFinallyResult(" ");
@@ -110,104 +110,16 @@ function getToken($key) {
 }
 
 /**
- * 删除重复合并不同
- */
-function delAndNew() {
-	global $indexArray, $data;
-
-	$delData = array();		// 要删除的文件
-	$newData = array();		// 新合并的文件
-
-	while(true) {
-		for($i=0;$i<count($indexArray);$i++) {
-			$index1 = $indexArray[$i];
-			$sale1 = $data[$index1];
-
-			$list = explode("$", $index1);
-			$id1 = $list[0];
-			$key1 = $list[1];
-
-			for($j=$i+1;$j<count($indexArray);$j++) {
-				$index2 = $indexArray[$j];
-				if(in_array($index2, $delData)){
-					continue;
-				}
-
-				$sale2 = $data[$index2];
-
-				$list = explode("$", $index2);
-				$id2= $list[0];
-				$key2 = $list[1];
-
-				if($id1 === $id2) {		// 同一个商品
-					
-					// 删除重复
-					if(strstr($key1, $key2) === false) {
-						if(!(strstr($key2, $key1) === false)) {
-							// 关键字2包含关键字1
-							if(!in_array($index1, $delData)) {
-								$delData[] = $index1;
-							}
-							continue;
-						}
-					} else {
-						// 关键字1包含关键字2
-						if(!in_array($index2, $delData)) {
-							$delData[] = $index2;
-						}
-						continue;
-					}
-
-					// 合并不同
-					$newKey = $key1.$key2;
-					$newData[$id1."$".$newKey] = $sale1;
-					if(!in_array($index1, $delData)) {
-						$delData[] = $index1;
-					}
-					if(!in_array($index2, $delData)) {
-						$delData[] = $index2;
-					}
-				}
-			}
-		}
-		// 如果既没有要删除也没有新增的文件，则整个集合收敛了，跳出循环
-		if(count($delData) === 0 && count($newData) === 0) {
-			break;
-		}
-
-		// 一轮比对结束，删除对应的文件
-		for($i=0;$i<count($delData);$i++) {
-			$index = $delData[$i];
-			unset($data[$index]);
-			unset($indexArray[array_search($index, $indexArray)]);
-		}
-		
-		$indexArray = array_values($indexArray);	// 对索引数组进行重排索引
-
-		// 增加新的文件
-		foreach ($newData as $key => $value) {
-			$data[$key] = $value;	// 增加新文件
-			$indexArray[] = $key;	// 增加新的关键字索引
-		}
-
-		// 清零delData和newData
-		$delData = [];
-		$newData = [];
-	}
-}
-
-/**
  * 分页
  */
 function page() {
-	global $db, $data, $indexArray;
+	global $goods;
 
 	$json_data = array();
 	$json_index = 0;
 
-	for($i=0;$i<count($data);$i++) {
-		$index = $indexArray[$i];
-		$sale = $data[$index];
+	for($i=0;$i<count($goods);$i++) {
+		$sale = $goods[$i];
 
 		$id = $sale->getId();
 		$title = $sale->getTitle();
