@@ -13,6 +13,7 @@ include_once("entity.php");
  * | login_time  |    int    |  否   |    0    |    否     | 登录时间
  * | logout_time |    int    |  否   |    0    |    否     | 退出时间
  * | session_id  |    int    |  否   |    0    |    否     | 标识登录者
+ * |    money    |    int    |  否   |    无   |    否     |  用户积分
  */
 class user implements entity {
 
@@ -65,6 +66,10 @@ class user implements entity {
 		$this->info['session_id'] = $session_id;
 	}
 
+	public function setMoney(int $money) {
+		$this->info['money'] = $money;
+	}
+
 	public function getEmail() {
 		return $this->info['email'];
 	}
@@ -97,6 +102,10 @@ class user implements entity {
 		return $this->info['session_id'];
 	}
 
+	public function getMoney() {
+		return $this->info['money'];
+	}
+
 /****************** Entity接口方法 ********************/
 
 	public function getAttribute($name) {
@@ -117,7 +126,7 @@ class user implements entity {
 	}
 
 	public function getOtherKey() {
-		return ['username', 'password', 'cookie_encode', 'cookie_decode', 'login_time', 'logout_time', 'session_id'];
+		return ['username', 'password', 'cookie_encode', 'cookie_decode', 'login_time', 'logout_time', 'session_id', 'money'];
 	}
 }
 
