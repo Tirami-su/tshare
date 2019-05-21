@@ -95,13 +95,12 @@ class FileProcess {
 	 * 逐级创建文件夹
 	 * @param String $dir 待创建的文件夹路径(相对于网站根目录的路径，路径按php规则编写，分隔符:"/")
 	 */
-	public static function createFolder(String $dir, int $pro) {
+	public static function createFolder(String $dir) {
 		$path = "";
 		$list = explode("/", $dir);
 		for($i=0;$i<count($list);$i++) {
 			if(!file_exists($path.$list[$i])) {
-				mkdir($path.$list[$i], $pro);
-				chmod($path.$list[$i], $pro);
+				mkdir($path.$list[$i]);
 			}
 			$path .= $list[$i]."/";
 		}

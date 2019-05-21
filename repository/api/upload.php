@@ -1,18 +1,20 @@
 <?php
-/****************** 接收上传的文件 **********************/
-include_once("../../entity/file.php");
-include_once("../../entity/user.php");
+/******************* 上传文件 ********************/
 include_once("../../lib/Db.php");
+include_once("../../lib/FileProcess.php");
+include_once("../../entity/user.php");
 include_once("../../lib/zip.php");
-require_once("../../lib/FileProcess.php");
-error_log("开始上传\n", 3, "D:/Apache/logs/php.log");
-session_start();
+include_once("../../entity/file.php");
 
+/**
+ * 将文件文明重命名为一个全球唯一标识uuid，真正的文件名存在name字段中
+ */
+
+session_start();
 define("FIRST_DIR", "../../upload_file/");
 
-$file = $_FILES['file'];			// 获取上传的文件
-$filename = $file['name'];			// 获取上传文件的文件名
-
+$file = $_FILES['file'];		// 获得上传的文件对象
+$uploadFilename = $file['name'];	// 获取文件名（主要作用是获取文件的后缀名）
 $errno = $file['error'];
 if(!($errno == 0)) {
 	// 上传文件出错
@@ -20,8 +22,7 @@ if(!($errno == 0)) {
 	exit();
 }
 
-// 上传文件无误
-$user = $_SESSION['user'];			// 获取上传者信息
+$user = $_SESSION['user'];		// 获得上传者的个人信息
 
 // 获取文件的各种信息
 $category 	 = $_POST['category'];			// 0课内/1课外
@@ -38,135 +39,120 @@ if($category == 0) {
 } else {
 	$description = $_POST['description'];
 }
-$upload_time = date("Y-m-d", time());				// 上传时间(年月日)
-$id 		 = $user->getEmail();					// 上传者学号
+$upload_time = date("Y-m-d", time());		// 上传时间(年月日)
+$id 		 = $user->getEmail();			// 上传者学号
+
+$filename = "";
+$ext = "";									// 文件类型
+if(isset(pathinfo($uploadFilename)['extension'])) {
+	$ext = pathinfo($uploadFilename)['extension'];
+	$filename = "." . $ext;
+	if($ext != "zip")
+		$name = $name . "." . $ext;
+} else {
+	$ext = "other";
+}
 
 
-/**
- * 保存上传的文件
- * 一级目录(upload_file)
- * 二级目录（上传时间的年份）
- * 三级目录（科目）
- * 四级目录（文件类型，后缀名）
- */
-$dest_dir = FIRST_DIR;
-// 生成多级目录
+// 计算文件目录，保存文件
 $second_dir = date("Y", time());
-$dest_dir .= $second_dir;
-if(!file_exists($dest_dir)) {
-	mkdir($dest_dir);
-}
-
 $third_dir = $subject;
-$dest_dir .= "/{$third_dir}";
-if(!file_exists($dest_dir)) {
-	mkdir($dest_dir);
-}
+$fourth_dir = $ext;
+$subdir = $second_dir . "/" . $third_dir . "/" . $fourth_dir . "/";
+FileProcess::createFolder(FIRST_DIR . $subdir);		// 创建文件夹
 
-$fourth_dir = "";
-if(isset(pathinfo($filename)['extension'])) {
-	$fourth_dir = pathinfo($filename)['extension'];
-} else {
-	$fourth_dir = "other";
-}
-$dest_dir .= "/{$fourth_dir}";
-if(!file_exists($dest_dir)) {
-	mkdir($dest_dir);
-}
-
-// 对相同名字的文件进行重命名
-if(pathinfo($filename)['extension'] == 'zip') {
-	$temp = pathinfo($filename)['filename'];
-	if(file_exists($dest_dir. "/" . $id."_".$temp)) {
-		$temp = pathinfo($temp)['filename'] . "$" . mt_rand(0, 9);
-		while(file_exists($dest_dir . "/" . $id."_".$temp)) {
-			$temp = pathinfo($temp)['filename'] . "$" . mt_rand(0, 9);
-		}
-	}
-	$filename = $temp . "." . pathinfo($filename)['extension'];
-} else {
-	if(file_exists($dest_dir. "/" . $id."_".$filename)) {
-		$filename = pathinfo($filename)['filename'] . "$" . mt_rand(0, 9) . "." . pathinfo($filename)['extension'];
-		while(file_exists($dest_dir . "/" . $id."_".$filename)) {
-			$filename = pathinfo($filename)['filename'] . "$" . mt_rand(0, 9) . "." . pathinfo($filename)['extension'];
-		}
-	}
-}
-
-$filenameTemp = $id."_".$filename;
-
-$path = substr($dest_dir, 6);	// 文件路径(以网站根目录为起点)
-
-$flag = move_uploaded_file($file['tmp_name'], $dest_dir. "/" .$filenameTemp);			// 保存文件
-
+$realFilename = uuid() . $filename;			// 磁盘上存储的文件名
+$flag = move_uploaded_file($file['tmp_name'], FIRST_DIR . $subdir . $realFilename);
 if($flag === true) {
 	// 上传成功
 	$flag = ['code' => 1, 'msg' => '上传成功'];
+
+	// 上传成功则写入数据库
+	$arr = [
+		"category" 		=> $category,
+		"subject"  		=> $subject,
+		"type"     		=> $type,
+		"time"			=> $time,
+		"description"	=> $description,
+		"upload_time"	=> $upload_time,
+		"filename"		=> $realFilename,
+		"email"			=> $id,
+		"path"			=> $subdir,
+		"teacher"		=> $teacher,
+		"name"			=> $name,
+		"is_dir"		=> 0
+	];
+	$db = new Db();
+
+	if($fourth_dir === "zip") {
+		// 上传压缩包需要解压缩
+		$dest_dir = FIRST_DIR . $subdir . substr($realFilename, 0, -4);
+
+		$zip = new zip();
+		$zip->decompress(FIRST_DIR . $subdir . $realFilename);
+
+		// 解压完压缩包后需要将文件夹内的所有文件和文件夹信息写入数据库
+		$file = new file();
+		$arr['is_dir'] = 1;
+		$arr['filename'] = substr($realFilename, 0, -4);
+		$arr['size'] = FileProcess::getSize(FileProcess::getFolderSize($dest_dir));
+		$file->set($arr);
+		$db->insert("file", $file);
+
+		store($dest_dir, $arr);
+		unlink(FIRST_DIR . $subdir . $realFilename);		// 最后删除压缩包
+	} else {
+		// 仅仅是单个文件的上传
+		$file = new file();
+		$arr['size'] = FileProcess::getSize(filesize(FIRST_DIR . $subdir . $realFilename));
+		$file->set($arr);
+		$db->insert("file", $file);
+	}
 } else {
 	$flag = ['code' => 0, 'msg' => '上传失败'];
-}
-
-// 将上传的文件信息写入数据库
-$arr = [
-	"category" 		=> $category,
-	"subject"  		=> $subject,
-	"type"     		=> $type,
-	"time"			=> $time,
-	"description"	=> $description,
-	"upload_time"	=> $upload_time,
-	"filename"		=> $filename,
-	"email"			=> $id,
-	"path"			=> $path,
-	"teacher"		=> $teacher,
-	"name"			=> $name
-];
-$db = new Db();
-
-// 如果上传的文件是zip压缩包，解压缩并且将其中的所有文件信息都存入数据库
-if($fourth_dir === "zip"){
-	$zip = new zip();
-	$zip->decompress($dest_dir."/".$filenameTemp);
-	$dir = substr($filenameTemp, 0, -4);
-
-	$file = new file();
-	$arr['filename'] = substr($filename, 0, -4);
-	$arr['is_dir'] = 1;
-	$arr['size'] = FileProcess::getSize(FileProcess::getFolderSize($dest_dir . "/" . pathinfo($filenameTemp)['filename']));
-	$file->set($arr);
-	$db->insert("file", $file);
-
-	$arr['is_dir'] = 0;
-	store($dest_dir."/".$dir, $arr, $db);
-	unlink($dest_dir."/".$filenameTemp);
-} else {
-	$newFile = new file();
-	$arr['size'] = FileProcess::getSize(filesize($dest. "/" . $filenameTemp));
-	$newFile->set($arr);
-	$db->insert("file", $newFile);
 }
 
 echo json_encode($flag);
 
 /**
- * 递归保存文件和文件夹
+ * 获取全球唯一标识uuid
  */
-function store($dir, $arr, $db) {
+function uuid() { 
+	$charid = strtoupper(md5(uniqid(mt_rand(), true))); 
+	$hyphen = chr(45);// "-" 
+	$uuid = chr(123)// "{" 
+	.substr($charid, 0, 8).$hyphen 
+	.substr($charid, 8, 4).$hyphen 
+	.substr($charid,12, 4).$hyphen 
+	.substr($charid,16, 4).$hyphen 
+	.substr($charid,20,12) 
+	.chr(125);// "}" 
+	return $uuid; 
+}
+
+function store($dir, $arr) {
+	global $db;
 	$hander = opendir($dir);
 	while(($filename = readdir($hander)) !== false) {
 		if($filename != "." && $filename != "..") {
 			if(is_dir($dir."/".$filename)) {
 				$arr['filename'] = $filename;
-				$arr['path'] = substr($dir, 6);
+				$arr['name'] = $filename;
+				$arr['is_dir'] = 1;
+				$arr['path'] = substr($dir, 18);
 				$arr['size'] = FileProcess::getSize(FileProcess::getFolderSize($dir."/".$filename));
+
 				$file = new file();
 				$file->set($arr);
-				$file->setIs_dir(1);
 				$db->insert('file', $file);
-				store($dir."/".$filename, $arr, $db);
+				store($dir."/".$filename, $arr);
 			} else {
 				$arr['filename'] = $filename;
-				$arr['path'] = substr($dir, 6);
+				$arr['name'] = $filename;
+				$arr['is_dir'] = 0;
+				$arr['path'] = substr($dir, 18);
 				$arr['size'] = FileProcess::getSize(filesize($dir."/".$filename));
+
 				$file = new file();
 				$file->set($arr);
 				$db->insert("file", $file);
@@ -175,4 +161,5 @@ function store($dir, $arr, $db) {
 	}
 	closedir($hander);
 }
+
 ?>

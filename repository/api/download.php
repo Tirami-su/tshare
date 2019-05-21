@@ -13,59 +13,60 @@ include_once("../../entity/download_file.php");
 include_once("../../entity/user.php");
 session_start();
 
-$url = "upload_file/".$_GET['url'];
-$filename = $_GET['filename'];
-$srcFile = "../../" . $url;		// 需要下载的文件的真正路径
+// $url = $_GET['url'];
+// $filename = $_GET['filename'];
+$url = "2019/计算机/zip/{7F019EB6-41FD-0BA7-B17E-84F08679C231}";
+$filename = "操作系统";
 
+$list = FileProcess::splitPathAndFilename($url);		// 拆分文件名和路径名
+
+$srcFile = "../../upload_file/".$url;
 if(!file_exists($srcFile)) {
 	// echo json_encode(['code' => 0, 'msg' => '文件不存在']);
 	exit;
-} else {
-	if(is_dir($srcFile)) {
-		// 打包下载文件夹
-		$zip = new zip();
-
-		$list = FileProcess::splitPathAndFilename($url);		// 拆分文件名和路径名
-		$destFile = "../../". $list['path']. "/". $filename . ".zip";
-		$zip->compress_dir($srcFile, $destFile);
-		FileProcess::download($destFile);
-		// 下载完成后删除zip包
-		unlink($destFile);
-	} else {
-		// 直接下载文件
-		FileProcess::download($srcFile);
-	}
 }
 
-// 文件存在，先建立下载项
+if(is_dir($srcFile)) {
+	// 下载文件夹，需要打包成zip
+	$zip = new zip();
+	$destFile = "../../upload_file/".$list['path']."/".$filename.".zip";
+	$zip->compress_dir($srcFile, $destFile);
+
+	// 下载完后删除zip压缩包
+	FileProcess::download($destFile);
+	unlink($destFile);
+} else {
+	// 直接下载文件
+	FileProcess::download($srcFile);
+}
+
+// 建立文件下载记录
 $db = new Db();
-
-// 建立一条下载记录
 $user = $_SESSION['user'];
-$list = FileProcess::splitPathAndFilename($url);		// 拆分文件名和路径名
 $dlFile = $db->select("download_file", ['email' => $user->getEmail(), 'filename' => $filename, 'path' => $list['path']]);
-
+$dlFile = NULL;
 if($dlFile === NULL) {
-	// 只有第一次下载资料才能对下载量造成影响
-
-	// 之前没有这样的记录，那么创建新的下载记录
-	$dlFile = new download_file();
-	$dlFile->setEmail($user->getEmail());
-	$dlFile->setFilename($filename);
-	$dlFile->setPath($list['path']);
-	$dlFile->setTime(time());
-	$db->insert("download_file", $dlFile);
-
-	$file = $db->select("file", ['filename' => $filename, 'path' => $list['path']]);
+	// 只有第一次下载资料才对下载量造成影响
+	$path = $list['path'];
+	if(substr($path, -3) === "zip") {
+		$path .= "/";
+	}
+	$file = $db->select("file", ['filename' => $list['filename'], 'path' => $path]);
 	if($file !== NULL) {
 		$file->setDownload($file->getDownload() + 1);
 		$db->update("file", $file);
 	}
+
+	// 建立新的下载项
+	$dlFile = new download_file();
+	$dlFile->setEmail($user->getEmail());
+	$dlFile->setFilename($list['filename']);
+	$dlFile->setPath($path);
+	$dlFile->setTime(time());
+	$db->insert("download_file", $dlFile);
 } else {
 	// 以前下载过这个文件，更新最近下载时间，并要求重新评价
 	$dlFile->setTime(time());
 	$dlFile->setIsmark(0);
 	$db->update("download_file", $dlFile);
 }
-// echo json_encode(['code' => 1, 'msg' => '下载成功，请稍后对资料文件进行评价']);
-?>

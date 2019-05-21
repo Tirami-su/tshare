@@ -207,6 +207,8 @@ class Db extends mysqli{
 		$sql = "select * from ". $table ." where {$field} like '%{$key}%'";
 		if($onlyFile === true) {
 			$sql .= " and is_dir=0";
+		} else {
+			$sql .= " and is_dir=1";
 		}
 
 		$res = $this->query($sql);

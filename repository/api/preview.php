@@ -37,7 +37,7 @@ if(in_array($ext, $valid)) {
 		// 如果没有预览文件，则需要新建预览文件
 		if(!file_exists("../../".$destFile)) {
 			// 逐级创建目录
-			FileProcess::createFolder("../../".$destFile, 0777);
+			FileProcess::createFolder("../../".$destFile);
 		}
 		
 		if($ext == "pdf") {
