@@ -163,7 +163,7 @@ function search($key, $onlyFile=true) {
 	$search = ["filename", "name", "path", "description", "subject"];
 
 	for($i=0;$i<count($search);$i++) {
-		$res = $db->find("file", $key, $search[$i], $onlyFile);		// 根据文件名搜索
+		$res = $db->find_files($key, $search[$i], $onlyFile);		// 根据文件名搜索
 		if($res === NULL) continue;
 
 		if($onlyFile) {

@@ -201,10 +201,10 @@ class Db extends mysqli{
 	 * @param String $field 字段名称
 	 * @param bool $onlyFile 是否只查询文件而不查询文件夹
 	 */
-	public function find(String $table, String $key, String $field, bool $onlyFile=true) {
+	public function find_files(String $key, String $field, bool $onlyFile=true) {
 		$arr = array();
 
-		$sql = "select * from ". $table ." where {$field} like '%{$key}%'";
+		$sql = "select * from file where {$field} like '%{$key}%'";
 		if($onlyFile === true) {
 			$sql .= " and is_dir=0";
 		} else {
@@ -224,6 +224,13 @@ class Db extends mysqli{
 			return $arr;
 		}
 	}
+
+	/**
+	 * 根据关键字查找商品
+	 * @param $key 关键字
+	 * @param $field 查找字段
+	 */
+	public function find_goods(String $key, String $field)
 
 	/**
 	 * 获取某张数据表中数据的条数
