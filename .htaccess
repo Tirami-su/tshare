@@ -3,7 +3,7 @@ RewriteEngine on
 <Files ~ "^.(htaccess|htpasswd)$">
 #Deny from all
 </Files>
-#Options -Indexes
+Options -Indexes
 
 #去掉css js文件的时间戳
 RewriteRule ^(.*)\.[0-9]{10}\.(css|js)$ $1.$2 [L]
