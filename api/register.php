@@ -14,7 +14,7 @@ echo json_encode($flag);
 
 /**
  * 完成对用户的注册
- * @param String id     学号
+ * @param String id 学号
  * @param String $username 昵称
  * @param String $password 密码
  */
@@ -30,6 +30,7 @@ function register($email, $username, $password) {
 	$user->setEmail($email);
 	$user->setUsername($username);
 	$user->setPassword($password);
+	$user->setMoney($config['origin_money']);
 
 	$db->insert("user", $user);
 	return ['code' => 1, 'msg' => '注册成功'];
