@@ -64,6 +64,9 @@
 	height: 185px;
 	overflow: hidden;
 }
+.cmdt-img img {
+	width: 100%;
+}
 
 .cmdt-price {
 	margin: 10px 0;
@@ -82,13 +85,24 @@
 }
 
 .cmdt-title {
+	color: black;
 	font-size: 0.9rem;
-	color: #444;
 	max-width: 190px;
 	height: 23px;
 	overflow: hidden;
 }
 
+.cmdt-footer{
+	font-size: 0.85rem;
+	color: #555;
+	margin-top: 8px;
+}
+
+.cmdt-footer img{
+	height: 20px;
+	margin-top: 2px;
+	margin-left: 5px;
+}
 /* 平板 */
 @media only screen and (max-width:767px) {
 	.cmdt {
@@ -129,8 +143,4 @@
 		padding: 0;
 		font-size: 0.9rem;
 	}
-}
-
-.cmdt-img img {
-	width: 100%;
 }
