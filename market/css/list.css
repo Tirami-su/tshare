@@ -1,0 +1,136 @@
+/* 筛选 */
+.filter{
+}
+
+.filter th{
+	background-color: #eee;
+	font-weight: 400;
+	font-size: 0.9rem;
+	width: 80px;
+}
+
+.filter td{
+	font-size: 0.9rem;
+	background-color: white;
+	line-height: 16px;
+}
+
+.filter a{
+	margin-right: 8px;
+	display: inline-block;
+	margin-bottom: 6px;
+}
+
+/* 排序工具条 */
+.row {
+	margin: 0;
+}
+
+#list-top {
+	margin: 15px 0;
+	font-size: 0.9rem;
+}
+
+.checkbtn {
+	color: #444 !important;
+	padding: 4px 10px;
+}
+
+.checkbtn:hover {
+	color: black !important;
+}
+
+.checkbtn.active,
+.checkbtn.active:hover {
+	background-color: #fee4e3;
+	color: #ba000c !important;
+	border-radius: 15px;
+}
+
+.amount{
+	color: #444;
+	display: flex;
+}
+
+/* 商品列表 */
+.cmdt {
+	width: 210px;
+	background-color: white;
+	margin: 0 12px 15px 0px;
+	padding: 10px;
+}
+
+.cmdt-img {
+	height: 185px;
+	overflow: hidden;
+}
+
+.cmdt-price {
+	margin: 10px 0;
+}
+
+.price-now {
+	color: red;
+	font-size: 1.2rem;
+}
+
+.price-ori {
+	color: gray;
+	text-decoration: line-through;
+	font-size: 0.85rem;
+	margin-left: 10px;
+}
+
+.cmdt-title {
+	font-size: 0.9rem;
+	color: #444;
+	max-width: 190px;
+	height: 23px;
+	overflow: hidden;
+}
+
+/* 平板 */
+@media only screen and (max-width:767px) {
+	.cmdt {
+		width: 150px;
+		margin: 0 5px 10px 5px;
+		padding: 0;
+	}
+
+	.cmdt-img {
+		height: 150px;
+	}
+
+	.cmdt-price {
+		margin: 7px 10px;
+	}
+
+	.price-now {
+		font-size: 1.0rem;
+	}
+
+	.price-ori {
+		font-size: 0.75rem;
+	}
+
+	.cmdt-title {
+		font-size: 0.85rem;
+		height: 40px;
+		max-width: 130px;
+		margin: 0 10px;
+	}
+}
+
+@media only screen and (max-width:575px) {
+	.cmdt {
+		margin-left: 4px;
+		margin-right: 4px;
+		margin-bottom: 10px;
+		padding: 0;
+		font-size: 0.9rem;
+	}
+}
+
+.cmdt-img img {
+	width: 100%;
+}
