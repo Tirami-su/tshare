@@ -26,7 +26,7 @@ $db = new Db();
 $keywords = array();
 $goods = array();
 
-// 1.1 完全匹配搜索
+// 1.1 完全匹配搜索(没有加入筛选条件)
 search($key);
 
 // 1.2 分词匹配搜索

@@ -229,11 +229,24 @@ class Db extends mysqli{
 	 * 根据关键字查找商品
 	 * @param $key 关键字
 	 * @param $field 查找字段
+	 * @param condition 筛选条件(关联数组类型)
 	 */
-	public function find_goods(String $key, String $field) {
+	public function find_goods(String $key, String $field, $condition) {
 		$arr = array();
 
-		$sql = "select * from sale where {$field} like '%{$key}%'";
+		$cond = "";
+		foreach ($condition as $k => $value) {
+			// 生成选择条件
+			if($value === NULL) {
+				$cond .= "{$k} is null and ";
+			} else {
+				$cond .= "{$k}='{$value}' and ";
+			}
+		}
+
+		$sql = "select * from sale where ";
+		$sql .= ($cond . "{$field} like '%{$key}%'");
+		
 		$res = $this->query($sql);
 
 		if($res->num_rows === 0){
