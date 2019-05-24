@@ -37,9 +37,9 @@ foreach ($keys as $key) {
 	}
 }
 
-// 3. 排序
+// 2. 排序
 
-// 4. 分页
+// 3. 分页
 $json_data = page();
 if(count($json_data) === 0) {
 	echo json_encode(['code' => 0, 'msg' => '没有找到您需要的商品']);
