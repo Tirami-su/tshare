@@ -119,7 +119,7 @@ for($i=0;$i<count($files);$i++) {
 	if($onlyFile === false) {
 		// 需要生成内部目录结构
 		$dir = new dirctory("../../upload_file/".$path."/".$filename);
-		$contents = $dir->getContents();
+		$contents = $dir->getContents()[$filename];
 		$url = $path . $filename;
 	} else{
 		$url = $path . "/" . $filename;

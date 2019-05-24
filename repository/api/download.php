@@ -13,10 +13,8 @@ include_once("../../entity/download_file.php");
 include_once("../../entity/user.php");
 session_start();
 
-// $url = $_GET['url'];
-// $filename = $_GET['filename'];
-$url = "2019/计算机/zip/{7F019EB6-41FD-0BA7-B17E-84F08679C231}";
-$filename = "操作系统";
+$url = $_GET['url'];
+$filename = $_GET['filename'];
 
 $list = FileProcess::splitPathAndFilename($url);		// 拆分文件名和路径名
 
