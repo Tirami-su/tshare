@@ -79,7 +79,7 @@
 					<div id="options" class="bg-white shadow-sm">
 						<div class="option-title">选项</div>
 						<div class="form-check">
-							<input type="checkbox" id="search-mode" class="form-check-input" checked onclick="modeSwitch()" />
+							<input type="checkbox" id="search-mode" class="form-check-input" onclick="modeSwitch()" />
 							<label class="form-check-label" for="search-mode">列出资料包内的文件</label>
 						</div>
 						<div class="option-title">排序</div>
@@ -136,11 +136,9 @@
 					</div>
 					<div class="file-description">{{description}}</div>
 					<div class="contents">
-						包含120个文件，内部目录<br>
-						第一章<br>
-						第二章<br>
-						第三章<br>
-						<a class="readmore">查看全部</a>
+						包含{{file_num}}个文件，内部目录<br>
+						{{structure}}
+						<a class="readmore">...查看全部</a>
 					</div>
 				</div>
 			</div>

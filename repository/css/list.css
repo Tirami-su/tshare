@@ -45,6 +45,11 @@
 	margin-top: 10px;
 }
 
+.action span{
+	margin-right: 20px;
+	font-size: 0.9rem;
+}
+
 .file-icon{
 	height: 70px;
 	margin-top: 10px;
