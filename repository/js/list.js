@@ -226,7 +226,7 @@ function fileList(key, res) {
 				cellHtml += template('template-file', data[i])
 			} else{
 				// 计算文件数量
-				data[i].num=count_file(data[i].contents)
+				data[i].file_num=count_file(data[i].contents)
 				// 获取内部目录
 				var stru=''
 				if (Object.getOwnPropertyNames(data[i].contents).length==1)
@@ -234,8 +234,13 @@ function fileList(key, res) {
 						var toplevel=data[i].contents[key]
 				else
 					var toplevel=data[i].contents
-				for (let sub in toplevel) 
-					stru+='<br>'+sub
+				var num=0
+				for (let sub in toplevel) {
+					stru+=sub+'<br>'
+					num++
+					if (num==3)
+						break
+				}
 				// 添加到HTML中
 				var folderHTML=template('template-folder', data[i])
 				var start=folderHTML.lastIndexOf('structure')

@@ -38,6 +38,10 @@
 	cursor: pointer;
 }
 
+.structure{
+	font-size: 0.9rem;
+}
+
 .file-description,
 .contents,
 .action {
