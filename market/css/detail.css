@@ -1,5 +1,6 @@
 .container{
 	padding: 0;
+	min-width: 992px;
 }
 
 .row{
@@ -149,6 +150,12 @@
 
 #follow{
 	padding: 2px;
+}
+
+@media only screen and (max-width:1199px) {
+	#sellerinfo{
+		margin-left: 30px;
+	}
 }
 
 /* 详情 */

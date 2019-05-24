@@ -224,8 +224,18 @@ function fileList(key, res) {
 				else
 					data[i].ext = 'other'
 				cellHtml += template('template-file', data[i])
-			} else
+			} else{
+				// 获取内部目录
+				var stru=''
+				if (data[i].contents.length==1)
+					var toplevel=data[i].contents[0]
+				else
+					var toplevel=data[i].contents
+				for (let sub in toplevel) 
+					stru+=sub+'\n'
+				data[i].structure=stru
 				cellHtml += template('template-folder', data[i])
+			}
 		}
 		// 清空列表，重新添加cell
 		$('#file-list').empty().append(cellHtml)
@@ -311,6 +321,9 @@ function toPage(page) {
  * 预览文件
  */
 function preview() {
+	var btn=event.target
+	btn.innerHTML = '正在转码...'
+	btn.disabled = true
 	var fileUrl = event.target.parentNode.dataset.url
 	// 请求服务器生成预览
 	$.ajax({
@@ -330,6 +343,8 @@ function preview() {
 			} else {
 				alert(res.msg)
 			}
+			btn.innerHTML = '预览'
+			btn.disabled = false
 		},
 		error: (xhr, status, error) => {
 			console.log('[Status]', status, '\n[Error]', error)
