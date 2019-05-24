@@ -225,16 +225,21 @@ function fileList(key, res) {
 					data[i].ext = 'other'
 				cellHtml += template('template-file', data[i])
 			} else{
+				// 计算文件数量
+				data[i].num=count_file(data[i].contents)
 				// 获取内部目录
 				var stru=''
-				if (data[i].contents.length==1)
-					var toplevel=data[i].contents[0]
+				if (Object.getOwnPropertyNames(data[i].contents).length==1)
+					for (let key in data[i].contents) 
+						var toplevel=data[i].contents[key]
 				else
 					var toplevel=data[i].contents
 				for (let sub in toplevel) 
-					stru+=sub+'\n'
-				data[i].structure=stru
-				cellHtml += template('template-folder', data[i])
+					stru+='<br>'+sub
+				// 添加到HTML中
+				var folderHTML=template('template-folder', data[i])
+				var start=folderHTML.lastIndexOf('structure')
+				cellHtml += folderHTML.substring(0,start)+stru+folderHTML.substring(start+9)
 			}
 		}
 		// 清空列表，重新添加cell
@@ -273,6 +278,20 @@ function fileList(key, res) {
 			$('#page-next').removeClass('disabled')
 		$('#page-' + curPage).addClass('active')
 	}
+}
+
+/**
+ * 计算文件夹中文件的数量
+ */
+function count_file(folder){
+	var num=0
+	for (let i in folder) {
+		if (folder[i]===0)
+			num++
+		else
+			num+=count_file(folder[i])
+	}
+	return num
 }
 
 /**
