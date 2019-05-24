@@ -271,7 +271,7 @@ class dirctory {
 		}
 
 		for($i=0;$i<count($this->files);$i++) {
-			$contents[$this->path][] = $this->files[$i];
+			$contents[$this->path][$this->files[$i]] = 0;
 		}
 
 		return $contents;
