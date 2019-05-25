@@ -197,7 +197,7 @@
 	height:300px;
 }
 .parallax_wh{
-	width:100%;
+	width:1920px;
 	height:700px;
 }
 .function_introduce{
@@ -281,6 +281,7 @@
 }
 body>.container{
 	padding: 60px 15px 0;
+	position:relative;
 }
 /*字体*/
 #part1_Tshare_style{
@@ -354,7 +355,23 @@ body>.container{
     color: #999999;
 	font-size: 18px;
 }
-
+.wing_text_style{
+	position:relative;
+	top:25px;
+}
+.wing_text_style>h2{
+	font-family: '华文细黑';
+    font-weight: 400;
+    font-style: normal;
+    color: #000000;
+}
+.wing_text_style>p>span{
+	font-family: '华文细黑';
+    font-weight: 400;
+    font-style: normal;
+    color: #999999;
+	font-size: 18px;
+}
 #footer_text_style{
 	color:#999999;
 	font-family:"华文细黑";
@@ -371,9 +388,8 @@ body>.container{
     overflow: hidden;
     padding-top: 150px;
 }*/
+/*改为svg形式的图片更快捷*/
 /*旋转部分边界*/
-
-
 /*提问回答部分旋转*/
 #ask_se_slope{
 	margin: 0 -50px;
@@ -409,6 +425,12 @@ body>.container{
 	transform:rotate(-7deg);
 }
 /*svg图片缩放及位移*/
+#wing_img{
+	transform:scale(0.75);
+	position:absolute;
+	left:75px;
+	top:-415px;
+}
 #bubble{
 	transform:scale(0.7);
 	position:absolute;
@@ -444,30 +466,29 @@ body>.container{
 	margin-left:50px;
 }
 /*button_position右移*/
-#buton_position{
+#button_position{
 	margin-left:950px;
 	margin-top:20px;
 }
 /*clip_img*/
 #clip_img{
-	width:100%;
+	width:1920px;
 	height:605px;
+	max-height:100%;
+	min-width:100%;
 	position:absolute;
-	bottom:-1200px;
-	/*clip:rect(0px 0px 100px 275px);
-	/*clip:rect(100px 505px 35.5px 605px);*/
+	bottom:-1270px;
+	
 }
-/*wing_img*/
-#wing_img{
+/*clip_img更改位置*/
+@media only screen and (min-width:768px) and (max-width:1024px){
+	#wing_img{
 	transform:scale(0.8);
 	position:absolute;
-	left:75px;
-	top:-375px;
+	left:25px;
+	top:-425px;
 }
-/*search_img*/
-#search_img{
-	transform:scale(0.8);
-	position:absolute;
-	left:-75px;
-	top:-100px;
+}
+#wing-content{
+	position:relative;
 }
