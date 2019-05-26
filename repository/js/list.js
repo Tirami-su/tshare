@@ -374,7 +374,7 @@ function preview() {
 		complete:()=>{
 			btn.innerHTML = '预览'
 			btn.disabled = false
-		}
+		},
 		dataType: 'json',
 		timeout: 10000
 	})
