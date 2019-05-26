@@ -119,7 +119,7 @@ function searchFile(key) {
 			$('#nofound').remove()
 			// 提示连接服务器超时
 		},
-		timeout: 5000
+		timeout: 10000
 	})
 
 	// 等待动画
@@ -367,14 +367,16 @@ function preview() {
 			} else {
 				alert(res.msg)
 			}
-			btn.innerHTML = '预览'
-			btn.disabled = false
 		},
 		error: (xhr, status, error) => {
 			console.log('[Status]', status, '\n[Error]', error)
 		},
+		complete:()=>{
+			btn.innerHTML = '预览'
+			btn.disabled = false
+		}
 		dataType: 'json',
-		timeout: 5000
+		timeout: 10000
 	})
 }
 

@@ -1,5 +1,5 @@
 /**
- * 导航栏搜索框和中心搜索框回车事件
+ * 导航栏搜索框回车事件
  */
 function inputSearch(key) {
 	if (event.keyCode == 13) {

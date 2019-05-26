@@ -14,11 +14,13 @@
 		
 		<!-- CSS Files -->
 		<link rel="stylesheet" href="../css/bootstrap.css"/>
-		<link rel="stylesheet" href="../css/common.css"/>
+<!-- 		<link rel="stylesheet" href="../css/common.css"/>
 		<link rel="stylesheet" href="css/sidebar.css"/>
-		<link rel="stylesheet" href="css/list.css"/>
-<!-- 		<?php require '../api/reload_css_js.php'; ?>
-		<link rel="stylesheet" href="<?php echo auto_version('/css/common.css'); ?>"/> -->
+		<link rel="stylesheet" href="css/list.css"/> -->
+		<?php require '../api/reload_css_js.php'; ?>
+		<link rel="stylesheet" href="<?php echo auto_version('/css/common.css'); ?>"/>
+		<link rel="stylesheet" href="<?php echo auto_version('/market/css/list.css'); ?>"/>
+		<link rel="stylesheet" href="<?php echo auto_version('/market/css/sidebar.css'); ?>"/>
 	</head>
 	<body class="bg-light">
 		<!-- 导航条 -->
@@ -59,7 +61,7 @@
 						<img id="user-icon" class="dropdown-toggle" data-toggle="dropdown" src="../home/img/user.jpg">	
 						<div class="dropdown-menu dropdown-menu-right">
 							<a class="dropdown-item" href="#">个人中心</a>
-							<a class="dropdown-item" href="upload.html">上传资料</a>
+							<a class="dropdown-item" href="../repository/upload.html">上传资料</a>
 							<a class="dropdown-item" href="#">提问</a>
 							<a class="dropdown-item" href="#">上架</a>
 							<a class="dropdown-item" href="#">小喇叭</a>
@@ -126,14 +128,56 @@
 			<div class="list">
 				<div class="row cmdt-row">
 					<div class="cmdt">
-						<div class="cmdt-img">
+						<a class="cmdt-img" href="list.html">
 							<img src="img/lipstick.jpg" alt="图片无法加载">
+						</a>
+						<div class="cmdt-price">
+							<span class="price-now">¥56</span>
+							<span class="price-ori">¥156</span>
+						</div>
+						<div class="cmdt-title">故宫口红mac小辣椒平替色</div>
+						<div class="cmdt-footer row justify-content-between">
+							<div class="seller">琢风</div>
+							<img src="img/contact3.png" >
+						</div>
+					</div>
+					<div class="cmdt">
+						<div class="cmdt-img">
+							<img src="img/lipstick2.jpg" alt="图片无法加载">
 						</div>
 						<div class="cmdt-price">
 							<span class="price-now">¥56</span>
 							<span class="price-ori">¥156</span>
 						</div>
-						<div class="cmdt-title">故宫口红mac小辣椒平替色故宫口红mac小辣椒平替色</div>
+						<div class="cmdt-title">完美日记唇釉9成新</div>
+						<div class="cmdt-footer row justify-content-between">
+							<div class="seller">Sin.</div>
+							<img src="img/contact3.png" >
+						</div>
+					</div>
+					<div class="cmdt">
+						<div class="cmdt-img">
+							<img src="img/lipstick3.jpg" alt="图片无法加载">
+						</div>
+						<div class="cmdt-price">
+							<span class="price-now">¥56</span>
+							<span class="price-ori">¥156</span>
+						</div>
+						<div class="cmdt-title">BbiA丝绒唇釉09南瓜色</div>
+						<div class="cmdt-footer row justify-content-between">
+							<div class="seller">潮音</div>
+							<img src="img/contact3.png" >
+						</div>
+					</div>
+					<div class="cmdt">
+						<div class="cmdt-img">
+							<img src="img/lipstick4.jpg" alt="图片无法加载">
+						</div>
+						<div class="cmdt-price">
+							<span class="price-now">¥56</span>
+							<span class="price-ori">¥156</span>
+						</div>
+						<div class="cmdt-title">卡姿兰口红</div>
 						<div class="cmdt-footer row justify-content-between">
 							<div class="seller">16超爱吃</div>
 							<img src="img/contact3.png" >
@@ -141,13 +185,13 @@
 					</div>
 					<div class="cmdt">
 						<div class="cmdt-img">
-							<img src="img/lipstick.jpg" alt="图片无法加载">
+							<img src="img/lipstick5.jpg" alt="图片无法加载">
 						</div>
 						<div class="cmdt-price">
 							<span class="price-now">¥56</span>
 							<span class="price-ori">¥156</span>
 						</div>
-						<div class="cmdt-title">故宫口红mac小辣椒平替色</div>
+						<div class="cmdt-title">纪梵希天生一对礼盒色号304和305</div>
 						<div class="cmdt-footer row justify-content-between">
 							<div class="seller">16超爱吃</div>
 							<img src="img/contact3.png" >
@@ -155,13 +199,13 @@
 					</div>
 					<div class="cmdt">
 						<div class="cmdt-img">
-							<img src="img/lipstick.jpg" alt="图片无法加载">
+							<img src="img/lipstick6.jpg" alt="图片无法加载">
 						</div>
 						<div class="cmdt-price">
 							<span class="price-now">¥56</span>
 							<span class="price-ori">¥156</span>
 						</div>
-						<div class="cmdt-title">故宫口红mac小辣椒平替色</div>
+						<div class="cmdt-title">Dior351</div>
 						<div class="cmdt-footer row justify-content-between">
 							<div class="seller">16超爱吃</div>
 							<img src="img/contact3.png" >
@@ -169,13 +213,13 @@
 					</div>
 					<div class="cmdt">
 						<div class="cmdt-img">
-							<img src="img/lipstick.jpg" alt="图片无法加载">
+							<img src="img/lipstick7.jpg" alt="图片无法加载">
 						</div>
 						<div class="cmdt-price">
 							<span class="price-now">¥56</span>
 							<span class="price-ori">¥156</span>
 						</div>
-						<div class="cmdt-title">故宫口红mac小辣椒平替色</div>
+						<div class="cmdt-title">雅诗兰黛倾慕口红色号260杨幂色</div>
 						<div class="cmdt-footer row justify-content-between">
 							<div class="seller">16超爱吃</div>
 							<img src="img/contact3.png" >
@@ -183,57 +227,15 @@
 					</div>
 					<div class="cmdt">
 						<div class="cmdt-img">
-							<img src="img/lipstick.jpg" alt="图片无法加载">
+							<img src="img/lipstick8.jpg" alt="图片无法加载">
 						</div>
 						<div class="cmdt-price">
 							<span class="price-now">¥56</span>
 							<span class="price-ori">¥156</span>
 						</div>
-						<div class="cmdt-title">故宫口红mac小辣椒平替色</div>
+						<div class="cmdt-title">mac口红</div>
 						<div class="cmdt-footer row justify-content-between">
-							<div class="seller">16超爱吃</div>
-							<img src="img/contact3.png" >
-						</div>
-					</div>
-					<div class="cmdt">
-						<div class="cmdt-img">
-							<img src="img/lipstick.jpg" alt="图片无法加载">
-						</div>
-						<div class="cmdt-price">
-							<span class="price-now">¥56</span>
-							<span class="price-ori">¥156</span>
-						</div>
-						<div class="cmdt-title">故宫口红mac小辣椒平替色</div>
-						<div class="cmdt-footer row justify-content-between">
-							<div class="seller">16超爱吃</div>
-							<img src="img/contact3.png" >
-						</div>
-					</div>
-					<div class="cmdt">
-						<div class="cmdt-img">
-							<img src="img/lipstick.jpg" alt="图片无法加载">
-						</div>
-						<div class="cmdt-price">
-							<span class="price-now">¥56</span>
-							<span class="price-ori">¥156</span>
-						</div>
-						<div class="cmdt-title">故宫口红mac小辣椒平替色</div>
-						<div class="cmdt-footer row justify-content-between">
-							<div class="seller">16超爱吃</div>
-							<img src="img/contact3.png" >
-						</div>
-					</div>
-					<div class="cmdt">
-						<div class="cmdt-img">
-							<img src="img/lipstick.jpg" alt="图片无法加载">
-						</div>
-						<div class="cmdt-price">
-							<span class="price-now">¥56</span>
-							<span class="price-ori">¥156</span>
-						</div>
-						<div class="cmdt-title">故宫口红mac小辣椒平替色</div>
-						<div class="cmdt-footer row justify-content-between">
-							<div class="seller">16超爱吃</div>
+							<div class="seller">52&Hertz</div>
 							<img src="img/contact3.png" >
 						</div>
 					</div>
@@ -255,9 +257,9 @@
 	
 	<script src="../js/template-web.js" type="text/javascript"></script>
 	
-	<script src="../js/base.js" type="text/javascript"></script>
-	<script src="js/market.js" type="text/javascript"></script>
-<!-- 	<script src="<?php echo auto_version('/js/base.js'); ?>" type="text/javascript" ></script>
-	<script src="<?php echo auto_version('/market/js/market.js'); ?>" type="text/javascript"></script> -->
+<!-- 	<script src="../js/base.js" type="text/javascript"></script>
+	<script src="js/list.js" type="text/javascript"></script> -->
+	<script src="<?php echo auto_version('/js/base.js'); ?>" type="text/javascript" ></script>
+	<script src="<?php echo auto_version('/market/js/list.js'); ?>" type="text/javascript"></script>
 	
 </html>
