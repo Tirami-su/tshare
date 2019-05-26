@@ -30,7 +30,7 @@ function register($email, $username, $password) {
 	$user->setEmail($email);
 	$user->setUsername($username);
 	$user->setPassword($password);
-	$user->setMoney($config['origin_money']);
+	// $user->setMoney($config['origin_money']);
 
 	$db->insert("user", $user);
 	return ['code' => 1, 'msg' => '注册成功'];
