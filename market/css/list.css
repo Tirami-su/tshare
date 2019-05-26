@@ -52,6 +52,10 @@
 }
 
 /* 商品列表 */
+a {
+	text-decoration: none;
+}
+
 .cmdt {
 	width: 210px;
 	background-color: white;
