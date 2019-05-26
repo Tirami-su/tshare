@@ -1,0 +1,53 @@
+.admini{
+	background:url(../img/background.png);
+	border-radius:2%;
+	margin:50px auto;
+	width:900px;
+	height:550px;
+	box-shadow: darkgrey 2px 2px 5px 2.5px ;/*边框阴影*/
+	/* 背景图片显示尺寸(放大/缩小背景图) */
+	background-size: 200px 200px;  /* 通过像素设置 */
+	background-size: 50% 50%;    /* 通过百分比设置 */
+	background-size: cover;      /* 覆盖:图片成比例填满盒子。可用于适配 */
+	background-size: contain;     /* 包含:图片成比例放大,可能不会填满盒子。可用于适配  */
+}
+#unknown{
+	border-radius:10%;
+	border:5px solid #ffffff;
+	margin:120px 50px;
+}
+#ad_bt{
+	margin:10px 275px;
+	position:relative;
+	top:-200px;
+	left:-25px;
+}
+#ad_bt p{
+	font-size:25px;
+	font-weight:bold;
+}
+#ad_bt p span{
+	margin-left:20px;
+	color:#00BFFF;
+}
+.btn{
+	position: relative;
+    left: 75px;
+    top: -294px;
+	border:1px solid black;
+}
+.btn b{
+	margin-left:15px;
+	color:#000;
+}
+#back{
+	color:#C0C0C0;
+	position: relative;
+    left: 709px;
+    top: -290px;
+}
+.sex{
+	position: relative;
+    left: 253px;
+    top: -246px;
+}
